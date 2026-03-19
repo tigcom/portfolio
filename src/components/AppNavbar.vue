@@ -233,6 +233,29 @@ onUnmounted(() => {
   color: var(--text-primary);
 }
 
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-lang-btn {
+  background: var(--bg-800);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.nav-lang-btn:hover {
+  border-color: var(--highlight);
+  color: var(--highlight);
+}
+
 /* Theme Toggle Button */
 .nav-theme-btn {
   background: var(--bg-800);

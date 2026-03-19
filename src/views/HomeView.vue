@@ -9,20 +9,20 @@
           <div class="home-hero-content">
             <div class="hero-label" ref="heroLabel">
               <span class="status-dot"></span>
-              <span>Software Developer / Full-Stack Developer</span>
+              <span>{{ t('home.heroLabel') }}</span>
             </div>
             <h1 class="home-hero-title" ref="heroTitle">
-              <span class="title-line">Building</span>
-              <span class="title-line hero-highlight">Microservices</span>
-              <span class="title-line">Systems & Seamless</span>
-              <span class="title-line">User Experiences.</span>
+              <span class="title-line">{{ t('home.heroTitleLine1') }}</span>
+              <span class="title-line hero-highlight">{{ t('home.heroTitleHighlight') }}</span>
+              <span class="title-line">{{ t('home.heroTitleLine3') }}</span>
+              <span class="title-line">{{ t('home.heroTitleLine4') }}</span>
             </h1>
             <p class="home-hero-desc" ref="heroDesc">
-              Chào bạn, mình là Phúc Khang (tigcom). Mình chuyên xây dựng các hệ thống Backend quy mô lớn với Java Spring Boot Microservices và giao diện người dùng hiện đại, tối ưu hiệu năng.
+              {{ t('home.heroDesc') }}
             </p>
             <div class="home-hero-btns" ref="heroBtns">
-              <router-link to="/projects" class="btn btn-outline">View Projects</router-link>
-              <router-link to="/about" class="btn btn-ghost">Know me better →</router-link>
+              <router-link to="/projects" class="btn btn-outline">{{ t('home.viewProjects') }}</router-link>
+              <router-link to="/about" class="btn btn-ghost">{{ t('home.knowMe') }}</router-link>
             </div>
           </div>
 
@@ -37,15 +37,15 @@
               </div>
               <div class="hero-stat-card hero-stat-card--1">
                 <div class="hero-stat-icon">🎓</div>
-                <div><div class="hero-stat-num">9/10</div><div class="hero-stat-label">GPA Achievement</div></div>
+                <div><div class="hero-stat-num">9/10</div><div class="hero-stat-label">{{ t('home.gpa') }}</div></div>
               </div>
               <div class="hero-stat-card hero-stat-card--2">
                 <div class="hero-stat-icon">⚡</div>
-                <div><div class="hero-stat-num">3+</div><div class="hero-stat-label">Excellent Sems</div></div>
+                <div><div class="hero-stat-num">3+</div><div class="hero-stat-label">{{ t('home.excellentSems') }}</div></div>
               </div>
               <div class="hero-stat-card hero-stat-card--3">
                 <div class="hero-stat-icon">🏢</div>
-                <div><div class="hero-stat-num">Kien Long</div><div class="hero-stat-label">Bank Experience</div></div>
+                <div><div class="hero-stat-num">Kien Long</div><div class="hero-stat-label">{{ t('home.bankExp') }}</div></div>
               </div>
             </div>
           </div>
@@ -167,7 +167,9 @@ import { ref, onMounted } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { projects } from '../data/projects.js'
+import { useLang } from '../data/translations.js'
 
+const { t } = useLang()
 gsap.registerPlugin(ScrollTrigger)
 
 // Inline icon components
