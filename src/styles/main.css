@@ -1,0 +1,574 @@
+/* =============================================
+   PORTFOLIO VUE — GLOBAL STYLES
+   ============================================= */
+
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Satoshi:wght@300;400;500;600;700&display=swap');
+
+/* =============================================
+   CSS VARIABLES — DARK THEME (default)
+   ============================================= */
+:root,
+[data-theme="dark"] {
+    --bg-950: #050505;
+    --bg-900: #0a0a0a;
+    --bg-800: #111111;
+    --bg-700: #1a1a1a;
+    --bg-600: #252525;
+    --bg-500: #2e2e2e;
+
+    --text-primary: #f0f0f0;
+    --text-secondary: #888888;
+
+    --highlight: #b5ff6d;
+    --highlight-dark: #8ad648;
+    --highlight-glow: rgba(181, 255, 109, 0.08);
+    --highlight-text: #1a1a1a;
+
+    --border: rgba(255, 255, 255, 0.08);
+    --border-strong: rgba(255, 255, 255, 0.15);
+    --backdrop: rgba(10, 10, 10, 0.85);
+    --backdrop-scrolled: rgba(5, 5, 5, 0.95);
+
+    --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.6);
+
+    --section-py: 96px;
+    --container-max: 1240px;
+    --container-px: 32px;
+
+    --font-clash: 'Clash Display', 'Inter', sans-serif;
+    --font-satoshi: 'Satoshi', 'Inter', sans-serif;
+
+    color-scheme: dark;
+}
+
+/* =============================================
+   CSS VARIABLES — LIGHT THEME
+   ============================================= */
+[data-theme="light"] {
+    --bg-950: #ffffff;
+    --bg-900: #f8f8f6;
+    --bg-800: #f0f0ec;
+    --bg-700: #e8e8e0;
+    --bg-600: #dcdcd4;
+    --bg-500: #d0d0c8;
+
+    --text-primary: #0a0a0a;
+    --text-secondary: #555550;
+
+    --highlight: #4a7c2f;
+    --highlight-dark: #3a6124;
+    --highlight-glow: rgba(74, 124, 47, 0.08);
+    --highlight-text: #ffffff;
+
+    --border: rgba(0, 0, 0, 0.08);
+    --border-strong: rgba(0, 0, 0, 0.15);
+    --backdrop: rgba(248, 248, 246, 0.88);
+    --backdrop-scrolled: rgba(248, 248, 246, 0.97);
+
+    --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.15);
+
+    color-scheme: light;
+}
+
+/* =============================================
+   SMOOTH THEME TRANSITION
+   All color-bearing properties transition when theme changes
+   ============================================= */
+*,
+*::before,
+*::after {
+    transition:
+        background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Exclude transitions that would break animations */
+.cursor-glow,
+.loader-bar,
+.marquee-track,
+.marquee-track *,
+.testi-row,
+.testi-row *,
+[style*="transform"] {
+    transition: none !important;
+}
+
+/* Theme toggle circle overlay */
+.theme-ripple {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    transform: scale(0);
+}
+
+/* =============================================
+   RESET & BASE
+   ============================================= */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    background-color: var(--bg-900);
+    color: var(--text-primary);
+    font-family: var(--font-satoshi);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-900);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--bg-600);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--highlight);
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-clash);
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--text-primary);
+}
+
+h1 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+}
+
+h2 {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+h4 {
+    font-size: 1.25rem;
+}
+
+p {
+    color: var(--text-secondary);
+    line-height: 1.75;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+button {
+    font-family: var(--font-satoshi);
+}
+
+/* =============================================
+   LAYOUT
+   ============================================= */
+.container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-px);
+}
+
+.section {
+    padding: var(--section-py) 0;
+}
+
+/* =============================================
+   SHARED COMPONENTS
+   ============================================= */
+
+/* Cursor glow */
+.cursor-glow {
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(181, 255, 109, 0.055) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    will-change: transform;
+}
+
+/* === BUTTONS === */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 13px 28px;
+    border-radius: 100px;
+    font-family: var(--font-satoshi);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+    white-space: nowrap;
+    border: none;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1.5px solid var(--text-primary);
+    color: var(--text-primary);
+}
+
+.btn-outline:hover {
+    background: var(--text-primary);
+    color: var(--bg-900);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.btn-primary {
+    background: var(--highlight);
+    border: 1.5px solid var(--highlight);
+    color: var(--bg-900);
+    font-weight: 700;
+}
+
+.btn-primary:hover {
+    background: var(--highlight-dark);
+    transform: translateY(-2px);
+}
+
+.btn-ghost {
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 13px 0;
+    border: none;
+    transition: color 0.3s;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-ghost:hover {
+    color: var(--text-primary);
+}
+
+/* === SECTION LABEL === */
+.section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.72rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+}
+
+.section-label svg {
+    color: var(--highlight);
+    flex-shrink: 0;
+}
+
+/* Shimmer */
+.shimmer {
+    background: linear-gradient(90deg, var(--text-secondary) 0%, var(--text-primary) 50%, var(--text-secondary) 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer-anim 4s linear infinite;
+}
+
+@keyframes shimmer-anim {
+    to {
+        background-position: 200% center;
+    }
+}
+
+/* Section heading */
+.section-heading {
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    line-height: 1.2;
+    margin-bottom: 48px;
+}
+
+/* Hero highlight */
+.hero-highlight {
+    color: var(--highlight);
+}
+
+/* Tags */
+.tag {
+    background: var(--bg-800);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 4px 12px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+/* Availability badge */
+.availability-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+.availability-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #4ade80;
+    position: relative;
+    display: inline-block;
+}
+
+.availability-dot::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    background: #4ade80;
+    opacity: 0.35;
+    animation: ping 1.5s infinite;
+}
+
+/* Marquee */
+.marquee-section {
+    overflow: hidden;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 0;
+    position: relative;
+}
+
+.marquee-fade-left,
+.marquee-fade-right {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 120px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.marquee-fade-left {
+    left: 0;
+    background: linear-gradient(to right, var(--bg-900), transparent);
+}
+
+.marquee-fade-right {
+    right: 0;
+    background: linear-gradient(to left, var(--bg-900), transparent);
+}
+
+.marquee-track {
+    display: flex;
+    gap: 16px;
+    width: max-content;
+    animation: marquee-scroll 28s linear infinite;
+}
+
+.marquee-track:hover {
+    animation-play-state: paused;
+}
+
+.tech-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    white-space: nowrap;
+    background: var(--bg-800);
+    transition: border-color 0.3s;
+}
+
+.tech-badge:hover {
+    border-color: var(--highlight);
+}
+
+.tech-badge-icon {
+    font-size: 1rem;
+}
+
+/* Social links */
+.social-links {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.social-link {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    transition: all 0.3s;
+}
+
+.social-link:hover {
+    border-color: var(--highlight);
+    color: var(--highlight);
+    transform: translateY(-2px);
+}
+
+/* Scroll top */
+.scroll-top-btn {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--bg-800);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 50;
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    transition: opacity 0.3s, transform 0.3s, background 0.3s, border-color 0.3s;
+}
+
+.scroll-top-btn.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+}
+
+.scroll-top-btn:hover {
+    background: var(--highlight);
+    border-color: var(--highlight);
+    color: var(--bg-900);
+}
+
+/* === KEYFRAMES === */
+@keyframes marquee-scroll {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes ping {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: scale(2.2);
+        opacity: 0;
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+@keyframes spin-slow {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes shimmer-move {
+    0% {
+        left: -60%;
+    }
+
+    100% {
+        left: 120%;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    :root {
+        --section-py: 60px;
+        --container-px: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --container-px: 16px;
+    }
+}
