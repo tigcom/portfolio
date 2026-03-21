@@ -11,25 +11,25 @@
    ============================================= */
 :root,
 [data-theme="dark"] {
-    --bg-950: #050505;
-    --bg-900: #0a0a0a;
-    --bg-800: #111111;
-    --bg-700: #1a1a1a;
-    --bg-600: #252525;
-    --bg-500: #2e2e2e;
+    --bg-950: #050507;
+    --bg-900: #0b0b0d;
+    --bg-800: #121116;
+    --bg-700: #1a191f;
+    --bg-600: #212026;
+    --bg-500: #2d2c33;
 
-    --text-primary: #f0f0f0;
-    --text-secondary: #888888;
+    --text-primary: #f7f7fe;
+    --text-secondary: #9494a3;
 
-    --highlight: #b5ff6d;
-    --highlight-dark: #8ad648;
-    --highlight-glow: rgba(181, 255, 109, 0.08);
-    --highlight-text: #1a1a1a;
+    --highlight: #bcff67;
+    --highlight-dark: #a2eb4d;
+    --highlight-glow: rgba(188, 255, 103, 0.08);
+    --highlight-text: #0b0b0d;
 
-    --border: rgba(255, 255, 255, 0.08);
-    --border-strong: rgba(255, 255, 255, 0.15);
-    --backdrop: rgba(10, 10, 10, 0.85);
-    --backdrop-scrolled: rgba(5, 5, 5, 0.95);
+    --border: rgba(255, 255, 255, 0.06);
+    --border-strong: rgba(255, 255, 255, 0.12);
+    --backdrop: rgba(11, 11, 13, 0.82);
+    --backdrop-scrolled: rgba(11, 11, 13, 0.95);
 
     --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.4);
     --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.5);
@@ -50,24 +50,24 @@
    ============================================= */
 [data-theme="light"] {
     --bg-950: #ffffff;
-    --bg-900: #f8f8f6;
-    --bg-800: #f0f0ec;
-    --bg-700: #e8e8e0;
-    --bg-600: #dcdcd4;
-    --bg-500: #d0d0c8;
+    --bg-900: #f7f8fa;
+    --bg-800: #ffffff;
+    --bg-700: #eff0f3;
+    --bg-600: #e2e4e9;
+    --bg-500: #d4d7e0;
 
-    --text-primary: #0a0a0a;
-    --text-secondary: #555550;
+    --text-primary: #0b0b0b;
+    --text-secondary: #58585e;
 
-    --highlight: #4a7c2f;
-    --highlight-dark: #3a6124;
-    --highlight-glow: rgba(74, 124, 47, 0.08);
+    --highlight: #34ae5a;
+    --highlight-dark: #2a8d49;
+    --highlight-glow: rgba(52, 174, 90, 0.08);
     --highlight-text: #ffffff;
 
-    --border: rgba(0, 0, 0, 0.08);
-    --border-strong: rgba(0, 0, 0, 0.15);
-    --backdrop: rgba(248, 248, 246, 0.88);
-    --backdrop-scrolled: rgba(248, 248, 246, 0.97);
+    --border: rgba(0, 0, 0, 0.06);
+    --border-strong: rgba(0, 0, 0, 0.12);
+    --backdrop: rgba(247, 248, 250, 0.82);
+    --backdrop-scrolled: rgba(247, 248, 250, 0.95);
 
     --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.08);
     --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.12);
@@ -121,11 +121,34 @@
     padding: 0;
 }
 
+/* Lenis requires scroll-behavior: auto — it handles smooth itself */
 html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Lenis smooth scroll base styles ── */
+html.lenis,
+html.lenis body {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+    pointer-events: none;
 }
 
 body {

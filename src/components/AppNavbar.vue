@@ -1,38 +1,43 @@
 <template>
-  <header id="navbar" :class="{ scrolled: isScrolled, hidden: isHidden }">
-    <nav class="nav-inner">
-      <router-link to="/" class="nav-logo">MD</router-link>
+  <header id="navbar" :class="{ scrolled: isScrolled }">
+    <nav class="nav-inner" ref="navInnerRef">
+      <router-link to="/" class="nav-logo">PK</router-link>
 
       <ul class="nav-links">
+
         <li v-for="link in navLinks" :key="link.path">
           <router-link :to="link.path" :class="{ active: isActive(link.path) }">
-            <span class="link-text-top">{{ t(link.label) }}</span>
-            <span class="link-text-bottom">{{ t(link.label) }}</span>
+            <div class="nav-link-content">
+              <span class="link-text-top">{{ t(link.label) }}</span>
+              <span class="link-text-bottom">{{ t(link.label) }}</span>
+            </div>
+            <div class="nav-active-indicator"></div>
           </router-link>
         </li>
       </ul>
 
       <div class="nav-actions">
         <!-- Language Toggle -->
-        <button class="nav-lang-btn" @click="setLang(state.lang === 'en' ? 'vi' : 'en')" :title="state.lang === 'en' ? 'Tiếng Việt' : 'English'">
+        <button class="nav-lang-btn" @click="setLang(state.lang === 'en' ? 'vi' : 'en')"
+          :title="state.lang === 'en' ? 'Tiếng Việt' : 'English'">
           {{ state.lang === 'en' ? 'EN' : 'VI' }}
         </button>
 
         <!-- Theme toggle with animated icon swap -->
-        <button
-          class="nav-theme-btn"
-          @click="toggleTheme"
+        <button class="nav-theme-btn" @click="toggleTheme"
           :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
-          :title="isDark ? 'Light Mode' : 'Dark Mode'"
-        >
+          :title="isDark ? 'Light Mode' : 'Dark Mode'">
           <!-- Moon icon (shown in dark mode) -->
-          <svg v-if="isDark" class="theme-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+          <svg v-if="isDark" class="theme-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none"
+            stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
           </svg>
           <!-- Sun icon (shown in light mode) -->
-          <svg v-else class="theme-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="4"/>
-            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+          <svg v-else class="theme-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none"
+            stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="4" />
+            <path
+              d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
           </svg>
         </button>
       </div>
@@ -41,22 +46,26 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
 import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useLang } from '../data/translations.js'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const { state, t, setLang } = useLang()
 const route = useRoute()
 const isScrolled = ref(false)
-const isHidden = ref(false)
 const isDark = ref(true)
 
+const navInnerRef = ref(null)
+
 const navLinks = [
-  { path: '/',         label: 'nav.home' },
-  { path: '/about',    label: 'nav.about' },
+  { path: '/', label: 'nav.home' },
+  { path: '/about', label: 'nav.about' },
   { path: '/projects', label: 'nav.projects' },
-  { path: '/contact',  label: 'nav.contact' },
+  { path: '/contact', label: 'nav.contact' },
 ]
 
 function isActive(path) {
@@ -79,10 +88,10 @@ function toggleTheme(event) {
   const y = event.clientY
 
   Object.assign(ripple.style, {
-    width:  `${size}px`,
+    width: `${size}px`,
     height: `${size}px`,
-    left:   `${x - size / 2}px`,
-    top:    `${y - size / 2}px`,
+    left: `${x - size / 2}px`,
+    top: `${y - size / 2}px`,
     background: isGoingLight ? '#f8f8f6' : '#0a0a0a',
   })
   document.body.appendChild(ripple)
@@ -103,16 +112,17 @@ function toggleTheme(event) {
       localStorage.setItem('portfolio-theme', nextTheme)
     }
   })
-  .to(ripple, {
-    opacity: 0,
-    duration: 0.35,
-    ease: 'power2.in',
-  }, '+=0.05')
+    .to(ripple, {
+      opacity: 0,
+      duration: 0.35,
+      ease: 'power2.in',
+    }, '+=0.05')
 
   // Rotate theme button icon with GSAP
   gsap.fromTo('.theme-icon',
     { rotate: 0, scale: 1 },
-    { rotate: 360, scale: 0, duration: 0.3, ease: 'power3.in',
+    {
+      rotate: 360, scale: 0, duration: 0.3, ease: 'power3.in',
       onComplete: () => {
         gsap.fromTo('.theme-icon',
           { rotate: -90, scale: 0 },
@@ -126,16 +136,8 @@ function toggleTheme(event) {
 // =============================================
 // NAVBAR SCROLL BEHAVIOR
 // =============================================
-let lastScroll = 0
 function handleScroll() {
-  const current = window.scrollY
-  isScrolled.value = current > 60
-  if (current > 120) {
-    isHidden.value = current > lastScroll
-  } else {
-    isHidden.value = false
-  }
-  lastScroll = current
+  isScrolled.value = window.scrollY > 60
 }
 
 // =============================================
@@ -152,6 +154,41 @@ onMounted(() => {
     { yPercent: -100, opacity: 0 },
     { yPercent: 0, opacity: 1, duration: 0.7, ease: 'power3.out', delay: 0.1 }
   )
+
+  // Handle Width Scroll Animation (95% -> content width)
+  nextTick(() => {
+    const navInner = navInnerRef.value
+    if (!navInner) return
+
+    // Tạm thời set width auto để đo kích thước thật của nội dung
+    navInner.style.width = '41%'
+    navInner.style.maxWidth = 'none'
+    const contentWidth = navInner.offsetWidth
+
+    // Reset lại về giá trị ban đầu cho trạng thái ở Đỉnh (Top)
+    navInner.style.width = '100%'
+    navInner.style.backgroundColor = 'var(--bg-900)'
+    navInner.style.borderColor = 'transparent'
+    navInner.style.boxShadow = 'none'
+
+    // Tạo ScrollTrigger animation
+    gsap.to(navInner, {
+      width: `${contentWidth}px`,
+      // Khi scroll xuống sẽ hiện background mờ và viền (Shadow đã bị loại bỏ)
+      backgroundColor: 'var(--backdrop-scrolled)',
+      borderColor: 'var(--border-strong)',
+      boxShadow: 'none',
+      ease: 'none',
+      scrollTrigger: {
+        trigger: 'body',
+        start: 'top top',
+        end: '+=500',
+        scrub: true, // Sync trực tiếp với scroll (đã có Lenis làm mượt)
+        invalidateOnRefresh: true,
+      }
+    })
+  })
+
   window.addEventListener('scroll', handleScroll, { passive: true })
 })
 
@@ -163,7 +200,9 @@ onUnmounted(() => {
 <style scoped>
 #navbar {
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
   padding: 16px var(--container-px);
   display: flex;
@@ -175,17 +214,18 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
   width: 100%;
-  max-width: 580px;
-  background: var(--backdrop);
+  gap: 0px;
+  max-width: none;
+  background: var(--bg-900);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--border);
+  border: 1px solid transparent;
   border-radius: 100px;
-  padding: 8px 16px;
+  padding: 4px 24px;
   pointer-events: all;
-  box-shadow: var(--shadow-sm);
+  box-shadow: none;
+  will-change: width, background-color, border-color;
 }
 
 #navbar.scrolled .nav-inner {
@@ -194,40 +234,60 @@ onUnmounted(() => {
   box-shadow: var(--shadow-md);
 }
 
-#navbar.hidden .nav-inner {
-  transform: translateY(-110%);
-  opacity: 0;
-  pointer-events: none;
-}
-
 .nav-logo {
   font-family: var(--font-clash);
-  font-size: 1.5rem; font-weight: 600;
+  font-size: 1.5rem;
+  font-weight: 600;
   color: var(--text-primary);
   letter-spacing: -1px;
 }
-.nav-logo:hover { color: var(--highlight); }
+
+.nav-logo:hover {
+  color: var(--highlight);
+}
 
 .nav-links {
-  display: flex; align-items: center;
-  gap: 24px; list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  list-style: none;
 }
+
 .nav-links a {
   color: var(--text-secondary);
-  font-size: 0.875rem; font-weight: 500;
-  display: inline-flex; flex-direction: column;
-  overflow: hidden; height: 1.2em;
+  font-size: 0.875rem;
+  font-weight: 500;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  transition: color 0.3s;
 }
-.link-text-top, .link-text-bottom {
+
+.nav-link-content {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 1.2em;
+}
+
+.link-text-top,
+.link-text-bottom {
   display: block;
   transform: translateY(0);
-  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1) !important;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
   line-height: 1.2;
 }
+
 .nav-links a:hover .link-text-top,
-.nav-links a.active .link-text-top {
+.nav-links a:hover .link-text-bottom,
+.nav-links a.active .link-text-top,
+.nav-links a.active .link-text-bottom {
   transform: translateY(-100%) !important;
 }
+
+
+
 .nav-links a:hover,
 .nav-links a.active {
   color: var(--text-primary);
@@ -258,12 +318,15 @@ onUnmounted(() => {
 
 /* Theme Toggle Button */
 .nav-theme-btn {
-  background: var(--bg-800);
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  width: 34px; height: 34px;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; color: var(--text-secondary);
+  border: none;
+  background: transparent;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-secondary);
   flex-shrink: 0;
   position: relative;
   overflow: hidden;
@@ -281,16 +344,35 @@ onUnmounted(() => {
 
 /* Active dot under logo */
 .nav-active-indicator {
-  width: 4px; height: 4px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: var(--highlight);
   position: absolute;
-  bottom: -6px; left: 50%;
-  transform: translateX(-50%);
+  top: 40%;
+  left: -10px;
+  transform: translateY(-50%) scale(0);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  pointer-events: none;
+}
+
+.nav-links a.active .nav-active-indicator {
+  transform: translateX(-50%) scale(1);
+  opacity: 1;
 }
 
 @media (max-width: 600px) {
-  .nav-links { display: none; }
-  .nav-inner { max-width: calc(100% - 32px); }
+  .nav-links {
+    display: none;
+  }
+
+  .nav-inner {
+    max-width: calc(100% - 32px);
+  }
+}
+
+#navbar.scrolled .nav-lang-btn {
+  margin-left: 10px;
 }
 </style>

@@ -1,0 +1,269 @@
+[
+  {
+    "slug": "internet-banking",
+    "num": "01",
+    "title": { "en": "Internet Banking System", "vi": "Hệ thống Internet Banking" },
+    "subtitle": { "en": "Microservices-based Financial Platform", "vi": "Nền tảng Tài chính Microservices" },
+    "category": "development",
+    "tags": ["Microservices", "Spring Boot 3.x", "Angular"],
+    "year": "2025",
+    "img": "/portfolio/image/bank.png",
+    "colorBackgound" :"#99f6e4",
+    "heroImg": "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1200&q=85",
+    "galleryImgs": [
+      "https://images.unsplash.com/photo-1550565118-3d1428df732f?w=600&q=80",
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80",
+      "https://images.unsplash.com/photo-1501167786227-4cba60f6d58f?w=600&q=80"
+    ],
+    "techStack": ["Spring Boot 3.x", "Spring Security", "Angular", "MySQL", "Kafka", "Dubbo", "Docker", "Prometheus", "Grafana", "Redis"],
+    "role": { "en": "Java Developer Collaborator (Kien Long Bank)", "vi": "Cộng tác viên Phát triển Java (Kien Long Bank)" },
+    "overview": {
+      "en": "Modern Internet Banking system built on Microservices architecture with separate services: Account, Customer, Transaction, Loan, Notification. Focused on high security, scalability, and real-time monitoring.",
+      "vi": "Hệ thống Internet Banking hiện đại được xây dựng trên kiến trúc Microservices với các dịch vụ tách biệt: Account, Customer, Transaction, Loan, Notification. Dự án tập trung vào tính bảo mật cao, khả năng mở rộng và giám sát hệ thống thời gian thực."
+    },
+    "problem": {
+      "en": "Building a secure financial system capable of handling thousands of concurrent transactions, ensuring Data Consistency and Resilience across services.",
+      "vi": "Xây dựng một hệ thống tài chính an toàn có khả năng xử lý hàng nghìn giao dịch đồng thời, đảm bảo tính nhất quán dữ liệu (Data Consistency) và khả năng phục hồi (Resilience) khi có sự cố dịch vụ."
+    },
+    "processSteps": [
+      {
+        "title": { "en": "Microservices Architecture", "vi": "Kiến trúc Microservices" },
+        "description": { "en": "Implemented independent services communicating via REST, gRPC, and Kafka for asynchronous tasks.", "vi": "Triển khai các dịch vụ độc lập giao tiếp qua REST, gRPC và Kafka cho các tác vụ bất đồng bộ." }
+      },
+      {
+        "title": { "en": "Loan Service System", "vi": "Hệ thống Loan Service" },
+        "description": { "en": "Developed features for loan application, approval, disbursement, and automated monthly installment calculation.", "vi": "Phát triển tính năng đăng ký khoản vay, duyệt giải ngân và tự động tính toán kỳ hạn thanh toán hàng tháng." }
+      },
+      {
+        "title": { "en": "Observability & Monitoring", "vi": "Giám sát hệ thống" },
+        "description": { "en": "Integrated OpenTelemetry, Zipkin for tracing and Prometheus + Grafana for performance monitoring.", "vi": "Tích hợp OpenTelemetry, Zipkin để tracing và Prometheus + Grafana để giám sát hiệu năng hệ thống." }
+      }
+    ],
+    "results": [
+      { "value": 100, "suffix": "%", "label": { "en": "Gateway Security", "vi": "Bảo mật API Gateway" } },
+      { "value": 200, "suffix": "ms", "label": { "en": "Avg Response Time", "vi": "Tốc độ phản hồi trung bình" } },
+      { "value": 5, "suffix": "Services", "label": { "en": "Core Services", "vi": "Hệ thống lõi" } },
+      { "value": 99.9, "suffix": "%", "label": { "en": "Uptime Monitoring", "vi": "Uptime giám sát" } }
+    ],
+    "githubLink": "",
+    "prevSlug": "youtube-clone",
+    "prevTitle": { "en": "Youtube Clone", "vi": "Youtube Clone" },
+    "nextSlug": "traveloka-clone",
+    "nextTitle": { "en": "Traveloka Clone", "vi": "Traveloka Clone" }
+  },
+  {
+    "slug": "traveloka-clone",
+    "num": "02",
+    "title": { "en": "Traveloka Clone (DATN)", "vi": "Traveloka Clone (Đồ án tốt nghiệp)" },
+    "subtitle": { "en": "Travel Super App Booking System", "vi": "Hệ thống Booking Super App" },
+    "category": "development",
+    "tags": ["Microservices", "Spring Boot 3.x", "Vue 3"],
+    "year": "2025",
+    "img": "/portfolio/image/travel.png",
+    "colorBackgound" :"#92c5fc",
+    "heroImg": "https://images.unsplash.com/photo-1436491865332-7a61a109c0f3?w=1200&q=85",
+    "galleryImgs": [
+      "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600&q=80",
+      "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?w=600&q=80",
+      "https://images.unsplash.com/photo-1570126618953-d437176e8c79?w=600&q=80"
+    ],
+    "techStack": ["Java Spring Boot 3.x", "Vue.js", "Tailwind CSS", "MySQL", "Redis", "Kafka", "Socket.io", "Docker"],
+    "role": { "en": "Full Stack Developer", "vi": "Nhà phát triển Full Stack" },
+    "overview": {
+      "en": "An online airline and tour booking platform, focusing on complex booking flows, seat holding (TTL), payments, and automated refund/cancellation policies.",
+      "vi": "Nền tảng đặt vé máy bay và tour du lịch trực tuyến, tập trung vào luồng booking phức tạp, giữ chỗ (Seat Hold), thanh toán và tự động hoàn vé/hủy vé theo chính sách."
+    },
+    "problem": {
+      "en": "Handling real-time seat synchronization, designing TTL-based auto-cancellation for unpaid orders, and ensuring transparency in the refund process.",
+      "vi": "Xử lý đồng bộ trạng thái ghế ngồi theo thời gian thực, thiết kế hệ thống tự động hủy đơn hàng khi quá hạn thanh toán (TTL-based) và đảm bảo tính minh bạch trong quy trình hoàn tiền."
+    },
+    "processSteps": [
+      {
+        "title": { "en": "Core Booking Flow", "vi": "Luồng Booking lõi" },
+        "description": { "en": "Built the search, fare selection, seat holding, and ticket issuance process.", "vi": "Xây dựng quy trình tìm kiếm, chọn hạng vé, giữ chỗ (TTL) và phát hành vé sau khi thanh toán." }
+      },
+      {
+        "title": { "en": "Seat Hold System", "vi": "Hệ thống giữ chỗ" },
+        "description": { "en": "Designed a seat holding system using Redis with Scheduler/Consumer to safely release inventory.", "vi": "Thiết kế hệ thống giữ chỗ sử dụng Redis kết hợp Scheduler/Consumer để giải phóng inventory an toàn." }
+      },
+      {
+        "title": { "en": "Real-time Dashboard", "vi": "Dashboard thời gian thực" },
+        "description": { "en": "Used Socket.io to provide real-time status updates for orders and flights to the Admin panel.", "vi": "Sử dụng Socket.io để cập nhật trạng thái đơn hàng và chuyến bay theo thời gian thực cho Admin." }
+      }
+    ],
+    "results": [
+      { "value": 100, "suffix": "%", "label": { "en": "Auto-cancel accuracy", "vi": "Tự động hủy vé quá hạn" } },
+      { "value": 50, "suffix": "ms", "label": { "en": "Socket latency", "vi": "Độ trễ cập nhật Socket" } },
+      { "value": 98, "suffix": "%", "label": { "en": "Inventory accuracy", "vi": "Chính xác Inventory" } }
+    ],
+    "githubLink": "https://github.com/thanhlam2802/DATN",
+    "prevSlug": "internet-banking",
+    "prevTitle": { "en": "Internet Banking", "vi": "Internet Banking" },
+    "nextSlug": "sixdo-ecommerce",
+    "nextTitle": { "en": "Sixdo E-commerce", "vi": "Sixdo E-commerce" }
+  },
+  {
+    "slug": "sixdo-ecommerce",
+    "num": "03",
+    "title": { "en": "Sixdo E-commerce Platform", "vi": "Nền tảng Thương mại điện tử Sixdo" },
+    "subtitle": { "en": "Modern Fullstack Shopping Solution", "vi": "Giải pháp Mua sắm Fullstack Hiện đại" },
+    "category": "development",
+    "tags": ["Spring Boot", "Next.js", "PostgreSQL"],
+    "year": "2025",
+    "img": "/portfolio/image/siso.png",
+    "colorBackgound" :"#fef3c6",
+    "heroImg": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&q=85",
+    "galleryImgs": [],
+    "techStack": ["Java Spring Boot", "Next.js", "React", "PostgreSQL", "Flyway", "Spring Security", "Tailwind CSS"],
+    "role": { "en": "Full Stack Developer", "vi": "Nhà phát triển Full Stack" },
+    "overview": {
+      "en": "A modern e-commerce platform synchronized between Backend (Spring Boot) and Frontend (Next.js), focusing on performance and a smooth user experience.",
+      "vi": "Nền tảng thương mại điện tử hiện đại đồng bộ giữa Backend (Spring Boot) và Frontend (Next.js), tập trung vào hiệu năng và trải nghiệm người dùng mượt mà."
+    },
+    "problem": {
+      "en": "Synchronizing data across different platforms, managing shopping cart states, and securing APIs with Spring Security.",
+      "vi": "Xử lý đồng bộ dữ liệu giữa hai nền tảng khác nhau, quản lý trạng thái giỏ hàng và bảo mật API với Spring Security."
+    },
+    "processSteps": [
+      {
+        "title": { "en": "RESTful API Design", "vi": "Thiết kế API RESTful" },
+        "description": { "en": "Standardized API endpoints for products and categories management.", "vi": "Chuẩn hóa các endpoint API để quản lý sản phẩm và danh mục." }
+      },
+      {
+        "title": { "en": "Database Migration", "vi": "Di cư dữ liệu" },
+        "description": { "en": "Implemented Flyway to manage database schema versions consistently.", "vi": "Triển khai Flyway để quản lý các phiên bản cấu trúc cơ sở dữ liệu một cách nhất quán." }
+      },
+      {
+        "title": { "en": "Next.js Integration", "vi": "Tích hợp Next.js" },
+        "description": { "en": "Leveraged Next.js App Router and Server Components for optimal frontend performance.", "vi": "Tận dụng App Router và Server Components của Next.js để tối ưu hiệu năng frontend." }
+      }
+    ],
+    "results": [],
+    "githubLink": "https://github.com/tigcom/cloneSixdo",
+    "prevSlug": "traveloka-clone",
+    "prevTitle": { "en": "Traveloka Clone", "vi": "Traveloka Clone" },
+    "nextSlug": "motorbike-sales-system",
+    "nextTitle": { "en": "Motorbike Sales System", "vi": "Motorbike Sales System" }
+  },
+  {
+    "slug": "motorbike-sales-system",
+    "num": "04",
+    "title": { "en": "Motorbike Sales & Management System", "vi": "Hệ thống Quản lý Bán xe máy" },
+    "subtitle": { "en": "Multi-branch Desktop Solution", "vi": "Giải pháp Desktop Quản lý Đa chi nhánh" },
+    "category": "development",
+    "tags": ["Desktop App", "Java Swing", "SQL Server"],
+    "year": "2024",
+    "img": "/portfolio/image/byke.png",
+    "colorBackgound" :"#a7c5c7",
+    "heroImg": "https://images.unsplash.com/photo-1558981403-c5f91cbba527?w=1200&q=85",
+    "galleryImgs": [],
+    "techStack": ["Java (Swing/AWT)", "JDBC", "SQL Server", "Apache POI"],
+    "role": { "en": "Full Stack Developer", "vi": "Nhà phát triển Full Stack" },
+    "overview": {
+      "en": "A comprehensive desktop application for large-scale motorbike dealers, handling inventory, sales, employees, and maintenance across multiple branches.",
+      "vi": "Hệ thống quản lý kinh doanh xe máy toàn diện dành cho các đại lý có quy mô lớn với nhiều chi nhánh, tích hợp từ khâu nhập hàng, bán hàng đến bảo hành."
+    },
+    "problem": {
+      "en": "Synchronizing inventory across multiple branches, managing periodic maintenance schedules, and automating revenue reports.",
+      "vi": "Đồng bộ hóa dữ liệu tồn kho giữa nhiều chi nhánh khác nhau, quản lý lịch bảo dưỡng định kỳ và tự động hóa báo cáo doanh thu."
+    },
+    "processSteps": [
+      {
+        "title": { "en": "Multi-branch Logic", "vi": "Nghiệp vụ Đa chi nhánh" },
+        "description": { "en": "Designed a database schema to isolate and aggregate data across different physical locations.", "vi": "Thiết kế cấu trúc cơ sở dữ liệu để tách biệt và tổng hợp dữ liệu giữa các chi nhánh vật lý khác nhau." }
+      },
+      {
+        "title": { "en": "Maintenance Scheduler", "vi": "Quản lý Bảo dưỡng" },
+        "description": { "en": "Built a notification system for customer service staff to track and remind maintenance schedules.", "vi": "Xây dựng hệ thống theo dõi và nhắc nhở lịch bảo dưỡng định kỳ cho nhân viên chăm sóc khách hàng." }
+      },
+      {
+        "title": { "en": "Export Reporting", "vi": "Xuất báo cáo tự động" },
+        "description": { "en": "Integrated Apache POI to export professional Excel reports for sales and inventory tracking.", "vi": "Tích hợp Apache POI để xuất các báo cáo Excel chuyên nghiệp cho việc theo dõi doanh thu và kho hàng." }
+      }
+    ],
+    "results": [],
+    "githubLink": "https://github.com/tigcom/MotorbikeSalesSystem",
+    "prevSlug": "sixdo-ecommerce",
+    "prevTitle": { "en": "Sixdo E-commerce", "vi": "Sixdo E-commerce" },
+    "nextSlug": "phong-vu-clone",
+    "nextTitle": { "en": "Phong Vu Shop Clone", "vi": "Phong Vu Shop Clone" }
+  },
+  {
+    "slug": "phong-vu-clone",
+    "num": "05",
+    "title": { "en": "Phong Vu Shop Clone", "vi": "Clone Cửa hàng Phong Vũ" },
+    "subtitle": { "en": "E-commerce Electronics Store", "vi": "Cửa hàng Điện tử E-commerce" },
+    "category": "development",
+    "tags": ["Spring Boot", "Thymeleaf", "SQL Server"],
+    "year": "2025",
+    "img": "/portfolio/image/phongvu.png",
+    "colorBackgound" :"#121317",
+    "heroImg": "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=1200&q=85",
+    "galleryImgs": [],
+    "techStack": ["Spring Boot", "Thymeleaf", "Tailwind CSS", "JPA", "SQL Server"],
+    "role": { "en": "Backend Developer", "vi": "Nhà phát triển Backend" },
+    "overview": {
+      "en": "A clone project of the Phong Vu e-commerce website, featuring a complete flow from product management, shopping cart, to checkout and automated email confirmations.",
+      "vi": "Dự án mô phỏng website thương mại điện tử Phong Vũ, tích hợp đầy đủ quy trình từ quản lý sản phẩm, giỏ hàng đến đặt hàng và gửi email xác nhận tự động."
+    },
+    "problem": {
+      "en": "Efficiently managing shopping cart state (session-based) and automating order confirmation notifications to customers via email.",
+      "vi": "Quản lý trạng thái giỏ hàng hiệu quả (Session-based) và tự động hóa quy trình thông báo đơn hàng cho khách hàng qua email."
+    },
+    "processSteps": [
+      {
+        "title": { "en": "Product Management", "vi": "Quản lý sản phẩm" },
+        "description": { "en": "Designed a flexible CRUD system for products with advanced categorization and search.", "vi": "Thiết kế hệ thống CRUD sản phẩm linh hoạt với phân loại và tìm kiếm nâng cao." }
+      },
+      {
+        "title": { "en": "Automated Email", "vi": "Email tự động" },
+        "description": { "en": "Used @Scheduled tasks to automatically send order confirmation emails and status updates.", "vi": "Sử dụng @Scheduled tasks để tự động gửi email xác nhận đơn hàng và cập nhật trạng thái." }
+      }
+    ],
+    "results": [],
+    "githubLink": "",
+    "prevSlug": "motorbike-sales-system",
+    "prevTitle": { "en": "Motorbike Sales System", "vi": "Motorbike Sales System" },
+    "nextSlug": "youtube-clone",
+    "nextTitle": { "en": "Youtube Clone", "vi": "Youtube Clone" }
+  },
+  {
+    "slug": "youtube-clone",
+    "num": "06",
+    "title": { "en": "Youtube Clone Website", "vi": "Clone Website Youtube" },
+    "subtitle": { "en": "Video Sharing Platform", "vi": "Nền tảng Chia sẻ Video" },
+    "category": "development",
+    "tags": ["Java Servlet", "JSP", "SQL Server"],
+      "year": "2024",
+      "img": "/portfolio/image/ytu.png",
+      "colorBackgound" :"#fbcfe8",
+    "heroImg": "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=1200&q=85",
+    "galleryImgs": [],
+    "techStack": ["Java Servlet", "JSP", "Bootstrap", "JavaScript", "SQL Server"],
+    "role": { "en": "Full Stack Developer", "vi": "Nhà phát triển Full Stack" },
+    "overview": {
+      "en": "An online video sharing website with real-time interactive features, video management, and traffic statistics for the Admin.",
+      "vi": "Website chia sẻ video trực tuyến với các tính năng tương tác thời gian thực, quản lý video và thống kê lưu lượng truy cập cho Admin."
+    },
+    "problem": {
+      "en": "Handling user interactions (Like, Comment, Subscribe) smoothly and implementing voice search for videos.",
+      "vi": "Xử lý các tương tác người dùng (Like, Comment, Subscribe) mượt mà và tìm kiếm video bằng giọng nói."
+    },
+    "processSteps": [
+      {
+        "title": { "en": "Voice Search", "vi": "Tìm kiếm bằng giọng nói" },
+        "description": { "en": "Integrated Web Speech API to support voice-based video search.", "vi": "Tích hợp Web Speech API để hỗ trợ người dùng tìm kiếm video bằng giọng nói." }
+      },
+      {
+        "title": { "en": "Real-time Stats", "vi": "Thống kê thời gian thực" },
+        "description": { "en": "Tracked live viewer counts and traffic statistics for the admin panel.", "vi": "Theo dõi số lượng người xem trực tiếp và thống kê truy cập cho trang quản trị." }
+      }
+    ],
+    "results": [],
+    "githubLink": "",
+    "prevSlug": "phong-vu-clone",
+    "prevTitle": { "en": "Phong Vu Shop Clone", "vi": "Phong Vu Shop Clone" },
+    "nextSlug": "internet-banking",
+    "nextTitle": { "en": "Internet Banking", "vi": "Internet Banking" }
+  }
+]

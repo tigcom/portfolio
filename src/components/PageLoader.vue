@@ -1,6 +1,6 @@
 <template>
   <div class="page-loader" ref="loaderEl">
-    <div class="loader-logo">MD</div>
+    <div class="loader-logo">PK</div>
     <div class="loader-bar-wrapper">
       <div class="loader-bar" ref="barEl"></div>
     </div>

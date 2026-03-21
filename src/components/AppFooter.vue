@@ -2,32 +2,38 @@
   <footer id="footer">
     <div class="container">
       <div class="footer-cta" ref="ctaEl">
-        <div class="availability-badge">
-          <span class="availability-dot"></span>
-          Available for work
-        </div>
-        <h2>Let's create your<br>next big idea.</h2>
-        <router-link to="/contact" class="btn btn-outline">Contact Me</router-link>
-        <div class="social-links" style="justify-content:center; margin-top:32px;">
-          <a href="#" class="social-link" aria-label="LinkedIn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
-          </a>
-          <a href="#" class="social-link" aria-label="GitHub">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
-          </a>
-          <a href="#" class="social-link" aria-label="Instagram">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-          </a>
+        <!-- LightPillar background effect -->
+        <LightPillar :topColor="pillarTopColor" :bottomColor="pillarBottomColor" :intensity="pillarIntensity"
+          :rotationSpeed="0.8" :glowAmount="0.002" :pillarWidth="3.3" :pillarHeight="0.4" :noiseIntensity="0"
+          :pillarRotation="25" :interactive="true" :resolutionScale="100" :targetFPS="60" mixBlendMode="screen" />
+
+        <!-- Content overlay (must be above the canvas) -->
+        <div class="footer-cta-content">
+          <div class="availability-badge">
+            <span class="availability-dot"></span>
+            {{ t('contact.letsWork') }} {{ t('contact.together') }}
+          </div>
+          <h2>{{ t('contact.letsWork') }}<br>{{ t('contact.together') }}.</h2>
+          <router-link to="/contact" class="btn btn-outline">{{ t('nav.contact') }}</router-link>
+          <div class="social-links" style="justify-content:center; margin-top:32px;">
+            <a href="https://github.com/tigcom" class="social-link" aria-label="GitHub" target="_blank">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/phuc-khang-5744b62a4/" class="social-link" aria-label="LinkedIn"
+              target="_blank">
+              <i class="fab fa-linkedin"></i>
+            </a>
+          </div>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p class="footer-copyright">© 2026 Minh Dev. All rights reserved.</p>
+        <p class="footer-copyright">© 2026 Phuc Khang. All rights reserved.</p>
         <nav class="footer-nav">
-          <router-link to="/">Home</router-link>
-          <router-link to="/about">About</router-link>
-          <router-link to="/projects">Projects</router-link>
-          <router-link to="/contact">Contact</router-link>
+          <router-link to="/">{{ t('nav.home') }}</router-link>
+          <router-link to="/about">{{ t('nav.about') }}</router-link>
+          <router-link to="/projects">{{ t('nav.projects') }}</router-link>
+          <router-link to="/contact">{{ t('nav.contact') }}</router-link>
         </nav>
       </div>
     </div>
@@ -35,19 +41,52 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useLang } from '../data/translations.js'
+import LightPillar from '../LightPillar.vue'
+const { t } = useLang()
 gsap.registerPlugin(ScrollTrigger)
 
 const ctaEl = ref(null)
 
+// === Theme-aware colors for LightPillar ===
+const currentTheme = ref(document.documentElement.getAttribute('data-theme') || 'dark')
+
+// Watch for theme changes via MutationObserver
+let themeObserver = null
 onMounted(() => {
   gsap.from(ctaEl.value, {
     scrollTrigger: { trigger: ctaEl.value, start: 'top 88%' },
     y: 50, opacity: 0, duration: 0.9, ease: 'power3.out'
   })
+
+  // Observe theme changes on <html> element
+  themeObserver = new MutationObserver(() => {
+    currentTheme.value = document.documentElement.getAttribute('data-theme') || 'dark'
+  })
+  themeObserver.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme']
+  })
 })
+
+onUnmounted(() => {
+  themeObserver?.disconnect()
+})
+
+// Dark: green glow on dark bg (#121116)
+// Light: gray glow (#c1c3cb) on dark bg (#121116), text black
+const pillarTopColor = computed(() =>
+  currentTheme.value === 'light' ? '#c1c3cb' : '#48FF28'
+)
+const pillarBottomColor = computed(() =>
+  currentTheme.value === 'light' ? '#c1c3cb' : '#9EF19E'
+)
+const pillarIntensity = computed(() =>
+  currentTheme.value === 'light' ? 0.8 : 0.7
+)
 </script>
 
 <style scoped>
@@ -57,38 +96,54 @@ onMounted(() => {
   position: relative;
   z-index: 1;
 }
+
 .footer-cta {
   text-align: center;
-  padding: 80px 40px;
   border: 1px solid var(--border);
   border-radius: 32px;
   margin-bottom: 40px;
-  background: var(--bg-800);
-  position: relative; overflow: hidden;
+  background: #121116;
+  position: relative;
+  overflow: hidden;
 }
-.footer-cta::before {
-  content: ''; position: absolute; top: -80px; left: 50%;
-  transform: translateX(-50%);
-  width: 400px; height: 400px;
-  background: radial-gradient(circle, rgba(181,255,109,0.07), transparent 60%);
-  pointer-events: none;
+
+/* Content wrapper sits above the WebGL canvas */
+.footer-cta-content {
+  position: relative;
+  z-index: 2;
+  padding: 80px 40px;
 }
+
 .footer-cta h2 {
   font-size: clamp(2rem, 5vw, 4rem);
-  margin-bottom: 32px; position: relative; z-index: 1;
+  margin-bottom: 32px;
 }
+
 .footer-bottom {
-  display: flex; align-items: center;
+  display: flex;
+  align-items: center;
   justify-content: space-between;
   padding-bottom: 40px;
 }
-.footer-copyright { font-size: 0.85rem; color: var(--text-secondary); }
-.footer-nav {
-  display: flex; gap: 20px;
+
+.footer-copyright {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
 }
+
+.footer-nav {
+  display: flex;
+  gap: 20px;
+}
+
 .footer-nav a {
-  font-size: 0.85rem; color: var(--text-secondary);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
   transition: color 0.3s;
 }
-.footer-nav a:hover { color: var(--text-primary); }
+
+.footer-nav a:hover {
+  color: var(--text-primary);
+}
+
 </style>

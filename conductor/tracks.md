@@ -12,3 +12,9 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 - [ ] **Track: Tích hợp Dự án Traveloka Clone (DATN)**
   *Link: [./tracks/tich-hop-traveloka-clone_20260319/](./tracks/tich-hop-traveloka-clone_20260319/)*
+
+- [ ] **Track: Bổ sung dự án Sixdo E-commerce**
+  *Link: [./tracks/bo-sung-du-an-sixdo_20260319/](./tracks/bo-sung-du-an-sixdo_20260319/)*
+
+- [ ] **Track: Bổ sung dự án Motorbike Sales & Management System**
+  *Link: [./tracks/bo-sung-du-an-motorbike_20260319/](./tracks/bo-sung-du-an-motorbike_20260319/)*

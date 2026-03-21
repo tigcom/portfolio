@@ -21,20 +21,21 @@ const router = createRouter({
         { path: '/contact', name: 'contact', component: ContactView },
     ],
     scrollBehavior() {
-        return { top: 0, behavior: 'instant' }
+        // Lenis handles scroll-to-top on route change via router.afterEach in App.vue
+        return false
     }
 })
 
 // Page title per route
 router.afterEach((to) => {
     const titles = {
-        home: 'Minh Dev — Creative Developer',
-        about: 'About | Minh Dev',
-        projects: 'Projects | Minh Dev',
-        'project-detail': 'Project | Minh Dev',
-        contact: 'Contact | Minh Dev',
+        home: 'Phuc Khang — Creative Developer',
+        about: 'About | Phuc Khang',
+        projects: 'Projects | Phuc Khang',
+        'project-detail': 'Project | Phuc Khang',
+        contact: 'Contact | Phuc Khang',
     }
-    document.title = titles[to.name] || 'Minh Dev'
+    document.title = titles[to.name] || 'Phuc Khang'
 })
 
 createApp(App).use(router).mount('#app')
