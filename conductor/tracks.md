@@ -18,3 +18,6 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 - [ ] **Track: Bổ sung dự án Motorbike Sales & Management System**
   *Link: [./tracks/bo-sung-du-an-motorbike_20260319/](./tracks/bo-sung-du-an-motorbike_20260319/)*
+
+- [ ] **Track: Làm lại trang Chi tiết Dự án (Project Detail)**
+  *Link: [./tracks/rebuild-project-detail_20260325/](./tracks/rebuild-project-detail_20260325/)*
