@@ -2,65 +2,166 @@
   {
     "slug": "internet-banking",
     "num": "01",
-    "title": { "en": "Internet Banking System", "vi": "Hệ thống Internet Banking" },
-    "subtitle": { "en": "Microservices-based Financial Platform", "vi": "Nền tảng Tài chính Microservices" },
+    "title": {
+      "en": "KBIZ Corporate Internet Banking",
+      "vi": "KBIZ Internet Banking Doanh nghiệp"
+    },
+    "subtitle": {
+      "en": "Enterprise Banking Platform — KienlongBank",
+      "vi": "Nền tảng Ngân hàng Doanh nghiệp — KienlongBank"
+    },
     "category": "development",
-    "tags": ["Microservices", "Spring Boot 3.x", "Angular"],
+    "tags": [
+      "Spring Boot 3.5",
+      "Next.js 15",
+      "PostgreSQL 17",
+      "Kafka",
+      "Redis",
+      "Keycloak"
+    ],
     "year": "2025",
     "img": "/portfolio/image/bank.png",
-    "colorBackgound" :"#99f6e4",
+    "colorBackgound": "#99f6e4",
     "heroImg": "/portfolio/image/projects/internet-banking/screencapture-localhost-3001-banking-deposits-open-2026-03-30-09_53_05.png",
     "galleryImgs": [
       "/portfolio/image/projects/internet-banking/screencapture-localhost-3001-login-2026-03-30-09_49_40.png",
       "/portfolio/image/projects/internet-banking/screencapture-localhost-3001-banking-approvals-d15db959-a039-4fd0-b02a-450021576d89-2026-03-30-09_51_26.png",
       "/portfolio/image/projects/internet-banking/screencapture-localhost-3001-banking-deposits-open-2026-03-30-09_53_05.png"
     ],
-    "techStack": ["Spring Boot 3.x", "Spring Security", "Angular", "MySQL", "Kafka", "Dubbo", "Docker", "Prometheus", "Grafana", "Redis"],
-    "role": { "en": "Java Developer Collaborator (Kien Long Bank)", "vi": "Cộng tác viên Phát triển Java (Kien Long Bank)" },
+    "techStack": [
+      "Java 17",
+      "Spring Boot 3.5",
+      "Spring Security 6",
+      "Next.js 15",
+      "React 19",
+      "TypeScript",
+      "PostgreSQL 17",
+      "Apache Kafka",
+      "Redis 7",
+      "Keycloak",
+      "Docker",
+      "WebSocket"
+    ],
+    "role": {
+      "en": "Java Developer Collaborator (KienlongBank)",
+      "vi": "Cộng tác viên Phát triển Java (KienlongBank)"
+    },
     "overview": {
-      "en": "Modern Internet Banking system built on Microservices architecture with separate services: Account, Customer, Transaction, Loan, Notification. Focused on high security, scalability, and real-time monitoring.",
-      "vi": "Hệ thống Internet Banking hiện đại được xây dựng trên kiến trúc Microservices với các dịch vụ tách biệt: Account, Customer, Transaction, Loan, Notification. Dự án tập trung vào tính bảo mật cao, khả năng mở rộng và giám sát hệ thống thời gian thực."
+      "en": "KBIZ is a corporate Internet Banking platform for KienlongBank, implemented as a microservices system (12+ independent services). It supports maker-checker approval for sensitive operations, fee-calculated single and batch transfers, and term-deposit management integrated with Core Banking (Flexcube), with real-time status updates via WebSocket. I contributed to the Transfer module (internal transfers, NAPAS247/CITAD external transfers, and batch transfers) and the Term Deposit/Deposit operations (open term deposit, partial withdrawal, and closure).",
+      "vi": "KBIZ là nền tảng Internet Banking doanh nghiệp cho KienlongBank, triển khai theo kiến trúc microservices (12+ dịch vụ độc lập). Hệ thống hỗ trợ phê duyệt maker-checker cho các thao tác nhạy cảm, chuyển tiền đơn lẻ và chuyển tiền hàng loạt có tính phí, đồng thời quản lý tiền gửi có kỳ hạn tích hợp Core Banking (Flexcube), kèm cập nhật trạng thái thời gian thực qua WebSocket. Tôi phụ trách module Chuyển tiền (chuyển tiền nội bộ, liên ngân hàng qua NAPAS247/CITAD, và chuyển tiền hàng loạt) và module Tiền gửi/Tiền gửi có kỳ hạn (mở sổ, rút một phần và tất toán)."
     },
     "problem": {
-      "en": "Building a secure financial system capable of handling thousands of concurrent transactions, ensuring Data Consistency and Resilience across services.",
-      "vi": "Xây dựng một hệ thống tài chính an toàn có khả năng xử lý hàng nghìn giao dịch đồng thời, đảm bảo tính nhất quán dữ liệu (Data Consistency) và khả năng phục hồi (Resilience) khi có sự cố dịch vụ."
+      "en": "Enterprise banking requires strict fund control, multi-party approval chains, and safe recovery from partial failures. The key challenge was building the batch transfer pipeline: idempotent Excel/CSV upload, per-row fee/VAT and validation, async CoreBank amount-holding via Cadence, approval-gated release with exponential-backoff retry, chunked execution with per-row progress tracking, retryable selective re-execution for failed rows, secondary hold for remaining funds on partial completion, and non-blocking GL fee posting (failed postings retried in background)—all integrated with Flexcube and fully auditable.",
+      "vi": "Ngân hàng doanh nghiệp cần kiểm soát tiền chặt chẽ, chuỗi phê duyệt đa bên và khả năng phục hồi an toàn khi xảy ra lỗi một phần. Thách thức trọng tâm là xây dựng pipeline chuyển tiền hàng loạt: upload Excel/CSV có idempotency, tính phí/VAT và validation theo từng dòng, đặt lệnh hold số tiền trên CoreBank bất đồng bộ qua Cadence, giải phóng hold theo cơ chế đã phê duyệt kèm retry exponential-backoff, thực thi theo kiểu chunked trong Cadence với theo dõi tiến độ từng dòng, chỉ retry có chọn lọc các dòng \"retryable\", đặt secondary hold cho phần tiền còn lại khi hoàn thành một phần, và hạch toán phí GL theo cách non-blocking (lỗi hạch toán được xử lý retry nền)—tích hợp Flexcube và đảm bảo audit đầy đủ."
     },
     "processSteps": [
       {
-        "title": { "en": "Microservices Architecture", "vi": "Kiến trúc Microservices" },
-        "description": { "en": "Implemented independent services communicating via REST, gRPC, and Kafka for asynchronous tasks.", "vi": "Triển khai các dịch vụ độc lập giao tiếp qua REST, gRPC và Kafka cho các tác vụ bất đồng bộ." }
+        "title": {
+          "en": "Batch Transfer — 6-Phase Architecture",
+          "vi": "Chuyển tiền Hàng loạt — Kiến trúc 6 Giai đoạn"
+        },
+        "description": {
+          "en": "Built the end-to-end batch transfer lifecycle: (1) idempotent Excel/CSV upload + per-row parsing, (2) per-row fee/VAT calculation and batch-level validations (account limits/status), (3) create batch header/details persisted with `holdStatus=NOT_STARTED`, (4) trigger async primary-hold workflow via Cadence after commit, (5) submit batch for maker-checker approval, (6) after approval, release the primary CoreBank amount-hold with exponential-backoff retry, (7) execute the batch via Cadence master workflow (chunking) while tracking per-row success/failure, (8) when partially completed, place a secondary hold for remaining funds, (9) selectively retry only retry-eligible rows using per-row retryCount, and (10) post GL fees non-blocking from successful rows (failed postings handled asynchronously).",
+          "vi": "Thiết kế và triển khai vòng đời chuyển tiền hàng loạt end-to-end: (1) upload Excel/CSV có idempotency + parse theo từng dòng, (2) tính phí/VAT theo từng dòng và validation theo batch (hạn mức/trạng thái tài khoản), (3) tạo batch header/details và lưu với `holdStatus=NOT_STARTED`, (4) trigger async primary-hold workflow qua Cadence sau khi commit, (5) submit batch vào quy trình maker-checker approval, (6) sau phê duyệt, giải phóng lệnh hold số tiền trên CoreBank với exponential-backoff retry, (7) thực thi qua Cadence master workflow (chunking) đồng thời theo dõi per-row thành công/thất bại, (8) khi lỗi một phần, đặt secondary hold cho phần tiền còn lại, (9) chỉ retry những dòng \"retryable\" bằng per-row retryCount, và (10) hạch toán phí GL theo kiểu non-blocking từ các dòng thành công (lỗi hạch toán được xử lý retry nền)."
+        }
       },
       {
-        "title": { "en": "Loan Service System", "vi": "Hệ thống Loan Service" },
-        "description": { "en": "Developed features for loan application, approval, disbursement, and automated monthly installment calculation.", "vi": "Phát triển tính năng đăng ký khoản vay, duyệt giải ngân và tự động tính toán kỳ hạn thanh toán hàng tháng." }
+        "title": {
+          "en": "Term Deposit — Full Lifecycle",
+          "vi": "Tiền gửi Có kỳ hạn — Vòng đời Đầy đủ"
+        },
+          "description": {
+          "en": "Implemented the term-deposit lifecycle with Flexcube integration: (1) Open term deposit: preview online saving rates (GetOnlineSavingRates action=44), calculate maturity and interest, OTP verification, submit for maker-checker approval, then start the async DepositHold workflow via Cadence; (2) Partial withdrawal: call CoreBank redemption preview (ReviewCloseOnlineSavingAccount action=48 + GetTdRedemInfo action=492), validate partial liquidation eligibility and available amount, OTP verification (if required by policy and provided), create `SavingsWithdrawalRequest (PENDING_APPROVAL)` and submit the approval workflow; (3) Closure/tất toán: build closure preview (ReviewCloseOnlineSavingAccount action=48 + GetOnlineAccTDDetail action=204), compute net interest (finalAmount - balance; may include early-closure penalty from CoreBank), OTP verification (if required by policy and provided), create `SavingsClosureRequest (PENDING_APPROVAL)` and submit approval. CoreBank execution is gated by approval/workflow.",
+          "vi": "Triển khai vòng đời tiền gửi có kỳ hạn tích hợp Flexcube: (1) Mở sổ: xem trước online saving rates (GetOnlineSavingRates action=44), tính toán kỳ hạn và lãi, OTP verification, submit vào quy trình maker-checker approval, sau đó start async DepositHold workflow qua Cadence; (2) Rút một phần: gọi CoreBank redemption preview (ReviewCloseOnlineSavingAccount action=48 + GetTdRedemInfo action=492), validate điều kiện rút/tính khả dụng, OTP verification theo chính sách, tạo `SavingsWithdrawalRequest (PENDING_APPROVAL)` và submit approval workflow; (3) Tất toán/đóng sổ: build closure preview (ReviewCloseOnlineSavingAccount action=48 + GetOnlineAccTDDetail action=204), tính net interest (finalAmount - balance; có thể bao gồm phạt tất toán trước hạn từ CoreBank), OTP verification theo chính sách, tạo `SavingsClosureRequest (PENDING_APPROVAL)` và submit approval. Việc thực thi CoreBank được chặn bởi approval/workflow."
+        }
       },
       {
-        "title": { "en": "Observability & Monitoring", "vi": "Giám sát hệ thống" },
-        "description": { "en": "Integrated OpenTelemetry, Zipkin for tracing and Prometheus + Grafana for performance monitoring.", "vi": "Tích hợp OpenTelemetry, Zipkin để tracing và Prometheus + Grafana để giám sát hiệu năng hệ thống." }
+        "title": {
+          "en": "Smart Routing & Multi-Channel Transfers",
+          "vi": "Định tuyến Thông minh & Chuyển tiền Đa kênh"
+        },
+        "description": {
+          "en": "Implemented `SmartRoutingService` for single transfers: recommend NAPAS247 when the beneficiary bank supports it and amount < 500M VND; otherwise recommend CITAD. For batch transfers, the transfer method is selected explicitly at upload time (no per-row smart routing).",
+          "vi": "Phát triển `SmartRoutingService` cho chuyển tiền đơn lẻ: gợi ý NAPAS247 khi ngân hàng thụ hưởng hỗ trợ và số tiền < 500 triệu VND; ngược lại gợi ý CITAD. Riêng chuyển tiền hàng loạt, phương thức chuyển được chọn rõ ngay từ lúc upload (không có smart routing theo từng dòng)."
+        }
+      },
+      {
+        "title": {
+          "en": "Maker-Checker Approval Workflow",
+          "vi": "Quy trình Phê duyệt Maker-Checker"
+        },
+        "description": {
+          "en": "Unified sensitive transfer and deposit requests into the multi-level maker-checker approval system powered by `ApprovalWorkflowService` and Cadence-based hold/execute workflows. The `AssignmentEngine` assigns checkers/approvers based on workflow level + transaction amount rules and enforces maker-checker constraints (self-approval rules). OTP/TOTP verification is applied to sensitive submissions and approval actions via `SensitiveOperationVerificationService` (including `SavingsApprovalService`). WebSocket notifications stream real-time status to the UI.",
+          "vi": "Tích hợp các yêu cầu chuyển tiền và tiền gửi nhạy cảm vào hệ thống phê duyệt multi-level maker-checker do `ApprovalWorkflowService` điều phối, kết hợp các workflow Cadence cho hold/execute. `AssignmentEngine` tự động gán checker/approver theo cấu hình workflow và quy tắc theo hạn mức/số tiền, đồng thời enforce nguyên tắc maker-checker (tự duyệt bị ràng buộc). OTP/TOTP được áp dụng cho các thao tác nhạy cảm lúc submit và cả lúc approval thông qua `SensitiveOperationVerificationService` (bao gồm `SavingsApprovalService`). Trạng thái thời gian thực được đẩy lên UI qua WebSocket."
+        }
       }
     ],
     "results": [
-      { "value": 100, "suffix": "%", "label": { "en": "Gateway Security", "vi": "Bảo mật API Gateway" } },
-      { "value": 200, "suffix": "ms", "label": { "en": "Avg Response Time", "vi": "Tốc độ phản hồi trung bình" } },
-      { "value": 5, "suffix": "Services", "label": { "en": "Core Services", "vi": "Hệ thống lõi" } },
-      { "value": 99.9, "suffix": "%", "label": { "en": "Uptime Monitoring", "vi": "Uptime giám sát" } }
+      {
+        "value": 12,
+        "suffix": "+",
+        "label": {
+          "en": "Microservices",
+          "vi": "Microservices"
+        }
+      },
+      {
+        "value": 6,
+        "suffix": "",
+        "label": {
+          "en": "Batch Transfer Phases",
+          "vi": "Giai đoạn Chuyển lô"
+        }
+      },
+      {
+        "value": 3,
+        "suffix": "",
+        "label": {
+          "en": "Transfer Channels",
+          "vi": "Kênh Chuyển tiền"
+        }
+      },
+      {
+        "value": 18,
+        "suffix": "",
+        "label": {
+          "en": "DB Schemas",
+          "vi": "DB Schemas"
+        }
+      }
     ],
     "githubLink": "",
     "prevSlug": "youtube-clone",
-    "prevTitle": { "en": "Youtube Clone", "vi": "Youtube Clone" },
+    "prevTitle": {
+      "en": "Youtube Clone",
+      "vi": "Youtube Clone"
+    },
     "nextSlug": "traveloka-clone",
-    "nextTitle": { "en": "Traveloka Clone", "vi": "Traveloka Clone" }
+    "nextTitle": {
+      "en": "Traveloka Clone",
+      "vi": "Traveloka Clone"
+    }
   },
   {
     "slug": "traveloka-clone",
     "num": "02",
-    "title": { "en": "Traveloka Clone (DATN)", "vi": "Traveloka Clone (Đồ án tốt nghiệp)" },
-    "subtitle": { "en": "Travel Super App Booking System", "vi": "Hệ thống Booking Super App" },
+    "title": {
+      "en": "Traveloka Clone (DATN)",
+      "vi": "Traveloka Clone (Đồ án tốt nghiệp)"
+    },
+    "subtitle": {
+      "en": "Travel Super App Booking System",
+      "vi": "Hệ thống Booking Super App"
+    },
     "category": "development",
-    "tags": ["Microservices", "Spring Boot 3.x", "Vue 3"],
+    "tags": [
+      "Microservices",
+      "Spring Boot 3.x",
+      "Vue 3"
+    ],
     "year": "2025",
     "img": "/portfolio/image/travel.png",
-    "colorBackgound" :"#92c5fc",
+    "colorBackgound": "#92c5fc",
     "heroImg": "/portfolio/image/projects/traveloka-clone/flight ls.png",
     "galleryImgs": [
       "/portfolio/image/projects/traveloka-clone/login.jpg",
@@ -68,8 +169,20 @@
       "/portfolio/image/projects/traveloka-clone/bookls.png",
       "/portfolio/image/projects/traveloka-clone/supoort.jpg"
     ],
-    "techStack": ["Java Spring Boot 3.x", "Vue.js", "Tailwind CSS", "MySQL", "Redis", "Kafka", "Socket.io", "Docker"],
-    "role": { "en": "Full Stack Developer", "vi": "Nhà phát triển Full Stack" },
+    "techStack": [
+      "Java Spring Boot 3.x",
+      "Vue.js",
+      "Tailwind CSS",
+      "MySQL",
+      "Redis",
+      "Kafka",
+      "Socket.io",
+      "Docker"
+    ],
+    "role": {
+      "en": "Full Stack Developer",
+      "vi": "Nhà phát triển Full Stack"
+    },
     "overview": {
       "en": "An online airline and tour booking platform, focusing on complex booking flows, seat holding (TTL), payments, and automated refund/cancellation policies.",
       "vi": "Nền tảng đặt vé máy bay và tour du lịch trực tuyến, tập trung vào luồng booking phức tạp, giữ chỗ (Seat Hold), thanh toán và tự động hoàn vé/hủy vé theo chính sách."
@@ -80,47 +193,113 @@
     },
     "processSteps": [
       {
-        "title": { "en": "Core Booking Flow", "vi": "Luồng Booking lõi" },
-        "description": { "en": "Built the search, fare selection, seat holding, and ticket issuance process.", "vi": "Xây dựng quy trình tìm kiếm, chọn hạng vé, giữ chỗ (TTL) và phát hành vé sau khi thanh toán." }
+        "title": {
+          "en": "Core Booking Flow",
+          "vi": "Luồng Booking lõi"
+        },
+        "description": {
+          "en": "Built the search, fare selection, seat holding, and ticket issuance process.",
+          "vi": "Xây dựng quy trình tìm kiếm, chọn hạng vé, giữ chỗ (TTL) và phát hành vé sau khi thanh toán."
+        }
       },
       {
-        "title": { "en": "Seat Hold System", "vi": "Hệ thống giữ chỗ" },
-        "description": { "en": "Designed a seat holding system using Redis with Scheduler/Consumer to safely release inventory.", "vi": "Thiết kế hệ thống giữ chỗ sử dụng Redis kết hợp Scheduler/Consumer để giải phóng inventory an toàn." }
+        "title": {
+          "en": "Seat Hold System",
+          "vi": "Hệ thống giữ chỗ"
+        },
+        "description": {
+          "en": "Designed a seat holding system using Redis with Scheduler/Consumer to safely release inventory.",
+          "vi": "Thiết kế hệ thống giữ chỗ sử dụng Redis kết hợp Scheduler/Consumer để giải phóng inventory an toàn."
+        }
       },
       {
-        "title": { "en": "Real-time Dashboard", "vi": "Dashboard thời gian thực" },
-        "description": { "en": "Used Socket.io to provide real-time status updates for orders and flights to the Admin panel.", "vi": "Sử dụng Socket.io để cập nhật trạng thái đơn hàng và chuyến bay theo thời gian thực cho Admin." }
+        "title": {
+          "en": "Real-time Dashboard",
+          "vi": "Dashboard thời gian thực"
+        },
+        "description": {
+          "en": "Used Socket.io to provide real-time status updates for orders and flights to the Admin panel.",
+          "vi": "Sử dụng Socket.io để cập nhật trạng thái đơn hàng và chuyến bay theo thời gian thực cho Admin."
+        }
       }
     ],
     "results": [
-      { "value": 100, "suffix": "%", "label": { "en": "Auto-cancel accuracy", "vi": "Tự động hủy vé quá hạn" } },
-      { "value": 50, "suffix": "ms", "label": { "en": "Socket latency", "vi": "Độ trễ cập nhật Socket" } },
-      { "value": 98, "suffix": "%", "label": { "en": "Inventory accuracy", "vi": "Chính xác Inventory" } }
+      {
+        "value": 100,
+        "suffix": "%",
+        "label": {
+          "en": "Auto-cancel accuracy",
+          "vi": "Tự động hủy vé quá hạn"
+        }
+      },
+      {
+        "value": 50,
+        "suffix": "ms",
+        "label": {
+          "en": "Socket latency",
+          "vi": "Độ trễ cập nhật Socket"
+        }
+      },
+      {
+        "value": 98,
+        "suffix": "%",
+        "label": {
+          "en": "Inventory accuracy",
+          "vi": "Chính xác Inventory"
+        }
+      }
     ],
     "githubLink": "https://github.com/thanhlam2802/DATN",
     "prevSlug": "internet-banking",
-    "prevTitle": { "en": "Internet Banking", "vi": "Internet Banking" },
+    "prevTitle": {
+      "en": "Internet Banking",
+      "vi": "Internet Banking"
+    },
     "nextSlug": "sixdo-ecommerce",
-    "nextTitle": { "en": "Sixdo E-commerce", "vi": "Sixdo E-commerce" }
+    "nextTitle": {
+      "en": "Sixdo E-commerce",
+      "vi": "Sixdo E-commerce"
+    }
   },
   {
     "slug": "sixdo-ecommerce",
     "num": "03",
-    "title": { "en": "Sixdo E-commerce Platform", "vi": "Nền tảng Thương mại điện tử Sixdo" },
-    "subtitle": { "en": "Modern Fullstack Shopping Solution", "vi": "Giải pháp Mua sắm Fullstack Hiện đại" },
+    "title": {
+      "en": "Sixdo E-commerce Platform",
+      "vi": "Nền tảng Thương mại điện tử Sixdo"
+    },
+    "subtitle": {
+      "en": "Modern Fullstack Shopping Solution",
+      "vi": "Giải pháp Mua sắm Fullstack Hiện đại"
+    },
     "category": "development",
-    "tags": ["Spring Boot", "Next.js", "PostgreSQL"],
+    "tags": [
+      "Spring Boot",
+      "Next.js",
+      "PostgreSQL"
+    ],
     "year": "2025",
     "img": "/portfolio/image/siso.png",
-    "colorBackgound" :"#fef3c6",
+    "colorBackgound": "#fef3c6",
     "heroImg": "/portfolio/image/projects/sixdo-ecommerce/screencapture-127-0-0-1-5500-1TrangChu-html-2026-03-19-18_03_54.jpg",
     "galleryImgs": [
       "/portfolio/image/projects/sixdo-ecommerce/screencapture-127-0-0-1-5500-1TrangChu-html-2026-03-19-18_03_54.jpg",
       "/portfolio/image/projects/sixdo-ecommerce/screencapture-127-0-0-1-5500-2DanhSach-html-2026-03-19-18_04_08.jpg",
       "/portfolio/image/projects/sixdo-ecommerce/Untitled-1.jpg"
     ],
-    "techStack": ["Java Spring Boot", "Next.js", "React", "PostgreSQL", "Flyway", "Spring Security", "Tailwind CSS"],
-    "role": { "en": "Full Stack Developer", "vi": "Nhà phát triển Full Stack" },
+    "techStack": [
+      "Java Spring Boot",
+      "Next.js",
+      "React",
+      "PostgreSQL",
+      "Flyway",
+      "Spring Security",
+      "Tailwind CSS"
+    ],
+    "role": {
+      "en": "Full Stack Developer",
+      "vi": "Nhà phát triển Full Stack"
+    },
     "overview": {
       "en": "A modern e-commerce platform synchronized between Backend (Spring Boot) and Frontend (Next.js), focusing on performance and a smooth user experience.",
       "vi": "Nền tảng thương mại điện tử hiện đại đồng bộ giữa Backend (Spring Boot) và Frontend (Next.js), tập trung vào hiệu năng và trải nghiệm người dùng mượt mà."
@@ -131,35 +310,69 @@
     },
     "processSteps": [
       {
-        "title": { "en": "RESTful API Design", "vi": "Thiết kế API RESTful" },
-        "description": { "en": "Standardized API endpoints for products and categories management.", "vi": "Chuẩn hóa các endpoint API để quản lý sản phẩm và danh mục." }
+        "title": {
+          "en": "RESTful API Design",
+          "vi": "Thiết kế API RESTful"
+        },
+        "description": {
+          "en": "Standardized API endpoints for products and categories management.",
+          "vi": "Chuẩn hóa các endpoint API để quản lý sản phẩm và danh mục."
+        }
       },
       {
-        "title": { "en": "Database Migration", "vi": "Di cư dữ liệu" },
-        "description": { "en": "Implemented Flyway to manage database schema versions consistently.", "vi": "Triển khai Flyway để quản lý các phiên bản cấu trúc cơ sở dữ liệu một cách nhất quán." }
+        "title": {
+          "en": "Database Migration",
+          "vi": "Di cư dữ liệu"
+        },
+        "description": {
+          "en": "Implemented Flyway to manage database schema versions consistently.",
+          "vi": "Triển khai Flyway để quản lý các phiên bản cấu trúc cơ sở dữ liệu một cách nhất quán."
+        }
       },
       {
-        "title": { "en": "Next.js Integration", "vi": "Tích hợp Next.js" },
-        "description": { "en": "Leveraged Next.js App Router and Server Components for optimal frontend performance.", "vi": "Tận dụng App Router và Server Components của Next.js để tối ưu hiệu năng frontend." }
+        "title": {
+          "en": "Next.js Integration",
+          "vi": "Tích hợp Next.js"
+        },
+        "description": {
+          "en": "Leveraged Next.js App Router and Server Components for optimal frontend performance.",
+          "vi": "Tận dụng App Router và Server Components của Next.js để tối ưu hiệu năng frontend."
+        }
       }
     ],
     "results": [],
     "githubLink": "https://github.com/tigcom/cloneSixdo",
     "prevSlug": "traveloka-clone",
-    "prevTitle": { "en": "Traveloka Clone", "vi": "Traveloka Clone" },
+    "prevTitle": {
+      "en": "Traveloka Clone",
+      "vi": "Traveloka Clone"
+    },
     "nextSlug": "motorbike-sales-system",
-    "nextTitle": { "en": "Motorbike Sales System", "vi": "Motorbike Sales System" }
+    "nextTitle": {
+      "en": "Motorbike Sales System",
+      "vi": "Motorbike Sales System"
+    }
   },
   {
     "slug": "motorbike-sales-system",
     "num": "04",
-    "title": { "en": "Motorbike Sales & Management System", "vi": "Hệ thống Quản lý Bán xe máy" },
-    "subtitle": { "en": "Multi-branch Desktop Solution", "vi": "Giải pháp Desktop Quản lý Đa chi nhánh" },
+    "title": {
+      "en": "Motorbike Sales & Management System",
+      "vi": "Hệ thống Quản lý Bán xe máy"
+    },
+    "subtitle": {
+      "en": "Multi-branch Desktop Solution",
+      "vi": "Giải pháp Desktop Quản lý Đa chi nhánh"
+    },
     "category": "development",
-    "tags": ["Desktop App", "Java Swing", "SQL Server"],
+    "tags": [
+      "Desktop App",
+      "Java Swing",
+      "SQL Server"
+    ],
     "year": "2024",
     "img": "/portfolio/image/byke.png",
-    "colorBackgound" :"#a7c5c7",
+    "colorBackgound": "#a7c5c7",
     "heroImg": "/portfolio/image/projects/motorbike-sales-system/Screenshot 2026-03-20 195751.png",
     "galleryImgs": [
       "/portfolio/image/projects/motorbike-sales-system/Screenshot 2026-03-20 195751.png",
@@ -167,8 +380,16 @@
       "/portfolio/image/projects/motorbike-sales-system/Screenshot 2026-03-20 195847.png",
       "/portfolio/image/projects/motorbike-sales-system/Screenshot 2026-03-20 200727.png"
     ],
-    "techStack": ["Java (Swing/AWT)", "JDBC", "SQL Server", "Apache POI"],
-    "role": { "en": "Full Stack Developer", "vi": "Nhà phát triển Full Stack" },
+    "techStack": [
+      "Java (Swing/AWT)",
+      "JDBC",
+      "SQL Server",
+      "Apache POI"
+    ],
+    "role": {
+      "en": "Full Stack Developer",
+      "vi": "Nhà phát triển Full Stack"
+    },
     "overview": {
       "en": "A comprehensive desktop application for large-scale motorbike dealers, handling inventory, sales, employees, and maintenance across multiple branches.",
       "vi": "Hệ thống quản lý kinh doanh xe máy toàn diện dành cho các đại lý có quy mô lớn với nhiều chi nhánh, tích hợp từ khâu nhập hàng, bán hàng đến bảo hành."
@@ -179,43 +400,86 @@
     },
     "processSteps": [
       {
-        "title": { "en": "Multi-branch Logic", "vi": "Nghiệp vụ Đa chi nhánh" },
-        "description": { "en": "Designed a database schema to isolate and aggregate data across different physical locations.", "vi": "Thiết kế cấu trúc cơ sở dữ liệu để tách biệt và tổng hợp dữ liệu giữa các chi nhánh vật lý khác nhau." }
+        "title": {
+          "en": "Multi-branch Logic",
+          "vi": "Nghiệp vụ Đa chi nhánh"
+        },
+        "description": {
+          "en": "Designed a database schema to isolate and aggregate data across different physical locations.",
+          "vi": "Thiết kế cấu trúc cơ sở dữ liệu để tách biệt và tổng hợp dữ liệu giữa các chi nhánh vật lý khác nhau."
+        }
       },
       {
-        "title": { "en": "Maintenance Scheduler", "vi": "Quản lý Bảo dưỡng" },
-        "description": { "en": "Built a notification system for customer service staff to track and remind maintenance schedules.", "vi": "Xây dựng hệ thống theo dõi và nhắc nhở lịch bảo dưỡng định kỳ cho nhân viên chăm sóc khách hàng." }
+        "title": {
+          "en": "Maintenance Scheduler",
+          "vi": "Quản lý Bảo dưỡng"
+        },
+        "description": {
+          "en": "Built a notification system for customer service staff to track and remind maintenance schedules.",
+          "vi": "Xây dựng hệ thống theo dõi và nhắc nhở lịch bảo dưỡng định kỳ cho nhân viên chăm sóc khách hàng."
+        }
       },
       {
-        "title": { "en": "Export Reporting", "vi": "Xuất báo cáo tự động" },
-        "description": { "en": "Integrated Apache POI to export professional Excel reports for sales and inventory tracking.", "vi": "Tích hợp Apache POI để xuất các báo cáo Excel chuyên nghiệp cho việc theo dõi doanh thu và kho hàng." }
+        "title": {
+          "en": "Export Reporting",
+          "vi": "Xuất báo cáo tự động"
+        },
+        "description": {
+          "en": "Integrated Apache POI to export professional Excel reports for sales and inventory tracking.",
+          "vi": "Tích hợp Apache POI để xuất các báo cáo Excel chuyên nghiệp cho việc theo dõi doanh thu và kho hàng."
+        }
       }
     ],
     "results": [],
     "githubLink": "https://github.com/tigcom/MotorbikeSalesSystem",
     "prevSlug": "sixdo-ecommerce",
-    "prevTitle": { "en": "Sixdo E-commerce", "vi": "Sixdo E-commerce" },
+    "prevTitle": {
+      "en": "Sixdo E-commerce",
+      "vi": "Sixdo E-commerce"
+    },
     "nextSlug": "phong-vu-clone",
-    "nextTitle": { "en": "Phong Vu Shop Clone", "vi": "Phong Vu Shop Clone" }
+    "nextTitle": {
+      "en": "Phong Vu Shop Clone",
+      "vi": "Phong Vu Shop Clone"
+    }
   },
   {
     "slug": "phong-vu-clone",
     "num": "05",
-    "title": { "en": "Phong Vu Shop Clone", "vi": "Clone Cửa hàng Phong Vũ" },
-    "subtitle": { "en": "E-commerce Electronics Store", "vi": "Cửa hàng Điện tử E-commerce" },
+    "title": {
+      "en": "Phong Vu Shop Clone",
+      "vi": "Clone Cửa hàng Phong Vũ"
+    },
+    "subtitle": {
+      "en": "E-commerce Electronics Store",
+      "vi": "Cửa hàng Điện tử E-commerce"
+    },
     "category": "development",
-    "tags": ["Spring Boot", "Thymeleaf", "SQL Server"],
+    "tags": [
+      "Spring Boot",
+      "Thymeleaf",
+      "SQL Server"
+    ],
     "year": "2025",
     "img": "/portfolio/image/phongvu.png",
-    "colorBackgound" :"#121317",
+    "colorBackgound": "#121317",
     "heroImg": "/portfolio/image/projects/phong-vu-clone/screencapture-localhost-2511-home-2026-03-20-15_57_45.jpg",
     "galleryImgs": [
       "/portfolio/image/projects/phong-vu-clone/screencapture-localhost-2511-home-2026-03-20-15_57_45.jpg",
       "/portfolio/image/projects/phong-vu-clone/screencapture-localhost-2511-home-chitiet-7-2026-03-20-16_02_19.jpg",
       "/portfolio/image/projects/phong-vu-clone/screencapture-localhost-2511-sanpham-giohang-2026-03-20-16_00_57.jpg"
     ],
-    "techStack": ["Spring Boot", "Thymeleaf", "Tailwind CSS", "JPA", "SQL Server"],
-    "role": { "en": "Backend Developer", "vi": "Nhà phát triển Backend" },
+    "techStack": [
+      "Spring Boot",
+      "Thymeleaf",
+      "Tailwind CSS",
+      "JPA",
+      "SQL Server"
+    ],
+    "role": {
+      "en": "Backend Developer",
+      "vi": "Nhà phát triển Backend"
+    },
     "overview": {
       "en": "A clone project of the Phong Vu e-commerce website, featuring a complete flow from product management, shopping cart, to checkout and automated email confirmations.",
       "vi": "Dự án mô phỏng website thương mại điện tử Phong Vũ, tích hợp đầy đủ quy trình từ quản lý sản phẩm, giỏ hàng đến đặt hàng và gửi email xác nhận tự động."
@@ -226,31 +490,59 @@
     },
     "processSteps": [
       {
-        "title": { "en": "Product Management", "vi": "Quản lý sản phẩm" },
-        "description": { "en": "Designed a flexible CRUD system for products with advanced categorization and search.", "vi": "Thiết kế hệ thống CRUD sản phẩm linh hoạt với phân loại và tìm kiếm nâng cao." }
+        "title": {
+          "en": "Product Management",
+          "vi": "Quản lý sản phẩm"
+        },
+        "description": {
+          "en": "Designed a flexible CRUD system for products with advanced categorization and search.",
+          "vi": "Thiết kế hệ thống CRUD sản phẩm linh hoạt với phân loại và tìm kiếm nâng cao."
+        }
       },
       {
-        "title": { "en": "Automated Email", "vi": "Email tự động" },
-        "description": { "en": "Used @Scheduled tasks to automatically send order confirmation emails and status updates.", "vi": "Sử dụng @Scheduled tasks để tự động gửi email xác nhận đơn hàng và cập nhật trạng thái." }
+        "title": {
+          "en": "Automated Email",
+          "vi": "Email tự động"
+        },
+        "description": {
+          "en": "Used @Scheduled tasks to automatically send order confirmation emails and status updates.",
+          "vi": "Sử dụng @Scheduled tasks để tự động gửi email xác nhận đơn hàng và cập nhật trạng thái."
+        }
       }
     ],
     "results": [],
     "githubLink": "",
     "prevSlug": "motorbike-sales-system",
-    "prevTitle": { "en": "Motorbike Sales System", "vi": "Motorbike Sales System" },
+    "prevTitle": {
+      "en": "Motorbike Sales System",
+      "vi": "Motorbike Sales System"
+    },
     "nextSlug": "youtube-clone",
-    "nextTitle": { "en": "Youtube Clone", "vi": "Youtube Clone" }
+    "nextTitle": {
+      "en": "Youtube Clone",
+      "vi": "Youtube Clone"
+    }
   },
   {
     "slug": "youtube-clone",
     "num": "06",
-    "title": { "en": "Youtube Clone Website", "vi": "Clone Website Youtube" },
-    "subtitle": { "en": "Video Sharing Platform", "vi": "Nền tảng Chia sẻ Video" },
+    "title": {
+      "en": "Youtube Clone Website",
+      "vi": "Clone Website Youtube"
+    },
+    "subtitle": {
+      "en": "Video Sharing Platform",
+      "vi": "Nền tảng Chia sẻ Video"
+    },
     "category": "development",
-    "tags": ["Java Servlet", "JSP", "SQL Server"],
-      "year": "2024",
-      "img": "/portfolio/image/ytu.png",
-      "colorBackgound" :"#fbcfe8",
+    "tags": [
+      "Java Servlet",
+      "JSP",
+      "SQL Server"
+    ],
+    "year": "2024",
+    "img": "/portfolio/image/ytu.png",
+    "colorBackgound": "#fbcfe8",
     "heroImg": "/portfolio/image/projects/youtube-clone/youtube2.jpg",
     "galleryImgs": [
       "/portfolio/image/projects/youtube-clone/youtube1.jpg",
@@ -258,8 +550,17 @@
       "/portfolio/image/projects/youtube-clone/youtube3.jpg",
       "/portfolio/image/projects/youtube-clone/yotube4.jpg"
     ],
-    "techStack": ["Java Servlet", "JSP", "Bootstrap", "JavaScript", "SQL Server"],
-    "role": { "en": "Full Stack Developer", "vi": "Nhà phát triển Full Stack" },
+    "techStack": [
+      "Java Servlet",
+      "JSP",
+      "Bootstrap",
+      "JavaScript",
+      "SQL Server"
+    ],
+    "role": {
+      "en": "Full Stack Developer",
+      "vi": "Nhà phát triển Full Stack"
+    },
     "overview": {
       "en": "An online video sharing website with real-time interactive features, video management, and traffic statistics for the Admin.",
       "vi": "Website chia sẻ video trực tuyến với các tính năng tương tác thời gian thực, quản lý video và thống kê lưu lượng truy cập cho Admin."
@@ -270,19 +571,37 @@
     },
     "processSteps": [
       {
-        "title": { "en": "Voice Search", "vi": "Tìm kiếm bằng giọng nói" },
-        "description": { "en": "Integrated Web Speech API to support voice-based video search.", "vi": "Tích hợp Web Speech API để hỗ trợ người dùng tìm kiếm video bằng giọng nói." }
+        "title": {
+          "en": "Voice Search",
+          "vi": "Tìm kiếm bằng giọng nói"
+        },
+        "description": {
+          "en": "Integrated Web Speech API to support voice-based video search.",
+          "vi": "Tích hợp Web Speech API để hỗ trợ người dùng tìm kiếm video bằng giọng nói."
+        }
       },
       {
-        "title": { "en": "Real-time Stats", "vi": "Thống kê thời gian thực" },
-        "description": { "en": "Tracked live viewer counts and traffic statistics for the admin panel.", "vi": "Theo dõi số lượng người xem trực tiếp và thống kê truy cập cho trang quản trị." }
+        "title": {
+          "en": "Real-time Stats",
+          "vi": "Thống kê thời gian thực"
+        },
+        "description": {
+          "en": "Tracked live viewer counts and traffic statistics for the admin panel.",
+          "vi": "Theo dõi số lượng người xem trực tiếp và thống kê truy cập cho trang quản trị."
+        }
       }
     ],
     "results": [],
     "githubLink": "",
     "prevSlug": "phong-vu-clone",
-    "prevTitle": { "en": "Phong Vu Shop Clone", "vi": "Phong Vu Shop Clone" },
+    "prevTitle": {
+      "en": "Phong Vu Shop Clone",
+      "vi": "Phong Vu Shop Clone"
+    },
     "nextSlug": "internet-banking",
-    "nextTitle": { "en": "Internet Banking", "vi": "Internet Banking" }
+    "nextTitle": {
+      "en": "Internet Banking",
+      "vi": "Internet Banking"
+    }
   }
 ]
