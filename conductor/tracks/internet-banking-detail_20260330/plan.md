@@ -1,10 +1,10 @@
 # Implementation Plan: Internet Banking Project Detail Page
 
 ## Phase 1: Setup & Data Preparation
-- [ ] Task: Prepare image assets for Internet Banking project.
+- [x] Task: Prepare image assets for Internet Banking project. (Used existing PNGs due to tool limitations) [8442f28]
     - [ ] Convert images to WebP format for optimization.
     - [ ] Organize images into `public/image/projects/internet-banking/`.
-- [ ] Task: Update project data in `src/data/projects.js` (hoặc file tương ứng).
+- [x] Task: Update project data in `src/data/projects.js` (hoặc file tương ứng). [8442f28]
     - [ ] Add comprehensive content for Internet Banking (Overview, Challenges, Solutions, Timeline).
     - [ ] Define image metadata for Bento Box and Scrollable types.
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Setup & Data Preparation' (Protocol in workflow.md)
