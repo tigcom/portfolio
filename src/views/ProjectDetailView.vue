@@ -65,12 +65,45 @@
     </section>
 
     <!-- UI Mockup Integration -->
-    <div v-if="['clean-hub', 'banking-system', 'traveloka-clone', 'internet-banking'].includes(project.slug)" class="pd-mockup-section" ref="fullImgEl">
-        <h2 class="section-subtitle" style="text-align: center; margin-bottom: 40px;">
-            {{ project.slug === 'internet-banking' ? (state.lang === 'en' ? 'Core Banking Interface' : 'Giao diện Core Banking') : (state.lang === 'en' ? 'System Interface' : 'Giao diện hệ thống') }}
-        </h2>
-        <BankingMockup v-if="project.slug === 'internet-banking' || project.slug === 'banking-system'" />
-        <TravelokaMockup v-if="project.slug === 'traveloka-clone'" />
+    <div class="pd-mockup-section" ref="fullImgEl">
+        <div class="container">
+            <h2 class="section-subtitle" style="text-align: center; margin-bottom: 40px;">
+                {{ t('common.interface') }}
+            </h2>
+            
+            <!-- Banking -->
+            <BankingMockup v-if="project.slug === 'internet-banking' || project.slug === 'banking-system'" />
+            
+            <!-- Traveloka -->
+            <TravelokaMockup v-else-if="project.slug === 'traveloka-clone'" />
+            
+            <!-- E-commerce (Sixdo, Phong Vu) -->
+            <DesktopMockup 
+                v-else-if="['sixdo-ecommerce', 'phong-vu-clone'].includes(project.slug)"
+                :mainImg="project.galleryImgs[0]"
+                :secondaryImg1="project.galleryImgs[1]"
+                :secondaryImg2="project.galleryImgs[2]"
+                :title="project.title"
+            />
+
+            <!-- Youtube Clone -->
+            <DesktopMockup 
+                v-else-if="project.slug === 'youtube-clone'"
+                :mainImg="project.galleryImgs[1]"
+                :secondaryImg1="project.galleryImgs[0]"
+                :secondaryImg2="project.galleryImgs[2]"
+                :title="project.title"
+            />
+
+            <!-- Motorbike (Window Mockup placeholder - using Desktop for now) -->
+            <DesktopMockup 
+                v-else-if="project.slug === 'motorbike-sales-system'"
+                :mainImg="project.galleryImgs[0]"
+                :secondaryImg1="project.galleryImgs[1]"
+                :secondaryImg2="project.galleryImgs[3]"
+                :title="project.title"
+            />
+        </div>
     </div>
 
     <!-- Process -->
@@ -128,6 +161,7 @@ import { useLang } from '../data/translations.js'
 
 import BankingMockup from '../components/projectDetail/mockups/BankingMockup.vue'
 import TravelokaMockup from '../components/projectDetail/mockups/TravelokaMockup.vue'
+import DesktopMockup from '../components/projectDetail/mockups/DesktopMockup.vue'
 
 const { state, t } = useLang()
 const route = useRoute()

@@ -5,7 +5,7 @@ import projectsData from './projects.json';
 export const projects = projectsData;
 
 // Biến tạm thời để bật/tắt tính năng xem chi tiết dự án
-export const FEATURE_PROJECT_DETAILS_ENABLED = false;
+export const FEATURE_PROJECT_DETAILS_ENABLED = true;
 
 export function getProjectBySlug(slug, lang = 'vi') {
     const project = projects.find(p => p.slug === slug) || projects[0]

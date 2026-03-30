@@ -9,11 +9,11 @@
     "year": "2025",
     "img": "/portfolio/image/bank.png",
     "colorBackgound" :"#99f6e4",
-    "heroImg": "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1200&q=85",
+    "heroImg": "/portfolio/image/projects/internet-banking/screencapture-localhost-3001-banking-deposits-open-2026-03-30-09_53_05.png",
     "galleryImgs": [
-      "https://images.unsplash.com/photo-1550565118-3d1428df732f?w=600&q=80",
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80",
-      "https://images.unsplash.com/photo-1501167786227-4cba60f6d58f?w=600&q=80"
+      "/portfolio/image/projects/internet-banking/screencapture-localhost-3001-login-2026-03-30-09_49_40.png",
+      "/portfolio/image/projects/internet-banking/screencapture-localhost-3001-banking-approvals-d15db959-a039-4fd0-b02a-450021576d89-2026-03-30-09_51_26.png",
+      "/portfolio/image/projects/internet-banking/screencapture-localhost-3001-banking-deposits-open-2026-03-30-09_53_05.png"
     ],
     "techStack": ["Spring Boot 3.x", "Spring Security", "Angular", "MySQL", "Kafka", "Dubbo", "Docker", "Prometheus", "Grafana", "Redis"],
     "role": { "en": "Java Developer Collaborator (Kien Long Bank)", "vi": "Cộng tác viên Phát triển Java (Kien Long Bank)" },
@@ -61,11 +61,12 @@
     "year": "2025",
     "img": "/portfolio/image/travel.png",
     "colorBackgound" :"#92c5fc",
-    "heroImg": "https://images.unsplash.com/photo-1436491865332-7a61a109c0f3?w=1200&q=85",
+    "heroImg": "/portfolio/image/projects/traveloka-clone/flight ls.png",
     "galleryImgs": [
-      "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600&q=80",
-      "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?w=600&q=80",
-      "https://images.unsplash.com/photo-1570126618953-d437176e8c79?w=600&q=80"
+      "/portfolio/image/projects/traveloka-clone/login.jpg",
+      "/portfolio/image/projects/traveloka-clone/flight ls.png",
+      "/portfolio/image/projects/traveloka-clone/bookls.png",
+      "/portfolio/image/projects/traveloka-clone/supoort.jpg"
     ],
     "techStack": ["Java Spring Boot 3.x", "Vue.js", "Tailwind CSS", "MySQL", "Redis", "Kafka", "Socket.io", "Docker"],
     "role": { "en": "Full Stack Developer", "vi": "Nhà phát triển Full Stack" },
@@ -112,8 +113,12 @@
     "year": "2025",
     "img": "/portfolio/image/siso.png",
     "colorBackgound" :"#fef3c6",
-    "heroImg": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&q=85",
-    "galleryImgs": [],
+    "heroImg": "/portfolio/image/projects/sixdo-ecommerce/screencapture-127-0-0-1-5500-1TrangChu-html-2026-03-19-18_03_54.jpg",
+    "galleryImgs": [
+      "/portfolio/image/projects/sixdo-ecommerce/screencapture-127-0-0-1-5500-1TrangChu-html-2026-03-19-18_03_54.jpg",
+      "/portfolio/image/projects/sixdo-ecommerce/screencapture-127-0-0-1-5500-2DanhSach-html-2026-03-19-18_04_08.jpg",
+      "/portfolio/image/projects/sixdo-ecommerce/Untitled-1.jpg"
+    ],
     "techStack": ["Java Spring Boot", "Next.js", "React", "PostgreSQL", "Flyway", "Spring Security", "Tailwind CSS"],
     "role": { "en": "Full Stack Developer", "vi": "Nhà phát triển Full Stack" },
     "overview": {
@@ -155,8 +160,13 @@
     "year": "2024",
     "img": "/portfolio/image/byke.png",
     "colorBackgound" :"#a7c5c7",
-    "heroImg": "https://images.unsplash.com/photo-1558981403-c5f91cbba527?w=1200&q=85",
-    "galleryImgs": [],
+    "heroImg": "/portfolio/image/projects/motorbike-sales-system/Screenshot 2026-03-20 195751.png",
+    "galleryImgs": [
+      "/portfolio/image/projects/motorbike-sales-system/Screenshot 2026-03-20 195751.png",
+      "/portfolio/image/projects/motorbike-sales-system/Screenshot 2026-03-20 195833.png",
+      "/portfolio/image/projects/motorbike-sales-system/Screenshot 2026-03-20 195847.png",
+      "/portfolio/image/projects/motorbike-sales-system/Screenshot 2026-03-20 200727.png"
+    ],
     "techStack": ["Java (Swing/AWT)", "JDBC", "SQL Server", "Apache POI"],
     "role": { "en": "Full Stack Developer", "vi": "Nhà phát triển Full Stack" },
     "overview": {
@@ -198,8 +208,12 @@
     "year": "2025",
     "img": "/portfolio/image/phongvu.png",
     "colorBackgound" :"#121317",
-    "heroImg": "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=1200&q=85",
-    "galleryImgs": [],
+    "heroImg": "/portfolio/image/projects/phong-vu-clone/screencapture-localhost-2511-home-2026-03-20-15_57_45.jpg",
+    "galleryImgs": [
+      "/portfolio/image/projects/phong-vu-clone/screencapture-localhost-2511-home-2026-03-20-15_57_45.jpg",
+      "/portfolio/image/projects/phong-vu-clone/screencapture-localhost-2511-home-chitiet-7-2026-03-20-16_02_19.jpg",
+      "/portfolio/image/projects/phong-vu-clone/screencapture-localhost-2511-sanpham-giohang-2026-03-20-16_00_57.jpg"
+    ],
     "techStack": ["Spring Boot", "Thymeleaf", "Tailwind CSS", "JPA", "SQL Server"],
     "role": { "en": "Backend Developer", "vi": "Nhà phát triển Backend" },
     "overview": {
@@ -237,8 +251,13 @@
       "year": "2024",
       "img": "/portfolio/image/ytu.png",
       "colorBackgound" :"#fbcfe8",
-    "heroImg": "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=1200&q=85",
-    "galleryImgs": [],
+    "heroImg": "/portfolio/image/projects/youtube-clone/youtube2.jpg",
+    "galleryImgs": [
+      "/portfolio/image/projects/youtube-clone/youtube1.jpg",
+      "/portfolio/image/projects/youtube-clone/youtube2.jpg",
+      "/portfolio/image/projects/youtube-clone/youtube3.jpg",
+      "/portfolio/image/projects/youtube-clone/yotube4.jpg"
+    ],
     "techStack": ["Java Servlet", "JSP", "Bootstrap", "JavaScript", "SQL Server"],
     "role": { "en": "Full Stack Developer", "vi": "Nhà phát triển Full Stack" },
     "overview": {
