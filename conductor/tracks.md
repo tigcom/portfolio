@@ -21,3 +21,8 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 - [ ] **Track: LÃ m láº¡i trang Chi tiáº¿t Dá»± Ã¡n (Project Detail)**
   *Link: [./tracks/rebuild-project-detail_20260325/](./tracks/rebuild-project-detail_20260325/)*
+
+---
+
+- [ ] **Track: T?o trang chi ti?t cho d? án Internet Banking v?i d?y d? n?i dung, hình ?nh, b? c?c t?i uu và hi?u ?ng GSAP.**
+*Link: [./tracks/internet-banking-detail_20260330/](./tracks/internet-banking-detail_20260330/)*
