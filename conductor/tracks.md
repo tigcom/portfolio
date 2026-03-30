@@ -24,5 +24,5 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-- [ ] **Track: T?o trang chi ti?t cho d? án Internet Banking v?i d?y d? n?i dung, hình ?nh, b? c?c t?i uu và hi?u ?ng GSAP.**
+- [~] **Track: T?o trang chi ti?t cho d? n Internet Banking v?i d?y d? n?i dung, hnh ?nh, b? c?c t?i uu v hi?u ?ng GSAP.**
 *Link: [./tracks/internet-banking-detail_20260330/](./tracks/internet-banking-detail_20260330/)*

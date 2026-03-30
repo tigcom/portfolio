@@ -22,11 +22,37 @@
     "year": "2025",
     "img": "/portfolio/image/bank.png",
     "colorBackgound": "#99f6e4",
-    "heroImg": "/portfolio/image/projects/internet-banking/screencapture-localhost-3001-banking-deposits-open-2026-03-30-09_53_05.png",
+    "heroImg": "/portfolio/image/projects/internet-banking/screencapture-localhost-3001-dashboard-2026-03-30-14_52_45.png",
     "galleryImgs": [
-      "/portfolio/image/projects/internet-banking/screencapture-localhost-3001-login-2026-03-30-09_49_40.png",
-      "/portfolio/image/projects/internet-banking/screencapture-localhost-3001-banking-approvals-d15db959-a039-4fd0-b02a-450021576d89-2026-03-30-09_51_26.png",
-      "/portfolio/image/projects/internet-banking/screencapture-localhost-3001-banking-deposits-open-2026-03-30-09_53_05.png"
+      {
+        "src": "/portfolio/image/projects/internet-banking/screencapture-localhost-3001-dashboard-2026-03-30-14_52_45.png",
+        "type": "bento",
+        "aspect": "wide",
+        "title": { "en": "Dashboard Overview", "vi": "Tổng quan Dashboard" }
+      },
+      {
+        "src": "/portfolio/image/projects/internet-banking/screencapture-localhost-3001-login-2026-03-30-09_49_40.png",
+        "type": "bento",
+        "aspect": "square",
+        "title": { "en": "Secure Login", "vi": "Đăng nhập Bảo mật" }
+      },
+      {
+        "src": "/portfolio/image/projects/internet-banking/screencapture-localhost-3001-banking-transfers-create-2026-03-30-14_52_11.png",
+        "type": "scrollable",
+        "title": { "en": "Transfer Operation", "vi": "Thao tác Chuyển tiền" }
+      },
+      {
+        "src": "/portfolio/image/projects/internet-banking/screencapture-localhost-3001-banking-approvals-d15db959-a039-4fd0-b02a-450021576d89-2026-03-30-09_51_26.png",
+        "type": "bento",
+        "aspect": "square",
+        "title": { "en": "Maker-Checker Approval", "vi": "Phê duyệt Maker-Checker" }
+      },
+      {
+        "src": "/portfolio/image/projects/internet-banking/screencapture-localhost-3001-banking-deposits-open-2026-03-30-09_53_05.png",
+        "type": "bento",
+        "aspect": "tall",
+        "title": { "en": "Term Deposit Opening", "vi": "Mở Tiền gửi Có kỳ hạn" }
+      }
     ],
     "techStack": [
       "Java 17",
