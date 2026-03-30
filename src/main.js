@@ -8,6 +8,7 @@ import HomeView from './views/HomeView.vue'
 import AboutView from './views/AboutView.vue'
 import ProjectsView from './views/ProjectsView.vue'
 import ProjectDetailView from './views/ProjectDetailView.vue'
+import ProjectDetailInternetBanking from './views/ProjectDetailInternetBanking.vue' // Import the new component
 import ContactView from './views/ContactView.vue'
 
 // Setup Router
@@ -17,7 +18,10 @@ const router = createRouter({
         { path: '/', name: 'home', component: HomeView },
         { path: '/about', name: 'about', component: AboutView },
         { path: '/projects', name: 'projects', component: ProjectsView },
+        // Existing route for generic project detail
         { path: '/projects/:slug', name: 'project-detail', component: ProjectDetailView },
+        // New route for Internet Banking detail page
+        { path: '/projects/internet-banking', name: 'project-detail-internet-banking', component: ProjectDetailInternetBanking },
         { path: '/contact', name: 'contact', component: ContactView },
     ],
     scrollBehavior() {
@@ -33,6 +37,7 @@ router.afterEach((to) => {
         about: 'About | Phuc Khang',
         projects: 'Projects | Phuc Khang',
         'project-detail': 'Project | Phuc Khang',
+        'project-detail-internet-banking': 'KBIZ Internet Banking | Phuc Khang', // New title for specific project
         contact: 'Contact | Phuc Khang',
     }
     document.title = titles[to.name] || 'Phuc Khang'
