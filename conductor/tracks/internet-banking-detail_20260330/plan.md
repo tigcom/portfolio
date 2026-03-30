@@ -10,10 +10,10 @@
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Setup & Data Preparation' (Protocol in workflow.md)
 
 ## Phase 2: Basic Structure & Routing
-- [ ] Task: Create Vue component for project detail.
+- [x] Task: Create Vue component for project detail. [a77a35a]
     - [ ] Create `src/views/ProjectDetailInternetBanking.vue`.
     - [ ] Setup basic layout matching the Portfolio Standard Style.
-- [ ] Task: Configure routing.
+- [x] Task: Configure routing. [a77a35a]
     - [ ] Add route for `/projects/internet-banking` in `src/main.js` or router config.
     - [ ] Ensure navigation from project list works correctly.
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: Basic Structure & Routing' (Protocol in workflow.md)
