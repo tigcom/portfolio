@@ -21,19 +21,19 @@
       <div class="browser-content">
         <!-- Main Image from Project Data -->
         <img 
-          src="/portfolio/image/projects/internet-banking/screencapture-localhost-3001-banking-deposits-open-2026-03-30-09_53_05.png" 
+          src="/image/projects/internet-banking/screencapture-localhost-3001-banking-deposits-open-2026-03-30-09_53_05.png" 
           alt="Internet Banking Dashboard" 
           class="mockup-img main-img"
         >
         
         <!-- Floating Elements for depth -->
         <div class="floating-element approval-card" v-reveal data-delay="0.4">
-          <img src="/portfolio/image/projects/internet-banking/screencapture-localhost-3001-banking-approvals-d15db959-a039-4fd0-b02a-450021576d89-2026-03-30-09_51_26.png" alt="Approval Process">
+          <img src="/image/projects/internet-banking/screencapture-localhost-3001-banking-approvals-d15db959-a039-4fd0-b02a-450021576d89-2026-03-30-09_51_26.png" alt="Approval Process">
           <div class="element-label">Transaction Approval Workflow</div>
         </div>
 
         <div class="floating-element login-card" v-reveal data-delay="0.6">
-          <img src="/portfolio/image/projects/internet-banking/screencapture-localhost-3001-login-2026-03-30-09_49_40.png" alt="Secure Login">
+          <img src="/image/projects/internet-banking/screencapture-localhost-3001-login-2026-03-30-09_49_40.png" alt="Secure Login">
           <div class="element-label">Multi-factor Authentication</div>
         </div>
       </div>

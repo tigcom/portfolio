@@ -1,47 +1,70 @@
 <template>
   <div class="project-detail-container">
-    <!-- Placeholder for Header -->
+    <!-- Header Section -->
     <header class="project-header">
-      <h1></h1>
-      <p></p>
+      <h1>{{ t(projectData.title) }}</h1>
+      <h2>{{ t(projectData.subtitle) }}</h2>
       <div class="project-meta">
-        <span></span>
-        <span></span>
+        <span>Year: {{ projectData.year }}</span>
+        <span>Role: {{ t(projectData.role) }}</span>
       </div>
     </header>
 
     <main class="project-content">
-      <!-- Content sections will be added here -->
+      <!-- Overview Section -->
       <section class="project-overview">
-        <h2></h2>
-        <p></p>
+        <h2>{{ t({en: 'Overview', vi: 'Tổng quan'}) }}</h2>
+        <p>{{ t(projectData.overview) }}</p>
       </section>
 
+      <!-- Tech Stack Section -->
       <section class="tech-stack-section">
-        <h2></h2>
+        <h2>{{ t({en: 'Tech Stack', vi: 'Công nghệ sử dụng'}) }}</h2>
         <ul>
-          <!-- Tech stack items -->
+          <li v-for="tech in projectData.techStack" :key="tech">{{ tech }}</li>
         </ul>
       </section>
 
+      <!-- Process & Timeline Section -->
       <section class="process-timeline">
-        <h2></h2>
-        <!-- Timeline steps will be rendered here -->
+        <h2>{{ t({en: 'Process & Timeline', vi: 'Quy trình & Tiến độ'}) }}</h2>
+        <ul>
+          <li v-for="(step, index) in projectData.processSteps" :key="index">
+            <h3>{{ t(step.title) }}</h3>
+            <p>{{ t(step.description) }}</p>
+          </li>
+        </ul>
       </section>
 
+      <!-- Image Gallery Section -->
       <section class="image-gallery">
-        <h2></h2>
-        <!-- Gallery items will be rendered here -->
+        <h2>{{ t({en: 'Gallery & Results', vi: 'Thư viện & Kết quả'}) }}</h2>
+        <div class="bento-grid">
+          <div v-for="(img, index) in projectData.galleryImgs" :key="index" :class="['bento-item', img.type, img.aspect]">
+            <div class="bento-content">
+              <img :src="img.src" :alt="t(img.title)" :class="{ 'scrollable-image': img.type === 'scrollable' }"/>
+              <div class="bento-overlay">
+                <h3>{{ t(img.title) }}</h3>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
       
+      <!-- Challenges & Solutions Section -->
       <section class="challenges-solutions">
-        <h2></h2>
-        <!-- Challenges and solutions -->
+        <h2>{{ t({en: 'Challenges & Solutions', vi: 'Thách thức & Giải pháp'}) }}</h2>
+        <p>{{ t(projectData.problem) }}</p>
       </section>
 
+      <!-- Results Section -->
       <section class="results-section">
-        <h2></h2>
-        <!-- Results -->
+        <h2>{{ t({en: 'Results', vi: 'Kết quả đạt được'}) }}</h2>
+        <ul>
+          <li v-for="(result, index) in projectData.results" :key="index">
+            <strong>{{ result.value }}{{ result.suffix }}</strong> {{ t(result.label) }}
+          </li>
+        </ul>
       </section>
     </main>
   </div>
@@ -49,38 +72,14 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-// Assuming project data is fetched or imported
-// import { getProjectBySlug } from '@/data/projects'; // Example import
+import { getProjectBySlug } from '@/data/projects'; // Import the helper function
 
 const projectData = ref(null);
 const currentLang = ref('vi'); // Default to Vietnamese
 
 onMounted(async () => {
-  // In a real app, you would fetch data based on route param or similar
-  // For now, simulating data loading
-  // projectData.value = getProjectBySlug('internet-banking', currentLang.value);
-
-  // Dummy data for initial structure
-  projectData.value = {
-    title: { en: "Internet Banking Project", vi: "Dự án Internet Banking" },
-    subtitle: { en: "Enterprise Banking Platform", vi: "Nền tảng Ngân hàng Doanh nghiệp" },
-    role: { en: "Collaborator", vi: "Cộng tác viên" },
-    year: "2025",
-    techStack: ["Java", "Spring Boot", "Next.js", "Vue.js", "PostgreSQL"],
-    overview: { en: "Details about the project overview...", vi: "Chi tiết về tổng quan dự án..." },
-    problem: { en: "Challenges faced...", vi: "Các thách thức đã gặp..." },
-    processSteps: [
-      { title: { en: "Step 1", vi: "Bước 1" }, description: { en: "Description 1", vi: "Mô tả 1" } },
-      { title: { en: "Step 2", vi: "Bước 2" }, description: { en: "Description 2", vi: "Mô tả 2" } },
-    ],
-    results: [
-      { value: 10, suffix: "+", label: { en: "Services", vi: "Dịch vụ" } }
-    ],
-    galleryImgs: [
-      { src: "/portfolio/image/projects/internet-banking/screencapture-localhost-3001-dashboard-2026-03-30-14_52_45.png", type: "bento", aspect: "wide", title: {en: "Dashboard", vi: "Dashboard"} },
-      { src: "/portfolio/image/projects/internet-banking/screencapture-localhost-3001-login-2026-03-30-09_49_40.png", type: "bento", aspect: "square", title: {en: "Login", vi: "Đăng nhập"} }
-    ]
-  };
+  // Fetch data for the 'internet-banking' slug
+  projectData.value = getProjectBySlug('internet-banking', currentLang.value);
 });
 
 // Basic translation helper for dynamic content
@@ -111,8 +110,8 @@ const t = (text) => {
   color: #333;
 }
 
-.project-header p {
-  font-size: 1.2em;
+.project-header h2 { /* Subtitle style */
+  font-size: 1.4em;
   color: #555;
   margin-bottom: 15px;
 }
@@ -204,15 +203,107 @@ const t = (text) => {
   color: #555;
 }
 
-/* Add styles for Image Gallery and other sections as needed */
+/* Image Gallery Styles */
 .image-gallery {
-  /* Basic placeholder style */
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 15px;
+  margin-top: 40px;
 }
 
 .image-gallery h2 {
-  grid-column: 1 / -1; /* Span across all columns */
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+  gap: 15px;
+  grid-auto-rows: 200px; /* Default row height, will be adjusted by aspect ratio */
+}
+
+.bento-item {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bento-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+}
+
+.bento-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bento-content img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Cover the area, might crop */
+  transition: transform 0.5s ease;
+}
+
+/* Specific styling for different image types */
+.bento-item.bento .bento-content img {
+  object-fit: cover; /* Bento items cover the area */
+}
+
+.bento-item.scrollable .bento-content img {
+  object-fit: contain; /* For scrollable images, show the whole image */
+  height: auto; /* Allow height to adjust */
+  max-height: 100%; /* Ensure it doesn't exceed container */
+  overflow-y: auto; /* Enable scroll if needed */
+}
+
+.bento-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.bento-item:hover .bento-overlay {
+  opacity: 1;
+}
+
+/* Aspect Ratio Adjustments for Bento Grid */
+.bento-item.bento.wide {
+  grid-column: span 2; /* Example: make wide items span 2 columns */
+}
+.bento-item.bento.tall {
+  grid-row: span 2; /* Example: make tall items span 2 rows */
+}
+.bento-item.bento.square {
+  /* Default square item */
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+/* Responsive adjustments for grid */
+@media (max-width: 768px) {
+  .bento-grid {
+    grid-template-columns: 1fr; /* Stack items on smaller screens */
+    grid-auto-rows: 300px; /* Adjust height for mobile */
+  }
+  .bento-item.bento.wide,
+  .bento-item.bento.tall {
+    grid-column: span 1; /* Reset spans on mobile */
+    grid-row: span 1;
+  }
 }
 </style>

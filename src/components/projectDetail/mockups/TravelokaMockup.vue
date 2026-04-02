@@ -8,7 +8,7 @@
           <div class="url">traveloka.com/flight/search</div>
         </div>
         <div class="web-content">
-          <img src="/portfolio/image/projects/traveloka-clone/flight ls.png" alt="Flight Search Results" class="main-web-img">
+          <img src="/image/projects/traveloka-clone/flight ls.png" alt="Flight Search Results" class="main-web-img">
         </div>
       </div>
 
@@ -19,13 +19,13 @@
             <span>9:41</span>
             <div class="icons">📶🔋</div>
           </div>
-          <img src="/portfolio/image/projects/traveloka-clone/login.jpg" alt="Mobile Login" class="mobile-img">
+          <img src="/image/projects/traveloka-clone/login.jpg" alt="Mobile Login" class="mobile-img">
         </div>
       </div>
 
       <!-- Floating Feature Cards -->
       <div class="floating-card booking-card" v-reveal data-delay="0.8">
-        <img src="/portfolio/image/projects/traveloka-clone/bookls.png" alt="Booking List">
+        <img src="/image/projects/traveloka-clone/bookls.png" alt="Booking List">
         <div class="card-info">
           <span class="tag">Real-time</span>
           <span class="label">Booking Management</span>
@@ -33,7 +33,7 @@
       </div>
 
       <div class="floating-card support-card" v-reveal data-delay="1.0">
-        <img src="/portfolio/image/projects/traveloka-clone/supoort.jpg" alt="Support Center">
+        <img src="/image/projects/traveloka-clone/supoort.jpg" alt="Support Center">
         <div class="card-info">
           <span class="tag">System</span>
           <span class="label">Customer Support</span>
