@@ -10,6 +10,8 @@ import ProjectsView from './views/ProjectsView.vue'
 import ProjectDetailView from './views/ProjectDetailView.vue'
 import ProjectDetailInternetBanking from './views/ProjectDetailInternetBanking.vue' // Import the new component
 import ContactView from './views/ContactView.vue'
+import MarketplaceView from './views/MarketplaceView.vue'
+import MarketplaceDetailView from './views/MarketplaceDetailView.vue'
 
 // Setup Router
 const router = createRouter({
@@ -23,6 +25,9 @@ const router = createRouter({
         // New route for Internet Banking detail page
         { path: '/projects/internet-banking', name: 'project-detail-internet-banking', component: ProjectDetailInternetBanking },
         { path: '/contact', name: 'contact', component: ContactView },
+        // Marketplace routes
+        { path: '/marketplace', name: 'marketplace', component: MarketplaceView },
+        { path: '/marketplace/:slug', name: 'marketplace-detail', component: MarketplaceDetailView },
     ],
     scrollBehavior() {
         // Lenis handles scroll-to-top on route change via router.afterEach in App.vue
@@ -39,6 +44,8 @@ router.afterEach((to) => {
         'project-detail': 'Project | Phuc Khang',
         'project-detail-internet-banking': 'KBIZ Internet Banking | Phuc Khang', // New title for specific project
         contact: 'Contact | Phuc Khang',
+        marketplace: 'Marketplace | Phuc Khang',
+        'marketplace-detail': 'Template | Phuc Khang',
     }
     document.title = titles[to.name] || 'Phuc Khang'
 })
