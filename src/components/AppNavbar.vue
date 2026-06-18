@@ -65,6 +65,7 @@ const navLinks = [
   { path: '/', label: 'nav.home' },
   { path: '/about', label: 'nav.about' },
   { path: '/projects', label: 'nav.projects' },
+  { path: '/marketplace', label: 'nav.marketplace' },
   { path: '/contact', label: 'nav.contact' },
 ]
 
