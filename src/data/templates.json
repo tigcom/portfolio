@@ -1,0 +1,218 @@
+[
+  {
+    "slug": "hr-management",
+    "num": "01",
+    "title": { "en": "HR & Employee Management", "vi": "Quản lý Nhân sự" },
+    "subtitle": { "en": "Full-featured HR portal for modern teams", "vi": "Cổng nhân sự đầy đủ tính năng cho doanh nghiệp hiện đại" },
+    "category": "enterprise",
+    "tags": ["Dashboard", "Employee Portal", "Payroll", "Attendance", "Reports"],
+    "year": "2025",
+    "colorBackground": "linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)",
+    "accentColor": "#4f8ef7",
+    "overview": {
+      "en": "A comprehensive HR management platform designed for mid-to-large enterprises. Streamlines employee onboarding, attendance tracking, payroll processing, and performance reviews in one unified dashboard.",
+      "vi": "Nền tảng quản lý nhân sự toàn diện dành cho doanh nghiệp vừa và lớn. Tối ưu hóa quy trình tuyển dụng, chấm công, tính lương và đánh giá hiệu suất trong một dashboard thống nhất."
+    },
+    "about": {
+      "en": "Built for HR teams who need clarity and control. This template includes role-based access, multi-department support, and real-time analytics to help managers make data-driven decisions.",
+      "vi": "Được xây dựng cho các đội HR cần sự rõ ràng và kiểm soát. Template này bao gồm phân quyền theo vai trò, hỗ trợ đa phòng ban và phân tích thời gian thực để giúp quản lý đưa ra quyết định dựa trên dữ liệu."
+    },
+    "features": {
+      "en": ["Employee directory & profiles", "Attendance & leave management", "Payroll calculation & payslips", "Performance review cycles", "Org chart & department tree", "Role-based access control", "Analytics & HR reports", "Onboarding workflow"],
+      "vi": ["Danh bạ & hồ sơ nhân viên", "Quản lý chấm công & nghỉ phép", "Tính lương & phiếu lương", "Chu kỳ đánh giá hiệu suất", "Sơ đồ tổ chức & cây phòng ban", "Phân quyền theo vai trò", "Phân tích & báo cáo HR", "Quy trình onboarding"]
+    },
+    "prevSlug": "medical-clinic",
+    "prevTitle": { "en": "Medical Clinic Booking", "vi": "Đặt lịch Phòng khám" },
+    "nextSlug": "furniture-showcase",
+    "nextTitle": { "en": "Furniture Showcase", "vi": "Giới thiệu Nội thất" }
+  },
+  {
+    "slug": "furniture-showcase",
+    "num": "02",
+    "title": { "en": "Furniture & Interior Showcase", "vi": "Giới thiệu Đồ gỗ & Nội thất" },
+    "subtitle": { "en": "Elegant brand website for furniture companies", "vi": "Website thương hiệu sang trọng cho công ty đồ gỗ" },
+    "category": "branding",
+    "tags": ["Showcase", "Product Gallery", "Brand Story", "Catalog", "Contact"],
+    "year": "2025",
+    "colorBackground": "linear-gradient(135deg, #2d1b0e 0%, #4a2c17 50%, #6b3f1f 100%)",
+    "accentColor": "#d4a574",
+    "overview": {
+      "en": "A premium brand website template for furniture and interior design companies. Features a stunning product gallery, brand story section, and seamless inquiry flow to convert visitors into clients.",
+      "vi": "Template website thương hiệu cao cấp cho các công ty đồ gỗ và thiết kế nội thất. Nổi bật với gallery sản phẩm ấn tượng, phần câu chuyện thương hiệu và luồng liên hệ mượt mà để chuyển đổi khách thăm thành khách hàng."
+    },
+    "about": {
+      "en": "Crafted to showcase craftsmanship. This template uses warm tones, full-bleed imagery, and smooth scroll animations to create an immersive brand experience that reflects the quality of your products.",
+      "vi": "Được tạo ra để trưng bày tay nghề thủ công. Template này sử dụng tông màu ấm, hình ảnh toàn màn hình và hiệu ứng cuộn mượt mà để tạo ra trải nghiệm thương hiệu đắm chìm phản ánh chất lượng sản phẩm của bạn."
+    },
+    "features": {
+      "en": ["Hero with parallax imagery", "Product catalog & filtering", "Material & finish selector", "Brand story timeline", "Showroom locator map", "Custom quote request form", "Instagram feed integration", "Awards & certifications section"],
+      "vi": ["Hero với hiệu ứng parallax", "Danh mục sản phẩm & lọc", "Bộ chọn vật liệu & hoàn thiện", "Timeline câu chuyện thương hiệu", "Bản đồ showroom", "Form yêu cầu báo giá", "Tích hợp feed Instagram", "Phần giải thưởng & chứng nhận"]
+    },
+    "prevSlug": "hr-management",
+    "prevTitle": { "en": "HR Management", "vi": "Quản lý Nhân sự" },
+    "nextSlug": "online-learning",
+    "nextTitle": { "en": "Online Learning / LMS", "vi": "Học trực tuyến / LMS" }
+  },
+  {
+    "slug": "online-learning",
+    "num": "03",
+    "title": { "en": "Online Learning / LMS", "vi": "Học trực tuyến / LMS" },
+    "subtitle": { "en": "Modern e-learning platform for educators & students", "vi": "Nền tảng học trực tuyến hiện đại cho giáo viên & học sinh" },
+    "category": "education",
+    "tags": ["LMS", "Course Catalog", "Video Lessons", "Quizzes", "Certificates"],
+    "year": "2025",
+    "colorBackground": "linear-gradient(135deg, #0d1117 0%, #1a2744 50%, #0d2137 100%)",
+    "accentColor": "#7c6af7",
+    "overview": {
+      "en": "A full-featured Learning Management System template for online educators, training centers, and corporate learning programs. Includes course catalog, video lessons, progress tracking, and certificate generation.",
+      "vi": "Template Hệ thống Quản lý Học tập đầy đủ tính năng cho giáo viên trực tuyến, trung tâm đào tạo và chương trình học tập doanh nghiệp. Bao gồm danh mục khóa học, bài học video, theo dõi tiến độ và tạo chứng chỉ."
+    },
+    "about": {
+      "en": "Designed to make learning engaging and accessible. This LMS template supports multiple instructors, course categories, student dashboards, and interactive quizzes — everything you need to launch your online school.",
+      "vi": "Được thiết kế để làm cho việc học trở nên hấp dẫn và dễ tiếp cận. Template LMS này hỗ trợ nhiều giảng viên, danh mục khóa học, dashboard học sinh và bài kiểm tra tương tác — mọi thứ bạn cần để ra mắt trường học trực tuyến."
+    },
+    "features": {
+      "en": ["Course catalog with search & filters", "Video lesson player with notes", "Student progress dashboard", "Quiz & assignment system", "Certificate generation", "Instructor profiles & ratings", "Discussion forums", "Subscription & payment plans"],
+      "vi": ["Danh mục khóa học với tìm kiếm & lọc", "Trình phát bài học video với ghi chú", "Dashboard tiến độ học sinh", "Hệ thống bài kiểm tra & bài tập", "Tạo chứng chỉ", "Hồ sơ & đánh giá giảng viên", "Diễn đàn thảo luận", "Gói đăng ký & thanh toán"]
+    },
+    "prevSlug": "furniture-showcase",
+    "prevTitle": { "en": "Furniture Showcase", "vi": "Giới thiệu Nội thất" },
+    "nextSlug": "restaurant-fnb",
+    "nextTitle": { "en": "Restaurant / F&B", "vi": "Nhà hàng / F&B" }
+  },
+  {
+    "slug": "restaurant-fnb",
+    "num": "04",
+    "title": { "en": "Restaurant & F&B", "vi": "Nhà hàng & F&B" },
+    "subtitle": { "en": "Appetizing website for restaurants & food brands", "vi": "Website hấp dẫn cho nhà hàng & thương hiệu ẩm thực" },
+    "category": "hospitality",
+    "tags": ["Menu", "Reservations", "Food Gallery", "Delivery", "Reviews"],
+    "year": "2025",
+    "colorBackground": "linear-gradient(135deg, #1a0a00 0%, #3d1a00 50%, #5c2800 100%)",
+    "accentColor": "#ff6b35",
+    "overview": {
+      "en": "A mouth-watering website template for restaurants, cafes, and food brands. Features an interactive menu, online reservation system, food gallery, and delivery integration to drive more orders and bookings.",
+      "vi": "Template website hấp dẫn cho nhà hàng, quán cà phê và thương hiệu ẩm thực. Nổi bật với menu tương tác, hệ thống đặt bàn trực tuyến, gallery ẩm thực và tích hợp giao hàng để tăng đơn hàng và đặt chỗ."
+    },
+    "about": {
+      "en": "Food is visual — and this template knows it. Rich photography, animated menu reveals, and a seamless booking flow make this the perfect digital home for any dining establishment.",
+      "vi": "Ẩm thực là thị giác — và template này hiểu điều đó. Hình ảnh phong phú, hiệu ứng menu động và luồng đặt bàn mượt mà làm cho đây là ngôi nhà kỹ thuật số hoàn hảo cho bất kỳ cơ sở ăn uống nào."
+    },
+    "features": {
+      "en": ["Interactive digital menu", "Online table reservation", "Food photography gallery", "Chef profiles & story", "Delivery & takeaway ordering", "Customer reviews & ratings", "Special events & promotions", "Loyalty program integration"],
+      "vi": ["Menu kỹ thuật số tương tác", "Đặt bàn trực tuyến", "Gallery ảnh ẩm thực", "Hồ sơ & câu chuyện đầu bếp", "Đặt giao hàng & mang về", "Đánh giá & xếp hạng khách hàng", "Sự kiện đặc biệt & khuyến mãi", "Tích hợp chương trình khách hàng thân thiết"]
+    },
+    "prevSlug": "online-learning",
+    "prevTitle": { "en": "Online Learning / LMS", "vi": "Học trực tuyến / LMS" },
+    "nextSlug": "real-estate",
+    "nextTitle": { "en": "Real Estate Listings", "vi": "Bất động sản" }
+  },
+  {
+    "slug": "real-estate",
+    "num": "05",
+    "title": { "en": "Real Estate Listings", "vi": "Bất động sản" },
+    "subtitle": { "en": "Property listing platform for agents & developers", "vi": "Nền tảng đăng tin bất động sản cho môi giới & chủ đầu tư" },
+    "category": "real-estate",
+    "tags": ["Property Listings", "Map Search", "Virtual Tour", "Agent Portal", "Mortgage"],
+    "year": "2025",
+    "colorBackground": "linear-gradient(135deg, #0a1628 0%, #1a2f4a 50%, #0d2137 100%)",
+    "accentColor": "#38bdf8",
+    "overview": {
+      "en": "A professional real estate platform template for agencies, developers, and independent agents. Features advanced property search with map integration, virtual tours, agent profiles, and mortgage calculators.",
+      "vi": "Template nền tảng bất động sản chuyên nghiệp cho các công ty, chủ đầu tư và môi giới độc lập. Nổi bật với tìm kiếm bất động sản nâng cao tích hợp bản đồ, tour ảo, hồ sơ môi giới và máy tính thế chấp."
+    },
+    "about": {
+      "en": "Help buyers find their dream home. This template combines powerful search filters, interactive maps, and rich property detail pages to create a best-in-class property browsing experience.",
+      "vi": "Giúp người mua tìm ngôi nhà mơ ước. Template này kết hợp bộ lọc tìm kiếm mạnh mẽ, bản đồ tương tác và trang chi tiết bất động sản phong phú để tạo ra trải nghiệm duyệt bất động sản tốt nhất."
+    },
+    "features": {
+      "en": ["Advanced property search & filters", "Interactive map with clusters", "Virtual 360° tour support", "Agent & agency profiles", "Mortgage calculator", "Saved properties & alerts", "Neighborhood insights", "Lead capture & CRM integration"],
+      "vi": ["Tìm kiếm & lọc bất động sản nâng cao", "Bản đồ tương tác với cụm điểm", "Hỗ trợ tour ảo 360°", "Hồ sơ môi giới & công ty", "Máy tính thế chấp", "Lưu bất động sản & cảnh báo", "Thông tin khu vực lân cận", "Thu thập khách hàng tiềm năng & tích hợp CRM"]
+    },
+    "prevSlug": "restaurant-fnb",
+    "prevTitle": { "en": "Restaurant / F&B", "vi": "Nhà hàng / F&B" },
+    "nextSlug": "corporate-agency",
+    "nextTitle": { "en": "Corporate / Agency", "vi": "Doanh nghiệp / Agency" }
+  },
+  {
+    "slug": "corporate-agency",
+    "num": "06",
+    "title": { "en": "Corporate / Agency Landing", "vi": "Trang giới thiệu Doanh nghiệp / Agency" },
+    "subtitle": { "en": "High-converting landing page for businesses & agencies", "vi": "Trang đích chuyển đổi cao cho doanh nghiệp & agency" },
+    "category": "corporate",
+    "tags": ["Landing Page", "Services", "Portfolio", "Team", "Lead Gen"],
+    "year": "2025",
+    "colorBackground": "linear-gradient(135deg, #0b0b0d 0%, #141420 50%, #1a1a2e 100%)",
+    "accentColor": "#bcff67",
+    "overview": {
+      "en": "A sleek, high-converting corporate landing page template for agencies, consultancies, and B2B businesses. Designed to communicate value, build trust, and generate qualified leads through strategic content layout.",
+      "vi": "Template trang đích doanh nghiệp mượt mà, chuyển đổi cao cho các agency, công ty tư vấn và doanh nghiệp B2B. Được thiết kế để truyền đạt giá trị, xây dựng niềm tin và tạo ra khách hàng tiềm năng chất lượng thông qua bố cục nội dung chiến lược."
+    },
+    "about": {
+      "en": "First impressions matter. This corporate template uses bold typography, strategic whitespace, and compelling CTAs to guide visitors from curiosity to conversion — all while looking unmistakably professional.",
+      "vi": "Ấn tượng đầu tiên rất quan trọng. Template doanh nghiệp này sử dụng typography đậm, khoảng trắng chiến lược và CTA hấp dẫn để hướng dẫn khách thăm từ tò mò đến chuyển đổi — trong khi vẫn trông chuyên nghiệp không thể nhầm lẫn."
+    },
+    "features": {
+      "en": ["Hero with animated headline", "Services showcase grid", "Case studies & portfolio", "Team member profiles", "Client logos & testimonials", "Stats & achievements counter", "Contact & lead capture form", "Blog & insights section"],
+      "vi": ["Hero với tiêu đề động", "Lưới giới thiệu dịch vụ", "Case studies & portfolio", "Hồ sơ thành viên nhóm", "Logo khách hàng & lời chứng thực", "Bộ đếm thống kê & thành tích", "Form liên hệ & thu thập khách hàng", "Phần blog & insights"]
+    },
+    "prevSlug": "real-estate",
+    "prevTitle": { "en": "Real Estate Listings", "vi": "Bất động sản" },
+    "nextSlug": "ecommerce-shop",
+    "nextTitle": { "en": "E-commerce Shop", "vi": "Cửa hàng Thương mại điện tử" }
+  },
+  {
+    "slug": "ecommerce-shop",
+    "num": "07",
+    "title": { "en": "E-commerce Shop", "vi": "Cửa hàng Thương mại điện tử" },
+    "subtitle": { "en": "Full-featured online store for any product category", "vi": "Cửa hàng trực tuyến đầy đủ tính năng cho mọi danh mục sản phẩm" },
+    "category": "ecommerce",
+    "tags": ["Product Catalog", "Cart", "Checkout", "Payments", "Inventory"],
+    "year": "2025",
+    "colorBackground": "linear-gradient(135deg, #0f0f1a 0%, #1a0f2e 50%, #2d1b4e 100%)",
+    "accentColor": "#a855f7",
+    "overview": {
+      "en": "A complete e-commerce solution template for selling physical or digital products online. Features a beautiful product catalog, smart cart, secure checkout, order management, and customer account portal.",
+      "vi": "Template giải pháp thương mại điện tử hoàn chỉnh để bán sản phẩm vật lý hoặc kỹ thuật số trực tuyến. Nổi bật với danh mục sản phẩm đẹp, giỏ hàng thông minh, thanh toán bảo mật, quản lý đơn hàng và cổng tài khoản khách hàng."
+    },
+    "about": {
+      "en": "Sell more with less friction. This e-commerce template is optimized for conversion with fast-loading product pages, one-click add-to-cart, and a streamlined checkout that reduces abandonment.",
+      "vi": "Bán nhiều hơn với ít ma sát hơn. Template thương mại điện tử này được tối ưu hóa cho chuyển đổi với trang sản phẩm tải nhanh, thêm vào giỏ hàng một cú nhấp và thanh toán được tối ưu hóa để giảm bỏ giỏ hàng."
+    },
+    "features": {
+      "en": ["Product catalog with variants", "Smart search & filtering", "Wishlist & comparison", "Shopping cart & checkout", "Multiple payment gateways", "Order tracking & history", "Customer reviews & Q&A", "Discount codes & promotions"],
+      "vi": ["Danh mục sản phẩm với biến thể", "Tìm kiếm & lọc thông minh", "Danh sách yêu thích & so sánh", "Giỏ hàng & thanh toán", "Nhiều cổng thanh toán", "Theo dõi & lịch sử đơn hàng", "Đánh giá khách hàng & Q&A", "Mã giảm giá & khuyến mãi"]
+    },
+    "prevSlug": "corporate-agency",
+    "prevTitle": { "en": "Corporate / Agency", "vi": "Doanh nghiệp / Agency" },
+    "nextSlug": "medical-clinic",
+    "nextTitle": { "en": "Medical Clinic Booking", "vi": "Đặt lịch Phòng khám" }
+  },
+  {
+    "slug": "medical-clinic",
+    "num": "08",
+    "title": { "en": "Medical Clinic Booking", "vi": "Đặt lịch Phòng khám" },
+    "subtitle": { "en": "Professional healthcare website with appointment booking", "vi": "Website y tế chuyên nghiệp với đặt lịch khám" },
+    "category": "healthcare",
+    "tags": ["Appointments", "Doctor Profiles", "Patient Portal", "Medical Records", "Telemedicine"],
+    "year": "2025",
+    "colorBackground": "linear-gradient(135deg, #001a1a 0%, #003333 50%, #004d4d 100%)",
+    "accentColor": "#2dd4bf",
+    "overview": {
+      "en": "A professional healthcare website template for clinics, hospitals, and private practices. Features online appointment booking, doctor profiles, patient portal, and telemedicine support to modernize your healthcare practice.",
+      "vi": "Template website y tế chuyên nghiệp cho phòng khám, bệnh viện và phòng mạch tư. Nổi bật với đặt lịch khám trực tuyến, hồ sơ bác sĩ, cổng bệnh nhân và hỗ trợ khám từ xa để hiện đại hóa cơ sở y tế của bạn."
+    },
+    "about": {
+      "en": "Healthcare deserves a digital experience that inspires trust. This template combines clean design, clear information hierarchy, and frictionless booking to help patients find and schedule care with confidence.",
+      "vi": "Y tế xứng đáng có trải nghiệm kỹ thuật số truyền cảm hứng tin tưởng. Template này kết hợp thiết kế sạch sẽ, phân cấp thông tin rõ ràng và đặt lịch không ma sát để giúp bệnh nhân tìm và lên lịch chăm sóc một cách tự tin."
+    },
+    "features": {
+      "en": ["Online appointment booking", "Doctor & specialist profiles", "Department & services directory", "Patient portal & records", "Telemedicine video calls", "Insurance & payment info", "Health blog & resources", "Emergency contact & map"],
+      "vi": ["Đặt lịch khám trực tuyến", "Hồ sơ bác sĩ & chuyên gia", "Danh mục khoa & dịch vụ", "Cổng bệnh nhân & hồ sơ", "Cuộc gọi video khám từ xa", "Thông tin bảo hiểm & thanh toán", "Blog sức khỏe & tài nguyên", "Liên hệ khẩn cấp & bản đồ"]
+    },
+    "prevSlug": "ecommerce-shop",
+    "prevTitle": { "en": "E-commerce Shop", "vi": "Cửa hàng Thương mại điện tử" },
+    "nextSlug": "hr-management",
+    "nextTitle": { "en": "HR Management", "vi": "Quản lý Nhân sự" }
+  }
+]
