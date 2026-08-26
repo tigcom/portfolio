@@ -20,22 +20,22 @@
       "Keycloak"
     ],
     "year": "2026",
-    "img": "/portfolio/image/bank.png",
+    "img": "/image/bank.png",
     "colorBackgound": { "light": "#80B2F8", "dark": "#0A1726" },
-    "heroImg": "/portfolio/image/projects/internet-banking/screencapture-localhost-3001-dashboard-2026-03-30-14_52_45.png",
+    "heroImg": "/image/projects/internet-banking/screencapture-localhost-3001-dashboard-2026-03-30-14_52_45.png",
     "galleryLayout": "cover-flow",
     "galleryImgs": [
-      "/portfolio/image/projects/internet-banking/screencapture-localhost-3001-dashboard-2026-03-30-14_52_45.png",
-      "/portfolio/image/projects/internet-banking/screencapture-localhost-3001-login-2026-03-30-09_49_40.png",
-      "/portfolio/image/projects/internet-banking/screencapture-localhost-3001-banking-transfers-create-2026-03-30-14_52_11.png",
-      "/portfolio/image/projects/internet-banking/screencapture-localhost-3001-banking-approvals-d15db959-a039-4fd0-b02a-450021576d89-2026-03-30-09_51_26.png",
-      "/portfolio/image/projects/internet-banking/screencapture-localhost-3001-banking-deposits-open-2026-03-30-09_53_05.png",
-      "/portfolio/image/projects/internet-banking/Internetbankking_bussinies.png",
-      "/portfolio/image/projects/internet-banking/core_bussines_payment_process.png",
-      "/portfolio/image/projects/internet-banking/observability_architech.png",
-      "/portfolio/image/projects/internet-banking/identy_authencation.jpg",
-      "/portfolio/image/projects/internet-banking/driven_architech.jpg",
-      "/portfolio/image/projects/internet-banking/paymen_flow.jpg"
+      "/image/projects/internet-banking/screencapture-localhost-3001-dashboard-2026-03-30-14_52_45.png",
+      "/image/projects/internet-banking/screencapture-localhost-3001-login-2026-03-30-09_49_40.png",
+      "/image/projects/internet-banking/screencapture-localhost-3001-banking-transfers-create-2026-03-30-14_52_11.png",
+      "/image/projects/internet-banking/screencapture-localhost-3001-banking-approvals-d15db959-a039-4fd0-b02a-450021576d89-2026-03-30-09_51_26.png",
+      "/image/projects/internet-banking/screencapture-localhost-3001-banking-deposits-open-2026-03-30-09_53_05.png",
+      "/image/projects/internet-banking/Internetbankking_bussinies.png",
+      "/image/projects/internet-banking/core_bussines_payment_process.png",
+      "/image/projects/internet-banking/observability_architech.png",
+      "/image/projects/internet-banking/identy_authencation.jpg",
+      "/image/projects/internet-banking/driven_architech.jpg",
+      "/image/projects/internet-banking/paymen_flow.jpg"
     ],
     "techStack": [
       "Java 17",
@@ -171,18 +171,18 @@
       "MySQL"
     ],
     "year": "2026",
-    "img": "/portfolio/image/projects/kplus-digital-banking/thumbnail_k_app.jpg",
+    "img": "/image/projects/kplus-digital-banking/thumbnail_k_app.jpg",
     "colorBackgound": { "light": "#C8BDFA", "dark": "#180F33" },
-    "heroImg": "/portfolio/image/projects/kplus-digital-banking/digital_banking_system_architech.png",
-    "galleryLayout": "flipbook",
+    "heroImg": "/image/projects/kplus-digital-banking/digital_banking_system_architech.png",
+    "galleryLayout": "orbit-3d",
     "galleryImgs": [
-      "/portfolio/image/projects/kplus-digital-banking/thumbnail_k_app-thumb.jpg",
-      "/portfolio/image/projects/kplus-digital-banking/digital_banking_system_architech-thumb.jpg",
-      "/portfolio/image/projects/kplus-digital-banking/myshop_system_architech-thumb.jpg",
-      "/portfolio/image/projects/kplus-digital-banking/profile_schema-thumb.jpg",
-      "/portfolio/image/projects/kplus-digital-banking/schema_myshop-thumb.jpg",
-      "/portfolio/image/projects/kplus-digital-banking/myshop_swagger-thumb.jpg",
-      "/portfolio/image/projects/kplus-digital-banking/thumbnail_myshop-thumb.jpg"
+      "/image/projects/kplus-digital-banking/thumbnail_k_app-thumb.jpg",
+      "/image/projects/kplus-digital-banking/digital_banking_system_architech-thumb.jpg",
+      "/image/projects/kplus-digital-banking/myshop_system_architech-thumb.jpg",
+      "/image/projects/kplus-digital-banking/profile_schema-thumb.jpg",
+      "/image/projects/kplus-digital-banking/schema_myshop-thumb.jpg",
+      "/image/projects/kplus-digital-banking/myshop_swagger-thumb.jpg",
+      "/image/projects/kplus-digital-banking/thumbnail_myshop-thumb.jpg"
     ],
     "techStack": [
       "Java 17",
@@ -306,18 +306,18 @@
       "React 19"
     ],
     "year": "2025",
-    "img": "/portfolio/image/projects/company-clean-hub/thumbnail.png",
+    "img": "/image/projects/company-clean-hub/thumbnail.png",
     "colorBackgound": { "light": "#C4F2D2", "dark": "#0E1813" },
-    "heroImg": "/portfolio/image/projects/company-clean-hub/dashboard.png",
+    "heroImg": "/image/projects/company-clean-hub/dashboard.png",
     "galleryLayout": "cards",
     "galleryImgs": [
-      "/portfolio/image/projects/company-clean-hub/dashboard.png",
-      "/portfolio/image/projects/company-clean-hub/payroll-detail.png",
-      "/portfolio/image/projects/company-clean-hub/verification.png",
-      "/portfolio/image/projects/company-clean-hub/invoice-detail.png",
-      "/portfolio/image/projects/company-clean-hub/employee-detail.png",
-      "/portfolio/image/projects/company-clean-hub/users.png",
-      "/portfolio/image/projects/company-clean-hub/customers.png"
+      "/image/projects/company-clean-hub/dashboard.png",
+      "/image/projects/company-clean-hub/payroll-detail.png",
+      "/image/projects/company-clean-hub/verification.png",
+      "/image/projects/company-clean-hub/invoice-detail.png",
+      "/image/projects/company-clean-hub/employee-detail.png",
+      "/image/projects/company-clean-hub/users.png",
+      "/image/projects/company-clean-hub/customers.png"
     ],
     "techStack": [
       "Next.js 16",
@@ -451,14 +451,14 @@
       "Vue 3"
     ],
     "year": "2025",
-    "img": "/portfolio/image/travel.png",
+    "img": "/image/travel.png",
     "colorBackgound": { "light": "#F8C8DD", "dark": "#1B161B" },
-    "heroImg": "/portfolio/image/projects/traveloka-clone/flight ls.png",
+    "heroImg": "/image/projects/traveloka-clone/flight ls.png",
     "galleryImgs": [
-      "/portfolio/image/projects/traveloka-clone/login.jpg",
-      "/portfolio/image/projects/traveloka-clone/flight ls.png",
-      "/portfolio/image/projects/traveloka-clone/bookls.png",
-      "/portfolio/image/projects/traveloka-clone/supoort.jpg"
+      "/image/projects/traveloka-clone/login.jpg",
+      "/image/projects/traveloka-clone/flight ls.png",
+      "/image/projects/traveloka-clone/bookls.png",
+      "/image/projects/traveloka-clone/supoort.jpg"
     ],
     "techStack": [
       "Java Spring Boot 3.x",
@@ -570,13 +570,13 @@
       "PostgreSQL"
     ],
     "year": "2025",
-    "img": "/portfolio/image/siso.png",
+    "img": "/image/siso.png",
     "colorBackgound": { "light": "#F7EFC9", "dark": "#11121C" },
-    "heroImg": "/portfolio/image/projects/sixdo-ecommerce/screencapture-127-0-0-1-5500-1TrangChu-html-2026-03-19-18_03_54.jpg",
+    "heroImg": "/image/projects/sixdo-ecommerce/screencapture-127-0-0-1-5500-1TrangChu-html-2026-03-19-18_03_54.jpg",
     "galleryImgs": [
-      "/portfolio/image/projects/sixdo-ecommerce/screencapture-127-0-0-1-5500-1TrangChu-html-2026-03-19-18_03_54.jpg",
-      "/portfolio/image/projects/sixdo-ecommerce/screencapture-127-0-0-1-5500-2DanhSach-html-2026-03-19-18_04_08.jpg",
-      "/portfolio/image/projects/sixdo-ecommerce/Untitled-1.jpg"
+      "/image/projects/sixdo-ecommerce/screencapture-127-0-0-1-5500-1TrangChu-html-2026-03-19-18_03_54.jpg",
+      "/image/projects/sixdo-ecommerce/screencapture-127-0-0-1-5500-2DanhSach-html-2026-03-19-18_04_08.jpg",
+      "/image/projects/sixdo-ecommerce/Untitled-1.jpg"
     ],
     "techStack": [
       "Java Spring Boot",
@@ -687,14 +687,14 @@
       "SQL Server"
     ],
     "year": "2024",
-    "img": "/portfolio/image/byke.png",
+    "img": "/image/byke.png",
     "colorBackgound": { "light": "#E2E2E2", "dark": "#000000" },
-    "heroImg": "/portfolio/image/projects/motorbike-sales-system/Screenshot 2026-03-20 195751.png",
+    "heroImg": "/image/projects/motorbike-sales-system/Screenshot 2026-03-20 195751.png",
     "galleryImgs": [
-      "/portfolio/image/projects/motorbike-sales-system/Screenshot 2026-03-20 195751.png",
-      "/portfolio/image/projects/motorbike-sales-system/Screenshot 2026-03-20 195833.png",
-      "/portfolio/image/projects/motorbike-sales-system/Screenshot 2026-03-20 195847.png",
-      "/portfolio/image/projects/motorbike-sales-system/Screenshot 2026-03-20 200727.png"
+      "/image/projects/motorbike-sales-system/Screenshot 2026-03-20 195751.png",
+      "/image/projects/motorbike-sales-system/Screenshot 2026-03-20 195833.png",
+      "/image/projects/motorbike-sales-system/Screenshot 2026-03-20 195847.png",
+      "/image/projects/motorbike-sales-system/Screenshot 2026-03-20 200727.png"
     ],
     "techStack": [
       "Java (Swing/AWT)",
@@ -802,13 +802,13 @@
       "SQL Server"
     ],
     "year": "2025",
-    "img": "/portfolio/image/phongvu.png",
+    "img": "/image/phongvu.png",
     "colorBackgound": { "light": "#9CB7B4", "dark": "#112023" },
-    "heroImg": "/portfolio/image/projects/phong-vu-clone/screencapture-localhost-2511-home-2026-03-20-15_57_45.jpg",
+    "heroImg": "/image/projects/phong-vu-clone/screencapture-localhost-2511-home-2026-03-20-15_57_45.jpg",
     "galleryImgs": [
-      "/portfolio/image/projects/phong-vu-clone/screencapture-localhost-2511-home-2026-03-20-15_57_45.jpg",
-      "/portfolio/image/projects/phong-vu-clone/screencapture-localhost-2511-home-chitiet-7-2026-03-20-16_02_19.jpg",
-      "/portfolio/image/projects/phong-vu-clone/screencapture-localhost-2511-sanpham-giohang-2026-03-20-16_00_57.jpg"
+      "/image/projects/phong-vu-clone/screencapture-localhost-2511-home-2026-03-20-15_57_45.jpg",
+      "/image/projects/phong-vu-clone/screencapture-localhost-2511-home-chitiet-7-2026-03-20-16_02_19.jpg",
+      "/image/projects/phong-vu-clone/screencapture-localhost-2511-sanpham-giohang-2026-03-20-16_00_57.jpg"
     ],
     "techStack": [
       "Spring Boot",
@@ -907,14 +907,14 @@
       "SQL Server"
     ],
     "year": "2024",
-    "img": "/portfolio/image/ytu.png",
+    "img": "/image/ytu.png",
     "colorBackgound": { "light": "#15171A", "dark": "#191A1E" },
-    "heroImg": "/portfolio/image/projects/youtube-clone/youtube2.jpg",
+    "heroImg": "/image/projects/youtube-clone/youtube2.jpg",
     "galleryImgs": [
-      "/portfolio/image/projects/youtube-clone/youtube1.jpg",
-      "/portfolio/image/projects/youtube-clone/youtube2.jpg",
-      "/portfolio/image/projects/youtube-clone/youtube3.jpg",
-      "/portfolio/image/projects/youtube-clone/yotube4.jpg"
+      "/image/projects/youtube-clone/youtube1.jpg",
+      "/image/projects/youtube-clone/youtube2.jpg",
+      "/image/projects/youtube-clone/youtube3.jpg",
+      "/image/projects/youtube-clone/yotube4.jpg"
     ],
     "techStack": [
       "Java Servlet",

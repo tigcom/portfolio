@@ -132,7 +132,7 @@ const phoneThumbs = (project) => {
   if (project.slug !== 'company-clean-hub') return []
   return [
     project.img,
-    '/portfolio/image/projects/company-clean-hub/thumbnail2.png',
+    '/image/projects/company-clean-hub/thumbnail2.png',
   ]
 }
 

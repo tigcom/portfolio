@@ -1,7 +1,7 @@
 <script setup>
 import DemoIcon from '../../_kit/DemoIcon.vue'
 
-const IMG = '/portfolio/demos/restaurant-food/'
+const IMG = '/demos/restaurant-food/'
 
 const navLinks = ['Menu', 'Our Story', 'Reservation', 'Contact']
 

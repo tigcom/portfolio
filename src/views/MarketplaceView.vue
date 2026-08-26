@@ -156,7 +156,7 @@ const getTranslated = (obj) =>
 // Thumbnail path for live "app" demos (captured via scripts/shoot-demo-thumbs.mjs).
 // Mockup templates (e.g. furniture-showcase) keep the abstract preview instead.
 const previewThumb = (tpl) =>
-  tpl.type === 'app' ? `/portfolio/demos/${tpl.slug}/thumb.jpg` : null
+  tpl.type === 'app' ? `/demos/${tpl.slug}/thumb.jpg` : null
 
 // ─── Title words ─────────────────────────────────────────────────────────────
 const titleWords = computed(() => t('marketplace.title').split(' '))

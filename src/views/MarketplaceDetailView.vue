@@ -58,7 +58,7 @@
             >
               <img
                 class="preview-shot-img"
-                :src="`/portfolio/demos/${template.slug}/thumb.jpg`"
+                :src="`/demos/${template.slug}/thumb.jpg`"
                 :alt="template.title"
                 loading="eager"
               />

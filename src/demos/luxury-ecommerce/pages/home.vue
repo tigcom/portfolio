@@ -1,7 +1,7 @@
 <script setup>
 import DemoIcon from '../../_kit/DemoIcon.vue'
 
-const IMG = '/portfolio/demos/luxury-ecommerce/'
+const IMG = '/demos/luxury-ecommerce/'
 
 const navLinks = ['New Arrivals', 'Collections', 'Our Story', 'Boutiques']
 

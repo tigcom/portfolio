@@ -1,7 +1,7 @@
 <script setup>
 import DemoIcon from '../../_kit/DemoIcon.vue'
 
-const IMG = '/portfolio/demos/fitness-gym-app/'
+const IMG = '/demos/fitness-gym-app/'
 
 const navLinks = ['Workouts', 'Trainers', 'Pricing', 'Community']
 

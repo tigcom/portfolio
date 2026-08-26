@@ -1,7 +1,7 @@
 <script setup>
 import DemoIcon from '../../_kit/DemoIcon.vue'
 
-const IMG = '/portfolio/demos/sales-crm-platform/'
+const IMG = '/demos/sales-crm-platform/'
 
 const trustBadges = [
   { icon: 'shield', color: '#10b981', label: 'SOC 2 Certified' },

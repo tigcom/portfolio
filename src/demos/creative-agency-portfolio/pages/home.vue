@@ -1,7 +1,7 @@
 <script setup>
 import DemoIcon from '../../_kit/DemoIcon.vue'
 
-const IMG = '/portfolio/demos/creative-agency-portfolio/'
+const IMG = '/demos/creative-agency-portfolio/'
 
 const navLinks = ['Work', 'Services', 'About', 'Contact']
 
