@@ -1,0 +1,152 @@
+/* src/demos/_kit/demo-page.css
+   Shared page-level layout primitives for demo mini-apps.
+   Imported (non-scoped) by individual demo pages so every page gets the
+   same glass panel / grid / section / button vocabulary. Uses the
+   `--demo-accent` var injected by DemoShell. */
+
+.demo-page {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* Hero banner (marketing-flavored header inside an app page) */
+.demo-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 26px 28px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
+    radial-gradient(120% 140% at 100% 0%, var(--demo-accent) 0%, transparent 42%);
+  backdrop-filter: blur(12px);
+}
+.demo-hero-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.demo-hero h2 {
+  margin: 0 0 6px;
+  font-size: 1.35rem;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+.demo-hero p {
+  margin: 0 0 18px;
+  font-size: 0.85rem;
+  color: rgba(226, 232, 240, 0.7);
+  max-width: 560px;
+}
+.demo-hero-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Stat / card grids */
+.demo-grid { display: grid; gap: 14px; }
+.demo-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+.demo-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.demo-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+.demo-row {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.demo-row > * { flex: 1 1 0; min-width: 240px; }
+
+/* Glass panel */
+.demo-panel {
+  padding: 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(10px);
+}
+.demo-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.demo-panel-title { font-size: 0.9rem; font-weight: 600; color: #fff; }
+.demo-panel-sub { font-size: 0.75rem; color: rgba(226, 232, 240, 0.55); }
+
+/* Eyebrow / section label */
+.demo-eyebrow {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(226, 232, 240, 0.45);
+}
+
+/* Buttons */
+.demo-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 16px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, filter 0.2s;
+}
+.demo-btn.primary { background: var(--demo-accent); color: #0b0f1a; }
+.demo-btn.primary:hover { filter: brightness(1.08); }
+.demo-btn.ghost {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.14);
+  color: #e2e8f0;
+}
+.demo-btn.ghost:hover { background: rgba(255, 255, 255, 0.06); }
+
+/* Small feature item (icon + label) */
+.demo-feature { display: flex; gap: 12px; align-items: flex-start; }
+.demo-feature-icon {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: var(--demo-accent);
+  color: #0b0f1a;
+  font-size: 0.95rem;
+}
+.demo-feature h4 { margin: 0 0 3px; font-size: 0.86rem; color: #fff; }
+.demo-feature p { margin: 0; font-size: 0.76rem; color: rgba(226, 232, 240, 0.6); }
+
+/* Trust badge strip */
+.demo-trust { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* List / key-value rows (settings toggles, integrations) */
+.demo-kv { display: flex; flex-direction: column; }
+.demo-kv-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.demo-kv-row:last-child { border-bottom: none; }
+.demo-kv-label { font-size: 0.82rem; color: rgba(226, 232, 240, 0.8); }
+
+/* Responsive collapse */
+@media (max-width: 900px) {
+  .demo-grid.cols-4,
+  .demo-grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 520px) {
+  .demo-grid.cols-4,
+  .demo-grid.cols-3,
+  .demo-grid.cols-2 { grid-template-columns: 1fr; }
+  .demo-row > * { min-width: 100%; }
+}

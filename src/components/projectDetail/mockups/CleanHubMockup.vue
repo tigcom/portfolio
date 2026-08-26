@@ -1,343 +1,161 @@
 <template>
-  <div class="clean-hub-mockup">
-    <!-- Browser UI -->
-    <div class="browser-header">
-      <div class="browser-dots">
-        <span></span><span></span><span></span>
+  <div class="cleanhub-mockup">
+    <!-- Main browser frame (dashboard) -->
+    <div class="main-frame">
+      <div class="browser-bar">
+        <div class="browser-dots">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+        </div>
+        <div class="browser-tab">
+          <i class="fas fa-broom"></i>
+          <span>Clean Hub — Quản lý vệ sinh công nghiệp</span>
+        </div>
       </div>
-      <div class="browser-url">cleanhub.com/admin/dashboard</div>
+      <div class="main-screen">
+        <img :src="main" :alt="title" loading="lazy">
+      </div>
     </div>
 
-    <div class="app-container">
-      <!-- Sidebar -->
-      <aside class="sidebar">
-        <div class="logo-area">
-          <div class="logo-box">CH</div>
-          <span class="logo-text">Clean Hub</span>
+    <!-- Feature screens grid -->
+    <div class="features-grid">
+      <div v-for="(f, i) in features" :key="i" class="feature-frame">
+        <div class="feature-bar">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
         </div>
-        <nav class="side-nav">
-          <div class="nav-item active">
-            <span class="icon">📊</span> Dashboard
-          </div>
-          <div class="nav-item">
-            <span class="icon">👥</span> Nhân viên
-          </div>
-          <div class="nav-item">
-            <span class="icon">📑</span> Hợp đồng
-          </div>
-          <div class="nav-item">
-            <span class="icon">⏰</span> Chấm công
-          </div>
-          <div class="nav-item">
-            <span class="icon">💰</span> Bảng lương
-          </div>
-          <div class="nav-item">
-            <span class="icon">📦</span> Vật tư
-          </div>
-        </nav>
-      </aside>
-
-      <!-- Main Content -->
-      <main class="main-content">
-        <!-- Top Nav -->
-        <header class="top-nav">
-          <div class="search-bar">Tìm kiếm...</div>
-          <div class="user-info">
-            <div class="notif">🔔</div>
-            <div class="avatar">Admin</div>
-          </div>
-        </header>
-
-        <!-- Dashboard Content -->
-        <div class="dashboard-body">
-          <h2 class="page-title">Tổng quan hệ thống</h2>
-          
-          <div class="stats-grid">
-            <div class="stat-card">
-              <span class="stat-label">Tổng nhân viên</span>
-              <span class="stat-value">124</span>
-              <span class="stat-trend">+5% tháng này</span>
-            </div>
-            <div class="stat-card">
-              <span class="stat-label">Hợp đồng mới</span>
-              <span class="stat-value">12</span>
-              <span class="stat-trend">+2 dự án</span>
-            </div>
-            <div class="stat-card">
-              <span class="stat-label">Doanh thu</span>
-              <span class="stat-value">450M</span>
-              <span class="stat-trend">+12% vs quý trước</span>
-            </div>
-          </div>
-
-          <!-- Table Mockup -->
-          <div class="data-table-card">
-            <div class="card-header">Lịch điều động hôm nay</div>
-            <div class="mock-table">
-              <div class="table-row header">
-                <span>Nhân viên</span>
-                <span>Khách hàng</span>
-                <span>Trạng thái</span>
-              </div>
-              <div class="table-row">
-                <span>Nguyễn Văn A</span>
-                <span>Chung cư ABC</span>
-                <span class="status-badge done">Đã hoàn thành</span>
-              </div>
-              <div class="table-row">
-                <span>Trần Thị B</span>
-                <span>Tòa nhà XYZ</span>
-                <span class="status-badge pending">Đang thực hiện</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
+        <img :src="f" :alt="`Feature ${i + 1}`" loading="lazy">
+      </div>
     </div>
   </div>
 </template>
 
+<script setup>
+import { computed } from 'vue'
+
+const props = defineProps({
+  images: { type: Array, default: () => [] },
+  title: { type: String, default: '' },
+})
+
+const main = computed(() => props.images[0])
+const features = computed(() => props.images.slice(1, 7))
+</script>
+
 <style scoped>
-.clean-hub-mockup {
+.cleanhub-mockup {
   width: 100%;
-  max-width: 1000px;
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-  color: #334155;
-  font-family: sans-serif;
-}
-
-.browser-header {
-  background: #f1f5f9;
-  padding: 10px 16px;
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #e2e8f0;
-}
-
-.browser-dots {
-  display: flex;
-  gap: 6px;
-}
-
-.browser-dots span {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #cbd5e1;
-}
-
-.browser-url {
+  max-width: 1200px;
   margin: 0 auto;
-  font-size: 11px;
-  background: #fff;
-  padding: 2px 40px;
-  border-radius: 4px;
-  border: 1px solid #e2e8f0;
-  color: #94a3b8;
+  padding: 60px 0;
 }
 
-.app-container {
-  display: flex;
-  height: 500px;
+/* ── Main frame ─────────────────────────────────────────── */
+.main-frame {
+  background: #1a1a1a;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 50px 100px rgba(0, 0, 0, 0.5);
 }
 
-/* Sidebar */
-.sidebar {
-  width: 200px;
-  background: #fff;
-  border-right: 1px solid #f1f5f9;
-  display: flex;
-  flex-direction: column;
-}
-
-.logo-area {
-  padding: 20px;
+.browser-bar {
+  background: #252525;
+  padding: 12px 20px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.logo-box {
-  width: 32px;
-  height: 32px;
-  background: #2563eb;
-  color: #fff;
-  border-radius: 8px;
+.browser-dots,
+.feature-bar {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
+  gap: 8px;
 }
 
-.logo-text {
-  font-weight: 700;
-  color: #1e293b;
-}
-
-.side-nav {
-  padding: 10px;
-  flex: 1;
-}
-
-.nav-item {
-  padding: 10px 12px;
-  border-radius: 8px;
-  font-size: 13px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #64748b;
-  transition: all 0.2s;
-}
-
-.nav-item:hover {
-  background: #f8fafc;
-}
-
-.nav-item.active {
-  background: #eff6ff;
-  color: #2563eb;
-  font-weight: 500;
-}
-
-/* Main Content */
-.main-content {
-  flex: 1;
-  background: #f8fafc;
-  display: flex;
-  flex-direction: column;
-}
-
-.top-nav {
-  height: 56px;
-  background: #fff;
-  border-bottom: 1px solid #f1f5f9;
-  padding: 0 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.search-bar {
-  font-size: 13px;
-  color: #94a3b8;
-  background: #f1f5f9;
-  padding: 6px 16px;
-  border-radius: 20px;
-  width: 200px;
-}
-
-.user-info {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.avatar {
-  width: 32px;
-  height: 32px;
-  background: #e2e8f0;
+.dot {
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  font-size: 10px;
+}
+
+.red { background: #ff5f56; }
+.yellow { background: #ffbd2e; }
+.green { background: #27c93f; }
+
+.browser-tab {
+  background: #1a1a1a;
+  padding: 6px 16px;
+  border-radius: 8px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.85);
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 8px;
 }
 
-.dashboard-body {
-  padding: 24px;
-  overflow-y: auto;
+.browser-tab i {
+  color: #a7f3d0;
 }
 
-.page-title {
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 20px;
+.main-screen img {
+  width: 100%;
+  display: block;
 }
 
-.stats-grid {
+/* ── Features grid ──────────────────────────────────────── */
+.features-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-bottom: 24px;
+  gap: 22px;
+  margin-top: 32px;
 }
 
-.stat-card {
-  background: #fff;
-  padding: 16px;
+.feature-frame {
+  background: #1a1a1a;
   border-radius: 12px;
-  border: 1px solid #f1f5f9;
-  display: flex;
-  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35);
+  transition: transform 0.35s ease, border-color 0.35s ease;
 }
 
-.stat-label {
-  font-size: 12px;
-  color: #64748b;
-  margin-bottom: 4px;
+.feature-frame:hover {
+  transform: translateY(-8px);
+  border-color: rgba(167, 243, 208, 0.4);
 }
 
-.stat-value {
-  font-size: 20px;
-  font-weight: 700;
-  color: #1e293b;
+.feature-bar {
+  background: #222;
+  padding: 8px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.stat-trend {
-  font-size: 10px;
-  color: #10b981;
-  margin-top: 4px;
+.feature-bar .dot {
+  width: 8px;
+  height: 8px;
 }
 
-.data-table-card {
-  background: #fff;
-  border-radius: 12px;
-  border: 1px solid #f1f5f9;
-  padding: 16px;
+.feature-frame img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top;
 }
 
-.card-header {
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 16px;
+@media (max-width: 900px) {
+  .features-grid {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
-.mock-table {
-  display: flex;
-  flex-direction: column;
-}
-
-.table-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr 120px;
-  padding: 10px 0;
-  font-size: 12px;
-  border-bottom: 1px solid #f8fafc;
-}
-
-.table-row.header {
-  font-weight: 600;
-  color: #94a3b8;
-}
-
-.status-badge {
-  padding: 2px 8px;
-  border-radius: 100px;
-  font-size: 10px;
-  text-align: center;
-}
-
-.status-badge.done {
-  background: #dcfce7;
-  color: #15803d;
-}
-
-.status-badge.pending {
-  background: #fef9c3;
-  color: #a16207;
+@media (max-width: 560px) {
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

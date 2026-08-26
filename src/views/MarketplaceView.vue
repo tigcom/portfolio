@@ -47,7 +47,15 @@
           @mousemove="onCardMouseMove($event, i)"
         >
           <!-- Preview area -->
-          <div class="card-preview" :style="{ background: tpl.colorBackground }">
+          <div class="card-preview" :class="{ 'has-thumb': previewThumb(tpl) }" :style="{ background: tpl.colorBackground }">
+            <!-- Live demo screenshot (app demos) -->
+            <img
+              v-if="previewThumb(tpl)"
+              class="preview-thumb"
+              :src="previewThumb(tpl)"
+              :alt="getTranslated(tpl.title)"
+              loading="lazy"
+            />
             <!-- Animated grid overlay -->
             <div class="preview-grid"></div>
             <!-- Accent glow -->
@@ -134,6 +142,7 @@ import { ref, computed, watch, nextTick, onMounted, onUnmounted } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { templates } from '../data/templates.js'
+import { getCategoryList } from '../data/categories.js'
 import { useLang } from '../data/translations.js'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -144,23 +153,22 @@ const { state, t } = useLang()
 const getTranslated = (obj) =>
   obj && typeof obj === 'object' ? (obj[state.lang] ?? obj.en ?? obj) : obj
 
+// Thumbnail path for live "app" demos (captured via scripts/shoot-demo-thumbs.mjs).
+// Mockup templates (e.g. furniture-showcase) keep the abstract preview instead.
+const previewThumb = (tpl) =>
+  tpl.type === 'app' ? `/portfolio/demos/${tpl.slug}/thumb.jpg` : null
+
 // ─── Title words ─────────────────────────────────────────────────────────────
 const titleWords = computed(() => t('marketplace.title').split(' '))
 
 // ─── Filters ─────────────────────────────────────────────────────────────────
 const activeFilter = ref('all')
 
-const filters = computed(() => [
-  { value: 'all', label: t('marketplace.filterAll') },
-  { value: 'enterprise', label: t('marketplace.filterEnterprise') },
-  { value: 'branding', label: t('marketplace.filterBranding') },
-  { value: 'education', label: t('marketplace.filterEducation') },
-  { value: 'hospitality', label: t('marketplace.filterHospitality') },
-  { value: 'real-estate', label: t('marketplace.filterRealEstate') },
-  { value: 'corporate', label: t('marketplace.filterCorporate') },
-  { value: 'ecommerce', label: t('marketplace.filterEcommerce') },
-  { value: 'healthcare', label: t('marketplace.filterHealthcare') },
-])
+const filters = computed(() => {
+  const used = new Set(templates.map(tpl => tpl.category))
+  const cats = getCategoryList(state.lang).filter(c => used.has(c.value))
+  return [{ value: 'all', label: t('marketplace.filterAll') }, ...cats]
+})
 
 const filteredTemplates = computed(() => {
   if (activeFilter.value === 'all') return templates
@@ -173,7 +181,7 @@ function setFilter(value) {
 
 // ─── Stats ───────────────────────────────────────────────────────────────────
 const statsData = [
-  { display: '8+', labelEn: 'Template Categories', labelVi: 'Danh mục mẫu' },
+  { display: '13+', labelEn: 'Template Categories', labelVi: 'Danh mục mẫu' },
   { display: '100%', labelEn: 'Custom Tailored', labelVi: 'Tùy chỉnh hoàn toàn' },
   { display: '24h', labelEn: 'Response Time', labelVi: 'Thời gian phản hồi' },
   { display: '∞', labelEn: 'Possibilities', labelVi: 'Khả năng' },
@@ -605,6 +613,26 @@ onUnmounted(() => {
   margin-bottom: 22px;
   border: 1px solid var(--border);
   will-change: transform;
+}
+
+/* Live demo screenshot */
+.preview-thumb {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+
+/* When a live screenshot fills the preview, drop the decorative abstractions. */
+.card-preview.has-thumb .preview-grid,
+.card-preview.has-thumb .preview-glow,
+.card-preview.has-thumb .preview-num,
+.card-preview.has-thumb .shape-1,
+.card-preview.has-thumb .shape-2 {
+  display: none;
 }
 
 /* Grid overlay */

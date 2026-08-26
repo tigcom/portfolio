@@ -32,13 +32,14 @@
 
             <div class="mpd-hero-btns" ref="btnsEl">
               <router-link
-                to="/contact"
-                class="btn-collaborate"
-                @mouseenter="onCollaborateBtnHover"
-                @mouseleave="onCollaborateBtnLeave"
+                v-if="template.type === 'app'"
+                :to="`/marketplace/${template.slug}/demo`"
+                class="btn btn-primary"
               >
-                <span>{{ t('marketplace.collaborateBtn') }}</span>
-                <span class="btn-ripple" ref="collaborateRipple"></span>
+                <span>{{ t('marketplace.viewDemo') }}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 12h14M13 6l6 6-6 6"/>
+                </svg>
               </router-link>
               <span class="demo-badge-hero">
                 <span class="demo-dot"></span>
@@ -49,10 +50,34 @@
 
           <!-- Right: preview -->
           <div class="mpd-hero-preview" ref="heroPreviewEl">
-            <div class="preview-wrapper" :style="{ background: template.colorBackground }">
+            <!-- Demo (mini-app): live screenshot, click to open -->
+            <router-link
+              v-if="template.type === 'app'"
+              :to="`/marketplace/${template.slug}/demo`"
+              class="preview-shot"
+            >
+              <img
+                class="preview-shot-img"
+                :src="`/portfolio/demos/${template.slug}/thumb.jpg`"
+                :alt="template.title"
+                loading="eager"
+              />
+              <span class="preview-shot-shade"></span>
+              <span class="preview-shot-overlay">
+                <span class="preview-shot-play">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="currentColor"
+                    stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M6 4l14 8-14 8V4z" />
+                  </svg>
+                </span>
+                <span class="preview-shot-label">{{ t('marketplace.viewDemo') }}</span>
+              </span>
+            </router-link>
+
+            <!-- Mockup (legacy single-screen) -->
+            <div v-else class="preview-wrapper">
               <div class="preview-grid-overlay"></div>
-              <div class="preview-glow-hero" :style="{ background: template.accentColor }"></div>
-              <!-- Mockup component -->
+              <div class="preview-glow-hero"></div>
               <div class="mockup-container">
                 <component :is="mockupComponent" v-if="mockupComponent" />
                 <div v-else class="mockup-placeholder">
@@ -115,7 +140,7 @@
             @mouseenter="onFeatureHover($event)"
             @mouseleave="onFeatureLeave($event)"
           >
-            <div class="feature-check" :style="{ color: template.accentColor }">
+            <div class="feature-check">
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                 <polyline points="20 6 9 17 4 12"/>
               </svg>
@@ -131,35 +156,8 @@
       <div class="container">
         <div class="mpd-stats-grid">
           <div class="mpd-stat" v-for="s in templateStats" :key="s.label">
-            <div class="mpd-stat-val" :style="{ color: template.accentColor }">{{ s.val }}</div>
+            <div class="mpd-stat-val">{{ s.val }}</div>
             <div class="mpd-stat-label">{{ state.lang === 'vi' ? s.labelVi : s.labelEn }}</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── Collaborate CTA ────────────────────────────────── -->
-    <section class="mpd-cta-section" ref="ctaEl">
-      <div class="container">
-        <div class="mpd-cta-card" :style="{ '--accent': template.accentColor }">
-          <!-- Animated background -->
-          <div class="cta-bg-shape cta-bg-1"></div>
-          <div class="cta-bg-shape cta-bg-2"></div>
-          <div class="cta-bg-grid"></div>
-
-          <div class="cta-content">
-            <div class="cta-icon">🤝</div>
-            <h2 class="cta-title">{{ t('marketplace.collaborate') }}</h2>
-            <p class="cta-desc">{{ t('marketplace.collaborateDesc') }}</p>
-            <router-link
-              to="/contact"
-              class="cta-collaborate-btn"
-              ref="ctaCollaborateBtn"
-              @mouseenter="onCtaHover"
-              @mouseleave="onCtaLeave"
-            >
-              {{ t('marketplace.collaborateBtn') }}
-            </router-link>
           </div>
         </div>
       </div>
@@ -213,15 +211,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { getTemplateBySlug, templates } from '../data/templates.js'
 import { useLang } from '../data/translations.js'
 
-// Mockup components
-import HRMockup from '../components/marketplace/mockups/HRMockup.vue'
+// Mockup components (legacy single-screen render — only furniture remains)
 import FurnitureMockup from '../components/marketplace/mockups/FurnitureMockup.vue'
-import LMSMockup from '../components/marketplace/mockups/LMSMockup.vue'
-import RestaurantMockup from '../components/marketplace/mockups/RestaurantMockup.vue'
-import RealEstateMockup from '../components/marketplace/mockups/RealEstateMockup.vue'
-import CorporateMockup from '../components/marketplace/mockups/CorporateMockup.vue'
-import EcommerceMockup from '../components/marketplace/mockups/EcommerceMockup.vue'
-import MedicalMockup from '../components/marketplace/mockups/MedicalMockup.vue'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -237,28 +228,26 @@ const getTranslated = (obj) =>
 
 // ─── Mockup component map ─────────────────────────────────────────────────────
 const mockupMap = {
-  'hr-management': HRMockup,
   'furniture-showcase': FurnitureMockup,
-  'online-learning': LMSMockup,
-  'restaurant-fnb': RestaurantMockup,
-  'real-estate': RealEstateMockup,
-  'corporate-agency': CorporateMockup,
-  'ecommerce-shop': EcommerceMockup,
-  'medical-clinic': MedicalMockup,
 }
 
 const mockupComponent = computed(() => mockupMap[route.params.slug] || null)
 
 // ─── Category icon fallback ───────────────────────────────────────────────────
 const categoryIconMap = {
-  enterprise: '🏢',
-  branding: '🪑',
-  education: '📚',
-  hospitality: '🍜',
-  'real-estate': '🏠',
-  corporate: '💼',
+  saas: '📊',
+  fintech: '💳',
+  ai: '🤖',
   ecommerce: '🛒',
   healthcare: '⚕️',
+  'real-estate': '🏠',
+  education: '📚',
+  food: '🍜',
+  travel: '✈️',
+  fitness: '💪',
+  'dev-tools': '🛠️',
+  creative: '🎨',
+  branding: '🪑',
 }
 
 const categoryIcon = computed(() => {
@@ -286,53 +275,19 @@ const aboutEl = ref(null)
 const featuresEl = ref(null)
 const featureItems = ref([])
 const statsEl = ref(null)
-const ctaEl = ref(null)
-const ctaCollaborateBtn = ref(null)
 const navEl = ref(null)
-const collaborateRipple = ref(null)
-
-// ─── Button hover effects ─────────────────────────────────────────────────────
-function onCollaborateBtnHover(e) {
-  const btn = e.currentTarget
-  gsap.killTweensOf(btn)
-  gsap.timeline()
-    .to(btn, { scale: 1.05, duration: 0.18, ease: 'power2.out' })
-    .to(btn, { scale: 0.98, duration: 0.12, ease: 'power2.inOut' })
-    .to(btn, { scale: 1.02, duration: 0.2, ease: 'back.out(2)' })
-}
-
-function onCollaborateBtnLeave(e) {
-  const btn = e.currentTarget
-  gsap.to(btn, { scale: 1, duration: 0.3, ease: 'elastic.out(1, 0.5)' })
-}
-
-function onCtaHover() {
-  const el = ctaCollaborateBtn.value?.$el || ctaCollaborateBtn.value
-  if (!el) return
-  gsap.killTweensOf(el)
-  gsap.timeline()
-    .to(el, { scale: 1.06, duration: 0.2, ease: 'power2.out' })
-    .to(el, { scale: 0.97, duration: 0.15, ease: 'power2.inOut' })
-    .to(el, { scale: 1.0, duration: 0.25, ease: 'back.out(2.5)' })
-}
-
-function onCtaLeave() {
-  const el = ctaCollaborateBtn.value?.$el || ctaCollaborateBtn.value
-  if (!el) return
-  gsap.to(el, { scale: 1, duration: 0.3, ease: 'elastic.out(1, 0.5)' })
-}
 
 // ─── Feature hover ────────────────────────────────────────────────────────────
 function onFeatureHover(e) {
   const item = e.currentTarget
-  gsap.to(item, { x: 8, duration: 0.3, ease: 'power2.out' })
-  gsap.to(item.querySelector('.feature-check'), { scale: 1.3, duration: 0.3, ease: 'back.out(2)' })
+  gsap.to(item, { x: 4, duration: 0.25, ease: 'power2.out' })
+  gsap.to(item.querySelector('.feature-check'), { scale: 1.15, duration: 0.25, ease: 'power2.out' })
 }
 
 function onFeatureLeave(e) {
   const item = e.currentTarget
-  gsap.to(item, { x: 0, duration: 0.3, ease: 'power2.out' })
-  gsap.to(item.querySelector('.feature-check'), { scale: 1, duration: 0.3, ease: 'power2.out' })
+  gsap.to(item, { x: 0, duration: 0.25, ease: 'power2.out' })
+  gsap.to(item.querySelector('.feature-check'), { scale: 1, duration: 0.25, ease: 'power2.out' })
 }
 
 // ─── Nav link hover ───────────────────────────────────────────────────────────
@@ -463,7 +418,7 @@ function initAnimations() {
   // ── 4. Stats counter animation ────────────────────────────────────────────
   if (statsEl.value) {
     const statItems = statsEl.value.querySelectorAll('.mpd-stat')
-    gsap.set(statItems, { opacity: 0, y: 30, scale: 0.9 })
+    gsap.set(statItems, { opacity: 0, y: 24, scale: 0.96 })
 
     _sts.push(
       ScrollTrigger.create({
@@ -475,63 +430,16 @@ function initAnimations() {
             opacity: 1,
             y: 0,
             scale: 1,
-            duration: 0.7,
-            stagger: 0.1,
-            ease: 'back.out(1.4)',
-          })
-        },
-      })
-    )
-  }
-
-  // ── 5. CTA card reveal ────────────────────────────────────────────────────
-  if (ctaEl.value) {
-    const card = ctaEl.value.querySelector('.mpd-cta-card')
-    gsap.set(card, { opacity: 0, y: 50, scale: 0.96 })
-
-    _sts.push(
-      ScrollTrigger.create({
-        trigger: ctaEl.value,
-        start: 'top 85%',
-        once: true,
-        onEnter: () => {
-          gsap.to(card, {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.85,
+            duration: 0.6,
+            stagger: 0.08,
             ease: 'power3.out',
           })
         },
       })
     )
-
-    // Animate CTA background shapes
-    const shapes = ctaEl.value.querySelectorAll('.cta-bg-shape')
-    if (shapes.length >= 2) {
-      gsap.to(shapes[0], {
-        x: 40,
-        y: -30,
-        scale: 1.2,
-        duration: 5,
-        repeat: -1,
-        yoyo: true,
-        ease: 'sine.inOut',
-      })
-      gsap.to(shapes[1], {
-        x: -30,
-        y: 40,
-        scale: 0.8,
-        duration: 6,
-        repeat: -1,
-        yoyo: true,
-        ease: 'sine.inOut',
-        delay: 1.5,
-      })
-    }
   }
 
-  // ── 6. Nav section reveal ─────────────────────────────────────────────────
+  // ── 5. Nav section reveal ─────────────────────────────────────────────────
   if (navEl.value) {
     const navLinks = navEl.value.querySelectorAll('.mpd-nav-link')
     gsap.set(navLinks, { opacity: 0, y: 24 })
@@ -671,32 +579,6 @@ onUnmounted(() => {
   flex-wrap: wrap;
 }
 
-.btn-collaborate {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: var(--highlight);
-  color: var(--highlight-text);
-  padding: 13px 30px;
-  border-radius: 100px;
-  font-family: var(--font-satoshi);
-  font-weight: 700;
-  font-size: 0.95rem;
-  text-decoration: none;
-  overflow: hidden;
-  will-change: transform;
-}
-
-.btn-ripple {
-  position: absolute;
-  inset: 0;
-  background: rgba(255,255,255,0.15);
-  border-radius: 100px;
-  transform: scale(0);
-  opacity: 0;
-}
-
 .demo-badge-hero {
   display: inline-flex;
   align-items: center;
@@ -732,6 +614,7 @@ onUnmounted(() => {
 
 .preview-wrapper {
   position: relative;
+  background: var(--bg-800);
   border-radius: 24px;
   overflow: hidden;
   border: 1px solid var(--border);
@@ -762,6 +645,7 @@ onUnmounted(() => {
   opacity: 0.1;
   filter: blur(50px);
   pointer-events: none;
+  background: var(--highlight);
 }
 
 .mockup-container {
@@ -783,9 +667,74 @@ onUnmounted(() => {
 .placeholder-label {
   font-family: var(--font-clash);
   font-size: 1.2rem;
-  color: rgba(255,255,255,0.6);
+  color: var(--text-secondary);
   text-align: center;
 }
+
+/* ── Demo preview shot (mini-app) ────────────────────────────────────────── */
+.preview-shot {
+  position: relative;
+  display: block;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+  text-decoration: none;
+  will-change: transform;
+}
+
+.preview-shot-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.preview-shot-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(5, 5, 7, 0.62) 0%, rgba(5, 5, 7, 0.08) 55%, transparent 100%);
+  transition: background 0.4s;
+}
+
+.preview-shot-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.preview-shot-play {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: var(--highlight);
+  color: var(--highlight-text);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.42);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.preview-shot-label {
+  font-family: var(--font-clash);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55);
+}
+
+.preview-shot:hover .preview-shot-img { transform: scale(1.04); }
+.preview-shot:hover .preview-shot-shade {
+  background: linear-gradient(to top, rgba(5, 5, 7, 0.8) 0%, rgba(5, 5, 7, 0.2) 60%, rgba(5, 5, 7, 0.1) 100%);
+}
+.preview-shot:hover .preview-shot-play { transform: scale(1.1); }
 
 /* ── Section label ───────────────────────────────────────────────────────── */
 .section-label-mp {
@@ -859,6 +808,7 @@ onUnmounted(() => {
   height: 24px;
   border-radius: 50%;
   background: var(--highlight-glow);
+  color: var(--highlight);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -898,103 +848,13 @@ onUnmounted(() => {
   font-family: var(--font-clash);
   font-size: 2rem;
   font-weight: 600;
+  color: var(--highlight);
   margin-bottom: 6px;
 }
 
 .mpd-stat-label {
   font-size: 0.8rem;
   color: var(--text-secondary);
-}
-
-/* ── CTA card ────────────────────────────────────────────────────────────── */
-.mpd-cta-section {
-  padding: 60px 0;
-  border-top: 1px solid var(--border);
-}
-
-.mpd-cta-card {
-  position: relative;
-  background: var(--bg-800);
-  border: 1px solid var(--border);
-  border-radius: 24px;
-  overflow: hidden;
-  padding: 64px 48px;
-  text-align: center;
-}
-
-.cta-bg-shape {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-  will-change: transform;
-}
-
-.cta-bg-1 {
-  width: 400px;
-  height: 400px;
-  background: var(--highlight-glow);
-  top: -150px;
-  left: -100px;
-  filter: blur(80px);
-}
-
-.cta-bg-2 {
-  width: 300px;
-  height: 300px;
-  background: rgba(124, 106, 247, 0.06);
-  bottom: -100px;
-  right: -80px;
-  filter: blur(60px);
-}
-
-.cta-bg-grid {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-  background-size: 32px 32px;
-  pointer-events: none;
-}
-
-.cta-content {
-  position: relative;
-  z-index: 2;
-}
-
-.cta-icon {
-  font-size: 2.5rem;
-  margin-bottom: 16px;
-}
-
-.cta-title {
-  font-family: var(--font-clash);
-  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-  font-weight: 600;
-  margin: 0 0 16px;
-}
-
-.cta-desc {
-  font-size: 1rem;
-  color: var(--text-secondary);
-  line-height: 1.7;
-  max-width: 520px;
-  margin: 0 auto 36px;
-}
-
-.cta-collaborate-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: var(--highlight);
-  color: var(--highlight-text);
-  padding: 14px 36px;
-  border-radius: 100px;
-  font-family: var(--font-satoshi);
-  font-weight: 700;
-  font-size: 1rem;
-  text-decoration: none;
-  will-change: transform;
 }
 
 /* ── Prev/Next navigation ────────────────────────────────────────────────── */
@@ -1104,10 +964,7 @@ onUnmounted(() => {
     border-radius: 16px;
   }
 
-  .mpd-cta-card {
-    padding: 40px 24px;
-    border-radius: 16px;
-  }
+  .preview-shot { border-radius: 16px; }
 
   .mpd-nav-grid {
     grid-template-columns: 1fr;

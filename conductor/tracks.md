@@ -10,19 +10,19 @@ This file tracks all major tracks for the project. Each track has its own detail
 - [x] **Track: Hoàn thiện danh mục dự án từ tigcom**
   *Link: [./tracks/hoan-thien-du-an-tigcom_20260318/](./tracks/hoan-thien-du-an-tigcom_20260318/)*
 
-- [ ] **Track: Tích hợp Dự án Traveloka Clone (DATN)**
+- [x] **Track: Tích hợp Dự án Traveloka Clone (DATN)** *(đã có dữ liệu trong `projects.json` — trang detail hoạt động)*
   *Link: [./tracks/tich-hop-traveloka-clone_20260319/](./tracks/tich-hop-traveloka-clone_20260319/)*
 
-- [ ] **Track: Bổ sung dự án Sixdo E-commerce**
+- [x] **Track: Bổ sung dự án Sixdo E-commerce** *(đã có dữ liệu — hoạt động)*
   *Link: [./tracks/bo-sung-du-an-sixdo_20260319/](./tracks/bo-sung-du-an-sixdo_20260319/)*
 
-- [ ] **Track: Bổ sung dự án Motorbike Sales & Management System**
+- [x] **Track: Bổ sung dự án Motorbike Sales & Management System** *(đã có dữ liệu — hoạt động)*
   *Link: [./tracks/bo-sung-du-an-motorbike_20260319/](./tracks/bo-sung-du-an-motorbike_20260319/)*
 
-- [ ] **Track: Làm lại trang Chi tiết Dự án (Project Detail)**
+- [x] **Track: Làm lại trang Chi tiết Dự án (Project Detail)** *(ProjectDetailView.vue đã live — plan nội bộ chưa tick hết TDD/coverage 80%)*
   *Link: [./tracks/rebuild-project-detail_20260325/](./tracks/rebuild-project-detail_20260325/)*
 
 ---
 
-- [x] **Track: Tạo trang chi tiết cho dự án Internet Banking với đầy đủ nội dung, hình ảnh, bố cục tối ưu và hiệu ứng GSAP.**
+- [x] **Track: Tạo trang chi tiết cho dự án Internet Banking với đầy đủ nội dung, hình ảnh, bố cục tối ưu và hiệu ứng GSAP.** *(trang riêng `ProjectDetailInternetBanking.vue` đã bị gỡ — giờ dùng chung `ProjectDetailView` + `BankingMockup`)*
 *Link: [./tracks/internet-banking-detail_20260330/](./tracks/internet-banking-detail_20260330/)*

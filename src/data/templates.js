@@ -5,7 +5,13 @@ import templatesData from './templates.json'
 export const templates = templatesData
 
 export function getTemplateBySlug(slug, lang = 'vi') {
-  const template = templates.find(t => t.slug === slug) || templates[0]
+  const foundIndex = templates.findIndex(t => t.slug === slug)
+  const index = foundIndex === -1 ? 0 : foundIndex
+  const template = templates[index]
+
+  // Circular prev/next computed from array order — no hand-wired links in JSON
+  const prev = templates[(index - 1 + templates.length) % templates.length]
+  const next = templates[(index + 1) % templates.length]
 
   // Local helper to translate fields
   const translate = (obj) =>
@@ -20,7 +26,13 @@ export function getTemplateBySlug(slug, lang = 'vi') {
     overview: translate(template.overview),
     about: translate(template.about),
     features: translate(template.features),
-    prevTitle: translate(template.prevTitle),
-    nextTitle: translate(template.nextTitle),
+    pages: (template.pages || []).map(p => ({
+      ...p,
+      label: lang === 'vi' ? (p.labelVi || p.labelEn) : (p.labelEn || p.labelVi),
+    })),
+    prevSlug: prev.slug,
+    prevTitle: translate(prev.title),
+    nextSlug: next.slug,
+    nextTitle: translate(next.title),
   }
 }

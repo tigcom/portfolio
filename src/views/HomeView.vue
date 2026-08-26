@@ -37,24 +37,24 @@
                 </div>
               </div>
               <div class="hero-stat-card hero-stat-card--1">
-                <div class="hero-stat-icon"><i class="fas fa-graduation-cap"></i></div>
+                <div class="hero-stat-icon"><i class="fas fa-server"></i></div>
                 <div>
-                  <div class="hero-stat-num">3.8/4</div>
-                  <div class="hero-stat-label">{{ t('home.gpa') }}</div>
+                  <div class="hero-stat-num">12+</div>
+                  <div class="hero-stat-label">{{ t('home.microservices') }}</div>
                 </div>
               </div>
               <div class="hero-stat-card hero-stat-card--2">
-                <div class="hero-stat-icon"><i class="fas fa-bolt"></i></div>
+                <div class="hero-stat-icon"><i class="fas fa-rocket"></i></div>
                 <div>
-                  <div class="hero-stat-num">3+</div>
-                  <div class="hero-stat-label">{{ t('home.excellentSems') }}</div>
+                  <div class="hero-stat-num">7</div>
+                  <div class="hero-stat-label">{{ t('home.productsShipped') }}</div>
                 </div>
               </div>
               <div class="hero-stat-card hero-stat-card--3">
-                <div class="hero-stat-icon"><i class="fas fa-university"></i></div>
+                <div class="hero-stat-icon"><i class="fas fa-building"></i></div>
                 <div>
-                  <div class="hero-stat-num">Kien Long</div>
-                  <div class="hero-stat-label">{{ t('home.bankExp') }}</div>
+                  <div class="hero-stat-num">KienlongBank</div>
+                  <div class="hero-stat-label">{{ t('home.enterpriseClient') }}</div>
                 </div>
               </div>
             </div>
@@ -92,12 +92,11 @@
         <!-- 2-column card grid -->
         <div class="sp-grid" ref="spGrid" @mouseleave="onCardLeave">
           <router-link v-for="(project, i) in featuredProjects" :key="project.slug"
-            :to="FEATURE_PROJECT_DETAILS_ENABLED ? `/projects/${project.slug}` : ''" class="sp-card" :class="{
-              'sp-card--stagger': i % 2 === 1,
-              'sp-card--disabled': !FEATURE_PROJECT_DETAILS_ENABLED
-            }" @mouseenter="onCardHover(i)" @click="!FEATURE_PROJECT_DETAILS_ENABLED && $event.preventDefault()">
+            :to="`/projects/${project.slug}`" class="sp-card" :class="{
+              'sp-card--stagger': i % 2 === 1
+            }" @mouseenter="onCardHover(i)">
             <!-- Image -->
-            <div class="sp-card-img-wrap " :style="{ backgroundColor: project.colorBackgound }">
+            <div class="sp-card-img-wrap " :style="{ backgroundColor: projectBg(project) }">
               <img :src="project.img" :alt="project.title[state.lang]" class="sp-card-img" loading="lazy" />
             </div>
 
@@ -183,10 +182,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { projects, FEATURE_PROJECT_DETAILS_ENABLED } from '../data/projects.js'
+import { projects, getProjectBgColor } from '../data/projects.js'
 import { useLang } from '../data/translations.js'
 
 const { state, t } = useLang()
@@ -213,6 +212,11 @@ const vReveal = {
 // Data
 const featuredProjects = projects.slice(0, 4)
 
+// ─── Theme-aware thumbnail background ─────────────────────────────────────
+const currentTheme = ref(document.documentElement.getAttribute('data-theme') || 'dark')
+const projectBg = (project) => getProjectBgColor(project, currentTheme.value)
+let themeObserver = null
+
 const techBadges = [
   { icon: 'fab fa-java', name: 'Java' }, { icon: 'fas fa-leaf', name: 'Spring Boot' },
   { icon: 'fas fa-database', name: 'Hibernate/JPA' }, { icon: 'fas fa-microchip', name: 'Microservices' },
@@ -230,14 +234,14 @@ const expertise = [
 ]
 
 const testimonials = [
-  { initials: 'GV', name: 'Giảng viên FPT', role: 'FPT Polytechnic', text: 'Phúc Khang là một sinh viên xuất sắc, khả năng tự học và nắm bắt công nghệ mới rất nhanh. GPA 9.0 là minh chứng cho sự nỗ lực của em.' },
-  { initials: 'ĐN', name: 'Đồng nghiệp Kien Long', role: 'Java Developer', text: 'Khang làm việc rất trách nhiệm, các service trong hệ thống Internet Banking do Khang đảm nhiệm luôn ổn định và đạt hiệu năng tốt.' },
-  { initials: 'BB', name: 'Bạn cùng team DATN', role: 'Full-Stack Developer', text: 'Tư duy hệ thống của Khang rất tốt, đặc biệt là phần kiến trúc Microservices. Rất vui khi được cùng thực hiện đồ án tốt nghiệp với bạn.' },
-  { initials: 'KH', name: 'Khách hàng Freelance', role: 'Project Owner', text: 'Giao diện website Khang làm rất hiện đại, hiệu ứng mượt mà và đúng yêu cầu. Khả năng tích hợp Backend của bạn rất chuyên nghiệp.' },
-  { initials: 'ĐN', name: 'Trưởng nhóm Backend', role: 'Senior Developer', text: 'Khang có khả năng giải quyết vấn đề logic rất tốt, các luồng API phức tạp đều được bạn xử lý gọn gàng và dễ bảo trì.' },
-  { initials: 'GV', name: 'Giảng viên hướng dẫn', role: 'Software Major', text: 'Đồ án tốt nghiệp của Khang đạt độ hoàn thiện cao, quy trình triển khai Microservices và Docker rất chuẩn chỉ.' },
-  { initials: 'BB', name: 'Bạn học FPT', role: 'Mobile Developer', text: 'Luôn ngưỡng mộ cách Khang quản lý thời gian để vừa học vừa đi làm cộng tác viên tại ngân hàng mà vẫn giữ được thành tích top đầu.' },
-  { initials: 'KH', name: 'Đối tác dự án', role: 'Tech Lead', text: 'Phúc Khang là một Full-Stack Developer có tiềm năng lớn, thái độ cầu tiến và luôn chủ động trong công việc.' },
+  { initials: 'TL', name: 'Team Lead KienlongBank', role: 'Backend Team', text: 'Khang làm việc rất trách nhiệm, các service Internet Banking do Khang đảm nhiệm luôn ổn định và đạt hiệu năng tốt.' },
+  { initials: 'PO', name: 'Product Owner', role: 'KBIZ Platform', text: 'Pipeline chuyển tiền hàng loạt Khang xây dựng giúp giảm rõ rệt thời gian xử lý và đảm bảo an toàn tiền ở mức chi tiết từng dòng.' },
+  { initials: 'BA', name: 'Backend Architect', role: 'Fintech', text: 'Tư duy hệ thống của Khang rất tốt, đặc biệt là kiến trúc Microservices và các luồng phục hồi lỗi bất đồng bộ.' },
+  { initials: 'OM', name: 'Quản lý vận hành', role: 'Clean Hub', text: 'Clean Hub giúp đội chấm công và tính lương từ mấy ngày xuống còn vài giờ, báo cáo xuất ra chuẩn chỉ để kiểm toán.' },
+  { initials: 'KH', name: 'Khách hàng Freelance', role: 'Project Owner', text: 'Giao diện Khang làm rất hiện đại, hiệu ứng mượt mà và đúng yêu cầu. Khả năng tích hợp Backend rất chuyên nghiệp.' },
+  { initials: 'FL', name: 'Frontend Lead', role: 'Full-Stack Team', text: 'Khang có khả năng giải quyết vấn đề logic rất tốt, các luồng API phức tạp đều được xử lý gọn gàng và dễ bảo trì.' },
+  { initials: 'MO', name: 'Mobile Developer', role: 'Cross-functional Team', text: 'Làm việc cùng Khang rất dễ chịu, giao tiếp rõ ràng và luôn chủ động xử lý vấn đề trước khi trở thành blocker.' },
+  { initials: 'TL2', name: 'Tech Lead', role: 'E-commerce Project', text: 'Phúc Khang là Full-Stack Developer có tiềm năng lớn, thái độ cầu tiến và luôn chủ động trong công việc.' },
 ]
 
 // Hover dimming state  (-1 = nothing hovered)
@@ -301,6 +305,11 @@ function onBtnHover() {
 }
 
 onMounted(() => {
+  themeObserver = new MutationObserver(() => {
+    currentTheme.value = document.documentElement.getAttribute('data-theme') || 'dark'
+  })
+  themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
+
   const tl = gsap.timeline({ delay: 0.1, defaults: { ease: 'power3.out' } })
 
   // ── Hero entrance ──────────────────────────────────────────────────────
@@ -355,6 +364,10 @@ onMounted(() => {
       }
     })
   }
+})
+
+onUnmounted(() => {
+  themeObserver?.disconnect()
 })
 </script>
 
@@ -611,10 +624,6 @@ onMounted(() => {
   cursor: pointer;
   will-change: opacity, transform;
   /* Remove CSS transitions - GSAP handles all animations */
-}
-
-.sp-card--disabled {
-  cursor: default !important;
 }
 
 /* Remove dimmed class - GSAP handles this now */

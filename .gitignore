@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Claude Code tooling (không commit)
+.claude/
+__pycache__/
+*.pyc
+*.orig

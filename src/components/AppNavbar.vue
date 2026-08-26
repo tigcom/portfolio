@@ -162,23 +162,18 @@ onMounted(() => {
     if (!navInner) return
 
     // Tạm thời set width auto để đo kích thước thật của nội dung
-    navInner.style.width = '41%'
+    navInner.style.width = 'auto'
     navInner.style.maxWidth = 'none'
     const contentWidth = navInner.offsetWidth
 
     // Reset lại về giá trị ban đầu cho trạng thái ở Đỉnh (Top)
     navInner.style.width = '100%'
-    navInner.style.backgroundColor = 'var(--bg-900)'
-    navInner.style.borderColor = 'transparent'
-    navInner.style.boxShadow = 'none'
 
-    // Tạo ScrollTrigger animation
+    // Tạo ScrollTrigger animation — CHỈ animate width.
+    // Màu nền/viền khi scroll do class `.scrolled` xử lý (browser resolve var() đúng,
+    // GSAP không nội suy được màu qua CSS var() nên bỏ ra ngoài).
     gsap.to(navInner, {
       width: `${contentWidth}px`,
-      // Khi scroll xuống sẽ hiện background mờ và viền (Shadow đã bị loại bỏ)
-      backgroundColor: 'var(--backdrop-scrolled)',
-      borderColor: 'var(--border-strong)',
-      boxShadow: 'none',
       ease: 'none',
       scrollTrigger: {
         trigger: 'body',
@@ -219,8 +214,6 @@ onUnmounted(() => {
   gap: 0px;
   max-width: none;
   background: var(--bg-900);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
   border: 1px solid transparent;
   border-radius: 100px;
   padding: 4px 24px;
@@ -230,9 +223,9 @@ onUnmounted(() => {
 }
 
 #navbar.scrolled .nav-inner {
-  background: var(--backdrop-scrolled);
+  background: var(--bg-900);
   border-color: var(--border-strong);
-  box-shadow: var(--shadow-md);
+  box-shadow: none;
 }
 
 .nav-logo {
@@ -241,6 +234,7 @@ onUnmounted(() => {
   font-weight: 600;
   color: var(--text-primary);
   letter-spacing: -1px;
+  margin-right: 24px;
 }
 
 .nav-logo:hover {
@@ -252,6 +246,11 @@ onUnmounted(() => {
   align-items: center;
   gap: 24px;
   list-style: none;
+  white-space: nowrap;
+}
+
+.nav-links li {
+  flex-shrink: 0;
 }
 
 .nav-links a {
@@ -289,7 +288,10 @@ onUnmounted(() => {
 
 
 
-.nav-links a:hover,
+.nav-links a:hover {
+  color: var(--highlight);
+}
+
 .nav-links a.active {
   color: var(--text-primary);
 }

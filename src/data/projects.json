@@ -19,40 +19,23 @@
       "Redis",
       "Keycloak"
     ],
-    "year": "2025",
+    "year": "2026",
     "img": "/portfolio/image/bank.png",
-    "colorBackgound": "#99f6e4",
+    "colorBackgound": { "light": "#80B2F8", "dark": "#0A1726" },
     "heroImg": "/portfolio/image/projects/internet-banking/screencapture-localhost-3001-dashboard-2026-03-30-14_52_45.png",
+    "galleryLayout": "cover-flow",
     "galleryImgs": [
-      {
-        "src": "/portfolio/image/projects/internet-banking/screencapture-localhost-3001-dashboard-2026-03-30-14_52_45.png",
-        "type": "bento",
-        "aspect": "wide",
-        "title": { "en": "Dashboard Overview", "vi": "Tổng quan Dashboard" }
-      },
-      {
-        "src": "/portfolio/image/projects/internet-banking/screencapture-localhost-3001-login-2026-03-30-09_49_40.png",
-        "type": "bento",
-        "aspect": "square",
-        "title": { "en": "Secure Login", "vi": "Đăng nhập Bảo mật" }
-      },
-      {
-        "src": "/portfolio/image/projects/internet-banking/screencapture-localhost-3001-banking-transfers-create-2026-03-30-14_52_11.png",
-        "type": "scrollable",
-        "title": { "en": "Transfer Operation", "vi": "Thao tác Chuyển tiền" }
-      },
-      {
-        "src": "/portfolio/image/projects/internet-banking/screencapture-localhost-3001-banking-approvals-d15db959-a039-4fd0-b02a-450021576d89-2026-03-30-09_51_26.png",
-        "type": "bento",
-        "aspect": "square",
-        "title": { "en": "Maker-Checker Approval", "vi": "Phê duyệt Maker-Checker" }
-      },
-      {
-        "src": "/portfolio/image/projects/internet-banking/screencapture-localhost-3001-banking-deposits-open-2026-03-30-09_53_05.png",
-        "type": "bento",
-        "aspect": "tall",
-        "title": { "en": "Term Deposit Opening", "vi": "Mở Tiền gửi Có kỳ hạn" }
-      }
+      "/portfolio/image/projects/internet-banking/screencapture-localhost-3001-dashboard-2026-03-30-14_52_45.png",
+      "/portfolio/image/projects/internet-banking/screencapture-localhost-3001-login-2026-03-30-09_49_40.png",
+      "/portfolio/image/projects/internet-banking/screencapture-localhost-3001-banking-transfers-create-2026-03-30-14_52_11.png",
+      "/portfolio/image/projects/internet-banking/screencapture-localhost-3001-banking-approvals-d15db959-a039-4fd0-b02a-450021576d89-2026-03-30-09_51_26.png",
+      "/portfolio/image/projects/internet-banking/screencapture-localhost-3001-banking-deposits-open-2026-03-30-09_53_05.png",
+      "/portfolio/image/projects/internet-banking/Internetbankking_bussinies.png",
+      "/portfolio/image/projects/internet-banking/core_bussines_payment_process.png",
+      "/portfolio/image/projects/internet-banking/observability_architech.png",
+      "/portfolio/image/projects/internet-banking/identy_authencation.jpg",
+      "/portfolio/image/projects/internet-banking/driven_architech.jpg",
+      "/portfolio/image/projects/internet-banking/paymen_flow.jpg"
     ],
     "techStack": [
       "Java 17",
@@ -69,8 +52,8 @@
       "WebSocket"
     ],
     "role": {
-      "en": "Java Developer Collaborator (KienlongBank)",
-      "vi": "Cộng tác viên Phát triển Java (KienlongBank)"
+      "en": "Backend Developer (KienlongBank)",
+      "vi": "Backend Developer (KienlongBank)"
     },
     "overview": {
       "en": "KBIZ is a corporate Internet Banking platform for KienlongBank, implemented as a microservices system (12+ independent services). It supports maker-checker approval for sensitive operations, fee-calculated single and batch transfers, and term-deposit management integrated with Core Banking (Flexcube), with real-time status updates via WebSocket. I contributed to the Transfer module (internal transfers, NAPAS247/CITAD external transfers, and batch transfers) and the Term Deposit/Deposit operations (open term deposit, partial withdrawal, and closure).",
@@ -159,25 +142,307 @@
     "githubLink": "",
     "prevSlug": "youtube-clone",
     "prevTitle": {
-      "en": "Youtube Clone",
-      "vi": "Youtube Clone"
+      "en": "Streamly",
+      "vi": "Streamly"
+    },
+    "nextSlug": "kplus-digital-banking",
+    "nextTitle": {
+      "en": "K+ Digital Banking",
+      "vi": "K+ Ngân hàng số"
+    }
+  },
+  {
+    "slug": "kplus-digital-banking",
+    "num": "02",
+    "title": {
+      "en": "K+ Digital Banking — Backend Services",
+      "vi": "K+ Ngân hàng số — Dịch vụ Backend"
+    },
+    "subtitle": {
+      "en": "Retail banking ecosystem — KienlongBank",
+      "vi": "Hệ sinh thái ngân hàng số bán lẻ — KienlongBank"
+    },
+    "category": "development",
+    "tags": [
+      "Spring Boot",
+      "Java 17",
+      "CQRS",
+      "Kafka",
+      "MySQL"
+    ],
+    "year": "2026",
+    "img": "/portfolio/image/projects/kplus-digital-banking/thumbnail_k_app.jpg",
+    "colorBackgound": { "light": "#C8BDFA", "dark": "#180F33" },
+    "heroImg": "/portfolio/image/projects/kplus-digital-banking/digital_banking_system_architech.png",
+    "galleryLayout": "flipbook",
+    "galleryImgs": [
+      "/portfolio/image/projects/kplus-digital-banking/thumbnail_k_app-thumb.jpg",
+      "/portfolio/image/projects/kplus-digital-banking/digital_banking_system_architech-thumb.jpg",
+      "/portfolio/image/projects/kplus-digital-banking/myshop_system_architech-thumb.jpg",
+      "/portfolio/image/projects/kplus-digital-banking/profile_schema-thumb.jpg",
+      "/portfolio/image/projects/kplus-digital-banking/schema_myshop-thumb.jpg",
+      "/portfolio/image/projects/kplus-digital-banking/myshop_swagger-thumb.jpg",
+      "/portfolio/image/projects/kplus-digital-banking/thumbnail_myshop-thumb.jpg"
+    ],
+    "techStack": [
+      "Java 17",
+      "Spring Boot",
+      "CQRS",
+      "Spring Events",
+      "Apache Kafka",
+      "Debezium",
+      "Keycloak",
+      "MySQL 8",
+      "Oracle",
+      "Aspose/POI",
+      "Resilience4j",
+      "Docker"
+    ],
+    "role": {
+      "en": "Backend Developer (KienlongBank)",
+      "vi": "Backend Developer (KienlongBank)"
+    },
+    "overview": {
+      "en": "K+ is KienlongBank's retail digital-banking ecosystem, where I worked as a backend developer across three core services (aje-cms-mvc, ssf-mb-profile, myshop) spanning three business domains: household-business (HKD) account linking with maker-checker approval, HILO partner integration for e-invoicing, and IBFT/NAPAS reconciliation reporting. The work follows CQRS architecture end-to-end — from entity and repository through service, handler, and controller — with event-driven synchronization and a full CMS-to-Profile data migration.",
+      "vi": "K+ là hệ sinh thái ngân hàng số bán lẻ của KienlongBank, nơi tôi làm backend developer trên 3 dịch vụ lõi (aje-cms-mvc, ssf-mb-profile, myshop) trải rộng 3 mảng nghiệp vụ: liên kết tài khoản Hộ Kinh Doanh (HKD) với quy trình maker-checker, tích hợp đối tác HILO cho hóa đơn điện tử, và báo cáo đối soát IBFT/NAPAS. Công việc tuân thủ kiến trúc CQRS trọn vẹn — từ entity, repository tới service, handler và controller — kết hợp đồng bộ hướng sự kiện và bài toán migration dữ liệu CMS → Profile."
+    },
+    "problem": {
+      "en": "Working inside a mature banking system meant data lived in the wrong place and partner integrations had to stay non-blocking. Three problems stood out: migrating user-organization linking from a legacy CMS to a dedicated Profile service without breaking the maker-checker flow, syncing shop/staff/plan data to the HILO e-invoice partner reliably after transaction commit, and exporting IBFT/NAPAS reports at scale (up to 100,000 records) with password and watermark protection.",
+      "vi": "Làm việc trong một hệ thống ngân hàng đã vận hành nghĩa là dữ liệu nằm không đúng chỗ và tích hợp đối tác phải không làm chậm luồng nghiệp vụ chính. Ba bài toán nổi bật: chuyển liên kết tổ chức từ CMS cũ sang service Profile chuyên dụng mà không làm vỡ luồng maker-checker, đồng bộ dữ liệu shop/nhân viên/gói dịch vụ sang đối tác hóa đơn điện tử HILO một cách tin cậy sau khi transaction commit, và xuất báo cáo IBFT/NAPAS ở quy mô lớn (tới 100.000 bản ghi) kèm bảo vệ file bằng password và watermark."
+    },
+    "processSteps": [
+      {
+        "title": {
+          "en": "User-Org Linking & Migration (CMS → Profile)",
+          "vi": "Liên kết Tổ chức & Migration (CMS → Profile)"
+        },
+        "description": {
+          "en": "Built the full CQRS CRUD for user-organization linking (CreateUserOrgInfoHandler, GetDetail, UpdateStatus, link history) with a 9-state machine and maker-checker approval, then led the persistence migration from the legacy CMS to the ssf-mb-profile service — designing the schema (UserOrganizationInfo, UserOrganizationAccount, UserOrgUpdateInfo), exposing write APIs for approved updates, and integrating CoreBank (FlexCube) for validation and enrichment.",
+          "vi": "Xây dựng trọn bộ CRUD CQRS cho liên kết tài khoản tổ chức (CreateUserOrgInfoHandler, GetDetail, UpdateStatus, lịch sử liên kết) với state machine 9 trạng thái và quy trình maker-checker, sau đó dẫn dắt việc chuyển nơi lưu trữ từ CMS cũ sang service ssf-mb-profile — thiết kế schema (UserOrganizationInfo, UserOrganizationAccount, UserOrgUpdateInfo), mở API ghi cho các cập nhật đã phê duyệt, và tích hợp CoreBank (FlexCube) để validate và bổ sung dữ liệu."
+        }
+      },
+      {
+        "title": {
+          "en": "HILO Partner Integration (Event-Driven Sync)",
+          "vi": "Tích hợp Đối tác HILO (Đồng bộ Hướng sự kiện)"
+        },
+        "description": {
+          "en": "Designed a decoupled synchronization mechanism using Spring Events (@Async + @TransactionalEventListener(AFTER_COMMIT)) so shop, staff, and service-plan changes sync to the HILO e-invoice partner only after the transaction commits, with success/failure trace logging. Migrated 9 handlers to HILO's new API, added VAT calculation and invoice-info validation, and kept the design open to new partners without touching core handlers.",
+          "vi": "Thiết kế cơ chế đồng bộ tách rời bằng Spring Events (@Async + @TransactionalEventListener(AFTER_COMMIT)) để thay đổi shop, nhân viên và gói dịch vụ chỉ đồng bộ sang đối tác hóa đơn điện tử HILO sau khi transaction commit, kèm log trace thành công/thất bại. Chuyển 9 handler sang API mới của HILO, bổ sung tính VAT và kiểm tra thông tin hóa đơn, đồng thời giữ thiết kế mở để thêm đối tác mới mà không đụng tới handler lõi."
+        }
+      },
+      {
+        "title": {
+          "en": "IBFT/NAPAS Reporting & Export",
+          "vi": "Báo cáo & Xuất file IBFT/NAPAS"
+        },
+        "description": {
+          "en": "Built 8 Excel export APIs (ChargeBack, ChargeCredit, Copy, Inquiry, Return, Dispute, Reconciliation, single Inquiry) mapped to Oracle procedures (PKG_NAPAS_INVESTIGATION, PKG_NAPAS_QUERY) via ODS. Used a Template Method pipeline (validate → build → fetch with 2,000-record paging and a 100,000-record cap → export → audit log) and secured files with password and watermark via ExcelSecurityUtil.",
+          "vi": "Xây dựng 8 API xuất Excel (báo nợ, báo có, sao chép, tra cứu, hoàn trả, tra soát, đối soát, tra cứu đơn lẻ) ánh xạ tới Oracle procedure (PKG_NAPAS_INVESTIGATION, PKG_NAPAS_QUERY) qua ODS. Áp dụng pipeline Template Method (validate → build → fetch với phân trang 2.000 bản ghi và giới hạn 100.000 bản ghi → export → audit log) và bảo vệ file bằng password cùng watermark qua ExcelSecurityUtil."
+        }
+      }
+    ],
+    "results": [
+      {
+        "value": 233,
+        "suffix": "",
+        "label": {
+          "en": "Commits (4.5 months)",
+          "vi": "Commit (4,5 tháng)"
+        }
+      },
+      {
+        "value": 39,
+        "suffix": "k+",
+        "label": {
+          "en": "Lines of code",
+          "vi": "Dòng code"
+        }
+      },
+      {
+        "value": 3,
+        "suffix": "",
+        "label": {
+          "en": "Core services",
+          "vi": "Dịch vụ lõi"
+        }
+      },
+      {
+        "value": 8,
+        "suffix": "",
+        "label": {
+          "en": "Export APIs",
+          "vi": "API xuất báo cáo"
+        }
+      }
+    ],
+    "githubLink": "",
+    "prevSlug": "internet-banking",
+    "prevTitle": {
+      "en": "KBIZ Internet Banking",
+      "vi": "KBIZ Internet Banking"
+    },
+    "nextSlug": "company-clean-hub",
+    "nextTitle": {
+      "en": "Clean Hub",
+      "vi": "Clean Hub"
+    }
+  },
+  {
+    "slug": "company-clean-hub",
+    "num": "03",
+    "title": {
+      "en": "Clean Hub — Facility Management Platform",
+      "vi": "Clean Hub — Nền tảng Quản lý Vệ sinh Công nghiệp"
+    },
+    "subtitle": {
+      "en": "Enterprise workforce & facility operations platform",
+      "vi": "Nền tảng vận hành nhân sự & dịch vụ vệ sinh doanh nghiệp"
+    },
+    "category": "development",
+    "tags": [
+      "Next.js 16",
+      "Spring Boot 3.5",
+      "React 19"
+    ],
+    "year": "2025",
+    "img": "/portfolio/image/projects/company-clean-hub/thumbnail.png",
+    "colorBackgound": { "light": "#C4F2D2", "dark": "#0E1813" },
+    "heroImg": "/portfolio/image/projects/company-clean-hub/dashboard.png",
+    "galleryLayout": "cards",
+    "galleryImgs": [
+      "/portfolio/image/projects/company-clean-hub/dashboard.png",
+      "/portfolio/image/projects/company-clean-hub/payroll-detail.png",
+      "/portfolio/image/projects/company-clean-hub/verification.png",
+      "/portfolio/image/projects/company-clean-hub/invoice-detail.png",
+      "/portfolio/image/projects/company-clean-hub/employee-detail.png",
+      "/portfolio/image/projects/company-clean-hub/users.png",
+      "/portfolio/image/projects/company-clean-hub/customers.png"
+    ],
+    "techStack": [
+      "Next.js 16",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS 4",
+      "Spring Boot 3.5",
+      "Java 17",
+      "Spring Security",
+      "JWT",
+      "MySQL",
+      "Apache POI",
+      "Cloudinary",
+      "Leaflet"
+    ],
+    "role": {
+      "en": "Full Stack Developer",
+      "vi": "Nhà phát triển Full Stack"
+    },
+    "overview": {
+      "en": "Clean Hub is a production management platform for an industrial cleaning company, spanning the entire business operation: employee and customer management, service contracts, employee dispatch and work schedules, photo-verified attendance, monthly/daily payroll with salary notes, invoicing, materials inventory, performance evaluations, and a real-time notification center. It enforces a 6-level role-based access control (RBAC) at both the route and data level. Built with a Next.js 16 frontend, a Spring Boot 3.5 (Java 17) REST backend, and MySQL.",
+      "vi": "Clean Hub là nền tảng quản trị vận hành cho công ty vệ sinh công nghiệp, bao phủ toàn bộ nghiệp vụ: quản lý nhân viên và khách hàng, hợp đồng dịch vụ, điều động nhân viên và lịch làm việc, chấm công bằng hình ảnh xác thực, tính lương theo tháng/ngày kèm ghi chú lương, xuất hóa đơn, quản lý vật tư, đánh giá hiệu suất và trung tâm thông báo thời gian thực. Hệ thống áp dụng phân quyền 6 cấp (RBAC) ở cả tầng route lẫn tầng dữ liệu. Được xây dựng bằng frontend Next.js 16, backend REST Spring Boot 3.5 (Java 17) và MySQL."
+    },
+    "problem": {
+      "en": "Managing a multi-branch cleaning workforce is complex: hundreds of employees dispatched to many customer sites, contract-based schedules, and monthly payroll. The key challenges were building a 6-level RBAC that guards both routes and data scopes (QLT1/QLT2/QLV/ACCOUNTANT/EMPLOYEE/CUSTOMER), automating attendance with photo/GPS verification, computing payroll by month or by day with salary notes, and exporting auditable reports (Excel/PDF timesheets with signatures).",
+      "vi": "Quản lý đội ngũ vệ sinh đa chi nhánh rất phức tạp: hàng trăm nhân viên được điều động đến nhiều điểm khách hàng, lịch theo hợp đồng và chấm lương hàng tháng. Thách thức cốt lõi là xây dựng phân quyền 6 cấp bảo vệ cả route lẫn phạm vi dữ liệu (QLT1/QLT2/QLV/KẾ TOÁN/NHÂN VIÊN/KHÁCH HÀNG), tự động hóa chấm công bằng xác thực ảnh/GPS, tính lương theo tháng hoặc theo ngày kèm ghi chú lương, và xuất báo cáo có thể kiểm toán (bảng công Excel/PDF có chữ ký)."
+    },
+    "processSteps": [
+      {
+        "title": {
+          "en": "RBAC & Security",
+          "vi": "Phân quyền & Bảo mật (RBAC)"
+        },
+        "description": {
+          "en": "Designed a 6-level role model (QLT1/QLT2/QLV/ACCOUNTANT/EMPLOYEE/CUSTOMER) with JWT auth, route-level guards in Next.js middleware, and data-level permission checks (55+ permission codes) enforced on the backend.",
+          "vi": "Thiết kế mô hình 6 cấp vai trò (QLT1/QLT2/QLV/KẾ TOÁN/NHÂN VIÊN/KHÁCH HÀNG) với xác thực JWT, chặn theo route ở middleware Next.js và kiểm tra quyền theo phạm vi dữ liệu (55+ mã quyền) ở backend."
+        }
+      },
+      {
+        "title": {
+          "en": "HR & Dispatch",
+          "vi": "Nhân sự & Điều động"
+        },
+        "description": {
+          "en": "Employee lifecycle (office staff + contract staff), customer and contract management, plus a dispatch/assignment engine with fixed and temporary work schedules.",
+          "vi": "Vòng đời nhân viên (văn phòng + hợp đồng), quản lý khách hàng và hợp đồng, cùng engine điều động/phân công với lịch làm việc cố định và tạm thời."
+        }
+      },
+      {
+        "title": {
+          "en": "Attendance & Payroll",
+          "vi": "Chấm công & Tính lương"
+        },
+        "description": {
+          "en": "Photo/GPS-verified attendance capture, monthly and daily payroll with salary notes, advances, and Excel export.",
+          "vi": "Chấm công xác thực bằng ảnh/GPS, tính lương theo tháng/ngày kèm ghi chú lương, tạm ứng và xuất Excel."
+        }
+      },
+      {
+        "title": {
+          "en": "Invoicing, Reports & Notifications",
+          "vi": "Hóa đơn, Báo cáo & Thông báo"
+        },
+        "description": {
+          "en": "Invoice generation with penalty calculation, revenue/performance reports (Excel/PDF), and a real-time notification center.",
+          "vi": "Tạo hóa đơn có tính phạt, báo cáo doanh thu/hiệu suất (Excel/PDF) và trung tâm thông báo thời gian thực."
+        }
+      }
+    ],
+    "results": [
+      {
+        "value": 8,
+        "suffix": "+",
+        "label": {
+          "en": "Operations Modules",
+          "vi": "Module vận hành"
+        }
+      },
+      {
+        "value": 6,
+        "suffix": "",
+        "label": {
+          "en": "User Roles (RBAC)",
+          "vi": "Vai trò người dùng"
+        }
+      },
+      {
+        "value": 100,
+        "suffix": "+",
+        "label": {
+          "en": "Employees & Customers",
+          "vi": "Nhân viên & Khách hàng"
+        }
+      },
+      {
+        "value": 55,
+        "suffix": "+",
+        "label": {
+          "en": "Permission Codes",
+          "vi": "Mã phân quyền"
+        }
+      }
+    ],
+    "githubLink": "",
+    "prevSlug": "kplus-digital-banking",
+    "prevTitle": {
+      "en": "K+ Digital Banking",
+      "vi": "K+ Ngân hàng số"
     },
     "nextSlug": "traveloka-clone",
     "nextTitle": {
-      "en": "Traveloka Clone",
-      "vi": "Traveloka Clone"
+      "en": "Voyago",
+      "vi": "Voyago"
     }
   },
   {
     "slug": "traveloka-clone",
-    "num": "02",
+    "num": "04",
     "title": {
-      "en": "Traveloka Clone (DATN)",
-      "vi": "Traveloka Clone (Đồ án tốt nghiệp)"
+      "en": "Voyago — Flight & Tour Booking Platform",
+      "vi": "Voyago — Nền tảng Đặt vé & Tour Du lịch"
     },
     "subtitle": {
-      "en": "Travel Super App Booking System",
-      "vi": "Hệ thống Booking Super App"
+      "en": "Online travel agency platform",
+      "vi": "Nền tảng đại lý du lịch trực tuyến"
     },
     "category": "development",
     "tags": [
@@ -187,7 +452,7 @@
     ],
     "year": "2025",
     "img": "/portfolio/image/travel.png",
-    "colorBackgound": "#92c5fc",
+    "colorBackgound": { "light": "#F8C8DD", "dark": "#1B161B" },
     "heroImg": "/portfolio/image/projects/traveloka-clone/flight ls.png",
     "galleryImgs": [
       "/portfolio/image/projects/traveloka-clone/login.jpg",
@@ -210,93 +475,93 @@
       "vi": "Nhà phát triển Full Stack"
     },
     "overview": {
-      "en": "An online airline and tour booking platform, focusing on complex booking flows, seat holding (TTL), payments, and automated refund/cancellation policies.",
-      "vi": "Nền tảng đặt vé máy bay và tour du lịch trực tuyến, tập trung vào luồng booking phức tạp, giữ chỗ (Seat Hold), thanh toán và tự động hoàn vé/hủy vé theo chính sách."
+      "en": "Voyago is an online travel agency platform for flight and tour booking. It runs a full search → fare selection → seat hold → payment → ticket issuance flow, with TTL-based seat holds that prevent double-booking, an automated refund/cancellation policy engine, and a real-time operations dashboard for order and flight status.",
+      "vi": "Voyago là nền tảng đại lý du lịch trực tuyến cho đặt vé máy bay và tour. Hệ thống vận hành trọn vẹn luồng tìm kiếm → chọn hạng vé → giữ chỗ → thanh toán → phát hành vé, với cơ chế giữ chỗ theo TTL chống bán trùng ghế, engine hoàn/hủy vé tự động theo chính sách và dashboard vận hành theo dõi trạng thái đơn hàng, chuyến bay theo thời gian thực."
     },
     "problem": {
-      "en": "Handling real-time seat synchronization, designing TTL-based auto-cancellation for unpaid orders, and ensuring transparency in the refund process.",
-      "vi": "Xử lý đồng bộ trạng thái ghế ngồi theo thời gian thực, thiết kế hệ thống tự động hủy đơn hàng khi quá hạn thanh toán (TTL-based) và đảm bảo tính minh bạch trong quy trình hoàn tiền."
+      "en": "Selling seats across concurrent sessions means inventory can be double-booked or stranded. The challenge was real-time seat synchronization, a TTL-based auto-release for unpaid orders, and a transparent, policy-driven refund flow — all without manual intervention.",
+      "vi": "Bán chỗ đồng thời từ nhiều phiên đặt vé có thể gây bán trùng hoặc giữ chỗ chết. Thách thức là đồng bộ trạng thái ghế theo thời gian thực, cơ chế tự giải phóng chỗ khi đơn quá hạn thanh toán (TTL) và luồng hoàn tiền minh bạch, theo chính sách — hoàn toàn không cần can thiệp thủ công."
     },
     "processSteps": [
       {
         "title": {
-          "en": "Core Booking Flow",
-          "vi": "Luồng Booking lõi"
+          "en": "Booking & Seat Hold Engine",
+          "vi": "Engine Đặt vé & Giữ chỗ"
         },
         "description": {
-          "en": "Built the search, fare selection, seat holding, and ticket issuance process.",
-          "vi": "Xây dựng quy trình tìm kiếm, chọn hạng vé, giữ chỗ (TTL) và phát hành vé sau khi thanh toán."
+          "en": "Built the core booking flow (search, fare selection, seat hold, ticket issuance). Seat holds are managed in Redis with a TTL, released by a Scheduler/Consumer to return inventory safely if payment is not completed.",
+          "vi": "Xây dựng luồng đặt vé lõi (tìm kiếm, chọn hạng vé, giữ chỗ, phát hành vé). Giữ chỗ được quản lý trong Redis kèm TTL, được Scheduler/Consumer giải phóng để trả inventory về an toàn nếu thanh toán không hoàn tất."
         }
       },
       {
         "title": {
-          "en": "Seat Hold System",
-          "vi": "Hệ thống giữ chỗ"
+          "en": "Automated Refund & Cancellation Policy",
+          "vi": "Chính sách Hoàn & Hủy Tự động"
         },
         "description": {
-          "en": "Designed a seat holding system using Redis with Scheduler/Consumer to safely release inventory.",
-          "vi": "Thiết kế hệ thống giữ chỗ sử dụng Redis kết hợp Scheduler/Consumer để giải phóng inventory an toàn."
+          "en": "Implemented policy-driven auto-cancellation for unpaid orders and refund flows that keep every state transition auditable and transparent to the user.",
+          "vi": "Triển khai tự động hủy đơn chưa thanh toán và luồng hoàn tiền theo chính sách, đảm bảo mọi chuyển trạng thái đều có thể kiểm toán và minh bạch với người dùng."
         }
       },
       {
         "title": {
-          "en": "Real-time Dashboard",
-          "vi": "Dashboard thời gian thực"
+          "en": "Real-time Operations Dashboard",
+          "vi": "Dashboard Vận hành Thời gian thực"
         },
         "description": {
-          "en": "Used Socket.io to provide real-time status updates for orders and flights to the Admin panel.",
-          "vi": "Sử dụng Socket.io để cập nhật trạng thái đơn hàng và chuyến bay theo thời gian thực cho Admin."
+          "en": "Streamed order and flight status updates to the admin panel over Socket.io, giving operations staff a live view of inventory and bookings.",
+          "vi": "Đẩy trạng thái đơn hàng và chuyến bay về trang quản trị qua Socket.io, cho đội vận hành cái nhìn trực tiếp về inventory và lượt đặt vé."
         }
       }
     ],
     "results": [
       {
-        "value": 100,
-        "suffix": "%",
+        "value": 0,
+        "suffix": "",
         "label": {
-          "en": "Auto-cancel accuracy",
-          "vi": "Tự động hủy vé quá hạn"
+          "en": "Double-bookings",
+          "vi": "Bán trùng ghế"
         }
       },
       {
         "value": 50,
         "suffix": "ms",
         "label": {
-          "en": "Socket latency",
-          "vi": "Độ trễ cập nhật Socket"
+          "en": "Real-time sync latency",
+          "vi": "Độ trễ đồng bộ thời gian thực"
         }
       },
       {
         "value": 98,
         "suffix": "%",
         "label": {
-          "en": "Inventory accuracy",
-          "vi": "Chính xác Inventory"
+          "en": "Inventory integrity",
+          "vi": "Độ chính xác tồn kho"
         }
       }
     ],
     "githubLink": "https://github.com/thanhlam2802/DATN",
-    "prevSlug": "internet-banking",
+    "prevSlug": "company-clean-hub",
     "prevTitle": {
-      "en": "Internet Banking",
-      "vi": "Internet Banking"
+      "en": "Clean Hub",
+      "vi": "Clean Hub"
     },
     "nextSlug": "sixdo-ecommerce",
     "nextTitle": {
-      "en": "Sixdo E-commerce",
-      "vi": "Sixdo E-commerce"
+      "en": "Sixdo",
+      "vi": "Sixdo"
     }
   },
   {
     "slug": "sixdo-ecommerce",
-    "num": "03",
+    "num": "05",
     "title": {
-      "en": "Sixdo E-commerce Platform",
-      "vi": "Nền tảng Thương mại điện tử Sixdo"
+      "en": "Sixdo — Commerce Platform",
+      "vi": "Sixdo — Nền tảng Thương mại"
     },
     "subtitle": {
-      "en": "Modern Fullstack Shopping Solution",
-      "vi": "Giải pháp Mua sắm Fullstack Hiện đại"
+      "en": "Headless storefront with REST backend",
+      "vi": "Storefront headless với backend REST"
     },
     "category": "development",
     "tags": [
@@ -306,7 +571,7 @@
     ],
     "year": "2025",
     "img": "/portfolio/image/siso.png",
-    "colorBackgound": "#fef3c6",
+    "colorBackgound": { "light": "#F7EFC9", "dark": "#11121C" },
     "heroImg": "/portfolio/image/projects/sixdo-ecommerce/screencapture-127-0-0-1-5500-1TrangChu-html-2026-03-19-18_03_54.jpg",
     "galleryImgs": [
       "/portfolio/image/projects/sixdo-ecommerce/screencapture-127-0-0-1-5500-1TrangChu-html-2026-03-19-18_03_54.jpg",
@@ -327,68 +592,93 @@
       "vi": "Nhà phát triển Full Stack"
     },
     "overview": {
-      "en": "A modern e-commerce platform synchronized between Backend (Spring Boot) and Frontend (Next.js), focusing on performance and a smooth user experience.",
-      "vi": "Nền tảng thương mại điện tử hiện đại đồng bộ giữa Backend (Spring Boot) và Frontend (Next.js), tập trung vào hiệu năng và trải nghiệm người dùng mượt mà."
+      "en": "Sixdo is a headless commerce platform where a Spring Boot REST backend feeds product and category data to a Next.js storefront, with a versioned schema managed through Flyway and secured APIs. The focus is on a fast, smooth buying experience and clean data contracts between the two layers.",
+      "vi": "Sixdo là nền tảng thương mại headless, trong đó backend REST Spring Boot cung cấp dữ liệu sản phẩm, danh mục cho storefront Next.js, với cấu trúc dữ liệu được quản lý theo version qua Flyway và API được bảo mật. Trọng tâm là trải nghiệm mua sắm nhanh, mượt và hợp đồng dữ liệu rõ ràng giữa hai tầng."
     },
     "problem": {
-      "en": "Synchronizing data across different platforms, managing shopping cart states, and securing APIs with Spring Security.",
-      "vi": "Xử lý đồng bộ dữ liệu giữa hai nền tảng khác nhau, quản lý trạng thái giỏ hàng và bảo mật API với Spring Security."
+      "en": "Keeping catalog data consistent between a backend and a server-rendered storefront, managing cart state across sessions, and locking down APIs with Spring Security without sacrificing speed.",
+      "vi": "Giữ dữ liệu danh mục nhất quán giữa backend và storefront server-rendered, quản lý trạng thái giỏ hàng giữa các phiên và bảo vệ API bằng Spring Security mà không làm chậm trải nghiệm."
     },
     "processSteps": [
       {
         "title": {
-          "en": "RESTful API Design",
-          "vi": "Thiết kế API RESTful"
+          "en": "REST Catalog & Checkout APIs",
+          "vi": "API Danh mục & Thanh toán REST"
         },
         "description": {
-          "en": "Standardized API endpoints for products and categories management.",
-          "vi": "Chuẩn hóa các endpoint API để quản lý sản phẩm và danh mục."
+          "en": "Standardized product and category endpoints that power listing, detail, and cart flows across the storefront.",
+          "vi": "Chuẩn hóa endpoint sản phẩm và danh mục, phục vụ luồng liệt kê, chi tiết và giỏ hàng trên storefront."
         }
       },
       {
         "title": {
-          "en": "Database Migration",
-          "vi": "Di cư dữ liệu"
+          "en": "Versioned Database Schema",
+          "vi": "Cấu trúc dữ liệu theo Version"
         },
         "description": {
-          "en": "Implemented Flyway to manage database schema versions consistently.",
-          "vi": "Triển khai Flyway để quản lý các phiên bản cấu trúc cơ sở dữ liệu một cách nhất quán."
+          "en": "Managed schema evolution with Flyway so every environment stays consistent and migrations are repeatable.",
+          "vi": "Quản lý tiến hóa cấu trúc dữ liệu bằng Flyway để mọi môi trường nhất quán và migration có thể lặp lại."
         }
       },
       {
         "title": {
-          "en": "Next.js Integration",
-          "vi": "Tích hợp Next.js"
+          "en": "Server-Rendered Storefront",
+          "vi": "Storefront Server-Rendered"
         },
         "description": {
-          "en": "Leveraged Next.js App Router and Server Components for optimal frontend performance.",
-          "vi": "Tận dụng App Router và Server Components của Next.js để tối ưu hiệu năng frontend."
+          "en": "Leveraged Next.js App Router and Server Components for fast first paint and optimal performance.",
+          "vi": "Tận dụng App Router và Server Components của Next.js để tăng tốc first paint và tối ưu hiệu năng."
         }
       }
     ],
-    "results": [],
+    "results": [
+      {
+        "value": 45,
+        "suffix": "+",
+        "label": {
+          "en": "Commerce APIs",
+          "vi": "API nghiệp vụ bán hàng"
+        }
+      },
+      {
+        "value": 14,
+        "suffix": "",
+        "label": {
+          "en": "Versioned Migrations",
+          "vi": "Migration theo version"
+        }
+      },
+      {
+        "value": 12,
+        "suffix": "",
+        "label": {
+          "en": "Core Data Entities",
+          "vi": "Thực thể nghiệp vụ lõi"
+        }
+      }
+    ],
     "githubLink": "https://github.com/tigcom/cloneSixdo",
     "prevSlug": "traveloka-clone",
     "prevTitle": {
-      "en": "Traveloka Clone",
-      "vi": "Traveloka Clone"
+      "en": "Voyago",
+      "vi": "Voyago"
     },
     "nextSlug": "motorbike-sales-system",
     "nextTitle": {
-      "en": "Motorbike Sales System",
-      "vi": "Motorbike Sales System"
+      "en": "MotoDealer",
+      "vi": "MotoDealer"
     }
   },
   {
     "slug": "motorbike-sales-system",
-    "num": "04",
+    "num": "06",
     "title": {
-      "en": "Motorbike Sales & Management System",
-      "vi": "Hệ thống Quản lý Bán xe máy"
+      "en": "MotoDealer — Dealership Management System",
+      "vi": "MotoDealer — Hệ thống Quản lý Đại lý Xe máy"
     },
     "subtitle": {
-      "en": "Multi-branch Desktop Solution",
-      "vi": "Giải pháp Desktop Quản lý Đa chi nhánh"
+      "en": "Multi-branch dealership operations",
+      "vi": "Vận hành đại lý đa chi nhánh"
     },
     "category": "development",
     "tags": [
@@ -398,7 +688,7 @@
     ],
     "year": "2024",
     "img": "/portfolio/image/byke.png",
-    "colorBackgound": "#a7c5c7",
+    "colorBackgound": { "light": "#E2E2E2", "dark": "#000000" },
     "heroImg": "/portfolio/image/projects/motorbike-sales-system/Screenshot 2026-03-20 195751.png",
     "galleryImgs": [
       "/portfolio/image/projects/motorbike-sales-system/Screenshot 2026-03-20 195751.png",
@@ -417,68 +707,93 @@
       "vi": "Nhà phát triển Full Stack"
     },
     "overview": {
-      "en": "A comprehensive desktop application for large-scale motorbike dealers, handling inventory, sales, employees, and maintenance across multiple branches.",
-      "vi": "Hệ thống quản lý kinh doanh xe máy toàn diện dành cho các đại lý có quy mô lớn với nhiều chi nhánh, tích hợp từ khâu nhập hàng, bán hàng đến bảo hành."
+      "en": "MotoDealer is a desktop operations system for multi-branch motorbike dealerships, covering inventory, sales, staff, and periodic maintenance. It isolates and aggregates data across physical branches and produces professional Excel reports for sales and stock tracking.",
+      "vi": "MotoDealer là hệ thống vận hành desktop cho các đại lý xe máy nhiều chi nhánh, bao phủ từ nhập hàng, bán hàng, nhân sự đến bảo dưỡng định kỳ. Hệ thống tách biệt và tổng hợp dữ liệu giữa các chi nhánh, đồng thời xuất báo cáo Excel chuyên nghiệp cho theo dõi doanh thu và kho hàng."
     },
     "problem": {
-      "en": "Synchronizing inventory across multiple branches, managing periodic maintenance schedules, and automating revenue reports.",
-      "vi": "Đồng bộ hóa dữ liệu tồn kho giữa nhiều chi nhánh khác nhau, quản lý lịch bảo dưỡng định kỳ và tự động hóa báo cáo doanh thu."
+      "en": "Dealerships struggle to synchronize inventory across branches, track periodic maintenance commitments to customers, and produce revenue reports without manual spreadsheet work.",
+      "vi": "Các đại lý gặp khó khi đồng bộ tồn kho giữa nhiều chi nhánh, theo dõi cam kết bảo dưỡng định kỳ cho khách và lập báo cáo doanh thu mà không phải làm tay bằng bảng tính."
     },
     "processSteps": [
       {
         "title": {
-          "en": "Multi-branch Logic",
-          "vi": "Nghiệp vụ Đa chi nhánh"
+          "en": "Multi-branch Data Model",
+          "vi": "Mô hình dữ liệu Đa chi nhánh"
         },
         "description": {
-          "en": "Designed a database schema to isolate and aggregate data across different physical locations.",
-          "vi": "Thiết kế cấu trúc cơ sở dữ liệu để tách biệt và tổng hợp dữ liệu giữa các chi nhánh vật lý khác nhau."
+          "en": "Designed a schema that isolates and aggregates data across different physical locations, so each branch runs independently while management sees consolidated figures.",
+          "vi": "Thiết kế cấu trúc dữ liệu tách biệt và tổng hợp giữa các chi nhánh, để từng chi nhánh vận hành độc lập trong khi quản lý thấy số liệu tổng hợp."
         }
       },
       {
         "title": {
           "en": "Maintenance Scheduler",
-          "vi": "Quản lý Bảo dưỡng"
+          "vi": "Lịch Bảo dưỡng"
         },
         "description": {
-          "en": "Built a notification system for customer service staff to track and remind maintenance schedules.",
-          "vi": "Xây dựng hệ thống theo dõi và nhắc nhở lịch bảo dưỡng định kỳ cho nhân viên chăm sóc khách hàng."
+          "en": "Built a notification system that tracks and reminds customer-service staff of upcoming maintenance schedules.",
+          "vi": "Xây dựng hệ thống theo dõi và nhắc lịch bảo dưỡng định kỳ cho nhân viên chăm sóc khách hàng."
         }
       },
       {
         "title": {
-          "en": "Export Reporting",
-          "vi": "Xuất báo cáo tự động"
+          "en": "Automated Reporting",
+          "vi": "Báo cáo Tự động"
         },
         "description": {
-          "en": "Integrated Apache POI to export professional Excel reports for sales and inventory tracking.",
-          "vi": "Tích hợp Apache POI để xuất các báo cáo Excel chuyên nghiệp cho việc theo dõi doanh thu và kho hàng."
+          "en": "Integrated Apache POI to export structured Excel reports for sales and inventory tracking.",
+          "vi": "Tích hợp Apache POI để xuất báo cáo Excel có cấu trúc cho theo dõi doanh thu và kho hàng."
         }
       }
     ],
-    "results": [],
+    "results": [
+      {
+        "value": 3,
+        "suffix": "+",
+        "label": {
+          "en": "Branches Supported",
+          "vi": "Chi nhánh hỗ trợ"
+        }
+      },
+      {
+        "value": 20,
+        "suffix": "+",
+        "label": {
+          "en": "Data Tables",
+          "vi": "Bảng dữ liệu"
+        }
+      },
+      {
+        "value": 4,
+        "suffix": "",
+        "label": {
+          "en": "Excel Report Types",
+          "vi": "Loại báo cáo Excel"
+        }
+      }
+    ],
     "githubLink": "https://github.com/tigcom/MotorbikeSalesSystem",
     "prevSlug": "sixdo-ecommerce",
     "prevTitle": {
-      "en": "Sixdo E-commerce",
-      "vi": "Sixdo E-commerce"
+      "en": "Sixdo",
+      "vi": "Sixdo"
     },
     "nextSlug": "phong-vu-clone",
     "nextTitle": {
-      "en": "Phong Vu Shop Clone",
-      "vi": "Phong Vu Shop Clone"
+      "en": "ElectroMart",
+      "vi": "ElectroMart"
     }
   },
   {
     "slug": "phong-vu-clone",
-    "num": "05",
+    "num": "07",
     "title": {
-      "en": "Phong Vu Shop Clone",
-      "vi": "Clone Cửa hàng Phong Vũ"
+      "en": "ElectroMart — Electronics Retail Platform",
+      "vi": "ElectroMart — Nền tảng Bán lẻ Điện tử"
     },
     "subtitle": {
-      "en": "E-commerce Electronics Store",
-      "vi": "Cửa hàng Điện tử E-commerce"
+      "en": "Consumer electronics e-commerce",
+      "vi": "Thương mại điện tử điện tử tiêu dùng"
     },
     "category": "development",
     "tags": [
@@ -488,7 +803,7 @@
     ],
     "year": "2025",
     "img": "/portfolio/image/phongvu.png",
-    "colorBackgound": "#121317",
+    "colorBackgound": { "light": "#9CB7B4", "dark": "#112023" },
     "heroImg": "/portfolio/image/projects/phong-vu-clone/screencapture-localhost-2511-home-2026-03-20-15_57_45.jpg",
     "galleryImgs": [
       "/portfolio/image/projects/phong-vu-clone/screencapture-localhost-2511-home-2026-03-20-15_57_45.jpg",
@@ -507,58 +822,83 @@
       "vi": "Nhà phát triển Backend"
     },
     "overview": {
-      "en": "A clone project of the Phong Vu e-commerce website, featuring a complete flow from product management, shopping cart, to checkout and automated email confirmations.",
-      "vi": "Dự án mô phỏng website thương mại điện tử Phong Vũ, tích hợp đầy đủ quy trình từ quản lý sản phẩm, giỏ hàng đến đặt hàng và gửi email xác nhận tự động."
+      "en": "ElectroMart is an electronics retail storefront with a complete purchase flow — product catalog, session-based cart, checkout, and automated order-confirmation email. It pairs a Spring Boot backend with server-rendered Thymeleaf pages.",
+      "vi": "ElectroMart là storefront bán lẻ điện tử với luồng mua hàng trọn vẹn — danh mục sản phẩm, giỏ hàng theo phiên, thanh toán và email xác nhận đơn hàng tự động. Hệ thống kết hợp backend Spring Boot với giao diện server-rendered Thymeleaf."
     },
     "problem": {
-      "en": "Efficiently managing shopping cart state (session-based) and automating order confirmation notifications to customers via email.",
-      "vi": "Quản lý trạng thái giỏ hàng hiệu quả (Session-based) và tự động hóa quy trình thông báo đơn hàng cho khách hàng qua email."
+      "en": "Delivering a reliable session-based cart and keeping customers informed automatically at every order-status change, without manual follow-up.",
+      "vi": "Đảm bảo giỏ hàng theo phiên hoạt động ổn định và tự động thông báo cho khách hàng mỗi khi trạng thái đơn hàng thay đổi, không cần theo dõi thủ công."
     },
     "processSteps": [
       {
         "title": {
-          "en": "Product Management",
-          "vi": "Quản lý sản phẩm"
+          "en": "Catalog & Checkout",
+          "vi": "Danh mục & Thanh toán"
         },
         "description": {
-          "en": "Designed a flexible CRUD system for products with advanced categorization and search.",
-          "vi": "Thiết kế hệ thống CRUD sản phẩm linh hoạt với phân loại và tìm kiếm nâng cao."
+          "en": "Designed a flexible product CRUD with categorization and search, plus a session-based cart that carries through checkout.",
+          "vi": "Thiết kế CRUD sản phẩm linh hoạt với phân loại và tìm kiếm, cùng giỏ hàng theo phiên xuyên suốt quá trình thanh toán."
         }
       },
       {
         "title": {
-          "en": "Automated Email",
-          "vi": "Email tự động"
+          "en": "Automated Order Notifications",
+          "vi": "Thông báo Đơn hàng Tự động"
         },
         "description": {
-          "en": "Used @Scheduled tasks to automatically send order confirmation emails and status updates.",
-          "vi": "Sử dụng @Scheduled tasks để tự động gửi email xác nhận đơn hàng và cập nhật trạng thái."
+          "en": "Used @Scheduled jobs to send order-confirmation and status-update emails automatically.",
+          "vi": "Sử dụng @Scheduled để tự động gửi email xác nhận và cập nhật trạng thái đơn hàng."
         }
       }
     ],
-    "results": [],
+    "results": [
+      {
+        "value": 100,
+        "suffix": "%",
+        "label": {
+          "en": "Order email automation",
+          "vi": "Tự động hóa email đơn hàng"
+        }
+      },
+      {
+        "value": 15,
+        "suffix": "+",
+        "label": {
+          "en": "Product Entities",
+          "vi": "Thực thể sản phẩm"
+        }
+      },
+      {
+        "value": 4,
+        "suffix": "",
+        "label": {
+          "en": "Checkout Steps",
+          "vi": "Bước thanh toán"
+        }
+      }
+    ],
     "githubLink": "",
     "prevSlug": "motorbike-sales-system",
     "prevTitle": {
-      "en": "Motorbike Sales System",
-      "vi": "Motorbike Sales System"
+      "en": "MotoDealer",
+      "vi": "MotoDealer"
     },
     "nextSlug": "youtube-clone",
     "nextTitle": {
-      "en": "Youtube Clone",
-      "vi": "Youtube Clone"
+      "en": "Streamly",
+      "vi": "Streamly"
     }
   },
   {
     "slug": "youtube-clone",
-    "num": "06",
+    "num": "08",
     "title": {
-      "en": "Youtube Clone Website",
-      "vi": "Clone Website Youtube"
+      "en": "Streamly — Video Sharing Platform",
+      "vi": "Streamly — Nền tảng Chia sẻ Video"
     },
     "subtitle": {
-      "en": "Video Sharing Platform",
-      "vi": "Nền tảng Chia sẻ Video"
+      "en": "Creator video platform with real-time engagement",
+      "vi": "Nền tảng video cho nhà sáng tạo nội dung"
     },
     "category": "development",
     "tags": [
@@ -568,7 +908,7 @@
     ],
     "year": "2024",
     "img": "/portfolio/image/ytu.png",
-    "colorBackgound": "#fbcfe8",
+    "colorBackgound": { "light": "#15171A", "dark": "#191A1E" },
     "heroImg": "/portfolio/image/projects/youtube-clone/youtube2.jpg",
     "galleryImgs": [
       "/portfolio/image/projects/youtube-clone/youtube1.jpg",
@@ -588,46 +928,71 @@
       "vi": "Nhà phát triển Full Stack"
     },
     "overview": {
-      "en": "An online video sharing website with real-time interactive features, video management, and traffic statistics for the Admin.",
-      "vi": "Website chia sẻ video trực tuyến với các tính năng tương tác thời gian thực, quản lý video và thống kê lưu lượng truy cập cho Admin."
+      "en": "Streamly is a video sharing platform with real-time interaction features (like, comment, subscribe), video management, and live traffic analytics for admins. It also supports voice search for finding videos faster.",
+      "vi": "Streamly là nền tảng chia sẻ video với các tính năng tương tác thời gian thực (like, comment, subscribe), quản lý video và thống kê lưu lượng trực tiếp cho quản trị. Hệ thống cũng hỗ trợ tìm kiếm video bằng giọng nói để truy cập nhanh hơn."
     },
     "problem": {
-      "en": "Handling user interactions (Like, Comment, Subscribe) smoothly and implementing voice search for videos.",
-      "vi": "Xử lý các tương tác người dùng (Like, Comment, Subscribe) mượt mà và tìm kiếm video bằng giọng nói."
+      "en": "Delivering smooth real-time engagement and giving admins live visibility into viewership, while making discovery frictionless with voice search.",
+      "vi": "Đảm bảo tương tác thời gian thực mượt mà, cho quản trị cái nhìn trực tiếp về lượt xem, đồng thời giúp khám phá nội dung dễ dàng hơn bằng tìm kiếm giọng nói."
     },
     "processSteps": [
       {
         "title": {
           "en": "Voice Search",
-          "vi": "Tìm kiếm bằng giọng nói"
+          "vi": "Tìm kiếm bằng Giọng nói"
         },
         "description": {
-          "en": "Integrated Web Speech API to support voice-based video search.",
-          "vi": "Tích hợp Web Speech API để hỗ trợ người dùng tìm kiếm video bằng giọng nói."
+          "en": "Integrated the Web Speech API to let users find videos by voice.",
+          "vi": "Tích hợp Web Speech API cho phép người dùng tìm video bằng giọng nói."
         }
       },
       {
         "title": {
-          "en": "Real-time Stats",
-          "vi": "Thống kê thời gian thực"
+          "en": "Real-time Analytics",
+          "vi": "Phân tích Thời gian thực"
         },
         "description": {
           "en": "Tracked live viewer counts and traffic statistics for the admin panel.",
-          "vi": "Theo dõi số lượng người xem trực tiếp và thống kê truy cập cho trang quản trị."
+          "vi": "Theo dõi số người xem trực tiếp và thống kê truy cập cho trang quản trị."
         }
       }
     ],
-    "results": [],
+    "results": [
+      {
+        "value": 3,
+        "suffix": "",
+        "label": {
+          "en": "Real-time interactions",
+          "vi": "Tương tác thời gian thực"
+        }
+      },
+      {
+        "value": 100,
+        "suffix": "%",
+        "label": {
+          "en": "Voice search support",
+          "vi": "Hỗ trợ tìm kiếm giọng nói"
+        }
+      },
+      {
+        "value": 5,
+        "suffix": "+",
+        "label": {
+          "en": "Admin stat metrics",
+          "vi": "Chỉ số thống kê Admin"
+        }
+      }
+    ],
     "githubLink": "",
     "prevSlug": "phong-vu-clone",
     "prevTitle": {
-      "en": "Phong Vu Shop Clone",
-      "vi": "Phong Vu Shop Clone"
+      "en": "ElectroMart",
+      "vi": "ElectroMart"
     },
     "nextSlug": "internet-banking",
     "nextTitle": {
-      "en": "Internet Banking",
-      "vi": "Internet Banking"
+      "en": "KBIZ Internet Banking",
+      "vi": "KBIZ Internet Banking"
     }
   }
 ]

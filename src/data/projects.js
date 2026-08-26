@@ -4,9 +4,6 @@ import projectsData from './projects.json';
 
 export const projects = projectsData;
 
-// Biến tạm thời để bật/tắt tính năng xem chi tiết dự án
-export const FEATURE_PROJECT_DETAILS_ENABLED = true;
-
 export function getProjectBySlug(slug, lang = 'vi') {
     const project = projects.find(p => p.slug === slug) || projects[0]
     
@@ -31,4 +28,13 @@ export function getProjectBySlug(slug, lang = 'vi') {
             label: translate(r.label)
         }))
     }
+}
+
+// Resolve the thumbnail background color for a given theme ('light' | 'dark').
+// Accepts the new { light, dark } object form and falls back to legacy string values.
+export function getProjectBgColor(project, theme = 'dark') {
+    const bg = project?.colorBackgound
+    if (!bg) return undefined
+    if (typeof bg === 'string') return bg
+    return bg[theme] ?? bg.light ?? bg.dark ?? undefined
 }

@@ -2,13 +2,13 @@
   <div class="app-wrapper">
 
     <!-- Cursor glow - color adapts to theme -->
-    <div class="cursor-glow" ref="cursorGlow"></div>
+    <div class="cursor-glow" ref="cursorGlow" v-if="!isBare"></div>
 
     <!-- Page Loader -->
     <PageLoader v-if="showLoader" @loaded="onLoaded" />
 
     <!-- Navbar -->
-    <AppNavbar v-if="!showLoader" />
+    <AppNavbar v-if="!showLoader && !isBare" />
 
     <!-- Route content with page transition -->
     <router-view v-slot="{ Component }">
@@ -17,10 +17,10 @@
       </transition>
     </router-view>
 
-    <AppFooter v-if="!showLoader" />
+    <AppFooter v-if="!showLoader && !isBare" />
 
     <!-- Scroll to top -->
-    <button class="scroll-top-btn" :class="{ visible: showScrollTop }" @click="scrollToTop" aria-label="Scroll to top">
+    <button v-if="!isBare" class="scroll-top-btn" :class="{ visible: showScrollTop }" @click="scrollToTop" aria-label="Scroll to top">
       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor"
         stroke-width="2.5" viewBox="0 0 24 24">
         <path d="m18 15-6-6-6 6" />
@@ -31,7 +31,7 @@
 
 <script setup>
 
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Lenis from 'lenis'
@@ -85,8 +85,17 @@ function handleLenisScroll({ scroll }) {
 }
 
 // ====== GSAP ScrollTrigger refresh + scroll-to-top on route change ======
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 const router = useRouter()
+const route = useRoute()
+const isBare = computed(() => route.meta.bare)
+
+// Bare demo routes render a full-bleed standalone site — strip the portfolio
+// chrome. The frame shadow lives on #app, so toggle a class the CSS can target.
+watch(isBare, (bare) => {
+  const app = document.getElementById('app')
+  if (app) app.classList.toggle('is-bare', !!bare)
+}, { immediate: true })
 router.afterEach(() => {
   lenis?.scrollTo(0, { immediate: true })
   setTimeout(() => ScrollTrigger.refresh(), 150)
@@ -100,6 +109,10 @@ onMounted(() => {
     smoothWheel: true,
     touchMultiplier: 1.8,
     infinite: false,
+    // Let horizontal gestures over a scrollable child (the Blossom galleries)
+    // reach that element instead of being swallowed by page smoothing.
+    // Vertical gestures still fall through to Lenis.
+    allowNestedScroll: true,
   })
 
   // Sync Lenis with GSAP's ticker so ScrollTrigger plays nice
@@ -205,6 +218,10 @@ onUnmounted(() => {
 }
 
 /* ====== THEME-AWARE FRAME SHADOW ====== */
+/* Bare demo routes: strip the fixed frame shadow for a standalone site */
+#app.is-bare::after {
+  display: none;
+}
 #app::after {
   content: "";
   position: fixed;

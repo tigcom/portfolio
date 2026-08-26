@@ -2,32 +2,23 @@ import { createApp } from 'vue'
 import { createRouter, createWebHashHistory } from 'vue-router'
 import App from './App.vue'
 import './styles/main.css'
+import '@blossom-carousel/vue/style.css'
 
-// Route views
-import HomeView from './views/HomeView.vue'
-import AboutView from './views/AboutView.vue'
-import ProjectsView from './views/ProjectsView.vue'
-import ProjectDetailView from './views/ProjectDetailView.vue'
-import ProjectDetailInternetBanking from './views/ProjectDetailInternetBanking.vue' // Import the new component
-import ContactView from './views/ContactView.vue'
-import MarketplaceView from './views/MarketplaceView.vue'
-import MarketplaceDetailView from './views/MarketplaceDetailView.vue'
-
-// Setup Router
+// Route views are lazy-loaded to keep the initial bundle small — the marketplace
+// demo mini-apps and their kit are only fetched when a visitor opens a template.
 const router = createRouter({
     history: createWebHashHistory(),
     routes: [
-        { path: '/', name: 'home', component: HomeView },
-        { path: '/about', name: 'about', component: AboutView },
-        { path: '/projects', name: 'projects', component: ProjectsView },
-        // Existing route for generic project detail
-        { path: '/projects/:slug', name: 'project-detail', component: ProjectDetailView },
-        // New route for Internet Banking detail page
-        { path: '/projects/internet-banking', name: 'project-detail-internet-banking', component: ProjectDetailInternetBanking },
-        { path: '/contact', name: 'contact', component: ContactView },
+        { path: '/', name: 'home', component: () => import('./views/HomeView.vue') },
+        { path: '/about', name: 'about', component: () => import('./views/AboutView.vue') },
+        { path: '/projects', name: 'projects', component: () => import('./views/ProjectsView.vue') },
+        // Generic project detail (handles all projects, including internet-banking)
+        { path: '/projects/:slug', name: 'project-detail', component: () => import('./views/ProjectDetailView.vue') },
+        { path: '/contact', name: 'contact', component: () => import('./views/ContactView.vue') },
         // Marketplace routes
-        { path: '/marketplace', name: 'marketplace', component: MarketplaceView },
-        { path: '/marketplace/:slug', name: 'marketplace-detail', component: MarketplaceDetailView },
+        { path: '/marketplace', name: 'marketplace', component: () => import('./views/MarketplaceView.vue') },
+        { path: '/marketplace/:slug', name: 'marketplace-detail', component: () => import('./views/MarketplaceDetailView.vue') },
+        { path: '/marketplace/:slug/demo/:page?', name: 'marketplace-demo', component: () => import('./views/MarketplaceDemoView.vue'), meta: { bare: true } },
     ],
     scrollBehavior() {
         // Lenis handles scroll-to-top on route change via router.afterEach in App.vue
@@ -42,10 +33,10 @@ router.afterEach((to) => {
         about: 'About | Phuc Khang',
         projects: 'Projects | Phuc Khang',
         'project-detail': 'Project | Phuc Khang',
-        'project-detail-internet-banking': 'KBIZ Internet Banking | Phuc Khang', // New title for specific project
         contact: 'Contact | Phuc Khang',
         marketplace: 'Marketplace | Phuc Khang',
         'marketplace-detail': 'Template | Phuc Khang',
+        'marketplace-demo': 'Demo | Phuc Khang',
     }
     document.title = titles[to.name] || 'Phuc Khang'
 })

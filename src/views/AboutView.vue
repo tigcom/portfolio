@@ -176,10 +176,10 @@ const techBadges = [
 ]
 
 const stats = [
-  { value: '3.8/4', label: 'about.gpaAchievement' },
-  { value: '3', label: 'about.excellentSems' },
-  { value: '5+', label: 'about.coreServices' },
   { value: '2+', label: 'about.yearExpShort' },
+  { value: '7', label: 'about.projectsDone' },
+  { value: '12+', label: 'about.coreServices' },
+  { value: '5+', label: 'about.happyClients' },
 ]
 
 const experience = [
@@ -194,22 +194,22 @@ const experience = [
     tags: ['Spring Boot 3.x', 'Microservices', 'Kafka', 'Temporal', 'Resilience4j']
   },
   {
-    num: '02', company: 'Graduation Project (DATN)',
+    num: '02', company: 'Voyago — Travel Booking',
     role: { en: 'Full-Stack Developer', vi: 'Nhà phát triển Full-Stack' },
     period: '05/2025 — 09/2025',
     desc: {
-      en: 'Built an airline and tour booking platform (Traveloka Clone). Designed the booking flow, real-time seat holding, and integrated a simulated payment gateway.',
-      vi: 'Xây dựng nền tảng đặt vé máy bay và tour du lịch (Traveloka Clone). Thiết kế luồng đặt vé, giữ chỗ thời gian thực và tích hợp cổng thanh toán mô phỏng.'
+      en: 'Built Voyago, a flight and tour booking platform. Designed the booking flow, real-time seat holding, and integrated a simulated payment gateway.',
+      vi: 'Xây dựng Voyago, nền tảng đặt vé máy bay và tour du lịch. Thiết kế luồng đặt vé, giữ chỗ thời gian thực và tích hợp cổng thanh toán mô phỏng.'
     },
     tags: ['Spring Boot', 'Vue.js', 'Redis', 'Socket.io', 'Docker']
   },
   {
-    num: '03', company: 'Personal Projects',
+    num: '03', company: 'Commerce & Media Products',
     role: { en: 'Java Backend Developer', vi: 'Nhà phát triển Backend Java' },
     period: '2024 — 2025',
     desc: {
-      en: 'Developed clone projects like Phong Vu Shop (Java 5) and Youtube (Java 4), focusing on MVC architecture, security, and data processing.',
-      vi: 'Phát triển các dự án mô phỏng như Phong Vu Shop Clone (Java 5) và Youtube Clone (Java 4), tập trung vào kiến trúc MVC, bảo mật và xử lý dữ liệu.'
+      en: 'Built ElectroMart (electronics retail) and Streamly (video sharing), focusing on MVC architecture, security, and data processing.',
+      vi: 'Phát triển ElectroMart (bán lẻ điện tử) và Streamly (chia sẻ video), tập trung vào kiến trúc MVC, bảo mật và xử lý dữ liệu.'
     },
     tags: ['Java Servlet', 'JSP', 'Thymeleaf', 'SQL Server']
   },

@@ -70,15 +70,20 @@
             <h2 class="section-subtitle" style="text-align: center; margin-bottom: 40px;">
                 {{ t('common.interface') }}
             </h2>
-            
-            <!-- Banking -->
-            <BankingMockup v-if="project.slug === 'internet-banking' || project.slug === 'banking-system'" />
-            
+
+            <!-- Reusable gallery (data-driven layout) -->
+            <ProjectGallery
+                v-if="project.galleryLayout"
+                :variant="project.galleryLayout"
+                :images="project.galleryImgs"
+                :title="project.title"
+            />
+
             <!-- Traveloka -->
             <TravelokaMockup v-else-if="project.slug === 'traveloka-clone'" />
-            
+
             <!-- E-commerce (Sixdo, Phong Vu) -->
-            <DesktopMockup 
+            <DesktopMockup
                 v-else-if="['sixdo-ecommerce', 'phong-vu-clone'].includes(project.slug)"
                 :mainImg="project.galleryImgs[0]"
                 :secondaryImg1="project.galleryImgs[1]"
@@ -87,7 +92,7 @@
             />
 
             <!-- Youtube Clone -->
-            <DesktopMockup 
+            <DesktopMockup
                 v-else-if="project.slug === 'youtube-clone'"
                 :mainImg="project.galleryImgs[1]"
                 :secondaryImg1="project.galleryImgs[0]"
@@ -96,7 +101,7 @@
             />
 
             <!-- Motorbike (Window Mockup placeholder - using Desktop for now) -->
-            <DesktopMockup 
+            <DesktopMockup
                 v-else-if="project.slug === 'motorbike-sales-system'"
                 :mainImg="project.galleryImgs[0]"
                 :secondaryImg1="project.galleryImgs[1]"
@@ -159,9 +164,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { getProjectBySlug } from '../data/projects.js'
 import { useLang } from '../data/translations.js'
 
-import BankingMockup from '../components/projectDetail/mockups/BankingMockup.vue'
 import TravelokaMockup from '../components/projectDetail/mockups/TravelokaMockup.vue'
 import DesktopMockup from '../components/projectDetail/mockups/DesktopMockup.vue'
+import ProjectGallery from '../components/projectDetail/ProjectGallery.vue'
 
 const { state, t } = useLang()
 const route = useRoute()
@@ -224,7 +229,7 @@ watch(() => route.params.slug, () => {
 .pd-content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
 .pd-text-block h2 { margin-bottom: 24px; }
 .pd-text-block p { line-height: 1.8; color: var(--text-secondary); }
-.pd-mockup-section { padding: 80px 0; background: var(--bg-800); margin: 80px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.pd-mockup-section { padding: 40px 0; background: var(--bg-800); margin: 40px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .pd-process-steps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 48px; margin-top: 48px; }
 .pd-step { position: relative; padding-left: 40px; }
 .step-num { position: absolute; left: 0; top: 0; font-family: var(--font-clash); color: var(--highlight); font-size: 0.8rem; }

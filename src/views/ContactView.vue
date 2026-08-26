@@ -88,6 +88,13 @@
                   <span>{{ t('contact.messageSent') }}</span>
                 </div>
               </Transition>
+
+              <Transition name="fade-up">
+                <div v-if="error" class="form-error">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
+                  <span>{{ error }}</span>
+                </div>
+              </Transition>
             </form>
           </div>
 
@@ -147,6 +154,7 @@ const StarIcon = { template: `<svg xmlns="http://www.w3.org/2000/svg" width="14"
 const form = reactive({ name: '', email: '', subject: '', inquiry: [], message: '' })
 const submitting = ref(false)
 const submitted = ref(false)
+const error = ref('')
 
 const inquiryOptions = [
   { label: { en: 'Full-time Role', vi: 'Vị trí Full-time' }, value: 'fulltime' },
@@ -157,10 +165,29 @@ const inquiryOptions = [
 
 async function handleSubmit() {
   submitting.value = true
-  await new Promise(r => setTimeout(r, 1500))
-  submitting.value = false
-  submitted.value = true
-  Object.assign(form, { name: '', email: '', subject: '', inquiry: [], message: '' })
+  submitted.value = false
+  error.value = ''
+  try {
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: form.name,
+        email: form.email,
+        subject: form.subject,
+        inquiry: form.inquiry,
+        message: form.message,
+      }),
+    })
+    if (!res.ok) throw new Error(`Request failed (${res.status})`)
+    submitted.value = true
+    Object.assign(form, { name: '', email: '', subject: '', inquiry: [], message: '' })
+  } catch (e) {
+    console.error('Contact form error:', e)
+    error.value = t('contact.sendError')
+  } finally {
+    submitting.value = false
+  }
 }
 
 function onFocus(e) {
@@ -263,6 +290,7 @@ onMounted(() => {
 .checkbox-label input:checked ~ .checkbox-custom::after { content: ''; position: absolute; width: 5px; height: 9px; border: 2px solid var(--bg-900); border-top: none; border-left: none; transform: rotate(45deg) translate(-1px, -1px); }
 .btn-submit { align-self: flex-start; margin-top: 8px; }
 .form-success { display: flex; align-items: center; gap: 12px; padding: 16px 20px; background: rgba(181,255,109,0.08); border: 1px solid rgba(181,255,109,0.3); border-radius: 12px; color: var(--highlight); font-size: 0.9rem; }
+.form-error { display: flex; align-items: center; gap: 12px; padding: 16px 20px; background: rgba(255,99,99,0.08); border: 1px solid rgba(255,99,99,0.3); border-radius: 12px; color: #ff6363; font-size: 0.9rem; }
 .fade-up-enter-active { transition: all 0.5s ease; }
 .fade-up-enter-from { opacity: 0; transform: translateY(20px); }
 .contact-info-wrapper { display: flex; flex-direction: column; gap: 40px; }

@@ -32,12 +32,26 @@
       <!-- ── Projects Grid ───────────────────────────────── -->
       <section class="projects-grid" ref="gridEl" @mouseleave="onCardLeave">
         <router-link v-for="(project, i) in filteredProjects" :key="project.slug"
-          :to="FEATURE_PROJECT_DETAILS_ENABLED ? `/projects/${project.slug}` : ''" class="project-card"
-          :class="{ 'card-stagger': i % 2 === 1, 'project-card--disabled': !FEATURE_PROJECT_DETAILS_ENABLED }"
-          @mouseenter="onCardHover(i)" @click="!FEATURE_PROJECT_DETAILS_ENABLED && $event.preventDefault()">
+          :to="`/projects/${project.slug}`" class="project-card"
+          :class="{ 'card-stagger': i % 2 === 1 }"
+          @mouseenter="onCardHover(i)">
           <!-- Image -->
-          <div class="card-img-wrapper" :style="{ backgroundColor: project.colorBackgound }">
-            <img :src="project.img" :alt="getTranslated(project.title)" class="card-img" loading="lazy" />
+          <div class="card-img-wrapper" :class="specialCardClasses(project)"
+            :style="{ backgroundColor: projectBg(project) }">
+            <template v-if="project.slug === 'company-clean-hub'">
+              <div class="phone-stack">
+                <div v-for="(src, pi) in phoneThumbs(project)" :key="pi" class="phone"
+                  :class="{ 'phone--back': pi === 1 }">
+                  <img :src="src" :alt="getTranslated(project.title)" class="card-img" loading="lazy" />
+                  <span class="phone-notch"></span>
+                  <span class="phone-home"></span>
+                  <span class="phone-btn phone-btn--power"></span>
+                  <span class="phone-btn phone-btn--vol-up"></span>
+                  <span class="phone-btn phone-btn--vol-down"></span>
+                </div>
+              </div>
+            </template>
+            <img v-else :src="project.img" :alt="getTranslated(project.title)" class="card-img" loading="lazy" />
           </div>
 
           <!-- Info -->
@@ -88,7 +102,7 @@
 import { ref, computed, watch, nextTick, onMounted, onUnmounted } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { projects, FEATURE_PROJECT_DETAILS_ENABLED } from '../data/projects.js'
+import { projects, getProjectBgColor } from '../data/projects.js'
 import { useLang } from '../data/translations.js'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -98,6 +112,29 @@ const { state, t } = useLang()
 // ─── Helpers ────────────────────────────────────────────────────────────────
 const getTranslated = (obj) =>
   obj && typeof obj === 'object' ? (obj[state.lang] ?? obj.en ?? obj) : obj
+
+// ─── Theme-aware thumbnail background ───────────────────────────────────────
+const currentTheme = ref(document.documentElement.getAttribute('data-theme') || 'dark')
+const projectBg = (project) => getProjectBgColor(project, currentTheme.value)
+
+// ─── Special case projects (K+ / Company Clean Hub) — extra image padding ───
+const SPECIAL_SLUGS = ['kplus-digital-banking', 'company-clean-hub']
+
+const specialCardClasses = (project) => {
+  if (!SPECIAL_SLUGS.includes(project.slug)) return ''
+  return project.slug === 'company-clean-hub'
+    ? 'card-img--special card-img--phone'
+    : 'card-img--special'
+}
+
+// Ảnh màn hình cho mockup 2 điện thoại (Clean Hub)
+const phoneThumbs = (project) => {
+  if (project.slug !== 'company-clean-hub') return []
+  return [
+    project.img,
+    '/portfolio/image/projects/company-clean-hub/thumbnail2.png',
+  ]
+}
 
 // ─── Title words for word-by-word reveal ────────────────────────────────────
 const titleWords = computed(() => t('home.selectedProjects').split(' '))
@@ -152,17 +189,17 @@ function onCardHover(index) {
   if (!cards?.length) return
 
   cards.forEach((card, i) => {
-    const img = card.querySelector('.card-img')
+    const wrapper = card.querySelector('.card-img-wrapper')
     const title = card.querySelector('.card-title')
 
     if (i === index) {
-      // Hovered card: zoom image + highlight title
-      gsap.to(img, { scale: 1.05, duration: 0.55, ease: 'cubic-bezier(0.45, 0, 0.55, 1)' })
+      // Hovered card: zoom image (via --card-zoom so the border scales too)
+      gsap.to(wrapper, { '--card-zoom': 1.05, duration: 0.55, ease: 'cubic-bezier(0.45, 0, 0.55, 1)' })
       gsap.to(title, { color: 'var(--highlight)', duration: 0.28, ease: 'power2.out' })
       gsap.to(card, { opacity: 1, duration: 0.4, ease: 'cubic-bezier(0.25, 0.8, 0.25, 1)' })
     } else {
       // Other cards: reset image + dim
-      gsap.to(img, { scale: 1, duration: 0.55, ease: 'cubic-bezier(0.45, 0, 0.55, 1)' })
+      gsap.to(wrapper, { '--card-zoom': 1, duration: 0.55, ease: 'cubic-bezier(0.45, 0, 0.55, 1)' })
       gsap.to(title, { color: 'var(--text-primary)', duration: 0.28, ease: 'power2.out' })
       gsap.to(card, { opacity: 0.38, duration: 0.4, ease: 'cubic-bezier(0.25, 0.8, 0.25, 1)' })
     }
@@ -175,11 +212,11 @@ function onCardLeave() {
   if (!cards?.length) return
 
   cards.forEach((card) => {
-    const img = card.querySelector('.card-img')
+    const wrapper = card.querySelector('.card-img-wrapper')
     const title = card.querySelector('.card-title')
 
     // Reset all cards to normal state
-    gsap.to(img, { scale: 1, duration: 0.55, ease: 'cubic-bezier(0.45, 0, 0.55, 1)' })
+    gsap.to(wrapper, { '--card-zoom': 1, duration: 0.55, ease: 'cubic-bezier(0.45, 0, 0.55, 1)' })
     gsap.to(title, { color: 'var(--text-primary)', duration: 0.28, ease: 'power2.out' })
     gsap.to(card, { opacity: 1, duration: 0.4, ease: 'cubic-bezier(0.25, 0.8, 0.25, 1)' })
   })
@@ -201,8 +238,15 @@ watch(filteredProjects, () => {
 
 // ─── ScrollTrigger cleanup ───────────────────────────────────────────────────
 const _sts = []
+let themeObserver = null
 
 onMounted(() => {
+  // ── 0. Track theme changes for thumbnail backgrounds ────────────────────
+  themeObserver = new MutationObserver(() => {
+    currentTheme.value = document.documentElement.getAttribute('data-theme') || 'dark'
+  })
+  themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
+
   // ── 1. Header entrance timeline ──────────────────────────────────────────
   const tl = gsap.timeline({ delay: 0.08, defaults: { ease: 'power3.out' } })
 
@@ -280,6 +324,7 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
+  themeObserver?.disconnect()
   _sts.forEach(st => st.kill())
   _sts.length = 0
 })
@@ -409,13 +454,10 @@ onUnmounted(() => {
   /* GSAP handles all hover effects */
 }
 
-.project-card--disabled {
-  cursor: default !important;
-}
-
 /* Image container */
 .card-img-wrapper {
   position: relative;
+  --card-zoom: 1;
   width: 100%;
   aspect-ratio: 3 / 2;
   overflow: hidden;
@@ -430,7 +472,137 @@ onUnmounted(() => {
   object-fit: cover;
   display: block;
   will-change: transform;
-  /* GSAP handles image scaling */
+  transform: scale(var(--card-zoom, 1));
+}
+
+/* ── Special case cards (K+ / Company Clean Hub) ─────────────────────────── */
+/* Container: padding + lớp khung nằm phía sau ảnh */
+.card-img--special {
+  position: relative;
+  padding: 46px;
+}
+
+/* Lớp khung trắng (border) — nằm phía sau ảnh */
+.card-img--special::before {
+  content: '';
+  position: absolute;
+  inset: 40px;                 /* = padding 46px − border 6px */
+  border: 6px solid rgba(250, 250, 250, 0.804);
+  border-radius: 20px;         /* = 14px ảnh + 6px border */
+  pointer-events: none;
+  transform: scale(var(--card-zoom, 1));
+}
+
+/* Ảnh: bỏ border, giữ bo góc + bóng + backdrop blur */
+.card-img--special .card-img {
+  position: relative;
+  border: none;
+  border-radius: 14px;
+  filter: drop-shadow(18px 18px 13px rgba(0, 0, 0, 0.305));
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* Clean Hub: ảnh mobile → mockup iPhone */
+.card-img--phone {
+  padding: 32px; /* giảm padding để máy to hơn (mặc định 46px) */
+}
+
+.card-img--phone::before {
+  display: none;
+}
+
+.card-img--phone .phone-stack {
+  position: relative;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  transform: scale(var(--card-zoom, 1));
+}
+
+.card-img--phone .phone {
+  position: relative;
+  height: 100%;
+  aspect-ratio: 392 / 846;
+  flex-shrink: 0;
+  padding: 3px;                 /* viền đen mỏng (bezel) */
+  background: #0b0d10;
+  border: 2px solid #aeb4bc;    /* viền bạc kim loại */
+  border-radius: 25px;          /* = 20px màn hình + 3px + 2px */
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.45);
+}
+
+.card-img--phone .phone--back {
+  transform: translateY(14px);
+}
+
+.card-img--phone .card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: none;
+  border-radius: 20px;
+  filter: none;
+}
+
+/* Notch (dynamic island) + chấm camera */
+.card-img--phone .phone-notch {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 52px;
+  height: 14px;
+  background: #000;
+  border-radius: 999px;
+}
+.card-img--phone .phone-notch::after {
+  content: '';
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #1a2030;
+}
+
+/* Home indicator (thanh swipe trắng) */
+.card-img--phone .phone-home {
+  position: absolute;
+  bottom: 7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 999px;
+}
+
+/* Nút nguồn + âm lượng (trồi ra ngoài viền) */
+.card-img--phone .phone-btn {
+  position: absolute;
+  width: 3px;
+  background: #aeb4bc;
+  border-radius: 2px;
+}
+.card-img--phone .phone-btn--power {
+  right: -6px;
+  top: 32%;
+  height: 46px;
+}
+.card-img--phone .phone-btn--vol-up {
+  left: -6px;
+  top: 18%;
+  height: 28px;
+}
+.card-img--phone .phone-btn--vol-down {
+  left: -6px;
+  top: 27%;
+  height: 28px;
 }
 
 /* Remove CSS hover rule - GSAP handles this */
@@ -624,6 +796,14 @@ onUnmounted(() => {
 
   .card-img-wrapper {
     border-radius: 16px;
+  }
+
+  .card-img--special {
+    padding: 32px;
+  }
+
+  .card-img--special::before {
+    inset: 26px; /* = 32px padding − 6px border */
   }
 
   .card-title {

@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "skills": {
+    "blossom-carousel-core": {
+      "source": "blossom-carousel.com",
+      "sourceUrl": "https://www.blossom-carousel.com",
+      "sourceType": "well-known",
+      "computedHash": "fa49fc3412b602646f8a45ee2e43dede990a98d98676b751d961256c6efdb6b1",
+      "wellKnownDigest": "sha256:7b509823f07cfa882fb6b3a666ee6a9d925a394f8fe9b7552f2b4d8927ada521"
+    },
+    "blossom-carousel-vue": {
+      "source": "blossom-carousel.com",
+      "sourceUrl": "https://www.blossom-carousel.com",
+      "sourceType": "well-known",
+      "computedHash": "5a8f8b6a1c5458140ebe1f790e761a7cc87392effc6fe2b0d7d27016afa47103",
+      "wellKnownDigest": "sha256:2ad7c2dee9383f4a549e9af6b9869aa6a65e289a4cdc84e5244589ca589f8dbd"
+    }
+  }
+}
