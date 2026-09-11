@@ -1,7 +1,7 @@
 <template>
   <main class="marketplace-view">
-    <!-- Cursor follow dot -->
-    <div class="cursor-dot" ref="cursorDot"></div>
+    <!-- Target cursor: locks onto tags & preview images -->
+    <TargetCursor target-selector=".tag, .preview-thumb, .filter-tab" />
 
     <div class="container">
 
@@ -144,6 +144,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { templates } from '../data/templates.js'
 import { getCategoryList } from '../data/categories.js'
 import { useLang } from '../data/translations.js'
+import TargetCursor from '../components/effects/TargetCursor.vue'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -199,29 +200,6 @@ const ctaBtn = ref(null)
 const ctaLabelEl = ref(null)
 const ctaHeadingEl = ref(null)
 const ctaBtnRipple = ref(null)
-const cursorDot = ref(null)
-
-// ─── Cursor follow ────────────────────────────────────────────────────────────
-let cursorRaf = null
-let targetX = 0, targetY = 0
-
-function onMouseMove(e) {
-  targetX = e.clientX
-  targetY = e.clientY
-}
-
-function animateCursorDot() {
-  if (cursorDot.value) {
-    gsap.to(cursorDot.value, {
-      x: targetX,
-      y: targetY,
-      duration: 0.15,
-      ease: 'power2.out',
-      overwrite: true,
-    })
-  }
-  cursorRaf = requestAnimationFrame(animateCursorDot)
-}
 
 // ─── Card hover effects ───────────────────────────────────────────────────────
 const hoveredCard = ref(-1)
@@ -334,10 +312,6 @@ watch(filteredTemplates, () => {
 const _sts = []
 
 onMounted(() => {
-  // ── Cursor dot ────────────────────────────────────────────────────────────
-  document.addEventListener('mousemove', onMouseMove, { passive: true })
-  animateCursorDot()
-
   // ── 1. Header entrance timeline ───────────────────────────────────────────
   const tl = gsap.timeline({ delay: 0.06, defaults: { ease: 'power3.out' } })
 
@@ -469,8 +443,6 @@ onMounted(() => {
 onUnmounted(() => {
   _sts.forEach(st => st.kill())
   _sts.length = 0
-  document.removeEventListener('mousemove', onMouseMove)
-  cancelAnimationFrame(cursorRaf)
 })
 </script>
 
@@ -479,22 +451,6 @@ onUnmounted(() => {
 .marketplace-view {
   padding-top: 140px;
   padding-bottom: 100px;
-}
-
-/* ── Cursor dot ──────────────────────────────────────────────────────────── */
-.cursor-dot {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 8px;
-  height: 8px;
-  background: var(--highlight);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  mix-blend-mode: difference;
-  will-change: transform;
-  transform: translate(-50%, -50%);
 }
 
 /* ── Header ──────────────────────────────────────────────────────────────── */
@@ -1015,8 +971,6 @@ onUnmounted(() => {
   .cta-inner { padding: 52px 8px 0; }
   .cta-heading { font-size: clamp(1.7rem, 7vw, 2.8rem); margin-bottom: 28px; }
   .cta-btn { padding: 12px 26px; font-size: 0.92rem; }
-
-  .cursor-dot { display: none; }
 }
 
 /* ── Responsive — Small phones ───────────────────────────────────────────── */

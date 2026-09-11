@@ -51,10 +51,12 @@ import { useRoute } from 'vue-router'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useLang } from '../data/translations.js'
+import { useEffectsEnabled } from '../composables/useEffectsEnabled.js'
 
 gsap.registerPlugin(ScrollTrigger)
 
 const { state, t, setLang } = useLang()
+const { toggleEffects } = useEffectsEnabled()
 const route = useRoute()
 const isScrolled = ref(false)
 const isDark = ref(true)
@@ -64,8 +66,8 @@ const navInnerRef = ref(null)
 const navLinks = [
   { path: '/', label: 'nav.home' },
   { path: '/about', label: 'nav.about' },
-  { path: '/projects', label: 'nav.projects' },
   { path: '/marketplace', label: 'nav.marketplace' },
+  { path: '/projects', label: 'nav.projects' },
   { path: '/contact', label: 'nav.contact' },
 ]
 
@@ -235,6 +237,10 @@ onUnmounted(() => {
   color: var(--text-primary);
   letter-spacing: -1px;
   margin-right: 24px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
 }
 
 .nav-logo:hover {

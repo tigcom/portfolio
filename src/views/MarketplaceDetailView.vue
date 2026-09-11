@@ -13,6 +13,14 @@
 
     <!-- ── Hero ──────────────────────────────────────────── -->
     <section class="mpd-hero">
+      <div class="mpd-hero-bg" aria-hidden="true">
+        <DotField
+          :dot-spacing="14"
+          :dot-radius="2.0"
+          :bulge-strength="70"
+          :show-glow="false"
+        />
+      </div>
       <div class="container">
         <div class="mpd-hero-grid">
 
@@ -31,16 +39,18 @@
             </div>
 
             <div class="mpd-hero-btns" ref="btnsEl">
-              <router-link
-                v-if="template.type === 'app'"
-                :to="`/marketplace/${template.slug}/demo`"
-                class="btn btn-primary"
-              >
-                <span>{{ t('marketplace.viewDemo') }}</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M5 12h14M13 6l6 6-6 6"/>
-                </svg>
-              </router-link>
+              <StarBorder as="div" radius="100px" color="var(--highlight)" speed="1.5s" thickness="9px">
+                <router-link
+                  v-if="template.type === 'app'"
+                  :to="`/marketplace/${template.slug}/demo`"
+                  class="btn btn-primary"
+                >
+                  <span>{{ t('marketplace.viewDemo') }}</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M5 12h14M13 6l6 6-6 6"/>
+                  </svg>
+                </router-link>
+              </StarBorder>
               <span class="demo-badge-hero">
                 <span class="demo-dot"></span>
                 {{ t('marketplace.demoBadge') }}
@@ -56,22 +66,27 @@
               :to="`/marketplace/${template.slug}/demo`"
               class="preview-shot"
             >
-              <img
-                class="preview-shot-img"
-                :src="`/demos/${template.slug}/thumb.jpg`"
-                :alt="template.title"
-                loading="eager"
-              />
-              <span class="preview-shot-shade"></span>
-              <span class="preview-shot-overlay">
-                <span class="preview-shot-play">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="currentColor"
-                    stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M6 4l14 8-14 8V4z" />
-                  </svg>
-                </span>
-                <span class="preview-shot-label">{{ t('marketplace.viewDemo') }}</span>
-              </span>
+              <DecayCard
+                :width="previewSize.width"
+                :height="previewSize.height"
+                :image="`/demos/${template.slug}/thumb.jpg`"
+                :image-width="1200"
+                :image-height="800"
+                :max-displacement="350"
+                :base-frequency="0.008"
+              >
+                <template #overlay>
+                  <span class="preview-shot-overlay">
+                    <span class="preview-shot-play">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="currentColor"
+                        stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M6 4l14 8-14 8V4z" />
+                      </svg>
+                    </span>
+                    <span class="preview-shot-label">{{ t('marketplace.viewDemo') }}</span>
+                  </span>
+                </template>
+              </DecayCard>
             </router-link>
 
             <!-- Mockup (legacy single-screen) -->
@@ -154,12 +169,14 @@
     <!-- ── Stats ──────────────────────────────────────────── -->
     <section class="mpd-stats-section" ref="statsEl">
       <div class="container">
-        <div class="mpd-stats-grid">
-          <div class="mpd-stat" v-for="s in templateStats" :key="s.label">
-            <div class="mpd-stat-val">{{ s.val }}</div>
-            <div class="mpd-stat-label">{{ state.lang === 'vi' ? s.labelVi : s.labelEn }}</div>
+        <BorderGlow :border-radius="20" :edge-sensitivity="30">
+          <div class="mpd-stats-grid">
+            <div class="mpd-stat" v-for="s in templateStats" :key="s.label">
+              <div class="mpd-stat-val">{{ s.val }}</div>
+              <div class="mpd-stat-label">{{ state.lang === 'vi' ? s.labelVi : s.labelEn }}</div>
+            </div>
           </div>
-        </div>
+        </BorderGlow>
       </div>
     </section>
 
@@ -210,9 +227,10 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { getTemplateBySlug, templates } from '../data/templates.js'
 import { useLang } from '../data/translations.js'
-
-// Mockup components (legacy single-screen render — only furniture remains)
-import FurnitureMockup from '../components/marketplace/mockups/FurnitureMockup.vue'
+import DecayCard from '../components/effects/DecayCard.vue'
+import BorderGlow from '../components/effects/BorderGlow.vue'
+import StarBorder from '../components/effects/StarBorder.vue'
+import DotField from '../components/effects/DotField.vue'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -226,12 +244,7 @@ const template = computed(() => getTemplateBySlug(route.params.slug, state.lang)
 const getTranslated = (obj) =>
   obj && typeof obj === 'object' ? (obj[state.lang] ?? obj.en ?? obj) : obj
 
-// ─── Mockup component map ─────────────────────────────────────────────────────
-const mockupMap = {
-  'furniture-showcase': FurnitureMockup,
-}
-
-const mockupComponent = computed(() => mockupMap[route.params.slug] || null)
+const mockupComponent = null
 
 // ─── Category icon fallback ───────────────────────────────────────────────────
 const categoryIconMap = {
@@ -276,6 +289,21 @@ const featuresEl = ref(null)
 const featureItems = ref([])
 const statsEl = ref(null)
 const navEl = ref(null)
+
+// ─── DecayCard sizing ────────────────────────────────────────────────────────
+// DecayCard takes fixed-px width/height (no % sizing); scale it down on narrow
+// screens so the card never overflows the hero column.
+const DECAY_W = 540
+const DECAY_H = 360
+const previewSize = ref({ width: DECAY_W, height: DECAY_H })
+
+function updatePreviewSize() {
+  const scale = Math.min(1, (window.innerWidth - 48) / DECAY_W)
+  previewSize.value = {
+    width: Math.round(DECAY_W * scale),
+    height: Math.round(DECAY_H * scale)
+  }
+}
 
 // ─── Feature hover ────────────────────────────────────────────────────────────
 function onFeatureHover(e) {
@@ -465,6 +493,8 @@ function initAnimations() {
 
 onMounted(() => {
   initAnimations()
+  updatePreviewSize()
+  window.addEventListener('resize', updatePreviewSize)
 })
 
 // Re-run animations when route changes (slug changes)
@@ -476,6 +506,7 @@ watch(() => route.params.slug, () => {
 onUnmounted(() => {
   _sts.forEach(st => st.kill())
   _sts.length = 0
+  window.removeEventListener('resize', updatePreviewSize)
 })
 </script>
 
@@ -506,7 +537,21 @@ onUnmounted(() => {
 
 /* ── Hero ────────────────────────────────────────────────────────────────── */
 .mpd-hero {
+  position: relative;
   padding-bottom: 80px;
+}
+
+.mpd-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.mpd-hero .container {
+  position: relative;
+  z-index: 1;
 }
 
 .mpd-hero-grid {
@@ -674,11 +719,10 @@ onUnmounted(() => {
 /* ── Demo preview shot (mini-app) ────────────────────────────────────────── */
 .preview-shot {
   position: relative;
-  display: block;
-  border-radius: 24px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ 
   text-decoration: none;
   will-change: transform;
 }
@@ -831,9 +875,6 @@ onUnmounted(() => {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0;
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  overflow: hidden;
 }
 
 .mpd-stat {

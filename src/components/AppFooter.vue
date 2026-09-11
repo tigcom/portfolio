@@ -5,7 +5,7 @@
         <!-- LightPillar background effect -->
         <LightPillar :topColor="pillarTopColor" :bottomColor="pillarBottomColor" :intensity="pillarIntensity"
           :rotationSpeed="0.8" :glowAmount="0.002" :pillarWidth="3.3" :pillarHeight="0.4" :noiseIntensity="0"
-          :pillarRotation="25" :interactive="true" :resolutionScale="100" :targetFPS="60" mixBlendMode="screen" />
+          :pillarRotation="25" :interactive="true" :resolutionScale="60" :targetFPS="30" mixBlendMode="screen" />
 
         <!-- Content overlay (must be above the canvas) -->
         <div class="footer-cta-content">
@@ -146,4 +146,15 @@ const pillarIntensity = computed(() =>
   color: var(--text-primary);
 }
 
+@media (max-width: 600px) {
+  .footer-bottom {
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: 20px;
+  }
+  
+  .footer-nav {
+    display: none;
+  }
+}
 </style>

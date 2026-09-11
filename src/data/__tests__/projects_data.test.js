@@ -5,7 +5,7 @@ import projectsData from '../projects.json';
  * Gallery styles implemented by ProjectGallery.vue. Keep in sync with the
  * STYLES map there — an unknown galleryLayout renders nothing.
  */
-const GALLERY_STYLES = ['cover-flow', 'flipbook', 'cards'];
+const GALLERY_STYLES = ['cover-flow', 'flipbook', 'cards', 'orbit-3d'];
 
 describe('Projects gallery data', () => {
   it('exposes galleryImgs as a non-empty array of string paths', () => {

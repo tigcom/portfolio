@@ -86,7 +86,6 @@ onUnmounted(() => {
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: 100%;
-  column-gap: 20px;
   scroll-snap-type: x mandatory;
   width: 100%;
   padding-inline: calc(50% - var(--fb-w) / 2);
@@ -94,18 +93,41 @@ onUnmounted(() => {
 }
 
 .pg-flipbook__slide {
+  position: relative;
   width: var(--fb-w);
   aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: 14px;
   box-shadow: var(--shadow-lg);
+  transition: box-shadow 0.5s ease-in-out !important;
   scroll-snap-align: center;
 
   view-timeline: --flip inline;
 }
 
 .pg-flipbook__slide.is-active {
-  box-shadow: 0 0 0 3px var(--highlight), var(--shadow-lg);
+  z-index: 1;
+  box-shadow: 0 0 0 4px var(--highlight), var(--shadow-lg);
+}
+
+/* Non-focused slides: frosted glass — blur + darken + grain. */
+.pg-flipbook__slide:not(.is-active) .pg-flipbook__card {
+  filter: blur(4px) brightness(0.55) saturate(0.85);
+}
+
+.pg-flipbook__slide::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  transition: opacity 0.5s ease-in-out !important;
+}
+
+.pg-flipbook__slide:not(.is-active)::after {
+  opacity: 0.15;
 }
 
 .pg-flipbook__card {
@@ -117,6 +139,7 @@ onUnmounted(() => {
   border: none;
   background: var(--bg-900);
   cursor: zoom-in;
+  transition: filter 0.5s ease-in-out !important;
 
   animation: pg-flip-parallax linear both;
   animation-timeline: --flip;

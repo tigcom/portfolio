@@ -521,30 +521,5 @@
       "en": ["Brutalist grid", "Oversized typography", "Motion reveals", "Project showcase", "High-contrast palette"],
       "vi": ["Lưới brutalism", "Typography cỡ lớn", "Hiệu ứng lộ chuyển động", "Trưng bày dự án", "Bảng màu tương phản cao"]
     }
-  },
-  {
-    "slug": "furniture-showcase",
-    "num": "19",
-    "title": { "en": "Furniture & Interior Showcase", "vi": "Giới thiệu Đồ gỗ & Nội thất" },
-    "subtitle": { "en": "Elegant brand website for furniture companies", "vi": "Website thương hiệu sang trọng cho công ty đồ gỗ" },
-    "category": "branding",
-    "type": "mockup",
-    "style": "Elegant Brand Showcase",
-    "tags": ["Showcase", "Product Gallery", "Brand Story", "Catalog", "Contact"],
-    "year": "2025",
-    "colorBackground": "linear-gradient(135deg, #2d1b0e 0%, #4a2c17 50%, #6b3f1f 100%)",
-    "accentColor": "#d4a574",
-    "overview": {
-      "en": "A premium brand website template for furniture and interior design companies. Features a stunning product gallery, brand story section, and seamless inquiry flow to convert visitors into clients.",
-      "vi": "Template website thương hiệu cao cấp cho các công ty đồ gỗ và thiết kế nội thất. Nổi bật với gallery sản phẩm ấn tượng, phần câu chuyện thương hiệu và luồng liên hệ mượt mà để chuyển đổi khách thăm thành khách hàng."
-    },
-    "about": {
-      "en": "Crafted to showcase craftsmanship. This template uses warm tones, full-bleed imagery, and smooth scroll animations to create an immersive brand experience that reflects the quality of your products.",
-      "vi": "Được tạo ra để trưng bày tay nghề thủ công. Template này sử dụng tông màu ấm, hình ảnh toàn màn hình và hiệu ứng cuộn mượt mà để tạo ra trải nghiệm thương hiệu đắm chìm phản ánh chất lượng sản phẩm của bạn."
-    },
-    "features": {
-      "en": ["Hero with parallax imagery", "Product catalog & filtering", "Material & finish selector", "Brand story timeline", "Showroom locator map", "Custom quote request form", "Instagram feed integration", "Awards & certifications section"],
-      "vi": ["Hero với hiệu ứng parallax", "Danh mục sản phẩm & lọc", "Bộ chọn vật liệu & hoàn thiện", "Timeline câu chuyện thương hiệu", "Bản đồ showroom", "Form yêu cầu báo giá", "Tích hợp feed Instagram", "Phần giải thưởng & chứng nhận"]
-    }
   }
 ]

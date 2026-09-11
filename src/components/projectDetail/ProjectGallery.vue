@@ -25,6 +25,7 @@ import GalleryLightbox from './gallery/GalleryLightbox.vue'
 import GalleryCoverFlow from './gallery/GalleryCoverFlow.vue'
 import GalleryFlipbook from './gallery/GalleryFlipbook.vue'
 import GalleryCards from './gallery/GalleryCards.vue'
+import GalleryOrbit3D from './gallery/GalleryOrbit3D.vue'
 
 /**
  * Gallery styles, keyed by the `galleryLayout` value in projects.json.
@@ -34,6 +35,7 @@ const STYLES = {
   'cover-flow': GalleryCoverFlow,
   flipbook: GalleryFlipbook,
   cards: GalleryCards,
+  'orbit-3d': GalleryOrbit3D,
 }
 
 const props = defineProps({

@@ -1,6 +1,18 @@
 <template>
   <main class="about-view">
 
+    <!-- Full-page cursor-following ribbons background -->
+    <div class="about-ribbons" aria-hidden="true">
+      <Ribbons
+        :base-thickness="30"
+        :base-spring="0.01"
+        :speed-multiplier="0.5"
+        :max-age="500"
+        :enable-fade="false"
+        :enable-shader-effect="false"
+      />
+    </div>
+
     <!-- HERO -->
     <section class="about-hero section">
       <div class="container">
@@ -150,6 +162,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import myImage from '../assets/khang.png'
 import myResume from '../assets/CV_EN-1 (2).pdf'
 import { useLang } from '../data/translations.js'
+import Ribbons from '../components/effects/Ribbons.vue'
 
 const { state, t } = useLang()
 gsap.registerPlugin(ScrollTrigger)
@@ -282,7 +295,7 @@ onMounted(() => {
 
   // Hero entrance
   const tl = gsap.timeline({ delay: 0.1, defaults: { ease: 'power3.out' } })
-  tl.fromTo(imgColEl.value, { opacity: 0, x: -60, scale: 0.95 }, { opacity: 1, x: 0, scale: 1, duration: 1 }, 0)
+  tl.fromTo(imgColEl.value, { opacity: 0, y: 40, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 1 }, 0)
   tl.fromTo(labelEl.value, { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.5 }, 0.3)
   tl.fromTo(titleEl.value, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8 }, 0.4)
   tl.fromTo(descEl.value, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, 0.65)
@@ -297,6 +310,27 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.about-ribbons {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+/* Keep page content above the full-page ribbons layer. */
+.about-hero,
+.marquee-section,
+.experience-section,
+.awards-section {
+  position: relative;
+  z-index: 1;
+}
+
 .about-hero {
   padding-top: 100px !important;
   min-height: 100vh;
@@ -326,7 +360,7 @@ onMounted(() => {
 .about-cta-wrap {
   position: absolute;
   bottom: -24px;
-  right: -24px;
+  right: 0px;
   width: 120px;
   height: 120px;
 }

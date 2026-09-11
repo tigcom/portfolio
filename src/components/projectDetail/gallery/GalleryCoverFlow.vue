@@ -94,7 +94,10 @@ onUnmounted(() => {
   /* Half-viewport minus half-card on each side → lets the first and last
      cards scroll into the centre like every other card. */
   padding-inline: calc(50% - var(--cf-card-w) / 2);
-  padding-block: 24px;
+  /* Vertical room for the tilted cards: with perspective below, a card at
+     ±55° yaws its near edge ~26% taller than the flat card. 100px clears
+     even the full 1000px card with margin to spare. */
+  padding-block: 100px;
   scroll-snap-type: x mandatory;
 }
 
@@ -112,7 +115,9 @@ onUnmounted(() => {
 
 /* Stage — absolute layer that slides + zooms across the track. */
 .pg-coverflow__stage {
-  perspective: 500px;
+  /* Keep the perspective point far from the card plane: 500px made the
+     near edge of a 1000px card (rotated 55°) blow up ~5.5× and clip. */
+  perspective: 2000px;
   position: absolute;
   inset: 0;
   transform-style: preserve-3d;
@@ -131,6 +136,7 @@ onUnmounted(() => {
   border-radius: 14px;
   background: var(--bg-900);
   box-shadow: var(--shadow-lg);
+  transition: box-shadow 0.5s ease-in-out !important;
   /* Side cards: grab hand (drag to spin the cover flow). */
   cursor: grab;
   overflow: hidden;
@@ -142,7 +148,7 @@ onUnmounted(() => {
 /* Centred card: magnifying glass (click to zoom) + accent ring. */
 .pg-coverflow__slide.is-active .pg-coverflow__card {
   cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24' fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cg stroke='%23000' stroke-width='4'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/g%3E%3Cg stroke='%23fff' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/g%3E%3C/svg%3E") 16 16, zoom-in;
-  box-shadow: 0 0 0 3px var(--highlight), var(--shadow-lg);
+  box-shadow: 0 0 0 4px var(--highlight), var(--shadow-lg);
 }
 
 .pg-coverflow__card img {

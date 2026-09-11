@@ -11,6 +11,16 @@
 
     <!-- Hero -->
     <section class="pd-hero section">
+      <div class="pd-hero-bg" aria-hidden="true">
+        <Antigravity
+          :count="240"
+          :magnet-radius="8"
+          :ring-radius="9"
+          :particle-size="2.6"
+          :lerp-speed="0.05"
+          :auto-animate="true"
+        />
+      </div>
       <div class="container">
         <div class="pd-hero-grid">
           <div class="pd-hero-content">
@@ -41,8 +51,21 @@
               </a>
             </div>
           </div>
-          <div class="pd-hero-img-wrapper" ref="heroImgEl">
-            <img :src="project.heroImg" :alt="project.title" class="pd-hero-img">
+          <div  ref="heroImgEl">
+            <TiltedCard
+              :image-src="project.heroImg"
+              :alt-text="project.title"
+              container-width="100%"
+              image-width="100%"
+              image-height="auto"
+              radius="32px"
+              :caption-text="project.title"
+              :rotate-amplitude="10"
+              :scale-on-hover="1.05"
+              :show-tooltip="true"
+              :show-mobile-warning="false"
+            >
+            </TiltedCard>
           </div>
         </div>
       </div>
@@ -66,8 +89,27 @@
 
     <!-- UI Mockup Integration -->
     <div class="pd-mockup-section" ref="fullImgEl">
+        <div class="pd-mockup-bg" aria-hidden="true">
+            <SplashCursor
+                :dye-resolution="512"
+                :auto-demo="true"
+                :auto-speed="0.5"
+                :auto-intensity="2.2"
+                :auto-resume-delay="3000"
+            />
+        </div>
         <div class="container">
-            <h2 class="section-subtitle" style="text-align: center; margin-bottom: 40px;">
+            <TrueFocus
+                v-if="isKplus"
+                tag="h2"
+                :sentence="t('common.interface')"
+                justify="right"
+                :blur-amount="5"
+                :animation-duration="0.5"
+                :pause-between-animations="1"
+                :style="{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', marginTop: '44px', marginBottom: '40px' }"
+            />
+            <h2 v-else class="section-subtitle" :style="{ textAlign: 'center', marginBottom: '40px' }">
                 {{ t('common.interface') }}
             </h2>
 
@@ -129,10 +171,12 @@
     <section class="pd-results-section section">
       <div class="container">
         <div class="pd-results-grid">
-          <div v-for="res in project.results" :key="res.label" class="pd-result-card" v-reveal>
-            <div class="pd-result-val">{{ res.value }}{{ res.suffix }}</div>
-            <div class="pd-result-label">{{ res.label }}</div>
-          </div>
+          <SpotlightCard v-for="res in project.results" :key="res.label" v-reveal>
+            <div class="pd-result-card">
+              <div class="pd-result-val">{{ res.value }}{{ res.suffix }}</div>
+              <div class="pd-result-label">{{ res.label }}</div>
+            </div>
+          </SpotlightCard>
         </div>
       </div>
     </section>
@@ -167,12 +211,20 @@ import { useLang } from '../data/translations.js'
 import TravelokaMockup from '../components/projectDetail/mockups/TravelokaMockup.vue'
 import DesktopMockup from '../components/projectDetail/mockups/DesktopMockup.vue'
 import ProjectGallery from '../components/projectDetail/ProjectGallery.vue'
-
+import TrueFocus from '../components/projectDetail/TrueFocus.vue'
+import TiltedCard from '../components/effects/TiltedCard.vue'
+import SpotlightCard from '../components/effects/SpotlightCard.vue'
+import Antigravity from '../components/effects/Antigravity.vue'
+import SplashCursor from '../components/effects/SplashCursor.vue'
 const { state, t } = useLang()
 const route = useRoute()
 gsap.registerPlugin(ScrollTrigger)
 
 const project = computed(() => getProjectBySlug(route.params.slug, state.lang))
+
+// K+ uses the 3D orbit gallery (left-aligned, cards rising upward), so its
+// "Interface" heading gets the TrueFocus effect, right-aligned to stay clear.
+const isKplus = computed(() => project.value?.slug === 'kplus-digital-banking')
 
 const vReveal = {
   mounted(el) {
@@ -214,7 +266,9 @@ watch(() => route.params.slug, () => {
 .pd-back { padding-bottom: 20px; }
 .pd-back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; transition: color 0.3s; }
 .pd-back-link:hover { color: var(--highlight); }
-.pd-hero { padding-top: 40px !important; }
+.pd-hero { position: relative; padding-top: 40px !important; }
+.pd-hero-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: 0.75; }
+.pd-hero .container { position: relative; z-index: 1; }
 .pd-hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
 .pd-num { font-family: var(--font-clash); color: var(--highlight); font-size: 0.9rem; margin-right: 12px; }
 .pd-category { font-size: 0.85rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; }
@@ -229,14 +283,16 @@ watch(() => route.params.slug, () => {
 .pd-content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
 .pd-text-block h2 { margin-bottom: 24px; }
 .pd-text-block p { line-height: 1.8; color: var(--text-secondary); }
-.pd-mockup-section { padding: 40px 0; background: var(--bg-800); margin: 40px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.pd-mockup-section { position: relative; padding: 40px 0; background: var(--bg-800); margin: 40px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.pd-mockup-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: 0.85; }
+.pd-mockup-section .container { position: relative; z-index: 1; }
 .pd-process-steps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 48px; margin-top: 48px; }
 .pd-step { position: relative; padding-left: 40px; }
 .step-num { position: absolute; left: 0; top: 0; font-family: var(--font-clash); color: var(--highlight); font-size: 0.8rem; }
 .pd-step h3 { font-size: 1.3rem; margin-bottom: 12px; }
 .pd-step p { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; }
 .pd-results-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-.pd-result-card { text-align: center; border: 1px solid var(--border); padding: 32px 20px; border-radius: 24px; background: var(--bg-800); }
+.pd-result-card { text-align: center; padding: 32px 20px; border-radius: 24px; background: var(--bg-800); }
 .pd-result-val { font-family: var(--font-clash); font-size: 2.5rem; color: var(--highlight); margin-bottom: 8px; }
 .pd-result-label { font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; }
 .pd-nav { border-top: 1px solid var(--border); padding: 80px 0 !important; }

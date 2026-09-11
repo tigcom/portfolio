@@ -6,16 +6,22 @@
         :key="i"
         data-blossom-slide
         class="pg-cards__slide"
-        :class="{ 'is-active': i === activeIndex }"
+        :class="{
+          'is-active': i === activeIndex,
+          'is-left': i < activeIndex,
+          'is-right': i > activeIndex,
+        }"
       >
-        <button
-          class="pg-cards__card"
-          :aria-label="`Zoom ${title} — screen ${i + 1}`"
-          @click="$emit('open', i)"
-        >
-          <img :src="img" :alt="`${title} — screen ${i + 1}`" loading="lazy" />
-          <span class="pg-cards__num">{{ pad(i + 1) }}</span>
-        </button>
+        <div class="pg-cards__frame">
+          <button
+            class="pg-cards__card"
+            :aria-label="`Zoom ${title} — screen ${i + 1}`"
+            @click="$emit('open', i)"
+          >
+            <img :src="img" :alt="`${title} — screen ${i + 1}`" loading="lazy" />
+            <span class="pg-cards__num">{{ pad(i + 1) }}</span>
+          </button>
+        </div>
       </li>
     </BlossomCarousel>
   </div>
@@ -78,7 +84,10 @@ onUnmounted(() => {
 /* ══════════════════════════════════════════════════════════════
    SLIDESHOW — one card per screen; the card pans a little
    (subtle parallax) as the slide scrolls through. The centred
-   slide gets a highlight ring (gap keeps it from being covered).
+   slide gets a highlight ring; the side cards lean back, shrink
+   and tuck behind it. The depth transform lives on the inner
+   `.frame` (NOT the slide) so BlossomCarousel still measures each
+   slide at its true centre and the snap stays accurate.
    ══════════════════════════════════════════════════════════════ */
 .pg-cards__viewport {
   --cards-w: min(74vw, 1000px);
@@ -86,7 +95,6 @@ onUnmounted(() => {
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: 100%;
-  column-gap: 20px;
   scroll-snap-type: x mandatory;
   width: 100%;
   padding-inline: calc(50% - var(--cards-w) / 2);
@@ -94,18 +102,63 @@ onUnmounted(() => {
 }
 
 .pg-cards__slide {
+  position: relative;
   width: var(--cards-w);
   aspect-ratio: 16 / 9;
-  overflow: hidden;
-  border-radius: 18px;
-  box-shadow: var(--shadow-lg);
   scroll-snap-align: center;
 
   view-timeline: --cards inline;
 }
 
 .pg-cards__slide.is-active {
-  box-shadow: 0 0 0 3px var(--highlight), var(--shadow-lg);
+  z-index: 1;
+}
+
+/* Frame carries the visual card (rounded + clipped) and the depth transform. */
+.pg-cards__frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 18px;
+  box-shadow: var(--shadow-lg);
+  transition: box-shadow 0.5s ease-in-out, transform 0.5s ease-in-out !important;
+}
+
+.pg-cards__slide.is-active .pg-cards__frame {
+  box-shadow: 0 0 0 4px var(--highlight), var(--shadow-lg);
+}
+
+/* Depth: side cards lean away — near edge (toward centre) stays large (~80%)
+   while the far edge recedes (~40%). translateX pulls them in to tuck behind
+   the centre card (~7% overlap). */
+.pg-cards__slide.is-left .pg-cards__frame {
+  transform: translateX(30%) perspective(800px) rotateY(-32deg) scale(0.55);
+}
+
+.pg-cards__slide.is-right .pg-cards__frame {
+  transform: translateX(-30%) perspective(800px) rotateY(32deg) scale(0.55);
+}
+
+/* Non-focused slides: frosted glass — blur + darken + grain. */
+.pg-cards__slide:not(.is-active) .pg-cards__card {
+  filter: blur(4px) brightness(0.55) saturate(0.85);
+}
+
+.pg-cards__frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  transition: opacity 0.5s ease-in-out !important;
+}
+
+.pg-cards__slide:not(.is-active) .pg-cards__frame::after {
+  opacity: 0.15;
 }
 
 .pg-cards__card {
@@ -117,6 +170,7 @@ onUnmounted(() => {
   border: none;
   background: var(--bg-900);
   cursor: zoom-in;
+  transition: filter 0.5s ease-in-out !important;
 
   animation: pg-cards-parallax linear both;
   animation-timeline: --cards;

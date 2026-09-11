@@ -96,8 +96,21 @@
               'sp-card--stagger': i % 2 === 1
             }" @mouseenter="onCardHover(i)">
             <!-- Image -->
-            <div class="sp-card-img-wrap " :style="{ backgroundColor: projectBg(project) }">
-              <img :src="project.img" :alt="project.title[state.lang]" class="sp-card-img" loading="lazy" />
+            <div class="sp-card-img-wrap" :class="specialCardClasses(project)" :style="{ backgroundColor: projectBg(project) }">
+              <template v-if="project.slug === 'company-clean-hub'">
+                <div class="phone-stack">
+                  <div v-for="(src, pi) in phoneThumbs(project)" :key="pi" class="phone"
+                    :class="{ 'phone--back': pi === 1 }">
+                    <img :src="src" :alt="project.title[state.lang]" class="sp-card-img" loading="lazy" />
+                    <span class="phone-notch"></span>
+                    <span class="phone-home"></span>
+                    <span class="phone-btn phone-btn--power"></span>
+                    <span class="phone-btn phone-btn--vol-up"></span>
+                    <span class="phone-btn phone-btn--vol-down"></span>
+                  </div>
+                </div>
+              </template>
+              <img v-else :src="project.img" :alt="project.title[state.lang]" class="sp-card-img" loading="lazy" />
             </div>
 
             <!-- Info -->
@@ -134,7 +147,10 @@
           <StarIcon /><span class="shimmer">{{ t('home.areasOfExpertise') }}</span>
         </div>
         <h2 class="section-heading" v-reveal>{{ t('home.whatIDoBest') }}</h2>
-        <div class="expertise-grid">
+        <div class="expertise-grid" ref="expertiseGrid">
+          <div class="expertise-metaballs" ref="metaballsLayer" aria-hidden="true">
+            <MetaBalls :ball-count="12" :animation-size="25"  :cursor-ball-size="2"/>
+          </div>
           <div v-for="(exp, i) in expertise" :key="exp.title" class="expertise-card" v-reveal :data-delay="i * 0.1">
             <div class="expertise-num">{{ exp.num }}</div>
             <div class="expertise-icon"><i :class="exp.icon"></i></div>
@@ -187,6 +203,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { projects, getProjectBgColor } from '../data/projects.js'
 import { useLang } from '../data/translations.js'
+import MetaBalls from '../components/effects/MetaBalls.vue'
 
 const { state, t } = useLang()
 gsap.registerPlugin(ScrollTrigger)
@@ -216,6 +233,24 @@ const featuredProjects = projects.slice(0, 4)
 const currentTheme = ref(document.documentElement.getAttribute('data-theme') || 'dark')
 const projectBg = (project) => getProjectBgColor(project, currentTheme.value)
 let themeObserver = null
+
+// ─── Special case projects (K+ / Company Clean Hub) ─────────────────────────
+const SPECIAL_SLUGS = ['kplus-digital-banking', 'company-clean-hub']
+
+const specialCardClasses = (project) => {
+  if (!SPECIAL_SLUGS.includes(project.slug)) return ''
+  return project.slug === 'company-clean-hub'
+    ? 'card-img--special card-img--phone'
+    : 'card-img--special'
+}
+
+const phoneThumbs = (project) => {
+  if (project.slug !== 'company-clean-hub') return []
+  return [
+    project.img,
+    '/image/projects/company-clean-hub/thumbnail2.png',
+  ]
+}
 
 const techBadges = [
   { icon: 'fab fa-java', name: 'Java' }, { icon: 'fas fa-leaf', name: 'Spring Boot' },
@@ -254,15 +289,15 @@ function onCardHover(index) {
   if (!spCards?.length) return
 
   spCards.forEach((card, i) => {
-    const img = card.querySelector('.sp-card-img')
+    const wrapper = card.querySelector('.sp-card-img-wrap')
 
     if (i === index) {
-      // Hovered card: zoom image
-      gsap.to(img, { scale: 1.05, duration: 0.55, ease: 'cubic-bezier(0.45, 0, 0.55, 1)' })
+      // Hovered card: zoom image (via --card-zoom so the frame/phone scale too)
+      gsap.to(wrapper, { '--card-zoom': 1.05, duration: 0.55, ease: 'cubic-bezier(0.45, 0, 0.55, 1)' })
       gsap.to(card, { opacity: 1, duration: 0.4, ease: 'cubic-bezier(0.25, 0.8, 0.25, 1)' })
     } else {
       // Other cards: dim
-      gsap.to(img, { scale: 1, duration: 0.55, ease: 'cubic-bezier(0.45, 0, 0.55, 1)' })
+      gsap.to(wrapper, { '--card-zoom': 1, duration: 0.55, ease: 'cubic-bezier(0.45, 0, 0.55, 1)' })
       gsap.to(card, { opacity: 0.38, duration: 0.4, ease: 'cubic-bezier(0.25, 0.8, 0.25, 1)' })
     }
   })
@@ -274,9 +309,9 @@ function onCardLeave() {
   if (!spCards?.length) return
 
   spCards.forEach((card) => {
-    const img = card.querySelector('.sp-card-img')
+    const wrapper = card.querySelector('.sp-card-img-wrap')
     // Reset all cards to normal state
-    gsap.to(img, { scale: 1, duration: 0.55, ease: 'cubic-bezier(0.45, 0, 0.55, 1)' })
+    gsap.to(wrapper, { '--card-zoom': 1, duration: 0.55, ease: 'cubic-bezier(0.45, 0, 0.55, 1)' })
     gsap.to(card, { opacity: 1, duration: 0.4, ease: 'cubic-bezier(0.25, 0.8, 0.25, 1)' })
   })
 }
@@ -292,6 +327,8 @@ const spLabel = ref(null)
 const spTitle = ref(null)
 const spGrid = ref(null)
 const viewAllBtn = ref(null)
+const expertiseGrid = ref(null)
+const metaballsLayer = ref(null)
 
 // ── View-All button: wave scale + text swap ──────────────────────────────
 function onBtnHover() {
@@ -304,11 +341,45 @@ function onBtnHover() {
     .to(el, { scale: 1.0, duration: 0.24, ease: 'back.out(2.5)' })
 }
 
+// ── Expertise: mask the single MetaBalls to the four card rects ──────────
+// Builds an SVG mask whose opaque regions are exactly the four cards, so the
+// metaballs shows through the card interiors but not the gaps between them.
+// Uses offsetLeft/offsetTop (transform-independent) so the reveal animation
+// (gsap translateY) doesn't skew the mask.
+let expertiseResizeObserver = null
+const syncExpertiseMask = () => {
+  const grid = expertiseGrid.value
+  const layer = metaballsLayer.value
+  if (!grid || !layer) return
+
+  const cards = grid.querySelectorAll('.expertise-card')
+  const w = grid.offsetWidth
+  const h = grid.offsetHeight
+  if (!cards.length || !w || !h) return
+
+  let rects = ''
+  cards.forEach((card) => {
+    const radius = parseFloat(getComputedStyle(card).borderTopLeftRadius) || 24
+    rects += `<rect x="${card.offsetLeft}" y="${card.offsetTop}" width="${card.offsetWidth}" height="${card.offsetHeight}" rx="${radius}" fill="#fff"/>`
+  })
+
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">${rects}</svg>`
+  const url = `url("data:image/svg+xml,${encodeURIComponent(svg)}")`
+  layer.style.maskImage = url
+  layer.style.webkitMaskImage = url
+  layer.style.maskSize = '100% 100%'
+  layer.style.webkitMaskSize = '100% 100%'
+}
+
 onMounted(() => {
   themeObserver = new MutationObserver(() => {
     currentTheme.value = document.documentElement.getAttribute('data-theme') || 'dark'
   })
   themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
+
+  syncExpertiseMask()
+  expertiseResizeObserver = new ResizeObserver(syncExpertiseMask)
+  if (expertiseGrid.value) expertiseResizeObserver.observe(expertiseGrid.value)
 
   const tl = gsap.timeline({ delay: 0.1, defaults: { ease: 'power3.out' } })
 
@@ -368,6 +439,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   themeObserver?.disconnect()
+  expertiseResizeObserver?.disconnect()
 })
 </script>
 
@@ -633,6 +705,7 @@ onUnmounted(() => {
 /* Image wrapper */
 .sp-card-img-wrap {
   position: relative;
+  --card-zoom: 1;
   width: 100%;
   aspect-ratio: 3 / 2;
   overflow: hidden;
@@ -648,7 +721,134 @@ onUnmounted(() => {
   object-fit: cover;
   display: block;
   will-change: transform;
-  /* Remove CSS transition - GSAP handles image scaling */
+  transform: scale(var(--card-zoom, 1));
+}
+
+/* ── Special case cards (K+ / Company Clean Hub) ─────────────────────────── */
+.card-img--special {
+  position: relative;
+  padding: 46px;
+}
+
+.card-img--special::before {
+  content: '';
+  position: absolute;
+  inset: 40px;
+  border: 6px solid rgba(250, 250, 250, 0.804);
+  border-radius: 20px;
+  pointer-events: none;
+  transform: scale(var(--card-zoom, 1));
+}
+
+.card-img--special .sp-card-img {
+  position: relative;
+  border: none;
+  border-radius: 14px;
+  filter: drop-shadow(18px 18px 13px rgba(0, 0, 0, 0.305));
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.card-img--phone {
+  padding: 32px;
+}
+
+.card-img--phone::before {
+  display: none;
+}
+
+.card-img--phone .phone-stack {
+  position: relative;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  transform: scale(var(--card-zoom, 1));
+}
+
+.card-img--phone .phone {
+  position: relative;
+  height: 100%;
+  aspect-ratio: 392 / 846;
+  flex-shrink: 0;
+  padding: 3px;
+  background: #0b0d10;
+  border: 2px solid #aeb4bc;
+  border-radius: 25px;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.45);
+}
+
+.card-img--phone .phone--back {
+  transform: translateY(14px);
+}
+
+.card-img--phone .sp-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: none;
+  border-radius: 20px;
+  filter: none;
+}
+
+.card-img--phone .phone-notch {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 52px;
+  height: 14px;
+  background: #000;
+  border-radius: 999px;
+}
+
+.card-img--phone .phone-notch::after {
+  content: '';
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #1a2030;
+}
+
+.card-img--phone .phone-home {
+  position: absolute;
+  bottom: 7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 999px;
+}
+
+.card-img--phone .phone-btn {
+  position: absolute;
+  width: 3px;
+  background: #aeb4bc;
+  border-radius: 2px;
+}
+
+.card-img--phone .phone-btn--power {
+  right: -6px;
+  top: 32%;
+  height: 46px;
+}
+
+.card-img--phone .phone-btn--vol-up {
+  left: -6px;
+  top: 18%;
+  height: 28px;
+}
+
+.card-img--phone .phone-btn--vol-down {
+  left: -6px;
+  top: 27%;
+  height: 28px;
 }
 
 /* Remove hover rule - GSAP handles this now */
@@ -770,18 +970,25 @@ onUnmounted(() => {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
+  position: relative;
+}
+
+/* One MetaBalls fills the whole grid behind the cards. A CSS mask (built in JS
+   from the real card rects) keeps it visible only inside the four cards and
+   clips it out of the gaps between them. */
+.expertise-metaballs {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .expertise-card {
+  position: relative;
+  z-index: 1;
   border: 1px solid var(--border);
   border-radius: 24px;
   padding: 32px;
-  transition: border-color 0.3s, background 0.3s;
-}
-
-.expertise-card:hover {
-  border-color: var(--highlight);
-  background: var(--highlight-glow);
 }
 
 .expertise-num {

@@ -1,6 +1,19 @@
 <template>
   <main class="contact-view">
 
+    <!-- Particles background -->
+    <div class="contact-particles" aria-hidden="true">
+      <Particles
+        :particle-count="240"
+        :particle-spread="5"
+        :speed="0.12"
+        :particle-base-size="90"
+        :alpha-particles="true"
+        :disable-rotation="true"
+        :move-particles-on-hover="true"
+      />
+    </div>
+
     <!-- Hero -->
     <section class="contact-hero section">
       <div class="container">
@@ -145,6 +158,7 @@ import { ref, reactive, onMounted } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useLang } from '../data/translations.js'
+import Particles from '../components/effects/Particles.vue'
 
 const { state, t } = useLang()
 gsap.registerPlugin(ScrollTrigger)
@@ -179,6 +193,10 @@ async function handleSubmit() {
         message: form.message,
       }),
     })
+    if (res.status === 429) {
+      error.value = t('contact.rateLimited')
+      return
+    }
     if (!res.ok) throw new Error(`Request failed (${res.status})`)
     submitted.value = true
     Object.assign(form, { name: '', email: '', subject: '', inquiry: [], message: '' })
@@ -257,12 +275,25 @@ onMounted(() => {
   )
   tl.fromTo(subtitleEl.value, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, '<0.2')
   tl.fromTo(emailEl.value, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7 }, '<0.1')
-  gsap.from(formWrapperEl.value, { scrollTrigger: { trigger: formWrapperEl.value, start: 'top 87%' }, x: -60, opacity: 0, duration: 0.9, ease: 'power3.out' })
-  gsap.from(infoWrapperEl.value, { scrollTrigger: { trigger: infoWrapperEl.value, start: 'top 87%' }, x: 60, opacity: 0, duration: 0.9, ease: 'power3.out' })
+  gsap.from(formWrapperEl.value, { scrollTrigger: { trigger: formWrapperEl.value, start: 'top 87%' }, y: 40, opacity: 0, duration: 0.9, ease: 'power3.out' })
+  gsap.from(infoWrapperEl.value, { scrollTrigger: { trigger: infoWrapperEl.value, start: 'top 87%' }, y: 40, opacity: 0, duration: 0.9, ease: 'power3.out' })
 })
 </script>
 
 <style scoped>
+.contact-view { position: relative; }
+.contact-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+/* Keep the two content sections above the particle background. */
+.contact-hero,
+.contact-main-section {
+  position: relative;
+  z-index: 1;
+}
 .contact-hero { padding-top: 140px !important; }
 .contact-title { font-size: clamp(3.5rem, 8vw, 7rem); line-height: 1.0; margin: 16px 0 20px; }
 .title-word { display: block; overflow: hidden; }

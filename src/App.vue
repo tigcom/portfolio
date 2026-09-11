@@ -19,13 +19,14 @@
 
     <AppFooter v-if="!showLoader && !isBare" />
 
-    <!-- Scroll to top -->
-    <button v-if="!isBare" class="scroll-top-btn" :class="{ visible: showScrollTop }" @click="scrollToTop" aria-label="Scroll to top">
-      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor"
-        stroke-width="2.5" viewBox="0 0 24 24">
-        <path d="m18 15-6-6-6 6" />
-      </svg>
-    </button>
+    <!-- Mobile Bottom Navigation -->
+    <MobileBottomNav v-if="!showLoader && !isBare" />
+
+    <!-- AI Chatbot -->
+    <ChatBot v-if="!showLoader && !isBare" />
+
+    <!-- Floating Menu (replaces scroll-top-btn and chatbot trigger) -->
+    <FloatingMenu v-if="!showLoader && !isBare" />
   </div>
 </template>
 
@@ -38,6 +39,9 @@ import Lenis from 'lenis'
 import PageLoader from './components/PageLoader.vue'
 import AppNavbar from './components/AppNavbar.vue'
 import AppFooter from './components/AppFooter.vue'
+import MobileBottomNav from './components/MobileBottomNav.vue'
+import ChatBot from './components/ChatBot.vue'
+import FloatingMenu from './components/FloatingMenu.vue'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -155,6 +159,8 @@ onMounted(() => {
     { '--f-bottom': '0px', '--f-bottom-blur': '0px', duration: 1 },
     '>' // Tiếp nối ngay sau phần giữ nguyên
   )
+  
+  window.addEventListener('request-scroll-to-top', scrollToTop)
 })
 
 onUnmounted(() => {
@@ -165,10 +171,25 @@ onUnmounted(() => {
   gsap.ticker.remove((time) => lenis?.raf(time * 1000))
   document.removeEventListener('mousemove', trackMouse)
   cancelAnimationFrame(rafId)
+  window.removeEventListener('request-scroll-to-top', scrollToTop)
 })
 </script>
 
 <style>
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .app-wrapper {
+    padding-bottom: 72px; /* Prevent MobileBottomNav from covering the footer */
+  }
+}
 /* ====== THEME-AWARE CURSOR GLOW ====== */
 [data-theme="dark"] .cursor-glow {
   background: radial-gradient(circle, rgba(181, 255, 109, 0.06) 0%, transparent 60%);
