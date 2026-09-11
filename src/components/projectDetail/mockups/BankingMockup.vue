@@ -43,6 +43,7 @@
 
 <script setup>
 const vReveal = {
+  getSSRProps() { return {} },
   mounted(el) {
     const delay = parseFloat(el.dataset.delay || 0)
     // Tích hợp với logic reveal chung nếu cần, 

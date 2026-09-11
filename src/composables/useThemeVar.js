@@ -9,8 +9,10 @@ export function useThemeVar(name, fallback = '') {
   let observer = null
 
   const resolve = () => {
-    const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim()
-    if (v) value.value = v
+    if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+      const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim()
+      if (v) value.value = v
+    }
   }
 
   resolve()

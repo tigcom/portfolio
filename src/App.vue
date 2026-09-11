@@ -33,6 +33,7 @@
 <script setup>
 
 import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
+import { useHead } from '@vueuse/head'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Lenis from 'lenis'
@@ -43,6 +44,16 @@ import MobileBottomNav from './components/MobileBottomNav.vue'
 import ChatBot from './components/ChatBot.vue'
 import FloatingMenu from './components/FloatingMenu.vue'
 
+useHead({
+  title: 'Phuc Khang — Creative Developer',
+  meta: [
+    { name: 'description', content: 'Portfolio of Phuc Khang, a Full-Stack Developer & Creative Developer.' },
+    { property: 'og:title', content: 'Phuc Khang — Creative Developer' },
+    { property: 'og:description', content: 'Portfolio of Phuc Khang, a Full-Stack Developer & Creative Developer.' },
+    { property: 'og:type', content: 'website' }
+  ]
+})
+
 gsap.registerPlugin(ScrollTrigger)
 
 const showLoader = ref(true)
@@ -51,8 +62,10 @@ const cursorGlow = ref(null)
 
   // ====== Theme bootstrap (before first render) ======
   ; (function applyInitialTheme() {
-    const saved = localStorage.getItem('portfolio-theme') || 'dark'
-    document.documentElement.setAttribute('data-theme', saved)
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('portfolio-theme') || 'dark'
+      document.documentElement.setAttribute('data-theme', saved)
+    }
   })()
 
 // ====== Lenis instance (module-level so router can reach it) ======
@@ -97,8 +110,10 @@ const isBare = computed(() => route.meta.bare)
 // Bare demo routes render a full-bleed standalone site — strip the portfolio
 // chrome. The frame shadow lives on #app, so toggle a class the CSS can target.
 watch(isBare, (bare) => {
-  const app = document.getElementById('app')
-  if (app) app.classList.toggle('is-bare', !!bare)
+  if (typeof document !== 'undefined') {
+    const app = document.getElementById('app')
+    if (app) app.classList.toggle('is-bare', !!bare)
+  }
 }, { immediate: true })
 router.afterEach(() => {
   lenis?.scrollTo(0, { immediate: true })

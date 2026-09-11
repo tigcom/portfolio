@@ -262,7 +262,10 @@ function cleanup() {
 const updateColors = () => {
   // Green on a near-white background washes out much faster than lime on near-
   // black, so the dot grid needs more alpha in light mode to stay visible.
-  const isLight = document.documentElement.getAttribute('data-theme') === 'light'
+  let isLight = false
+  if (typeof document !== 'undefined') {
+    isLight = document.documentElement.getAttribute('data-theme') === 'light'
+  }
   const fromAlpha = isLight ? 0.8 : 0.7
   const toAlpha = isLight ? 0.3 : 0.22
   gradFrom = props.gradientFrom || `rgba(${highlightRgb.value}, ${fromAlpha})`

@@ -1,7 +1,7 @@
 import { reactive, readonly } from 'vue'
 
 const state = reactive({
-  lang: localStorage.getItem('lang') || 'vi'
+  lang: typeof window !== 'undefined' && window.localStorage ? localStorage.getItem('lang') || 'vi' : 'vi'
 })
 
 const translations = {

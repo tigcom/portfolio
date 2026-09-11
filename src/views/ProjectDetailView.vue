@@ -227,6 +227,7 @@ const project = computed(() => getProjectBySlug(route.params.slug, state.lang))
 const isKplus = computed(() => project.value?.slug === 'kplus-digital-banking')
 
 const vReveal = {
+  getSSRProps() { return {} },
   mounted(el) {
     const delay = parseFloat(el.dataset.delay || 0)
     gsap.set(el, { opacity: 0, y: 30 })

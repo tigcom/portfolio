@@ -215,6 +215,7 @@ const StarIcon = {
 
 // v-reveal directive (scroll reveal)
 const vReveal = {
+  getSSRProps() { return {} },
   mounted(el) {
     gsap.set(el, { opacity: 0, y: 40 })
     ScrollTrigger.create({
@@ -230,7 +231,7 @@ const vReveal = {
 const featuredProjects = projects.slice(0, 4)
 
 // ─── Theme-aware thumbnail background ─────────────────────────────────────
-const currentTheme = ref(document.documentElement.getAttribute('data-theme') || 'dark')
+const currentTheme = ref(typeof document !== 'undefined' ? (document.documentElement.getAttribute('data-theme') || 'dark') : 'dark')
 const projectBg = (project) => getProjectBgColor(project, currentTheme.value)
 let themeObserver = null
 

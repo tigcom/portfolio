@@ -198,12 +198,35 @@ async function sendUserMessage(text) {
     // Chuẩn bị history (tối đa 20 tin nhắn gần nhất)
     const history = messages.value
       .slice(-20)
-      .map(m => ({ role: m.role === 'model' ? 'model' : 'user', content: m.content }))
+      .map(m => ({ role: m.role === 'model' ? 'model' : 'user', parts: [{ text: m.content }] }))
 
-    const res = await fetch('/api/chat', {
+    // 1. Lấy API Key và System Prompt từ backend
+    const configRes = await fetch('/api/config', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ messages: history, lang: state.lang })
+      body: JSON.stringify({ lang: state.lang })
+    })
+    
+    if (!configRes.ok) throw new Error('Cannot load config')
+    const config = await configRes.json()
+
+    // 2. Gửi trực tiếp đến Gemini từ Frontend
+    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:streamGenerateContent?alt=sse&key=${config.key}`
+    const payload = {
+      contents: history,
+      systemInstruction: {
+        parts: [{ text: config.systemInstruction }]
+      },
+      generationConfig: {
+        maxOutputTokens: 1024,
+        temperature: 0.7,
+      },
+    }
+
+    const res = await fetch(geminiUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
     })
 
     if (res.status === 429) {

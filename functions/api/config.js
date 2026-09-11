@@ -1,196 +1,22 @@
-// Cloudflare Pages Function — POST /api/chat
-// Proxy yêu cầu chat đến Google Gemini API bằng streaming.
-
-const RATE_LIMIT_WINDOW_SECONDS = 60 // 60 giây TTL
-const MAX_REQUESTS_PER_WINDOW = 10
-
-export async function onRequestOptions() {
-  return new Response(null, {
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type',
-      'Access-Control-Max-Age': '86400',
-    },
-  })
-}
-
 export async function onRequestPost({ request, env }) {
-  const fingerprint = await deviceFingerprint(request)
-
-  // Chặn nếu thiết bị này vượt quá số lần cho phép trong cửa sổ thời gian
-  if (await isRateLimited(request, fingerprint)) {
-    return json({ success: false, error: 'Too many requests. Please wait a moment.' }, 429)
-  }
-
-  const contentType = request.headers.get('content-type') || ''
-  if (!contentType.includes('application/json')) {
-    return json({ success: false, error: 'Unsupported media type' }, 415)
-  }
-
   let body
   try {
     body = await request.json()
   } catch {
-    return json({ success: false, error: 'Invalid JSON' }, 400)
+    body = {}
   }
+  const lang = body.lang || 'vi'
 
-  const { messages, lang = 'vi' } = body
-
-  if (!messages || !Array.isArray(messages) || messages.length === 0) {
-    return json({ success: false, error: 'Missing or invalid messages' }, 400)
-  }
-
-  // Đánh dấu rate limit (tăng biến đếm)
-  await markRateLimited(request, fingerprint)
-
-  // Map roles và giới hạn 20 tin nhắn gần nhất
-  const mappedMessages = messages.slice(-20).map((m) => ({
-    role: m.role === 'model' ? 'model' : 'user',
-    parts: [{ text: m.content || '' }],
-  }))
-
-  const payload = {
-    contents: mappedMessages,
-    systemInstruction: { parts: [{ text: buildSystemPrompt(lang) }] },
-    generationConfig: { maxOutputTokens: 8192, temperature: 0.7 },
-  }
-
-  // Sử dụng AI Gateway nếu có, nếu không thì dùng URL mặc định
-  const baseUrl = env.GEMINI_BASE_URL || 'https://generativelanguage.googleapis.com'
-  
-  // Danh sách các model hiện có trên hệ thống, thử tuần tự
-  const models = [
-    'gemini-3.8-flash',
-    'gemini-3.7-flash',
-    'gemini-3.6-flash',
-    'gemini-3.5-flash',
-    'gemini-2.5-flash'
-  ]
-
-  let lastErrText = ''
-  let lastStatus = 502
-  const errors = []
-
-  for (const model of models) {
-    const geminiUrl = `${baseUrl}/v1beta/models/${model}:streamGenerateContent?alt=sse&key=${env.GEMINI_API_KEY}`
-    try {
-      const res = await fetch(geminiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Forwarded-For': request.headers.get('cf-connecting-ip') || '',
-        },
-        body: JSON.stringify(payload),
-      })
-
-      if (res.ok) {
-        // Trả về streaming data từ Gemini
-        return new Response(res.body, {
-          headers: {
-            'Content-Type': 'text/event-stream',
-            'Cache-Control': 'no-cache',
-            'Connection': 'keep-alive',
-            'Access-Control-Allow-Origin': '*',
-          },
-        })
-      } else {
-        lastErrText = await res.text()
-        lastStatus = res.status
-        errors.push({ model, status: res.status, error: lastErrText })
-        console.warn(`Model ${model} failed with status ${res.status}:`, lastErrText)
-        // Nếu lỗi 400 và không phải API Key lỗi (hoặc cứ thử tiếp) thì tiếp tục vòng lặp
-      }
-    } catch (e) {
-      console.error(`Request to ${model} threw an error:`, e)
-      lastErrText = e.message || String(e)
-      errors.push({ model, status: 500, error: lastErrText })
-    }
-  }
-
-  // Nếu tất cả các model đều fail
-  return json({ success: false, error: 'AI service error (All models failed)', details: errors }, lastStatus)
-}
-
-// ─── Rate limit (dùng Cache API — không cần KV binding) ─────────────────────
-
-// "Device fingerprint" = hash(IP + User-Agent) — xấp xỉ danh tính thiết bị gửi.
-async function deviceFingerprint(request) {
-  const ip = request.headers.get('cf-connecting-ip') || 'unknown'
-  const ua = request.headers.get('user-agent') || ''
-  return sha256(`${ip}|${ua}`)
-}
-
-async function sha256(text) {
-  const data = new TextEncoder().encode(text)
-  const digest = await crypto.subtle.digest('SHA-256', data)
-  return Array.from(new Uint8Array(digest)).map((b) => b.toString(16).padStart(2, '0')).join('')
-}
-
-function rateLimitKey(request, fingerprint) {
-  return new URL(`/_ratelimit/chat/${fingerprint}`, request.url).toString()
-}
-
-// true nếu đã vượt quá số lần cho phép
-async function isRateLimited(request, fingerprint) {
-  const hit = await caches.default.match(rateLimitKey(request, fingerprint))
-  if (hit) {
-    try {
-      const data = await hit.clone().json()
-      if (data.count >= MAX_REQUESTS_PER_WINDOW && Date.now() < data.resetAt) {
-        return true
-      }
-    } catch {
-      // bỏ qua lỗi parse json
-    }
-  }
-  return false
-}
-
-// Cập nhật số lần request và TTL
-async function markRateLimited(request, fingerprint) {
-  const key = rateLimitKey(request, fingerprint)
-  let count = 1
-  let resetAt = Date.now() + RATE_LIMIT_WINDOW_SECONDS * 1000
-
-  const hit = await caches.default.match(key)
-  if (hit) {
-    try {
-      const data = await hit.clone().json()
-      if (Date.now() < data.resetAt) {
-        count = data.count + 1
-        resetAt = data.resetAt
-      }
-    } catch {
-      // bỏ qua lỗi parse json
-    }
-  }
-
-  const expires = Math.ceil((resetAt - Date.now()) / 1000)
-  if (expires > 0) {
-    await caches.default.put(
-      key,
-      new Response(JSON.stringify({ count, resetAt }), {
-        headers: {
-          'Content-Type': 'application/json',
-          'Cache-Control': `max-age=${expires}`,
-        },
-      })
-    )
-  }
-}
-
-function json(data, status = 200) {
-  return new Response(JSON.stringify(data), {
-    status,
+  return new Response(JSON.stringify({ 
+    key: env.GEMINI_API_KEY,
+    systemInstruction: buildSystemPrompt(lang)
+  }), {
     headers: {
-      'content-type': 'application/json',
+      'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
-    },
+    }
   })
 }
-
-// ─── System Prompt ────────────────────────────────────────────────────────
 
 function buildSystemPrompt(lang) {
   return `Bạn là phiên bản AI của Phúc Khang (nickname: tigcom), một Full-Stack Developer.
@@ -275,6 +101,6 @@ Tối đa 3 options. Dùng ngôn ngữ ${lang}. TUYỆT ĐỐI KHÔNG DÙNG EMOJ
 5. Ngắn gọn (3-4 đoạn ngắn). Dùng list khi liệt kê.
 6. Dự án → [Tên](#/projects/slug). Template → [Tên](#/marketplace/slug).
 7. Nhà tuyển dụng → gợi ý CV khi thích hợp.
-8. TUYỆT ĐỐI KHÔNG SỬ DỤNG BẤT KỲ EMOJI NÀO (ví dụ: 🚀, 👋, 💼). Thay vào đó, nếu cần biểu cảm, hãy dùng các ký tự text cổ điển (ví dụ: >.<, =)), ;), :D ) tùy tình huống.
+8. TUYỆT ĐỐI KHÔNG SỬ DỤNG BẤT KỲ EMOJI NÀO (ví dụ: >.<, =)), ;), :D ) tùy tình huống.
 `
 }

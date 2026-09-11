@@ -114,7 +114,7 @@ const getTranslated = (obj) =>
   obj && typeof obj === 'object' ? (obj[state.lang] ?? obj.en ?? obj) : obj
 
 // ─── Theme-aware thumbnail background ───────────────────────────────────────
-const currentTheme = ref(document.documentElement.getAttribute('data-theme') || 'dark')
+const currentTheme = ref(typeof document !== 'undefined' ? (document.documentElement.getAttribute('data-theme') || 'dark') : 'dark')
 const projectBg = (project) => getProjectBgColor(project, currentTheme.value)
 
 // ─── Special case projects (K+ / Company Clean Hub) — extra image padding ───
