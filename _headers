@@ -1,0 +1,19 @@
+# Cloudflare Pages cache headers (served from /_headers)
+# SPA entry — always revalidate so a redeploy is picked up immediately.
+# Vite content-hashes /assets/* filenames, so the shell must be fresh to point
+# at the new hashes; the hashed assets themselves can be cached forever.
+/
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+  Expires: 0
+
+/index.html
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+  Expires: 0
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/api/*
+  Cache-Control: no-store
