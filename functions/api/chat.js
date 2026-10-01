@@ -59,8 +59,8 @@ export async function onRequestPost({ request, env }) {
   // Sử dụng AI Gateway nếu có, nếu không thì dùng URL mặc định
   const baseUrl = env.GEMINI_BASE_URL || 'https://generativelanguage.googleapis.com'
   
-  // Dùng trực tiếp model đã biết là hoạt động tốt để tránh AI Gateway tốn thời gian retry các model không tồn tại
-  const model = 'gemini-3.6-flash'
+  // Dùng trực tiếp model tiêu chuẩn, ổn định và nhanh nhất (gemini-1.5-flash) để tối ưu TTFB
+  const model = 'gemini-1.5-flash'
   const geminiUrl = `${baseUrl}/v1beta/models/${model}:streamGenerateContent?alt=sse&key=${env.GEMINI_API_KEY}`
 
   try {
