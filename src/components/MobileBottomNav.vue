@@ -148,7 +148,7 @@ function isActive(path) {
     height: 24px;
   }
 
-  /* --- Home Logo Styling (Nổi 35% trên viền & Hiệu ứng 3D khối cao cấp) --- */
+  /* --- Home Logo Styling (Neumorphic Soft UI - 3D Dịu Nhẹ) --- */
   .nav-item--home {
     flex: 1.25;
     position: relative;
@@ -156,74 +156,69 @@ function isActive(path) {
   }
 
   .home-logo-wrap {
-    width: 52px;
-    height: 52px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     color: var(--highlight-text);
     display: flex;
     align-items: center;
     justify-content: center;
-    /* Nhô lên khỏi đường viền trên 35% đường kính (~18px nổi lên trên navbar) */
-    transform: translateY(-28px);
-    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+    /* Nhô lên khỏi viền ~35% đường kính nút (~17.5px) */
+    transform: translateY(-27px);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
     
-    /* Mặt cong 3D: Nguồn sáng xiên từ góc trên bên trái tạo khối cầu căng bóng */
-    background: radial-gradient(circle at 34% 24%, rgba(255, 255, 255, 0.48) 0%, rgba(255, 255, 255, 0.12) 36%, transparent 66%),
-                linear-gradient(165deg, var(--highlight) 0%, var(--highlight-dark) 100%);
+    /* Neumorphic Soft Surface: Chuyển sắc mịn màng, bề mặt matte dịu mắt */
+    background: linear-gradient(145deg, var(--highlight) 0%, var(--highlight-dark) 100%);
     
-    /* Đổ bóng đa tầng 3D thực thể (chuẩn Tier 0, spread âm, không bệt màu):
-       1. Vệt sáng viền trên sắc nét (specular rim light)
-       2. Vùng tối lún đáy tạo độ dày vật lý (bottom inner shadow)
-       3. Vòng đệm cutout 4px ngăn cách nền thanh nav
-       4. Viền vi sai phân tách viền thanh nav
-       5. Bóng tiếp xúc gần sắc bén (contact shadow)
-       6. Bóng nổi sâu tạo chiều không gian 3D (ambient depth)
-       7. Hào quang phát sáng dịu nhẹ (accent glow)
-    */
+    /* Neumorphism Dual Shadow: Hiệu ứng dập nổi mềm mại đặc trưng (Soft Emboss) */
     box-shadow:
-      inset 0 2px 2.5px rgba(255, 255, 255, 0.65),
-      inset 0 -3px 5px rgba(0, 0, 0, 0.26),
-      0 0 0 4px var(--bg-900),
-      0 0 0 5px var(--border-strong),
-      0 4px 8px -2px rgba(0, 0, 0, 0.32),
-      0 12px 24px -4px rgba(0, 0, 0, 0.42),
-      0 6px 18px 0 var(--highlight-glow);
+      /* Vòng đệm êm ái cùng màu nền nav */
+      0 0 0 3px var(--bg-900),
+      /* Ánh sáng dịu nhẹ hắt từ góc trên-trái */
+      -3px -3px 8px rgba(255, 255, 255, 0.25),
+      /* Vùng bóng đổ mềm mại ở góc dưới-phải */
+      4px 6px 14px rgba(0, 0, 0, 0.16),
+      /* Nội giáng êm dịu tạo độ phồng tự nhiên của khối */
+      inset 1.5px 1.5px 3px rgba(255, 255, 255, 0.38),
+      inset -1.5px -1.5px 3px rgba(0, 0, 0, 0.14),
+      /* Hào quang màu dịu */
+      0 3px 10px var(--highlight-glow);
     z-index: 10;
   }
 
-  /* Hiệu ứng lún nút vật lý 3D khi chạm ngón tay (Tap / Active state) */
+  /* Trạng thái nhấn (Tap / Active press): Hiệu ứng lún chìm mềm mại đặc trưng Neumorphism (Soft Inset) */
   .nav-item--home:active .home-logo-wrap {
-    transform: translateY(-24px) scale(0.95);
+    transform: translateY(-25px) scale(0.96);
     box-shadow:
-      inset 0 1.5px 2px rgba(0, 0, 0, 0.32),
-      inset 0 -1.5px 3px rgba(255, 255, 255, 0.3),
-      0 0 0 4px var(--bg-900),
-      0 0 0 5px var(--border),
-      0 2px 4px -1px rgba(0, 0, 0, 0.25),
-      0 6px 12px -2px rgba(0, 0, 0, 0.3);
+      0 0 0 3px var(--bg-900),
+      /* Chuyển thành bóng chìm lõm vào lòng nút */
+      inset 2px 2px 4px rgba(0, 0, 0, 0.2),
+      inset -2px -2px 4px rgba(255, 255, 255, 0.25),
+      0 2px 6px rgba(0, 0, 0, 0.1);
   }
 
-  /* Khi trang hiện tại là Home (active route): Đẩy cao hơn một chút, bừng sáng hào quang */
+  /* Trạng thái trang chủ đang Active: Nhô nhẹ thêm 1 chút và tỏa sáng êm dịu */
   .nav-item--home.active .home-logo-wrap {
-    transform: translateY(-30px) scale(1.06);
+    transform: translateY(-29px) scale(1.04);
     box-shadow:
-      inset 0 2.5px 3px rgba(255, 255, 255, 0.8),
-      inset 0 -3px 5px rgba(0, 0, 0, 0.26),
-      0 0 0 4px var(--bg-900),
-      0 0 0 5.5px var(--highlight),
-      0 6px 12px -2px rgba(0, 0, 0, 0.35),
-      0 16px 28px -4px rgba(0, 0, 0, 0.45),
-      0 8px 24px 2px var(--highlight-glow);
+      0 0 0 3px var(--bg-900),
+      0 0 0 3.5px var(--highlight-glow),
+      -4px -4px 10px rgba(255, 255, 255, 0.3),
+      5px 8px 16px rgba(0, 0, 0, 0.2),
+      inset 1.5px 1.5px 3px rgba(255, 255, 255, 0.45),
+      inset -1.5px -1.5px 3px rgba(0, 0, 0, 0.15),
+      0 4px 14px var(--highlight-glow);
   }
 
   .home-logo-text {
     font-family: var(--font-clash);
-    font-size: 1.18rem;
+    font-size: 1.15rem;
     font-weight: 700;
     letter-spacing: -0.5px;
     line-height: 1;
     user-select: none;
-    filter: drop-shadow(0 1px 1.5px rgba(0, 0, 0, 0.26));
+    /* Bóng chữ dịu nhẹ, không gắt */
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.15));
   }
 
   @keyframes slideUpFade {
