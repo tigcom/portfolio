@@ -148,7 +148,7 @@ function isActive(path) {
     height: 24px;
   }
 
-  /* --- Home Logo (Neumorphism Inset — chuẩn giáo khoa) --- */
+  /* --- Home Logo (Glassmorphism) --- */
   .nav-item--home {
     flex: 1.25;
     position: relative;
@@ -159,37 +159,48 @@ function isActive(path) {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    /* Quy tắc #1: Nền element PHẢI trùng nền cha */
-    background: var(--bg-900);
-    color: var(--highlight);
     display: flex;
     align-items: center;
     justify-content: center;
     transform: translateY(-27px);
-    transition: box-shadow 0.25s ease, transform 0.25s ease;
-    /* Quy tắc #2: KHÔNG viền — viền phá vỡ ảo giác Neumorphism */
-    border: none;
-    /* Quy tắc #3: Chỉ 2 bóng inset — tối góc trên-trái, sáng góc dưới-phải */
-    box-shadow:
-      inset 6px 6px 12px var(--neu-shadow-dark),
-      inset -6px -6px 12px var(--neu-shadow-light);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.3s ease,
+                background 0.3s ease;
     z-index: 10;
+
+    /* Glassmorphism: Kính mờ bán trong suốt */
+    background: rgba(var(--highlight-rgb), 0.12);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+
+    /* Viền kính mỏng — ánh sáng phản chiếu trên mép kính */
+    border: 1px solid rgba(var(--highlight-rgb), 0.25);
+
+    /* Bóng đổ tạo chiều sâu phía dưới + hào quang màu dịu */
+    box-shadow:
+      0 8px 24px rgba(0, 0, 0, 0.3),
+      0 2px 6px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
   }
 
-  /* Trạng thái chạm (Tap): Lõm sâu hơn */
+  /* Hover / chạm ngón tay */
   .nav-item--home:active .home-logo-wrap {
-    transform: translateY(-25px) scale(0.97);
+    transform: translateY(-24px) scale(0.95);
+    background: rgba(var(--highlight-rgb), 0.2);
     box-shadow:
-      inset 8px 8px 16px var(--neu-shadow-dark),
-      inset -8px -8px 16px var(--neu-shadow-light);
+      0 4px 12px rgba(0, 0, 0, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
 
-  /* Trạng thái trang chủ Active: Thêm hào quang highlight dịu bao quanh */
+  /* Trang Home đang active: kính sáng lên, viền highlight nổi bật */
   .nav-item--home.active .home-logo-wrap {
+    background: rgba(var(--highlight-rgb), 0.2);
+    border-color: rgba(var(--highlight-rgb), 0.5);
     box-shadow:
-      inset 6px 6px 12px var(--neu-shadow-dark),
-      inset -6px -6px 12px var(--neu-shadow-light),
-      0 0 0 2px var(--highlight);
+      0 8px 28px rgba(0, 0, 0, 0.35),
+      0 0 0 3px rgba(var(--highlight-rgb), 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transform: translateY(-29px);
   }
 
   .home-logo-text {
@@ -200,10 +211,12 @@ function isActive(path) {
     line-height: 1;
     user-select: none;
     color: var(--highlight);
+    /* Chữ sáng nổi trên mặt kính */
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
   }
 
   .nav-item--home.active .home-logo-text {
-    text-shadow: 0 0 6px var(--highlight-glow);
+    text-shadow: 0 0 10px var(--highlight-glow), 0 1px 3px rgba(0, 0, 0, 0.2);
   }
 
   @keyframes slideUpFade {
