@@ -195,42 +195,18 @@ async function sendUserMessage(text) {
   isLoading.value = true
 
   try {
-    // Chuẩn bị history (tối đa 20 tin nhắn gần nhất)
-    const history = messages.value
-      .slice(-20)
-      .map(m => ({ role: m.role === 'model' ? 'model' : 'user', parts: [{ text: m.content }] }))
-
-    // 1. Lấy API Key và System Prompt từ backend
-    const configRes = await fetch('/api/config', {
+    // Thay vì lấy config và gọi Gemini trực tiếp, gọi proxy backend ở /api/chat
+    const res = await fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ lang: state.lang })
-    })
-    
-    if (!configRes.ok) throw new Error('Cannot load config')
-    const config = await configRes.json()
-
-    // 2. Gửi trực tiếp đến Gemini từ Frontend
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:streamGenerateContent?alt=sse&key=${config.key}`
-    const payload = {
-      contents: history,
-      systemInstruction: {
-        parts: [{ text: config.systemInstruction }]
-      },
-      generationConfig: {
-        maxOutputTokens: 1024,
-        temperature: 0.7,
-      },
-    }
-
-    const res = await fetch(geminiUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      body: JSON.stringify({
+        messages: messages.value,
+        lang: state.lang
+      })
     })
 
     if (res.status === 429) {
-      errorMsg.value = t('chatbot.error') + ' (Rate limited)'
+      errorMsg.value = t('chatbot.error') + ' (Too many requests)'
       isLoading.value = false
       scrollToBottom()
       return

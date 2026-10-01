@@ -5,11 +5,18 @@
       :key="link.path"
       :to="link.path"
       class="nav-item"
-      :class="{ active: isActive(link.path) }"
+      :class="{ 
+        active: isActive(link.path),
+        'nav-item--home': link.path === '/' 
+      }"
     >
-      <div class="nav-icon-container">
+      <div class="nav-icon-container" :class="{ 'home-logo-wrap': link.path === '/' }">
         <!-- SVG Icon based on path -->
-        <svg v-if="link.path === '/about'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+        <template v-if="link.path === '/'">
+           <span class="home-logo-text">PK</span>
+        </template>
+
+        <svg v-else-if="link.path === '/about'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
           <circle cx="12" cy="12" r="10"/>
           <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
           <line x1="9" y1="9" x2="9.01" y2="9"/>
@@ -35,7 +42,7 @@
         </svg>
       </div>
       
-      <span class="nav-label" v-if="isActive(link.path)">
+      <span class="nav-label" v-if="isActive(link.path) && link.path !== '/'">
         {{ t(link.label) }}
       </span>
     </router-link>
@@ -52,11 +59,13 @@ const route = useRoute()
 const links = [
   { path: '/about', label: 'nav.about' },
   { path: '/marketplace', label: 'nav.marketplace' },
+  { path: '/', label: 'nav.home' },
   { path: '/projects', label: 'nav.projects' },
   { path: '/contact', label: 'nav.contact' },
 ]
 
 function isActive(path) {
+  if (path === '/') return route.path === '/'
   return route.path.startsWith(path)
 }
 </script>
@@ -136,6 +145,37 @@ function isActive(path) {
   .nav-item.active svg {
     width: 24px;
     height: 24px;
+  }
+
+  /* --- Home Logo Styling --- */
+  .nav-item--home {
+    flex: 1.2; /* slightly wider space for the prominent logo */
+  }
+
+  .home-logo-wrap {
+    width: 44px;
+    height: 44px;
+    background: var(--highlight);
+    border-radius: 50%;
+    color: var(--highlight-text);
+    box-shadow: 0 4px 12px var(--highlight-glow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-8px); /* Float slightly above the nav bar */
+    border: 3px solid var(--bg-900);
+  }
+
+  .nav-item--home.active .home-logo-wrap {
+    transform: translateY(-12px) scale(1.05);
+    box-shadow: 0 6px 16px var(--highlight-glow);
+  }
+
+  .home-logo-text {
+    font-family: var(--font-clash);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
   }
 
   @keyframes slideUpFade {
