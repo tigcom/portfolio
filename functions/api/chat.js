@@ -59,38 +59,54 @@ export async function onRequestPost({ request, env }) {
   // Sử dụng AI Gateway nếu có, nếu không thì dùng URL mặc định
   const baseUrl = env.GEMINI_BASE_URL || 'https://generativelanguage.googleapis.com'
   
-  // Dùng trực tiếp model mới nhất của năm 2026 (gemini-3.8-flash) để đảm bảo không bị 404
-  const model = 'gemini-3.8-flash'
-  const geminiUrl = `${baseUrl}/v1beta/models/${model}:streamGenerateContent?alt=sse&key=${env.GEMINI_API_KEY}`
+  // Danh sách các model để chạy đua (Model Racing)
+  const modelsToTry = ['gemini-3.8-flash', 'gemini-3.7-flash', 'gemini-3.6-flash']
+  const controllers = modelsToTry.map(() => new AbortController())
+  
+  const fetchModel = async (model, index) => {
+    const geminiUrl = `${baseUrl}/v1beta/models/${model}:streamGenerateContent?alt=sse&key=${env.GEMINI_API_KEY}`
+    const res = await fetch(geminiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+      signal: controllers[index].signal
+    })
+    
+    if (!res.ok) {
+      const errText = await res.text().catch(() => '')
+      throw new Error(`Model ${model} failed with ${res.status}: ${errText}`)
+    }
+    return { res, index, model }
+  }
 
   try {
-    const res = await fetch(geminiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-      })
+    // Chạy đua 3 request cùng lúc. Promise.any sẽ tự động lấy kết quả trả về 200 OK đầu tiên (bỏ qua các lỗi 503, 404).
+    const { res, index: winningIndex, model: winningModel } = await Promise.any(
+      modelsToTry.map((m, i) => fetchModel(m, i))
+    )
+    
+    // Hủy tất cả các request của model bị thua (hoặc đang kẹt) để tiết kiệm quota Google API
+    controllers.forEach((ctrl, i) => {
+      if (i !== winningIndex) ctrl.abort()
+    })
 
-      if (res.ok) {
-        // Trả về streaming data từ Gemini
-        return new Response(res.body, {
-          headers: {
-            'Content-Type': 'text/event-stream',
-            'Cache-Control': 'no-cache',
-            'Connection': 'keep-alive',
-            'Access-Control-Allow-Origin': '*',
-          },
-        })
-      } else {
-        const lastErrText = await res.text()
-        console.warn(`Model ${model} failed with status ${res.status}:`, lastErrText)
-        return json({ success: false, error: 'AI service error', details: lastErrText }, res.status)
-      }
-    } catch (e) {
-      console.error(`Request to ${model} threw an error:`, e)
-      return json({ success: false, error: 'AI service error', details: e.message || String(e) }, 500)
-    }
+    console.log(`Winning model: ${winningModel}`)
+
+    return new Response(res.body, {
+      headers: {
+        'Content-Type': 'text/event-stream',
+        'Cache-Control': 'no-cache',
+        'Connection': 'keep-alive',
+        'Access-Control-Allow-Origin': '*',
+      },
+    })
+  } catch (aggregateError) {
+    // Nếu cả 3 model đều sập (503) hoặc lỗi
+    console.error('All models failed:', aggregateError)
+    return json({ success: false, error: 'AI service error', details: 'Hệ thống AI đang quá tải. Vui lòng thử lại sau.' }, 503)
+  }
 }
 
 // ─── Rate limit (dùng Cache API — không cần KV binding) ─────────────────────
