@@ -148,7 +148,7 @@ function isActive(path) {
     height: 24px;
   }
 
-  /* --- Home Logo Styling (Neumorphic Soft UI - 3D Dịu Nhẹ) --- */
+  /* --- Home Logo Styling (Neumorphic Inset / 3D Chìm Lõm) --- */
   .nav-item--home {
     flex: 1.25;
     position: relative;
@@ -159,66 +159,90 @@ function isActive(path) {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    color: var(--highlight-text);
+    /* Nền là màu nền thanh nav để tạo cảm giác lõm thẳng vào bề mặt */
+    background: var(--bg-900);
+    /* Chữ đổi thành màu xanh highlight */
+    color: var(--highlight);
     display: flex;
     align-items: center;
     justify-content: center;
     /* Nhô lên khỏi viền ~35% đường kính nút (~17.5px) */
     transform: translateY(-27px);
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+    border: 1.5px solid var(--border-strong);
     
-    /* Neumorphic Soft Surface: Chuyển sắc mịn màng, bề mặt matte dịu mắt */
-    background: linear-gradient(145deg, var(--highlight) 0%, var(--highlight-dark) 100%);
-    
-    /* Neumorphism Dual Shadow: Hiệu ứng dập nổi mềm mại đặc trưng (Soft Emboss) */
+    /* Neumorphism 3D Chìm (Sunken Well - Dark Mode default):
+       - Bóng tối lún sâu vào góc trên-trái
+       - Vệt sáng phản xạ ở thành đáy góc dưới-phải
+       - Bóng nổi ngoài nhẹ nâng mép viền
+    */
     box-shadow:
-      /* Vòng đệm êm ái cùng màu nền nav */
-      0 0 0 3px var(--bg-900),
-      /* Ánh sáng dịu nhẹ hắt từ góc trên-trái */
-      -3px -3px 8px rgba(255, 255, 255, 0.25),
-      /* Vùng bóng đổ mềm mại ở góc dưới-phải */
-      4px 6px 14px rgba(0, 0, 0, 0.16),
-      /* Nội giáng êm dịu tạo độ phồng tự nhiên của khối */
-      inset 1.5px 1.5px 3px rgba(255, 255, 255, 0.38),
-      inset -1.5px -1.5px 3px rgba(0, 0, 0, 0.14),
-      /* Hào quang màu dịu */
-      0 3px 10px var(--highlight-glow);
+      inset 3px 3px 6px rgba(0, 0, 0, 0.65),
+      inset 1px 1px 2px rgba(0, 0, 0, 0.75),
+      inset -2px -2px 5px rgba(255, 255, 255, 0.08),
+      0 3px 8px rgba(0, 0, 0, 0.35);
     z-index: 10;
   }
 
-  /* Trạng thái nhấn (Tap / Active press): Hiệu ứng lún chìm mềm mại đặc trưng Neumorphism (Soft Inset) */
+  /* Neumorphism 3D Chìm cho Light Mode: Độ lõm rõ nét, mềm mại */
+  :global([data-theme="light"]) .home-logo-wrap {
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow:
+      inset 3px 3px 6px rgba(0, 0, 0, 0.14),
+      inset 1.5px 1.5px 3px rgba(0, 0, 0, 0.18),
+      inset -3px -3px 6px rgba(255, 255, 255, 0.95),
+      inset -1px -1px 2px rgba(255, 255, 255, 0.8),
+      0 2px 6px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Trạng thái chạm ngón tay (Tap / Active press): Lòng nút lún sâu hơn */
   .nav-item--home:active .home-logo-wrap {
     transform: translateY(-25px) scale(0.96);
     box-shadow:
-      0 0 0 3px var(--bg-900),
-      /* Chuyển thành bóng chìm lõm vào lòng nút */
-      inset 2px 2px 4px rgba(0, 0, 0, 0.2),
-      inset -2px -2px 4px rgba(255, 255, 255, 0.25),
-      0 2px 6px rgba(0, 0, 0, 0.1);
+      inset 4px 4px 8px rgba(0, 0, 0, 0.75),
+      inset -2px -2px 4px rgba(255, 255, 255, 0.06);
+  }
+  :global([data-theme="light"]) .nav-item--home:active .home-logo-wrap {
+    box-shadow:
+      inset 4px 4px 8px rgba(0, 0, 0, 0.2),
+      inset -2px -2px 4px rgba(255, 255, 255, 0.85);
   }
 
-  /* Trạng thái trang chủ đang Active: Nhô nhẹ thêm 1 chút và tỏa sáng êm dịu */
+  /* Trạng thái trang chủ đang Active: Viền và lòng đĩa bừng sáng hào quang xanh dịu */
   .nav-item--home.active .home-logo-wrap {
-    transform: translateY(-29px) scale(1.04);
+    border-color: var(--highlight);
     box-shadow:
-      0 0 0 3px var(--bg-900),
-      0 0 0 3.5px var(--highlight-glow),
-      -4px -4px 10px rgba(255, 255, 255, 0.3),
-      5px 8px 16px rgba(0, 0, 0, 0.2),
-      inset 1.5px 1.5px 3px rgba(255, 255, 255, 0.45),
-      inset -1.5px -1.5px 3px rgba(0, 0, 0, 0.15),
-      0 4px 14px var(--highlight-glow);
+      inset 3px 3px 6px rgba(0, 0, 0, 0.6),
+      inset -2px -2px 5px rgba(255, 255, 255, 0.08),
+      inset 0 0 12px var(--highlight-glow),
+      0 0 0 3px var(--highlight-glow),
+      0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  :global([data-theme="light"]) .nav-item--home.active .home-logo-wrap {
+    border-color: var(--highlight);
+    box-shadow:
+      inset 3px 3px 6px rgba(0, 0, 0, 0.12),
+      inset -3px -3px 6px rgba(255, 255, 255, 0.95),
+      inset 0 0 10px var(--highlight-glow),
+      0 0 0 3px var(--highlight-glow),
+      0 2px 6px rgba(0, 0, 0, 0.06);
   }
 
   .home-logo-text {
     font-family: var(--font-clash);
-    font-size: 1.15rem;
+    font-size: 1.18rem;
     font-weight: 700;
     letter-spacing: -0.5px;
     line-height: 1;
     user-select: none;
-    /* Bóng chữ dịu nhẹ, không gắt */
-    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.15));
+    color: var(--highlight);
+    /* Chữ màu xanh phát sáng nhẹ nhàng trong lòng hốc lõm */
+    text-shadow: 0 0 8px var(--highlight-glow);
+    transition: text-shadow 0.3s ease, transform 0.2s ease;
+  }
+
+  .nav-item--home.active .home-logo-text {
+    text-shadow: 0 0 12px var(--highlight);
   }
 
   @keyframes slideUpFade {
