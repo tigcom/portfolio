@@ -460,7 +460,11 @@ const footerCols = [
   font-weight: 700; line-height: 1.08; letter-spacing: -0.02em;
   max-width: 780px; margin: 0 auto 20px;
 }
-.accent { color: var(--primary); }
+.accent {
+  background: linear-gradient(135deg, #60a5fa, #38bdf8);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: #60a5fa;
+}
 .hero-sub {
   max-width: 560px; margin: 0 auto 28px;
   font-size: 1.06rem; line-height: 1.6; color: var(--muted);

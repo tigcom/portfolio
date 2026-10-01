@@ -4,7 +4,7 @@
     v-if="template"
     :style="{ '--demo-accent': template.accentColor, '--demo-bg': template.colorBackground }"
   >
-    <!-- Escape hatch back to the template detail (the only portfolio affordance) -->
+    <!-- Escape hatch back to the template detail -->
     <router-link
       :to="`/marketplace/${template.slug}`"
       class="demo-exit"
@@ -71,12 +71,23 @@ const emptyText = computed(() =>
 )
 </script>
 
+<style>
+/* Reset global portfolio heading color inside demo views so each demo controls its own text color */
+.demo-standalone h1,
+.demo-standalone h2,
+.demo-standalone h3,
+.demo-standalone h4,
+.demo-standalone h5,
+.demo-standalone h6 {
+  color: inherit;
+}
+</style>
+
 <style scoped>
 .demo-standalone {
   position: relative;
   min-height: 100vh;
   background: var(--demo-bg);
-  color: #e2e8f0;
 }
 
 .demo-exit {

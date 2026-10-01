@@ -15,7 +15,8 @@ const translations = {
       enableEffects: 'Enable Effects',
       disableEffects: 'Disable Effects',
       effectsEnabledMsg: 'Effects Enabled',
-      effectsDisabledMsg: 'Effects Disabled'
+      effectsDisabledMsg: 'Effects Disabled',
+      openMenu: 'Open menu'
     },
     marketplace: {
       badge: 'Template Marketplace',
@@ -118,7 +119,19 @@ const translations = {
       backToProjects: 'Back to Projects',
       github: 'GitHub',
       liveDemo: 'Live Demo',
-      interface: 'User Interface'
+      interface: 'User Interface',
+      onThisPage: 'On this page',
+      shareProject: 'Share this project',
+      copyLink: 'Copy link',
+      linkCopied: 'Link copied',
+      shareTwitter: 'Share on Twitter',
+      shareLinkedIn: 'Share on LinkedIn',
+      shareEmail: 'Share via email',
+      checkItOut: 'Check it out',
+      client: 'Client',
+      previousPage: 'Previous project',
+      nextPage: 'Next project',
+      viewHighRes: 'View at full resolution'
     },
     chatbot: {
       title: 'Chat with Khang',
@@ -161,7 +174,8 @@ const translations = {
       enableEffects: 'Bật hiệu ứng',
       disableEffects: 'Tắt hiệu ứng',
       effectsEnabledMsg: 'Đã bật hiệu ứng',
-      effectsDisabledMsg: 'Đã tắt hiệu ứng'
+      effectsDisabledMsg: 'Đã tắt hiệu ứng',
+      openMenu: 'Mở menu'
     },
     marketplace: {
       badge: 'Kho Mẫu Website',
@@ -264,7 +278,19 @@ const translations = {
       backToProjects: 'Quay lại danh mục',
       github: 'GitHub',
       liveDemo: 'Xem Demo',
-      interface: 'Giao diện'
+      interface: 'Giao diện',
+      onThisPage: 'Trong trang này',
+      shareProject: 'Chia sẻ dự án',
+      copyLink: 'Sao chép liên kết',
+      linkCopied: 'Đã sao chép',
+      shareTwitter: 'Chia sẻ lên Twitter',
+      shareLinkedIn: 'Chia sẻ lên LinkedIn',
+      shareEmail: 'Chia sẻ qua email',
+      checkItOut: 'Xem thử',
+      client: 'Khách hàng',
+      previousPage: 'Dự án trước',
+      nextPage: 'Dự án tiếp theo',
+      viewHighRes: 'Xem ở kích thước đầy đủ'
     },
     chatbot: {
       title: 'Chat với Khang',

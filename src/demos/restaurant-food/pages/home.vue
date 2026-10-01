@@ -233,6 +233,7 @@ const footerCols = [
 .rest h1, .rest h2, .rest h3, .rest h4 {
   font-family: 'Playfair Display SC', 'Playfair Display', Georgia, serif;
   margin: 0;
+  color: var(--text);
 }
 .rest p { margin: 0; }
 .rest img { display: block; max-width: 100%; }

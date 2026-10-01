@@ -20,10 +20,16 @@
         </button>
       </div>
 
-      <!-- Main Trigger Button -->
-      <button class="menu-trigger" :class="{ 'is-hidden': isOpen }" @click.stop="handleMainClick" aria-label="Menu">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
-      </button>
+      <!-- Main Trigger — nhan vat mascot thay cho icon luoi -->
+      <div class="mascot-slot">
+        <PageMascot
+          :directions="mascot.directions"
+          :reactions="mascot.reactions"
+          :size="76"
+          :aria-label="t('nav.openMenu')"
+          @click="handleMainClick"
+        />
+      </div>
     </div>
   </Transition>
 
@@ -42,9 +48,17 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted, watch } from 'vue'
+import PageMascot from './PageMascot.vue'
 import { useEffectsEnabled } from '../composables/useEffectsEnabled.js'
 import { useChatState } from '../composables/useChatState.js'
 import { useLang } from '../data/translations.js'
+
+// Doi nhan vat chi can doi 2 duong dan nay. File nam trong public/mascots/.
+// Tang `v` moi lan build lai atlas, neu khong trinh duyet se dung ban webp cu.
+const mascot = {
+  directions: '/mascots/turtle-directions.webp?v=fixed_v4',
+  reactions: '/mascots/turtle-reactions.webp?v=fixed_v4'
+}
 
 const { t } = useLang()
 const { isChatOpen } = useChatState()
@@ -157,63 +171,51 @@ function toggleChat() {
   bottom: 32px;
   right: 32px;
   z-index: 100;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  min-height: 180px;
-  width: 52px;
+  /* Khung vuong bang dung co nhan vat luc dong. */
+  width: 76px;
+  height: 76px;
   pointer-events: none;
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.4s var(--ease-out-expo), opacity 0.4s var(--ease-out-expo);
 }
 
 .menu-items {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: 12px;
+  align-items: center;
   opacity: 0;
   pointer-events: none;
-  transform: translateY(20px) scale(0.9);
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform: translateX(-50%) translateY(24px) scale(0.9);
   transform-origin: bottom center;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  align-items: center;
+  transition: opacity var(--dur-ui) var(--ease-out-expo),
+              transform var(--dur-ui) var(--ease-out-expo);
 }
 
 .floating-menu.is-open .menu-items {
   opacity: 1;
   pointer-events: all;
-  transform: translateY(0) scale(1);
+  /* Nhac cum nut len tren nhan vat: 76px chieu cao + 12px khe ho = -88px */
+  transform: translateX(-50%) translateY(-88px) scale(1);
 }
 
-.menu-trigger {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: var(--highlight);
-  color: var(--bg-900);
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 4px 16px var(--highlight-glow);
-  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s;
+.mascot-slot {
   position: absolute;
+  left: 50%;
   bottom: 0;
-  pointer-events: auto;
+  z-index: 2; /* nut con truot ra tu phia sau nhan vat */
+  width: 76px;
+  height: 76px;
+  margin-left: -38px;
+  transform-origin: 50% 100%;
+  transition: filter var(--dur-ui) var(--ease-out-expo);
 }
 
-.menu-trigger:hover {
-  transform: scale(1.05);
-}
-
-.menu-trigger.is-hidden {
-  opacity: 0;
-  pointer-events: none;
-  transform: scale(0);
+.mascot-slot:hover {
+  filter: drop-shadow(0 4px 12px rgba(188, 255, 103, 0.25));
 }
 
 .menu-item {

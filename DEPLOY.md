@@ -17,7 +17,7 @@
 npm run build
 
 # 2. Deploy lên Cloudflare Pages
-npx wrangler pages deploy dist --project-name portfolio
+npx wrangler pages deploy dist --project-name khangphp-portfolio
 ```
 
 Deploy là **thủ công** — mỗi lần đổi code phải chạy lại 2 lệnh trên.
@@ -25,9 +25,9 @@ Deploy là **thủ công** — mỗi lần đổi code phải chạy lại 2 l�
 ## Secret (đặt 1 lần)
 
 ```bash
-npx wrangler pages secret put BREVO_API_KEY --project-name portfolio
-npx wrangler pages secret put SENDER_EMAIL   --project-name portfolio
-npx wrangler pages secret put RECIPIENT      --project-name portfolio
+npx wrangler pages secret put BREVO_API_KEY --project-name khangphp-portfolio
+npx wrangler pages secret put SENDER_EMAIL   --project-name khangphp-portfolio
+npx wrangler pages secret put RECIPIENT      --project-name khangphp-portfolio
 ```
 
 | Secret | Giá trị | Lấy ở đâu |

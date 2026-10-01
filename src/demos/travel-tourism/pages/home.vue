@@ -223,6 +223,7 @@ const footerCols = [
 .trv h1, .trv h2, .trv h3, .trv h4 {
   font-family: 'Outfit', 'DM Sans', system-ui, sans-serif;
   margin: 0;
+  color: var(--text);
 }
 .trv p { margin: 0; }
 .trv img { display: block; max-width: 100%; }
@@ -253,7 +254,7 @@ const footerCols = [
 .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; }
 .badge { display: inline-block; padding: 7px 16px; border-radius: 999px; margin-bottom: 22px; font-size: 0.82rem; font-weight: 600; color: var(--primary); background: rgba(0, 128, 255, 0.1); }
 .hero-copy h1 { font-size: clamp(2.3rem, 5vw, 3.6rem); font-weight: 800; line-height: 1.08; letter-spacing: -0.02em; margin-bottom: 20px; }
-.accent { color: var(--primary); }
+.accent { color: #0265d2; }
 .hero-sub { max-width: 500px; font-size: 1.05rem; line-height: 1.65; color: var(--muted); margin-bottom: 28px; }
 
 .search-form { display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 12px; margin-bottom: 32px; background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 16px; box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08); }

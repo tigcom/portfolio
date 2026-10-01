@@ -1,5 +1,8 @@
 <template>
   <main class="projects-view">
+    <!-- Target cursor: locks onto tags, preview images, tabs & cards -->
+    <TargetCursor target-selector=".tag, .card-img-wrapper, .filter-tab, .cta-btn, .project-card" />
+
     <div class="container">
 
       <!-- ── Header ─────────────────────────────────────── -->
@@ -34,7 +37,8 @@
         <router-link v-for="(project, i) in filteredProjects" :key="project.slug"
           :to="`/projects/${project.slug}`" class="project-card"
           :class="{ 'card-stagger': i % 2 === 1 }"
-          @mouseenter="onCardHover(i)">
+          @mouseenter="onCardHover(i)"
+          @mousemove="onCardMouseMove($event, i)">
           <!-- Image -->
           <div class="card-img-wrapper" :class="specialCardClasses(project)"
             :style="{ backgroundColor: projectBg(project) }">
@@ -104,6 +108,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { projects, getProjectBgColor } from '../data/projects.js'
 import { useLang } from '../data/translations.js'
+import TargetCursor from '../components/effects/TargetCursor.vue'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -113,12 +118,11 @@ const { state, t } = useLang()
 const getTranslated = (obj) =>
   obj && typeof obj === 'object' ? (obj[state.lang] ?? obj.en ?? obj) : obj
 
-// ─── Theme-aware thumbnail background ───────────────────────────────────────
-const currentTheme = ref(typeof document !== 'undefined' ? (document.documentElement.getAttribute('data-theme') || 'dark') : 'dark')
-const projectBg = (project) => getProjectBgColor(project, currentTheme.value)
+// ─── Thumbnail background (Always clean light accent) ───────────────────────
+const projectBg = (project) => getProjectBgColor(project)
 
-// ─── Special case projects (K+ / Company Clean Hub) — extra image padding ───
-const SPECIAL_SLUGS = ['kplus-digital-banking', 'company-clean-hub']
+// ─── Special case projects (Company Clean Hub) — extra image padding ────────
+const SPECIAL_SLUGS = ['company-clean-hub']
 
 const specialCardClasses = (project) => {
   if (!SPECIAL_SLUGS.includes(project.slug)) return ''
@@ -170,7 +174,7 @@ const gridEl = ref(null)
 const ctaEl = ref(null)
 const ctaBtn = ref(null)
 
-// ─── GSAP hover effects for project cards ───────────────────────────────────
+// ─── GSAP mouse focus & 3D tilt effects for project cards ───────────────────
 const hoveredCard = ref(-1)
 
 function onCtaHover() {
@@ -193,16 +197,34 @@ function onCardHover(index) {
     const title = card.querySelector('.card-title')
 
     if (i === index) {
-      // Hovered card: zoom image (via --card-zoom so the border scales too)
-      gsap.to(wrapper, { '--card-zoom': 1.05, duration: 0.55, ease: 'cubic-bezier(0.45, 0, 0.55, 1)' })
-      gsap.to(title, { color: 'var(--highlight)', duration: 0.28, ease: 'power2.out' })
-      gsap.to(card, { opacity: 1, duration: 0.4, ease: 'cubic-bezier(0.25, 0.8, 0.25, 1)' })
+      // Hovered card: scale up, zoom image, color title
+      gsap.to(wrapper, { '--card-zoom': 1.05, duration: 0.4, ease: 'power3.out', overwrite: 'auto' })
+      gsap.to(title, { color: 'var(--highlight)', duration: 0.3, ease: 'power2.out', overwrite: 'auto' })
+      gsap.to(card, { opacity: 1, scale: 1.015, duration: 0.35, ease: 'power3.out', overwrite: 'auto' })
     } else {
-      // Other cards: reset image + dim
-      gsap.to(wrapper, { '--card-zoom': 1, duration: 0.55, ease: 'cubic-bezier(0.45, 0, 0.55, 1)' })
-      gsap.to(title, { color: 'var(--text-primary)', duration: 0.28, ease: 'power2.out' })
-      gsap.to(card, { opacity: 0.38, duration: 0.4, ease: 'cubic-bezier(0.25, 0.8, 0.25, 1)' })
+      // Other cards: reset zoom, dim down
+      gsap.to(wrapper, { '--card-zoom': 1, duration: 0.35, ease: 'power2.out', overwrite: 'auto' })
+      gsap.to(title, { color: 'var(--text-primary)', duration: 0.25, ease: 'power2.out', overwrite: 'auto' })
+      gsap.to(card, { opacity: 0.38, scale: 1, duration: 0.35, ease: 'power2.out', overwrite: 'auto' })
     }
+  })
+}
+
+function onCardMouseMove(e, index) {
+  if (hoveredCard.value !== index) return
+  const cards = gridEl.value?.querySelectorAll('.project-card')
+  if (!cards?.[index]) return
+  const card = cards[index]
+  const rect = card.getBoundingClientRect()
+  const x = (e.clientX - rect.left) / rect.width - 0.5
+  const y = (e.clientY - rect.top) / rect.height - 0.5
+  gsap.to(card, {
+    rotateY: x * 6,
+    rotateX: -y * 6,
+    duration: 0.35,
+    ease: 'power2.out',
+    transformPerspective: 800,
+    overwrite: 'auto',
   })
 }
 
@@ -215,10 +237,9 @@ function onCardLeave() {
     const wrapper = card.querySelector('.card-img-wrapper')
     const title = card.querySelector('.card-title')
 
-    // Reset all cards to normal state
-    gsap.to(wrapper, { '--card-zoom': 1, duration: 0.55, ease: 'cubic-bezier(0.45, 0, 0.55, 1)' })
-    gsap.to(title, { color: 'var(--text-primary)', duration: 0.28, ease: 'power2.out' })
-    gsap.to(card, { opacity: 1, duration: 0.4, ease: 'cubic-bezier(0.25, 0.8, 0.25, 1)' })
+    gsap.to(wrapper, { '--card-zoom': 1, duration: 0.4, ease: 'power3.out', overwrite: 'auto' })
+    gsap.to(title, { color: 'var(--text-primary)', duration: 0.3, ease: 'power2.out', overwrite: 'auto' })
+    gsap.to(card, { opacity: 1, scale: 1, rotateY: 0, rotateX: 0, duration: 0.5, ease: 'power3.out', overwrite: 'auto' })
   })
 }
 
@@ -238,15 +259,8 @@ watch(filteredProjects, () => {
 
 // ─── ScrollTrigger cleanup ───────────────────────────────────────────────────
 const _sts = []
-let themeObserver = null
-
+ 
 onMounted(() => {
-  // ── 0. Track theme changes for thumbnail backgrounds ────────────────────
-  themeObserver = new MutationObserver(() => {
-    currentTheme.value = document.documentElement.getAttribute('data-theme') || 'dark'
-  })
-  themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
-
   // ── 1. Header entrance timeline ──────────────────────────────────────────
   const tl = gsap.timeline({ delay: 0.08, defaults: { ease: 'power3.out' } })
 
@@ -324,7 +338,6 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  themeObserver?.disconnect()
   _sts.forEach(st => st.kill())
   _sts.length = 0
 })
@@ -451,6 +464,7 @@ onUnmounted(() => {
   color: inherit;
   cursor: pointer;
   will-change: opacity, transform;
+  transform-style: preserve-3d;
   /* GSAP handles all hover effects */
 }
 
@@ -486,8 +500,8 @@ onUnmounted(() => {
 .card-img--special::before {
   content: '';
   position: absolute;
-  inset: 40px;                 /* = padding 46px − border 6px */
-  border: 6px solid rgba(250, 250, 250, 0.804);
+  inset: 41.5px;                 /* = padding 46px − border 6px */
+  border: 4px solid rgba(250, 250, 250, 0.804);
   border-radius: 20px;         /* = 14px ảnh + 6px border */
   pointer-events: none;
   transform: scale(var(--card-zoom, 1));

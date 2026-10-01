@@ -148,7 +148,7 @@ function isActive(path) {
     height: 24px;
   }
 
-  /* --- Home Logo Styling (Neumorphic Inset / 3D Chìm Lõm) --- */
+  /* --- Home Logo (Neumorphism Inset — chuẩn giáo khoa) --- */
   .nav-item--home {
     flex: 1.25;
     position: relative;
@@ -159,73 +159,37 @@ function isActive(path) {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    /* Nền là màu nền thanh nav để tạo cảm giác lõm thẳng vào bề mặt */
+    /* Quy tắc #1: Nền element PHẢI trùng nền cha */
     background: var(--bg-900);
-    /* Chữ đổi thành màu xanh highlight */
     color: var(--highlight);
     display: flex;
     align-items: center;
     justify-content: center;
-    /* Nhô lên khỏi viền ~35% đường kính nút (~17.5px) */
     transform: translateY(-27px);
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, border-color 0.3s ease;
-    border: 1.5px solid var(--border-strong);
-    
-    /* Neumorphism 3D Chìm (Sunken Well - Dark Mode default):
-       - Bóng tối lún sâu vào góc trên-trái
-       - Vệt sáng phản xạ ở thành đáy góc dưới-phải
-       - Bóng nổi ngoài nhẹ nâng mép viền
-    */
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+    /* Quy tắc #2: KHÔNG viền — viền phá vỡ ảo giác Neumorphism */
+    border: none;
+    /* Quy tắc #3: Chỉ 2 bóng inset — tối góc trên-trái, sáng góc dưới-phải */
     box-shadow:
-      inset 3px 3px 6px rgba(0, 0, 0, 0.65),
-      inset 1px 1px 2px rgba(0, 0, 0, 0.75),
-      inset -2px -2px 5px rgba(255, 255, 255, 0.08),
-      0 3px 8px rgba(0, 0, 0, 0.35);
+      inset 6px 6px 12px var(--neu-shadow-dark),
+      inset -6px -6px 12px var(--neu-shadow-light);
     z-index: 10;
   }
 
-  /* Neumorphism 3D Chìm cho Light Mode: Độ lõm rõ nét, mềm mại */
-  :global([data-theme="light"]) .home-logo-wrap {
-    border-color: rgba(0, 0, 0, 0.08);
-    box-shadow:
-      inset 3px 3px 6px rgba(0, 0, 0, 0.14),
-      inset 1.5px 1.5px 3px rgba(0, 0, 0, 0.18),
-      inset -3px -3px 6px rgba(255, 255, 255, 0.95),
-      inset -1px -1px 2px rgba(255, 255, 255, 0.8),
-      0 2px 6px rgba(0, 0, 0, 0.04);
-  }
-
-  /* Trạng thái chạm ngón tay (Tap / Active press): Lòng nút lún sâu hơn */
+  /* Trạng thái chạm (Tap): Lõm sâu hơn */
   .nav-item--home:active .home-logo-wrap {
-    transform: translateY(-25px) scale(0.96);
+    transform: translateY(-25px) scale(0.97);
     box-shadow:
-      inset 4px 4px 8px rgba(0, 0, 0, 0.75),
-      inset -2px -2px 4px rgba(255, 255, 255, 0.06);
-  }
-  :global([data-theme="light"]) .nav-item--home:active .home-logo-wrap {
-    box-shadow:
-      inset 4px 4px 8px rgba(0, 0, 0, 0.2),
-      inset -2px -2px 4px rgba(255, 255, 255, 0.85);
+      inset 8px 8px 16px var(--neu-shadow-dark),
+      inset -8px -8px 16px var(--neu-shadow-light);
   }
 
-  /* Trạng thái trang chủ đang Active: Viền và lòng đĩa bừng sáng hào quang xanh dịu */
+  /* Trạng thái trang chủ Active: Thêm hào quang highlight dịu bao quanh */
   .nav-item--home.active .home-logo-wrap {
-    border-color: var(--highlight);
     box-shadow:
-      inset 3px 3px 6px rgba(0, 0, 0, 0.6),
-      inset -2px -2px 5px rgba(255, 255, 255, 0.08),
-      inset 0 0 12px var(--highlight-glow),
-      0 0 0 3px var(--highlight-glow),
-      0 4px 12px rgba(0, 0, 0, 0.3);
-  }
-  :global([data-theme="light"]) .nav-item--home.active .home-logo-wrap {
-    border-color: var(--highlight);
-    box-shadow:
-      inset 3px 3px 6px rgba(0, 0, 0, 0.12),
-      inset -3px -3px 6px rgba(255, 255, 255, 0.95),
-      inset 0 0 10px var(--highlight-glow),
-      0 0 0 3px var(--highlight-glow),
-      0 2px 6px rgba(0, 0, 0, 0.06);
+      inset 6px 6px 12px var(--neu-shadow-dark),
+      inset -6px -6px 12px var(--neu-shadow-light),
+      0 0 0 2px var(--highlight);
   }
 
   .home-logo-text {
@@ -236,13 +200,10 @@ function isActive(path) {
     line-height: 1;
     user-select: none;
     color: var(--highlight);
-    /* Chữ màu xanh phát sáng nhẹ nhàng trong lòng hốc lõm */
-    text-shadow: 0 0 8px var(--highlight-glow);
-    transition: text-shadow 0.3s ease, transform 0.2s ease;
   }
 
   .nav-item--home.active .home-logo-text {
-    text-shadow: 0 0 12px var(--highlight);
+    text-shadow: 0 0 6px var(--highlight-glow);
   }
 
   @keyframes slideUpFade {

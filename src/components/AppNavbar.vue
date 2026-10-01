@@ -1,5 +1,5 @@
 <template>
-  <header id="navbar" :class="{ scrolled: isScrolled }">
+  <header id="navbar" :class="{ scrolled: isScrolled, 'nav-hero-hidden': isHeroHidden }">
     <nav class="nav-inner" ref="navInnerRef">
       <router-link to="/" class="nav-logo">PK</router-link>
 
@@ -43,25 +43,95 @@
       </div>
     </nav>
   </header>
+
+  <!-- Góc 1/4 tròn rẻ quạt dạng cánh hoa dành riêng cho Marketplace ở đỉnh frame -->
+  <Teleport to="body">
+    <MarketplaceCornerNav
+      v-if="isMarketplaceRoute"
+      :visible="isHeroHidden"
+    />
+  </Teleport>
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, nextTick } from 'vue'
+import { ref, computed, watch, onMounted, onUnmounted, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useLang } from '../data/translations.js'
 import { useEffectsEnabled } from '../composables/useEffectsEnabled.js'
+import { useIsMobile } from '../composables/useIsMobile.js'
+import MarketplaceCornerNav from './MarketplaceCornerNav.vue'
 
 gsap.registerPlugin(ScrollTrigger)
 
 const { state, t, setLang } = useLang()
 const { toggleEffects } = useEffectsEnabled()
+const { isMobile } = useIsMobile()
 const route = useRoute()
 const isScrolled = ref(false)
 const isDark = ref(true)
 
 const navInnerRef = ref(null)
+
+// Nhận biết khi đang ở trang Marketplace
+const isMarketplaceRoute = computed(() => route.path === '/marketplace')
+// Nhận biết khi đang ở đỉnh frame fullscreen (chưa cuộn quá 15px)
+const isAtTopHero = ref(true)
+
+function checkScrollPosition() {
+  if (typeof window === 'undefined') return
+  const scrollY = window.scrollY || document.documentElement.scrollTop || 0
+  isScrolled.value = scrollY > 60
+  isAtTopHero.value = scrollY <= 15
+}
+
+function handleScroll() {
+  checkScrollPosition()
+}
+
+// Khi ở Marketplace và đang ở frame đỉnh: ẩn navbar gốc để nhường chỗ cho góc 1/4 tròn.
+// Ở màn hẹp, MarketplaceView bỏ hẳn khung hero fullscreen (xem useIsMobile.js) —
+// lúc đó không còn gì để nhường chỗ, nên giữ nguyên navbar thường. Nếu không
+// chặn, người dùng mobile sẽ mất navbar mà chỉ còn fan góc 44px phải hover mới mở.
+const isHeroHidden = computed(
+  () => isMarketplaceRoute.value && isAtTopHero.value && !isMobile.value
+)
+
+watch(isHeroHidden, (hidden) => {
+  if (hidden) {
+    gsap.to('#navbar', {
+      y: -100,
+      opacity: 0,
+      duration: 0.45,
+      ease: 'power3.out',
+      overwrite: 'auto'
+    })
+  } else {
+    gsap.to('#navbar', {
+      y: 0,
+      opacity: 1,
+      duration: 0.45,
+      ease: 'power3.out',
+      overwrite: 'auto'
+    })
+  }
+})
+
+watch(() => route.path, () => {
+  nextTick(() => {
+    checkScrollPosition()
+    if (!isMarketplaceRoute.value) {
+      gsap.to('#navbar', {
+        y: 0,
+        opacity: 1,
+        duration: 0.4,
+        ease: 'power3.out',
+        overwrite: 'auto'
+      })
+    }
+  })
+})
 
 const navLinks = [
   { path: '/', label: 'nav.home' },
@@ -137,13 +207,6 @@ function toggleTheme(event) {
 }
 
 // =============================================
-// NAVBAR SCROLL BEHAVIOR
-// =============================================
-function handleScroll() {
-  isScrolled.value = window.scrollY > 60
-}
-
-// =============================================
 // INIT
 // =============================================
 onMounted(() => {
@@ -152,11 +215,17 @@ onMounted(() => {
   document.documentElement.setAttribute('data-theme', savedTheme)
   isDark.value = savedTheme === 'dark'
 
+  checkScrollPosition()
+
   // Entrance animation
-  gsap.fromTo('#navbar',
-    { yPercent: -100, opacity: 0 },
-    { yPercent: 0, opacity: 1, duration: 0.7, ease: 'power3.out', delay: 0.1 }
-  )
+  if (isHeroHidden.value) {
+    gsap.set('#navbar', { y: -100, opacity: 0 })
+  } else {
+    gsap.fromTo('#navbar',
+      { y: -100, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out', delay: 0.1 }
+    )
+  }
 
   // Handle Width Scroll Animation (95% -> content width)
   nextTick(() => {
@@ -206,6 +275,10 @@ onUnmounted(() => {
   display: flex;
   justify-content: center;
   pointer-events: none;
+}
+
+#navbar.nav-hero-hidden {
+  pointer-events: none !important;
 }
 
 .nav-inner {

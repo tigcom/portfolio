@@ -205,6 +205,7 @@ const footerCols = [
   font-family: 'Syne', 'DM Sans', system-ui, sans-serif;
   margin: 0;
   text-transform: uppercase;
+  color: var(--text);
 }
 .brutal p { margin: 0; }
 .brutal img { display: block; max-width: 100%; }
@@ -250,6 +251,7 @@ const footerCols = [
 /* Sections */
 .section { padding: 84px 0; border-top: 3px solid var(--border); }
 .section-blue { background: var(--blue); }
+.section-blue .sec-kicker { color: rgba(255, 255, 255, 0.85); }
 .section-yellow { background: var(--yellow); }
 .sec-kicker { display: inline-block; font-size: 0.76rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); margin-bottom: 12px; }
 .sec-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 36px; flex-wrap: wrap; }

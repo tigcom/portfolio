@@ -1,19 +1,39 @@
-# Cloudflare Pages cache headers (served from /_headers)
-# SPA entry — always revalidate so a redeploy is picked up immediately.
-# Vite content-hashes /assets/* filenames, so the shell must be fresh to point
-# at the new hashes; the hashed assets themselves can be cached forever.
-/
-  Cache-Control: no-cache, no-store, must-revalidate
-  Pragma: no-cache
-  Expires: 0
+# Cloudflare Pages cache headers (served from /_headers).
+#
+# Why the catch-all: the SSG build emits 49 HTML files at clean URLs — /about,
+# /projects/<slug>, /marketplace/<slug>/demo — not just "/" and "/index.html".
+# Rules naming only those two leave the other 47 on Cloudflare's default
+# caching, so a returning visitor gets the previous deploy's HTML. That HTML
+# points at an /assets/<hash> chunk which no longer exists on the current
+# deployment, the chunk 404s, hydration never runs, and the client-side page
+# loader never dismisses. Stale HTML and the black screen are the same bug.
+#
+# Matching rules STACK, and a header set by two rules is joined with a comma.
+# So every rule below first strips the inherited value with "! Cache-Control"
+# and only then sets its own — without that, /assets/* would inherit no-cache
+# and lose its immutable caching entirely.
 
-/index.html
-  Cache-Control: no-cache, no-store, must-revalidate
-  Pragma: no-cache
-  Expires: 0
+/*
+  Cache-Control: no-cache, must-revalidate
+  X-Content-Type-Options: nosniff
 
+# Vite content-hashes these filenames, so a given URL never changes contents.
 /assets/*
+  ! Cache-Control
   Cache-Control: public, max-age=31536000, immutable
 
+/image/*
+  ! Cache-Control
+  Cache-Control: public, max-age=2592000
+
+/mascots/*
+  ! Cache-Control
+  Cache-Control: public, max-age=2592000
+
+/demos/*
+  ! Cache-Control
+  Cache-Control: public, max-age=604800
+
 /api/*
+  ! Cache-Control
   Cache-Control: no-store

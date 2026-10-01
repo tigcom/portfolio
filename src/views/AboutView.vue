@@ -401,7 +401,7 @@ onMounted(() => {
   color: var(--text-primary);
   z-index: 1;
   transform: rotate(180deg);
-  transition: all 0.s ease;
+  transition: transform 0.3s var(--ease-out-expo), color 0.3s var(--ease-out-expo);
   display: flex;
   align-items: center;
   justify-content: center;

@@ -231,6 +231,7 @@ const footerCols = [
 .re h1, .re h2, .re h3, .re h4 {
   font-family: 'Cinzel', 'DM Sans', Georgia, serif;
   margin: 0;
+  color: var(--text);
 }
 .re p { margin: 0; }
 .re img { display: block; max-width: 100%; }

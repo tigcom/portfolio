@@ -8,19 +8,43 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import gsap from 'gsap'
 
 const emit = defineEmits(['loaded'])
 const loaderEl = ref(null)
 const barEl = ref(null)
 
+// The curtain covers the whole viewport at z-index 9999, so anything that stops
+// it from being dismissed traps the visitor on a black screen. The GSAP
+// timeline is the happy path, not the contract: a stalled ticker (heavy WebGL
+// on a slow device), a killed timeline or a boot error must all still let the
+// page through.
+const ANIM_MS = 1200 + 150 + 700
+const FAILSAFE_MS = ANIM_MS + 450
+
+let dismissed = false
+let failsafeId = null
+let tl = null
+
+function finish() {
+  if (dismissed) return
+  dismissed = true
+  clearTimeout(failsafeId)
+  emit('loaded')
+}
+
 onMounted(() => {
-  const tl = gsap.timeline({
-    onComplete: () => {
-      emit('loaded')
-    }
-  })
+  failsafeId = setTimeout(finish, FAILSAFE_MS)
+  window.addEventListener('error', finish)
+  window.addEventListener('unhandledrejection', finish)
+
+  if (!barEl.value || !loaderEl.value) {
+    finish()
+    return
+  }
+
+  tl = gsap.timeline({ onComplete: finish })
 
   tl.to(barEl.value, {
     width: '100%',
@@ -33,6 +57,13 @@ onMounted(() => {
     ease: 'power3.inOut',
     delay: 0.15
   })
+})
+
+onUnmounted(() => {
+  clearTimeout(failsafeId)
+  window.removeEventListener('error', finish)
+  window.removeEventListener('unhandledrejection', finish)
+  tl?.kill()
 })
 </script>
 

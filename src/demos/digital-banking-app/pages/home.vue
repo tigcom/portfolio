@@ -353,7 +353,7 @@ const footerCols = [
 }
 .hero-copy h1 { font-size: clamp(2.3rem, 5vw, 3.75rem); font-weight: 700; line-height: 1.06; letter-spacing: -0.02em; margin-bottom: 20px; }
 .grad {
-  background: linear-gradient(135deg, var(--primary), var(--cta));
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
   -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent; color: transparent;
 }

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark" data-lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>404 — Không tìm thấy trang | Phuc Khang</title>
+  <link rel="icon" type="image/png" href="/icon.png" />
+
+  <!-- Same bootstraps as the app shell, so a 404 doesn't flash the wrong
+       theme or the wrong language before the first paint. -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('portfolio-theme') || 'dark'
+        var l = localStorage.getItem('lang') || 'vi'
+        var r = document.documentElement
+        r.setAttribute('data-theme', t)
+        r.setAttribute('data-lang', l)
+        r.setAttribute('lang', l)
+      } catch (e) { }
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@500;600&family=Satoshi:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* Tokens mirror src/styles/main.css — this page is served straight off the
+       CDN with no bundle, so it can't inherit them from the app. */
+    :root,
+    [data-theme="dark"] {
+      --bg: #0b0b0d;
+      --surface: #121116;
+      --ink: #f7f7fe;
+      --ink-2: #9494a3;
+      --accent: #bcff67;
+      --font-display: 'Clash Display', sans-serif;
+      --font-body: 'Satoshi', sans-serif;
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      color-scheme: dark;
+    }
+
+    [data-theme="light"] {
+      --bg: #f7f8fa;
+      --surface: #ffffff;
+      --ink: #0b0b0b;
+      --ink-2: #58585e;
+      --accent: #237f42;
+      color-scheme: light;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-body);
+      display: grid;
+      place-items: center;
+      padding: clamp(1.5rem, 6vw, 6rem);
+    }
+
+    /* Asymmetric column: the block sits off-centre so the page reads as
+       composed rather than as a centred "something went wrong" card. */
+    .wrap {
+      width: min(100%, 46rem);
+      justify-self: start;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin: 0 0 clamp(1.25rem, 4vw, 2.5rem);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-2);
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 2.5rem;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    h1 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(3.5rem, 13vw, 9rem);
+      line-height: 0.92;
+      letter-spacing: -0.03em;
+    }
+
+    .lede {
+      margin: clamp(1.25rem, 3vw, 2rem) 0 0;
+      max-width: 34ch;
+      font-size: clamp(1rem, 1.6vw, 1.1875rem);
+      line-height: 1.6;
+      color: var(--ink-2);
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: clamp(1.75rem, 5vw, 3rem);
+    }
+
+    a {
+      display: inline-block;
+      padding: 0.8125rem 1.5rem;
+      border-radius: 999px;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      text-decoration: none;
+      color: var(--ink);
+      background: var(--surface);
+      transition: color 0.3s var(--ease-out-expo), background-color 0.3s var(--ease-out-expo);
+    }
+
+    a.primary {
+      color: var(--bg);
+      background: var(--accent);
+    }
+
+    a:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    a:active {
+      transform: translateY(1px);
+    }
+
+    /* Language swap — driven by the bootstrap above. */
+    [data-lang="vi"] .en,
+    [data-lang="en"] .vi { display: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      a { transition: none; }
+      a:active { transform: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <p class="eyebrow">404</p>
+
+    <h1>
+      <span class="vi">Lạc đường rồi</span>
+      <span class="en">Page not found</span>
+    </h1>
+
+    <p class="lede">
+      <span class="vi">Đường dẫn này không tồn tại, hoặc đã được chuyển đi chỗ khác. Thử quay về trang chủ xem sao.</span>
+      <span class="en">This path doesn't exist, or it moved somewhere else. Try heading back to the homepage.</span>
+    </p>
+
+    <nav>
+      <a class="primary" href="/">
+        <span class="vi">Về trang chủ</span>
+        <span class="en">Back home</span>
+      </a>
+      <a href="/projects">
+        <span class="vi">Xem dự án</span>
+        <span class="en">See projects</span>
+      </a>
+    </nav>
+  </main>
+</body>
+
+</html>

@@ -381,6 +381,7 @@ const footerCols = [
 .saas h1, .saas h2, .saas h3, .saas h4 {
   font-family: 'Poppins', 'DM Sans', system-ui, sans-serif;
   margin: 0;
+  color: var(--text);
 }
 .saas p { margin: 0; }
 
@@ -473,11 +474,11 @@ const footerCols = [
   margin: 22px 0 20px;
 }
 .grad {
-  background: linear-gradient(135deg, #0080ff, #8b00ff);
+  background: linear-gradient(135deg, #0265d2, #7c3aed);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  color: transparent;
+  color: #0265d2;
 }
 .hero-sub {
   max-width: 520px; font-size: 1.06rem; line-height: 1.65;

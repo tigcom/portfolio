@@ -4,8 +4,13 @@
     <!-- Cursor glow - color adapts to theme -->
     <div class="cursor-glow" ref="cursorGlow" v-if="!isBare"></div>
 
-    <!-- Page Loader -->
-    <PageLoader v-if="showLoader" @loaded="onLoaded" />
+    <!-- Page Loader — client-only on purpose. Rendered into the SSG output it
+         becomes a fixed full-viewport overlay baked into all 49 pre-rendered
+         pages, and only JS can take it away: a 404'd hashed chunk or a
+         hydration error left the visitor on a black screen with no way out. -->
+    <ClientOnly>
+      <PageLoader v-if="showLoader" @loaded="onLoaded" />
+    </ClientOnly>
 
     <!-- Navbar -->
     <AppNavbar v-if="!showLoader && !isBare" />
@@ -79,6 +84,30 @@ function scrollToTop() {
   if (lenis) lenis.scrollTo(0, { duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) })
 }
 
+// Let a child (e.g. the project-detail TOC) hand us a scroll target, so it
+// goes through Lenis instead of a bare window.scrollTo that fights its RAF loop.
+// `lock` giữ nguyên mục tiêu suốt animation (input người dùng không kéo tuột),
+// `onComplete` cho bên gọi biết đã tới nơi thật sự thay vì đoán bằng timeout.
+// `force` là bắt buộc khi đi kèm `lock`: Lenis bỏ qua lời gọi scrollTo lúc đang
+// bị khoá, nên nếu không có nó thì cú snap chồng lên cú snap đang chạy sẽ bị nuốt
+// trong khi bên gọi vẫn tưởng là đã đặt được đích.
+function scrollToY(event) {
+  const { y, lock, duration, onComplete } = event?.detail ?? {}
+  if (typeof y !== 'number') return
+  if (lenis) {
+    lenis.scrollTo(y, {
+      duration: duration ?? 1.0,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      lock: !!lock,
+      force: true,
+      onComplete: () => onComplete?.(),
+    })
+  } else {
+    window.scrollTo({ top: y, behavior: 'smooth' })
+    onComplete?.()
+  }
+}
+
 // ====== Cursor glow — smooth lag follow ======
 let mouseX = 0, mouseY = 0, cx = 0, cy = 0
 let rafId = null
@@ -97,8 +126,19 @@ function animateCursor() {
   rafId = requestAnimationFrame(animateCursor)
 }
 
+function updateBottomFrameShadow(scrollY) {
+  if (typeof document === 'undefined') return
+  const app = document.getElementById('app')
+  if (!app) return
+  const y = typeof scrollY === 'number' ? scrollY : (window.scrollY || document.documentElement.scrollTop || 0)
+  const isMarketplace = route.path === '/marketplace'
+  const isAtTop = y <= 15
+  app.classList.toggle('hide-bottom-frame-shadow', isMarketplace && isAtTop)
+}
+
 function handleLenisScroll({ scroll }) {
   showScrollTop.value = scroll > 400
+  updateBottomFrameShadow(scroll)
 }
 
 // ====== GSAP ScrollTrigger refresh + scroll-to-top on route change ======
@@ -118,6 +158,7 @@ watch(isBare, (bare) => {
 router.afterEach(() => {
   lenis?.scrollTo(0, { immediate: true })
   setTimeout(() => ScrollTrigger.refresh(), 150)
+  setTimeout(() => updateBottomFrameShadow(0), 50)
 })
 
 onMounted(() => {
@@ -176,7 +217,14 @@ onMounted(() => {
   )
   
   window.addEventListener('request-scroll-to-top', scrollToTop)
+  window.addEventListener('request-scroll-to', scrollToY)
+  window.addEventListener('scroll', onNativeScroll, { passive: true })
+  updateBottomFrameShadow(window.scrollY || 0)
 })
+
+function onNativeScroll() {
+  updateBottomFrameShadow()
+}
 
 onUnmounted(() => {
   if (lenis) {
@@ -187,6 +235,8 @@ onUnmounted(() => {
   document.removeEventListener('mousemove', trackMouse)
   cancelAnimationFrame(rafId)
   window.removeEventListener('request-scroll-to-top', scrollToTop)
+  window.removeEventListener('request-scroll-to', scrollToY)
+  window.removeEventListener('scroll', onNativeScroll)
 })
 </script>
 
@@ -196,7 +246,7 @@ onUnmounted(() => {
   flex-direction: column;
   min-height: 100vh;
   position: relative;
-  overflow-x: hidden;
+  overflow-x: clip;
   width: 100%;
 }
 
@@ -267,6 +317,14 @@ onUnmounted(() => {
     inset 0 var(--f-bottom, -100px) var(--f-bottom-blur, 50px) -50px var(--frame-shadow-color);
   pointer-events: none;
   z-index: 90;
+  transition: box-shadow 0.45s cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+/* Ẩn viền mờ đáy khi ở trang marketplace tại frame hero chưa scroll */
+#app.hide-bottom-frame-shadow::after {
+  box-shadow:
+    inset 0 var(--f-top, 0px) var(--f-top-blur, 0px) -50px var(--frame-shadow-color),
+    inset 0 0 0 0 transparent !important;
 }
 
 [data-theme="light"] {
@@ -351,5 +409,13 @@ onUnmounted(() => {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* ====== LIGHT THEME — TIC FACTORY DETAIL ====== */
+/* The prev/next cards sit on --bg-800, which is pure white in light mode, so
+   they read as flat against the page. Same elevation cue the other light-mode
+   cards get (cf. .pd-result-card, .process-card above). */
+[data-theme="light"] .nav-card {
+  box-shadow: var(--shadow-sm);
 }
 </style>

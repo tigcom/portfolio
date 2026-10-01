@@ -353,9 +353,9 @@ const footerCols = [
   font-weight: 700; line-height: 1.06; letter-spacing: -0.02em; margin-bottom: 20px;
 }
 .grad {
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  background: linear-gradient(135deg, #00d4ff, #39ff14);
   -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent; color: transparent;
+  -webkit-text-fill-color: transparent; color: #00d4ff;
 }
 .hero-sub { max-width: 500px; font-size: 1.05rem; line-height: 1.65; color: var(--muted); margin-bottom: 28px; }
 .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 24px; }

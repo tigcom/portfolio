@@ -1,0 +1,10 @@
+# Multi-page app demos live at /marketplace/<slug>/demo/<page>, but the SSG
+# build only emits one demo.html per template (pre-rendered at the first page).
+# Proxy the sub-pages back to that file so deep links and in-demo navigation
+# don't 404 — the Vue router reads :page from the address bar and renders the
+# matching page once it hydrates.
+#
+# 200 means proxy rather than redirect: the URL stays put. Placeholders are
+# supported on both sides; only one splat per rule is allowed, so :page is used
+# to match exactly one segment (demo pages are always a single segment).
+/marketplace/:slug/demo/:page  /marketplace/:slug/demo  200

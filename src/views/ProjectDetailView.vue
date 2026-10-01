@@ -1,6 +1,10 @@
 <template>
   <main class="project-detail-view" v-if="project">
+    <!-- Dedicated Devraj Chatribin template-style detail layout -->
+    <TicFactoryDetailLayout v-if="['renew-ticfactory', 'pccc-nguyen-hung'].includes(project.slug)" :project="project" />
 
+    <!-- Standard Project Layout for other projects -->
+    <template v-else>
     <!-- Back -->
     <div class="container pd-back">
       <router-link to="/projects" class="pd-back-link">
@@ -132,24 +136,6 @@
                 :secondaryImg2="project.galleryImgs[2]"
                 :title="project.title"
             />
-
-            <!-- Youtube Clone -->
-            <DesktopMockup
-                v-else-if="project.slug === 'youtube-clone'"
-                :mainImg="project.galleryImgs[1]"
-                :secondaryImg1="project.galleryImgs[0]"
-                :secondaryImg2="project.galleryImgs[2]"
-                :title="project.title"
-            />
-
-            <!-- Motorbike (Window Mockup placeholder - using Desktop for now) -->
-            <DesktopMockup
-                v-else-if="project.slug === 'motorbike-sales-system'"
-                :mainImg="project.galleryImgs[0]"
-                :secondaryImg1="project.galleryImgs[1]"
-                :secondaryImg2="project.galleryImgs[3]"
-                :title="project.title"
-            />
         </div>
     </div>
 
@@ -196,7 +182,7 @@
         </div>
       </div>
     </section>
-
+    </template>
   </main>
 </template>
 
@@ -210,6 +196,7 @@ import { useLang } from '../data/translations.js'
 
 import TravelokaMockup from '../components/projectDetail/mockups/TravelokaMockup.vue'
 import DesktopMockup from '../components/projectDetail/mockups/DesktopMockup.vue'
+import TicFactoryDetailLayout from '../components/projectDetail/TicFactoryDetailLayout.vue'
 import ProjectGallery from '../components/projectDetail/ProjectGallery.vue'
 import TrueFocus from '../components/projectDetail/TrueFocus.vue'
 import TiltedCard from '../components/effects/TiltedCard.vue'

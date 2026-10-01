@@ -222,6 +222,7 @@ const footerCols = [
   font-family: 'Playfair Display', 'DM Sans', Georgia, serif;
   margin: 0;
   font-weight: 400;
+  color: var(--text);
 }
 .lux p { margin: 0; }
 .lux img { display: block; max-width: 100%; }

@@ -255,6 +255,7 @@ const footerCols = [
 .wai h1, .wai h2, .wai h3, .wai h4 {
   font-family: 'Poppins', 'DM Sans', system-ui, sans-serif;
   margin: 0;
+  color: var(--text);
 }
 .wai p { margin: 0; }
 
@@ -286,7 +287,7 @@ const footerCols = [
 .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 48px; align-items: center; }
 .badge { display: inline-flex; align-items: center; gap: 8px; padding: 7px 15px; border-radius: 999px; margin-bottom: 22px; font-size: 0.82rem; font-weight: 600; color: var(--primary); background: rgba(124, 58, 237, 0.1); border: 1px solid var(--border); }
 .hero-copy h1 { font-size: clamp(2.3rem, 5vw, 3.75rem); font-weight: 700; line-height: 1.06; letter-spacing: -0.02em; margin-bottom: 20px; }
-.grad { background: linear-gradient(135deg, var(--primary), var(--cta)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
+.grad { background: linear-gradient(135deg, #7c3aed, #2563eb); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: #7c3aed; }
 .hero-sub { max-width: 500px; font-size: 1.05rem; line-height: 1.65; color: var(--muted); margin-bottom: 28px; }
 .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
 

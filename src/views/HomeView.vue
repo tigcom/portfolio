@@ -94,7 +94,9 @@
           <router-link v-for="(project, i) in featuredProjects" :key="project.slug"
             :to="`/projects/${project.slug}`" class="sp-card" :class="{
               'sp-card--stagger': i % 2 === 1
-            }" @mouseenter="onCardHover(i)">
+            }" 
+            @mouseenter="onCardHover(i)"
+            @mouseleave="onCardLeave">
             <!-- Image -->
             <div class="sp-card-img-wrap" :class="specialCardClasses(project)" :style="{ backgroundColor: projectBg(project) }">
               <template v-if="project.slug === 'company-clean-hub'">
@@ -230,13 +232,11 @@ const vReveal = {
 // Data
 const featuredProjects = projects.slice(0, 4)
 
-// ─── Theme-aware thumbnail background ─────────────────────────────────────
-const currentTheme = ref(typeof document !== 'undefined' ? (document.documentElement.getAttribute('data-theme') || 'dark') : 'dark')
-const projectBg = (project) => getProjectBgColor(project, currentTheme.value)
-let themeObserver = null
+// ─── Thumbnail background (Always clean light accent) ──────────────────────
+const projectBg = (project) => getProjectBgColor(project)
 
-// ─── Special case projects (K+ / Company Clean Hub) ─────────────────────────
-const SPECIAL_SLUGS = ['kplus-digital-banking', 'company-clean-hub']
+// ─── Special case projects (Company Clean Hub) ──────────────────────────────
+const SPECIAL_SLUGS = ['company-clean-hub']
 
 const specialCardClasses = (project) => {
   if (!SPECIAL_SLUGS.includes(project.slug)) return ''
@@ -283,7 +283,7 @@ const testimonials = [
 // Hover dimming state  (-1 = nothing hovered)
 const hoveredCard = ref(-1)
 
-// GSAP hover effects
+// GSAP hover effects (Snappy & immediate in/out)
 function onCardHover(index) {
   hoveredCard.value = index
   const spCards = spGrid.value?.querySelectorAll('.sp-card')
@@ -293,13 +293,13 @@ function onCardHover(index) {
     const wrapper = card.querySelector('.sp-card-img-wrap')
 
     if (i === index) {
-      // Hovered card: zoom image (via --card-zoom so the frame/phone scale too)
-      gsap.to(wrapper, { '--card-zoom': 1.05, duration: 0.55, ease: 'cubic-bezier(0.45, 0, 0.55, 1)' })
-      gsap.to(card, { opacity: 1, duration: 0.4, ease: 'cubic-bezier(0.25, 0.8, 0.25, 1)' })
+      // Hovered card: zoom image fast & smooth
+      gsap.to(wrapper, { '--card-zoom': 1.05, duration: 0.22, ease: 'power2.out', overwrite: 'auto' })
+      gsap.to(card, { opacity: 1, duration: 0.18, ease: 'power2.out', overwrite: 'auto' })
     } else {
-      // Other cards: dim
-      gsap.to(wrapper, { '--card-zoom': 1, duration: 0.55, ease: 'cubic-bezier(0.45, 0, 0.55, 1)' })
-      gsap.to(card, { opacity: 0.38, duration: 0.4, ease: 'cubic-bezier(0.25, 0.8, 0.25, 1)' })
+      // Other cards: dim fast
+      gsap.to(wrapper, { '--card-zoom': 1, duration: 0.22, ease: 'power2.out', overwrite: 'auto' })
+      gsap.to(card, { opacity: 0.42, duration: 0.18, ease: 'power2.out', overwrite: 'auto' })
     }
   })
 }
@@ -311,9 +311,9 @@ function onCardLeave() {
 
   spCards.forEach((card) => {
     const wrapper = card.querySelector('.sp-card-img-wrap')
-    // Reset all cards to normal state
-    gsap.to(wrapper, { '--card-zoom': 1, duration: 0.55, ease: 'cubic-bezier(0.45, 0, 0.55, 1)' })
-    gsap.to(card, { opacity: 1, duration: 0.4, ease: 'cubic-bezier(0.25, 0.8, 0.25, 1)' })
+    // Reset all cards immediately when not hovering
+    gsap.to(wrapper, { '--card-zoom': 1, duration: 0.2, ease: 'power2.out', overwrite: 'auto' })
+    gsap.to(card, { opacity: 1, duration: 0.18, ease: 'power2.out', overwrite: 'auto' })
   })
 }
 
@@ -373,11 +373,6 @@ const syncExpertiseMask = () => {
 }
 
 onMounted(() => {
-  themeObserver = new MutationObserver(() => {
-    currentTheme.value = document.documentElement.getAttribute('data-theme') || 'dark'
-  })
-  themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
-
   syncExpertiseMask()
   expertiseResizeObserver = new ResizeObserver(syncExpertiseMask)
   if (expertiseGrid.value) expertiseResizeObserver.observe(expertiseGrid.value)
@@ -439,7 +434,6 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  themeObserver?.disconnect()
   expertiseResizeObserver?.disconnect()
 })
 </script>

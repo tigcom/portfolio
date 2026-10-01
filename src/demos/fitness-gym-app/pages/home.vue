@@ -280,7 +280,12 @@ const footerCols = [
 .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; }
 .badge { display: inline-block; padding: 7px 16px; border-radius: 6px; margin-bottom: 22px; font-size: 0.82rem; font-weight: 700; color: var(--primary); background: rgba(255, 107, 53, 0.12); text-transform: uppercase; letter-spacing: 0.05em; }
 .hero-copy h1 { font-size: clamp(3rem, 7vw, 5rem); font-weight: 800; line-height: 0.95; letter-spacing: -0.01em; margin-bottom: 22px; }
-.outline { color: transparent; -webkit-text-stroke: 2px var(--primary); }
+.outline {
+  background: linear-gradient(135deg, #ff6b35, #ffa07a);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: #ff6b35;
+  -webkit-text-stroke: 0;
+}
 .hero-sub { max-width: 480px; font-size: 1.05rem; line-height: 1.65; color: var(--muted); margin-bottom: 28px; }
 .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 32px; }
 .hero-stats { display: flex; gap: 40px; }

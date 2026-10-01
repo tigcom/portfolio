@@ -233,6 +233,7 @@ const footerCols = [
 .well h1, .well h2, .well h3, .well h4 {
   font-family: 'Lora', 'DM Sans', Georgia, serif;
   margin: 0;
+  color: var(--text);
 }
 .well p { margin: 0; }
 
@@ -263,7 +264,11 @@ const footerCols = [
 .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 48px; align-items: center; }
 .badge { display: inline-block; padding: 7px 16px; border-radius: 999px; margin-bottom: 22px; font-size: 0.82rem; font-weight: 700; color: var(--cta); background: rgba(34, 197, 94, 0.1); }
 .hero-copy h1 { font-size: clamp(2.3rem, 5vw, 3.6rem); font-weight: 700; line-height: 1.1; margin-bottom: 20px; }
-.accent { color: var(--cta); }
+.accent {
+  background: linear-gradient(135deg, #15803d, #047857);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: #15803d;
+}
 .hero-sub { max-width: 500px; font-size: 1.05rem; line-height: 1.65; color: var(--muted); margin-bottom: 28px; }
 .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 30px; }
 .hero-stats { display: flex; gap: 40px; }

@@ -1,7 +1,856 @@
 [
   {
-    "slug": "internet-banking",
+    "slug": "renew-ticfactory",
     "num": "01",
+    "title": {
+      "en": "TIC Factory — Enterprise B2B Agro-Tech Platform",
+      "vi": "TIC Factory — Nền tảng Nông sản & Công nghệ B2B"
+    },
+    "subtitle": {
+      "en": "High-End Redesign for B2B Gac & Tropical Agricultural Processing",
+      "vi": "Nền tảng B2B Nông sản Xuất khẩu & Chế biến Chiết xuất Gấc"
+    },
+    "category": "development",
+    "tags": [
+      "Next.js 15",
+      "React 19",
+      "GSAP 3",
+      "Tailwind CSS v4",
+      "Lenis Smooth Scroll",
+      "TypeScript"
+    ],
+    "year": "2026",
+    "img": "/image/ticfactory.png",
+    "shortTitle": {
+      "en": "TIC Factory",
+      "vi": "TIC Factory"
+    },
+    "client": {
+      "en": "TIC FACTORY Joint Stock Company",
+      "vi": "Công ty Cổ phần TIC FACTORY"
+    },
+    "demoUrl": "https://ticfactory-demo.vercel.app",
+    "colorBackgound": "#2a4441",
+    "heroImg": "/image/projects/renew-ticfactory/fireshot-008.jpg",
+    "heroImgSize": {
+      "w": 1864,
+      "h": 999
+    },
+    "galleryLayout": null,
+    "galleryImgs": [
+      "/image/projects/renew-ticfactory/fireshot-008.jpg",
+      "/image/projects/renew-ticfactory/ticfactory-full-landing.jpg",
+      "/image/projects/renew-ticfactory/ticfactory-full-factory.jpg",
+      "/image/projects/renew-ticfactory/fireshot-015.jpg",
+      "/image/projects/renew-ticfactory/fireshot-018.jpg",
+      "/image/projects/renew-ticfactory/fireshot-017.jpg",
+      "/image/projects/renew-ticfactory/ticfactory-full-oem.jpg",
+      "/image/projects/renew-ticfactory/fireshot-013.jpg",
+      "/image/projects/renew-ticfactory/fireshot-019.jpg",
+      "/image/projects/renew-ticfactory/fireshot-014.jpg"
+    ],
+    "techStack": [
+      "Next.js 15",
+      "React 19",
+      "GSAP 3.12",
+      "Lenis 1.1",
+      "Tailwind CSS v4",
+      "TypeScript",
+      "Lucide React"
+    ],
+    "role": {
+      "en": "Lead UI/UX & Frontend Developer",
+      "vi": "Trưởng nhóm Thiết kế UI/UX & Frontend Developer"
+    },
+    "overview": {
+      "en": "TIC Factory is an enterprise B2B agro-tech platform built for a leading manufacturer specializing in Gac fruit extracts (cold-pressed Gac oil, freeze-dried powder, frozen puree) and tropical agricultural exports. The platform showcases high-end industrial processing capabilities, OEM/ODM solutions, international quality certifications (ISO 22000, HACCP, FDA), and interactive product exploration for global importers.",
+      "vi": "TIC Factory là nền tảng số B2B dành cho nhà sản xuất & xuất khẩu nông sản hàng đầu Việt Nam, chuyên về các sản phẩm chiết xuất từ Gấc (dầu gấc ép lạnh, bột gấc sấy thăng hoa, puree gấc cấp đông) và nông sản nhiệt đới. Nền tảng trình diễn năng lực chế biến công nghiệp cao, dịch vụ gia công OEM/ODM, tiêu chuẩn chất lượng quốc tế (ISO 22000, HACCP, FDA) cùng giao diện trải nghiệm sản phẩm tương tác cho đối tác toàn cầu."
+    },
+    "problem": {
+      "en": "Traditional agricultural B2B websites often lack visual identity, smooth interactive experience, and clear presentation of high-tech manufacturing standards required by international buyers. The objective was to create a modern, anti-slop high-end web experience with asynchronous smooth scrolling, custom GSAP animations, 12-column asymmetric grids, and OKLCH color palettes reflecting high-tech agriculture.",
+      "vi": "Các trang web B2B nông sản truyền thống thường thiếu bản sắc thương hiệu, trải nghiệm tương tác chưa mượt mà và chưa làm nổi bật được chuẩn mực sản xuất công nghệ cao trước các đối tác quốc tế. Mục tiêu dự án là tái kiến thiết trải nghiệm web cao cấp, ứng dụng cuộn mượt bất đồng bộ (Lenis), hiệu ứng GSAP tùy biến, bố cục lưới 12 cột bất đối xứng và bảng màu OKLCH đậm chất nông sản công nghệ cao."
+    },
+    "processSteps": [
+      {
+        "title": {
+          "en": "High-End Anti-Slop UI & Layout",
+          "vi": "Kiến trúc Giao diện Cao cấp Anti-Slop"
+        },
+        "description": {
+          "en": "Designed asymmetrical 12-column CSS grid layouts, custom typography pairing Geist with display accents, multi-layered micro-shadows, and dark mode OKLCH surfaces with noise overlays.",
+          "vi": "Thiết kế bố cục CSS Grid 12 cột bất đối xứng, phối hợp phông chữ Geist chuẩn mực, hiệu ứng bóng đổ đa tầng và bề mặt OKLCH tối có lớp phủ phím noise tinh tế."
+        }
+      },
+      {
+        "title": {
+          "en": "GSAP & Lenis Smooth Motion Engine",
+          "vi": "Động cơ Chuyển động GSAP & Lenis"
+        },
+        "description": {
+          "en": "Integrated Lenis smooth scrolling bound to GSAP ticker without standard transitions, featuring pinned section scrubs, interactive product showcases, and responsive motion matching user preferences.",
+          "vi": "Tích hợp cuộn mượt Lenis đồng bộ cùng vòng lặp RAF của GSAP, tạo nên các phân khu pin scroll, trình diễn sản phẩm tương tác và hiệu ứng chuyển động tối ưu hiệu năng."
+        }
+      },
+      {
+        "title": {
+          "en": "B2B OEM/ODM & Factory Capabilities",
+          "vi": "Phân khu Nhà máy & Gia công OEM/ODM B2B"
+        },
+        "description": {
+          "en": "Structured detailed pages for factory technical specs, extraction process flowcharts, export certification standards, and R&D consultation request forms for global B2B clients.",
+          "vi": "Xây dựng chi tiết các phân khu kỹ thuật nhà máy, quy trình chiết xuất ép lạnh/sấy thăng hoa, tiêu chuẩn xuất khẩu quốc tế và biểu mẫu đăng ký tư vấn R&D cho khách hàng B2B."
+        }
+      }
+    ],
+    "results": [
+      {
+        "value": 100,
+        "suffix": "%",
+        "label": {
+          "en": "Responsive & Anti-Slop Verified",
+          "vi": "Chuẩn Giao diện Anti-Slop & Responsive"
+        }
+      },
+      {
+        "value": 5,
+        "suffix": "+",
+        "label": {
+          "en": "B2B Product Portfolios",
+          "vi": "Dòng Sản phẩm B2B Chủ lực"
+        }
+      },
+      {
+        "value": 60,
+        "suffix": "fps",
+        "label": {
+          "en": "Smooth GSAP Animation",
+          "vi": "Hiệu năng Chuyển động GSAP"
+        }
+      },
+      {
+        "value": 3,
+        "suffix": "+",
+        "label": {
+          "en": "Global Certifications (ISO/HACCP/FDA)",
+          "vi": "Chứng nhận Quốc tế (ISO/HACCP/FDA)"
+        }
+      }
+    ],
+    "githubLink": "",
+    "prevSlug": "phong-vu-clone",
+    "prevTitle": {
+      "en": "ElectroMart — Electronics Retail Platform",
+      "vi": "ElectroMart — Nền tảng Bán lẻ Điện tử"
+    },
+    "nextSlug": "pccc-nguyen-hung",
+    "nextTitle": {
+      "en": "PCCC Nguyen Hung",
+      "vi": "PCCC Nguyễn Hùng"
+    },
+    "sections": [
+      {
+        "id": "landing-page",
+        "num": "01",
+        "level": 1,
+        "heading": {
+          "en": "Landing Page Architecture",
+          "vi": "Kiến trúc Trang chủ"
+        },
+        "body": {
+          "en": "The homepage is built on an asymmetrical grid with Lenis asynchronous smooth scrolling and custom GSAP sequences. Processing capability, product portfolio and international quality standards (ISO 22000, HACCP, FDA) are presented in one continuous scroll.",
+          "vi": "Trang chủ được dựng trên lưới bất đối xứng, kết hợp cuộn mượt bất đồng bộ Lenis và hiệu ứng GSAP tùy biến. Năng lực chế biến, danh mục sản phẩm và tiêu chuẩn chất lượng quốc tế (ISO 22000, HACCP, FDA) được trình diễn trong một mạch cuộn liên tục."
+        },
+        "images": [
+          {
+            "src": "/image/projects/renew-ticfactory/ticfactory-full-landing.jpg",
+            "w": 1904,
+            "h": 10115,
+            "alt": {
+              "en": "Full-page capture of the TIC Factory homepage",
+              "vi": "Ảnh chụp toàn bộ trang chủ TIC Factory"
+            },
+            "lightbox": false
+          }
+        ],
+        "children": [
+          {
+            "id": "b2b-grid",
+            "level": 2,
+            "heading": {
+              "en": "Asymmetrical 12-Column Grid",
+              "vi": "Lưới 12 cột bất đối xứng"
+            },
+            "body": {
+              "en": "Layout runs on a 12-column grid split asymmetrically — 7/5 and 8/4 rather than even halves — with elements deliberately breaking the line through offsets and negative margins. Section rhythm alternates between generous and compressed vertical spacing, so the page reads as distinct chapters instead of one uniform stack.",
+              "vi": "Bố cục chạy trên lưới 12 cột chia bất đối xứng — tỉ lệ 7/5 và 8/4 thay vì chia đôi đều — với các phần tử chủ động phá lưới bằng độ lệch và lề âm. Nhịp phân khu luân phiên giữa khoảng thở rộng và nén chặt, để trang đọc như từng chương riêng biệt thay vì một khối đồng nhất."
+            },
+            "images": [],
+            "children": []
+          },
+          {
+            "id": "lenis-gsap",
+            "level": 2,
+            "heading": {
+              "en": "Lenis Smooth Scroll & GSAP Ticker",
+              "vi": "Cuộn mượt Lenis & GSAP Ticker"
+            },
+            "body": {
+              "en": "Lenis drives page scrolling through a single requestAnimationFrame loop shared with the GSAP ticker, so scroll effects and pinned sequences never fall out of step. Pinned sections with scrubbed timelines carry the product and factory walkthroughs, and motion respects reduced-motion preferences.",
+              "vi": "Lenis điều khiển cuộn trang qua một vòng lặp requestAnimationFrame duy nhất dùng chung với GSAP ticker, nhờ đó hiệu ứng cuộn và các phân khu pin không bao giờ lệch pha. Các phân khu pin kèm timeline scrub dẫn dắt phần trình diễn sản phẩm và nhà máy, đồng thời tôn trọng thiết lập giảm chuyển động của người dùng."
+            },
+            "images": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "factory-process",
+        "num": "02",
+        "level": 1,
+        "heading": {
+          "en": "Factory & Processing Line",
+          "vi": "Nhà máy & Quy trình Chế biến"
+        },
+        "body": {
+          "en": "The factory section documents the closed three-phase centrifugal cold-press line and the vacuum freeze-drying process, which runs at sub-zero temperatures to preserve the Lycopene and Beta-carotene activity of the Gac fruit.",
+          "vi": "Phân khu nhà máy trình bày dây chuyền ép lạnh ly tâm 3 pha khép kín và công nghệ sấy thăng hoa chân không ở nhiệt độ âm, giúp bảo tồn hoạt tính Lycopene và Beta-carotene của quả gấc."
+        },
+        "images": [
+          {
+            "src": "/image/projects/renew-ticfactory/ticfactory-full-factory.jpg",
+            "w": 1863,
+            "h": 10345,
+            "alt": {
+              "en": "Full-page capture of the factory capability page",
+              "vi": "Ảnh chụp toàn bộ trang năng lực nhà máy"
+            },
+            "lightbox": false
+          }
+        ],
+        "children": [
+          {
+            "id": "factory-line",
+            "level": 2,
+            "heading": {
+              "en": "Cold-Press & Freeze-Dry Line",
+              "vi": "Dây chuyền Ép lạnh & Sấy thăng hoa"
+            },
+            "body": {
+              "en": "Three core product forms come off the line: cold-pressed Gac oil, freeze-dried powder and frozen puree. Every batch stays traceable back to the growing region it was harvested from.",
+              "vi": "Dây chuyền cho ra ba dòng sản phẩm chủ lực: dầu gấc ép lạnh, bột gấc sấy thăng hoa và puree gấc cấp đông. Mỗi lô hàng đều truy xuất được về vùng nguyên liệu đã thu hoạch."
+            },
+            "images": [
+              {
+                "src": "/image/projects/renew-ticfactory/fireshot-015.jpg",
+                "w": 1864,
+                "h": 999,
+                "alt": {
+                  "en": "Low-temperature extraction line",
+                  "vi": "Dây chuyền chiết xuất nhiệt độ thấp"
+                },
+                "caption": {
+                  "en": "Low-temperature production line",
+                  "vi": "Dây chuyền sản xuất nhiệt độ thấp"
+                }
+              }
+            ],
+            "children": []
+          },
+          {
+            "id": "iso-haccp",
+            "level": 2,
+            "heading": {
+              "en": "ISO 22000 & HACCP Standards",
+              "vi": "Tiêu chuẩn ISO 22000 & HACCP"
+            },
+            "body": {
+              "en": "Production operates to ISO 22000 and HACCP Codex, without chemical solvents or heat treatment that would denature the extract. Certification documents are published alongside the product data so importers can verify them before enquiry.",
+              "vi": "Dây chuyền vận hành theo tiêu chuẩn ISO 22000 và HACCP Codex, không dùng dung môi hóa học và không gia nhiệt làm biến tính tinh chất. Hồ sơ chứng nhận được công bố song song với dữ liệu sản phẩm để đối tác nhập khẩu kiểm tra trước khi liên hệ."
+            },
+            "images": [],
+            "children": []
+          },
+          {
+            "id": "thap-ho-so-3d",
+            "level": 2,
+            "heading": {
+              "en": "3D Dossier Tower & COA",
+              "vi": "Tháp Hồ sơ 3D & COA Kiểm nghiệm"
+            },
+            "body": {
+              "en": "For export buyers, the product dossier is laid out as a 3D document tower alongside the Certificate of Analysis issued for each batch, so quality figures can be checked against the shipment before it leaves the factory.",
+              "vi": "Dành cho đối tác nhập khẩu, hồ sơ sản phẩm được dàn thành tháp tài liệu 3D, đi kèm phiếu phân tích chỉ số COA cấp cho từng lô, để đối chiếu chỉ tiêu chất lượng với lô hàng trước khi xuất xưởng."
+            },
+            "images": [
+              {
+                "src": "/image/projects/renew-ticfactory/fireshot-018.jpg",
+                "w": 1864,
+                "h": 999,
+                "alt": {
+                  "en": "3D dossier tower and Certificate of Analysis",
+                  "vi": "Tháp hồ sơ 3D và phiếu phân tích COA"
+                },
+                "caption": {
+                  "en": "Dossier tower & COA",
+                  "vi": "Tháp hồ sơ & COA"
+                }
+              }
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "products-b2b",
+        "num": "03",
+        "level": 1,
+        "heading": {
+          "en": "Gac Extract Product Portfolio",
+          "vi": "Danh mục Sản phẩm Chiết xuất Gấc"
+        },
+        "body": {
+          "en": "An interactive product explorer covers the extract range for buyers in Japan, South Korea, the United States and Europe. Each entry documents its product form, its application and the standards it is certified against.",
+          "vi": "Giao diện khám phá sản phẩm tương tác bao quát danh mục chiết xuất gấc phục vụ thị trường Nhật Bản, Hàn Quốc, Mỹ và Châu Âu. Mỗi sản phẩm trình bày dạng bào chế, ứng dụng và các tiêu chuẩn mà sản phẩm đạt được."
+        },
+        "images": [],
+        "children": [
+          {
+            "id": "gac-oil",
+            "level": 2,
+            "heading": {
+              "en": "Cold-Pressed Gac Oil",
+              "vi": "Dầu gấc ép lạnh"
+            },
+            "body": {
+              "en": "Cold-pressed Gac oil is the flagship line, extracted without heat so the carotenoid content stays intact. Its product entry covers the form it ships in and the applications it is supplied for.",
+              "vi": "Dầu gấc ép lạnh là dòng chủ lực, chiết xuất không qua gia nhiệt để giữ nguyên hàm lượng carotenoid. Trang sản phẩm trình bày dạng xuất hàng và các ứng dụng cung ứng."
+            },
+            "images": [],
+            "children": []
+          },
+          {
+            "id": "gac-powder",
+            "level": 2,
+            "heading": {
+              "en": "Freeze-Dried Gac Powder",
+              "vi": "Bột gấc sấy thăng hoa"
+            },
+            "body": {
+              "en": "Freeze-dried Gac powder is produced under vacuum at sub-zero temperatures, preserving the Lycopene and Beta-carotene activity that heat drying would degrade. It is the form most often specified for nutraceutical and beverage applications.",
+              "vi": "Bột gấc sấy thăng hoa được sản xuất trong môi trường chân không ở nhiệt độ âm, bảo tồn hoạt tính Lycopene và Beta-carotene mà phương pháp sấy nhiệt sẽ làm suy giảm. Đây là dạng được chỉ định phổ biến nhất cho ứng dụng thực phẩm bổ sung và đồ uống."
+            },
+            "images": [
+              {
+                "src": "/image/projects/renew-ticfactory/fireshot-017.jpg",
+                "w": 1864,
+                "h": 999,
+                "alt": {
+                  "en": "Freeze-dried Gac powder packaging",
+                  "vi": "Bao bì bột gấc sấy thăng hoa"
+                },
+                "caption": {
+                  "en": "Freeze-dried Gac powder",
+                  "vi": "Bột gấc sấy thăng hoa"
+                }
+              }
+            ],
+            "children": []
+          },
+          {
+            "id": "gac-puree",
+            "level": 2,
+            "heading": {
+              "en": "Frozen Gac Puree",
+              "vi": "Puree gấc cấp đông"
+            },
+            "body": {
+              "en": "Frozen Gac puree completes the range as the least processed form, held at sub-zero temperature from pressing through to shipment so the fruit character survives the export chain.",
+              "vi": "Puree gấc cấp đông khép lại danh mục ở dạng ít qua chế biến nhất, được giữ ở nhiệt độ âm từ khâu ép cho tới lúc xuất hàng để giữ trọn đặc tính nguyên liệu suốt chuỗi xuất khẩu."
+            },
+            "images": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "oem-odm-services",
+        "num": "04",
+        "level": 1,
+        "heading": {
+          "en": "OEM/ODM & R&D Services",
+          "vi": "Dịch vụ Gia công OEM/ODM & R&D"
+        },
+        "body": {
+          "en": "OEM/ODM services cover both bulk ingredient supply and private-label finished products, with R&D consultation request forms for global B2B clients.",
+          "vi": "Dịch vụ OEM/ODM bao gồm cung ứng nguyên liệu dạng sỉ và gia công thành phẩm, kèm biểu mẫu đăng ký tư vấn R&D cho khách hàng B2B toàn cầu."
+        },
+        "images": [
+          {
+            "src": "/image/projects/renew-ticfactory/ticfactory-full-oem.jpg",
+            "w": 1863,
+            "h": 4192,
+            "alt": {
+              "en": "Full-page capture of the OEM/ODM services page",
+              "vi": "Ảnh chụp toàn bộ trang dịch vụ OEM/ODM"
+            },
+            "lightbox": false
+          }
+        ],
+        "children": [
+          {
+            "id": "bulk-supply",
+            "level": 2,
+            "heading": {
+              "en": "Bulk Supply — Raw Material",
+              "vi": "Bulk Supply — Nguyên liệu sỉ"
+            },
+            "body": {
+              "en": "Bulk supply ships the extract as an ingredient, for manufacturers who process it further under their own formulation and quality system.",
+              "vi": "Bulk Supply cung ứng nguyên liệu chiết xuất ở dạng nguyên liệu đầu vào, dành cho các nhà sản xuất tiếp tục chế biến theo công thức và hệ thống chất lượng riêng."
+            },
+            "images": [],
+            "children": []
+          },
+          {
+            "id": "private-label",
+            "level": 2,
+            "heading": {
+              "en": "Private Label — Finished Product",
+              "vi": "Private Label — Gia công thành phẩm"
+            },
+            "body": {
+              "en": "Private label covers finished products manufactured under the buyer's own brand, from formulation through filling and packaging.",
+              "vi": "Private Label gia công thành phẩm mang thương hiệu của đối tác, từ khâu xây dựng công thức tới chiết rót và đóng gói."
+            },
+            "images": [],
+            "children": []
+          },
+          {
+            "id": "sample-kit",
+            "level": 2,
+            "heading": {
+              "en": "Sample Kit, COA & NDA",
+              "vi": "Bộ mẫu thử, COA & NDA"
+            },
+            "body": {
+              "en": "Buyers can request a free sample kit together with the batch COA, and R&D consultations run under a non-disclosure agreement protecting the client's formulation. The enquiry form on this page carries the whole request.",
+              "vi": "Đối tác có thể yêu cầu bộ mẫu thử nghiệm miễn phí kèm phiếu COA của lô, và các buổi tư vấn R&D được thực hiện dưới thỏa thuận bảo mật NDA bảo vệ công thức của khách hàng. Biểu mẫu trên trang này gói trọn toàn bộ yêu cầu."
+            },
+            "images": [
+              {
+                "src": "/image/projects/renew-ticfactory/fireshot-013.jpg",
+                "w": 1864,
+                "h": 999,
+                "alt": {
+                  "en": "B2B raw material and OEM/ODM quote request form",
+                  "vi": "Biểu mẫu yêu cầu báo giá nguyên liệu & gia công OEM/ODM"
+                },
+                "caption": {
+                  "en": "Quote request form",
+                  "vi": "Biểu mẫu yêu cầu báo giá"
+                }
+              }
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "agronomy-insights",
+        "num": "05",
+        "level": 1,
+        "heading": {
+          "en": "Agronomy Dossier & Lycopene Science",
+          "vi": "Hồ sơ Nông học & Dược tính Lycopene"
+        },
+        "body": {
+          "en": "The agronomy section publishes the growing-region profile and the supporting science panels behind the extract, so buyers can review both provenance and evidence in one place.",
+          "vi": "Phân khu nông học công bố hồ sơ vùng trồng và các bảng khoa học làm cơ sở cho sản phẩm, để đối tác tra cứu cả nguồn gốc lẫn bằng chứng trong cùng một chỗ."
+        },
+        "images": [],
+        "children": [
+          {
+            "id": "vung-trong-globalgap",
+            "level": 2,
+            "heading": {
+              "en": "GlobalGAP Growing Region",
+              "vi": "Vùng trồng GlobalGAP Tây Ninh"
+            },
+            "body": {
+              "en": "More than 100 hectares are under GlobalGAP cultivation across Thạnh Bắc and Tân Biên in Tây Ninh province. Fruit is harvested and moved into processing within the same production window, which is what keeps the raw material traceable to a specific plot.",
+              "vi": "Hơn 100 hecta canh tác đạt chuẩn GlobalGAP tại Thạnh Bắc và Tân Biên, tỉnh Tây Ninh. Trái được thu hoạch và đưa vào chế biến trong cùng một cửa sổ sản xuất, nhờ đó nguyên liệu luôn truy xuất được về từng lô đất cụ thể."
+            },
+            "images": [],
+            "children": []
+          },
+          {
+            "id": "carotenoid-science",
+            "level": 2,
+            "heading": {
+              "en": "Carotenoid & Pro-vitamin A Science",
+              "vi": "Dược tính Carotenoid & Pro-vitamin A"
+            },
+            "body": {
+              "en": "Reference panels set out the antioxidant behaviour of the natural carotenoids and the absorption kinetics of pro-vitamin A, so the science behind the extract can be reviewed before ordering.",
+              "vi": "Các bảng tham chiếu trình bày khả năng chống oxy hóa của carotenoid tự nhiên và động học hấp thu Pro-vitamin A, giúp tra cứu cơ sở khoa học của sản phẩm trước khi đặt hàng."
+            },
+            "images": [
+              {
+                "src": "/image/projects/renew-ticfactory/fireshot-019.jpg",
+                "w": 1864,
+                "h": 999,
+                "alt": {
+                  "en": "Lycopene and antioxidant science panels",
+                  "vi": "Bảng khoa học Lycopene và chống oxy hóa"
+                },
+                "caption": {
+                  "en": "Carotenoid science panels",
+                  "vi": "Bảng khoa học Carotenoid"
+                }
+              }
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "contact-logistics",
+        "num": "06",
+        "level": 1,
+        "heading": {
+          "en": "Contact & Closing",
+          "vi": "Liên hệ & Chân trang"
+        },
+        "body": {
+          "en": "The page closes with the brand wordmark and the B2B enquiry routes, including the trading office in Ho Chi Minh City that handles export logistics.",
+          "vi": "Trang khép lại bằng dấu ấn thương hiệu và các kênh liên hệ B2B, bao gồm văn phòng giao dịch tại TP. Hồ Chí Minh phụ trách logistics xuất khẩu."
+        },
+        "images": [
+          {
+            "src": "/image/projects/renew-ticfactory/fireshot-014.jpg",
+            "w": 1864,
+            "h": 999,
+            "alt": {
+              "en": "TIC Factory wordmark over the growing region",
+              "vi": "Dấu ấn TIC Factory trên vùng nguyên liệu"
+            }
+          }
+        ],
+        "children": []
+      }
+    ]
+  },
+  {
+    "slug": "pccc-nguyen-hung",
+    "num": "02",
+    "title": {
+      "en": "Nguyen Hung Fire Safety Equipment & Solutions",
+      "vi": "Thiết Bị & Giải Pháp PCCC DN NGUYỄN HÙNG"
+    },
+    "subtitle": {
+      "en": "B2B Fire Safety Platform, TCVN 5738 Specs & RFQ System",
+      "vi": "Nền tảng B2B Tra cứu Kỹ thuật, Đối chiếu Tiêu chuẩn TCVN & Lập Báo giá RFQ"
+    },
+    "category": "development",
+    "tags": [
+      "Next.js 16",
+      "React 19",
+      "Tailwind CSS v4",
+      "Framer Motion",
+      "TypeScript"
+    ],
+    "year": "2026",
+    "img": "/image/pccc.png",
+    "shortTitle": {
+      "en": "PCCC Nguyen Hung",
+      "vi": "PCCC Nguyễn Hùng"
+    },
+    "client": {
+      "en": "Nguyen Hung Enterprise",
+      "vi": "Doanh nghiệp Tư nhân NGUYỄN HÙNG"
+    },
+    "role": {
+      "en": "Frontend Architecture & UI/UX",
+      "vi": "Kiến trúc Frontend & UI/UX"
+    },
+    "colorBackgound": "#e6e5e3",
+    "overview": {
+      "en": "A dedicated B2B platform engineered for Safety Engineers, Project Investors, and Contractors to quickly search fire protection equipment, verify TCVN 5738:2021 and UL/FM compliance, examine datasheets, and build multi-item Request for Quote (RFQ) dossiers.",
+      "vi": "Nền tảng B2B chuyên ngành PCCC phục vụ Kỹ sư an toàn, Chủ đầu tư và Ban quản lý dự án tra cứu nhanh thiết bị phòng cháy, đối chiếu quy chuẩn TCVN 5738:2021 & UL/FM, xem thông số datasheet và lập hồ sơ yêu cầu báo giá (RFQ) tự động."
+    },
+    "problem": {
+      "en": "Traditional B2B procurement in fire safety relies on cumbersome physical catalogs, outdated standards, and fragmented quotation inquiries. Engineers needed a single source of truth for technical specs and instant RFQ submission.",
+      "vi": "Quy trình mua sắm và thẩm duyệt thiết bị PCCC truyền thống phụ thuộc nhiều vào catalogue giấy, tiêu chuẩn khó tra cứu và luồng báo giá phân tán. Dự án giải quyết bài toán tập trung hóa dữ liệu kỹ thuật và tự động hóa hồ sơ báo giá."
+    },
+    "processSteps": [],
+    "results": [
+      {
+        "value": 100,
+        "suffix": "+",
+        "label": {
+          "en": "Certified safety products",
+          "vi": "Thiết bị PCCC kiểm định"
+        }
+      },
+      {
+        "value": 1,
+        "suffix": "",
+        "label": {
+          "en": "Integrated RFQ system",
+          "vi": "Hệ thống lập báo giá RFQ"
+        }
+      },
+      {
+        "value": 100,
+        "suffix": "%",
+        "label": {
+          "en": "TCVN 5738 compliance",
+          "vi": "Chuẩn hóa TCVN 5738"
+        }
+      }
+    ],
+    "githubLink": "",
+    "prevSlug": "renew-ticfactory",
+    "prevTitle": {
+      "en": "TIC Factory",
+      "vi": "TIC Factory"
+    },
+    "nextSlug": "internet-banking",
+    "nextTitle": {
+      "en": "KBIZ Corporate Internet Banking",
+      "vi": "KBIZ Internet Banking Doanh nghiệp"
+    },
+    "sections": [
+      {
+        "id": "landing-page",
+        "num": "01",
+        "level": 1,
+        "heading": {
+          "en": "Platform Architecture & Landing Page",
+          "vi": "Kiến trúc Nền tảng & Trang chủ"
+        },
+        "body": {
+          "en": "The landing page establishes trust through international typographic styles (Space Grotesk + Manrope + JetBrains Mono), prioritizing legibility and structure. It immediately directs safety engineers to relevant product categories and standards.",
+          "vi": "Trang chủ thiết lập sự tin cậy thông qua phong cách thiết kế International Typographic (Space Grotesk + Manrope + JetBrains Mono), ưu tiên tính dễ đọc và cấu trúc thông tin. Ngay lập tức điều hướng kỹ sư an toàn đến danh mục sản phẩm và tiêu chuẩn kỹ thuật."
+        },
+        "images": [
+          {
+            "src": "/image/projects/pccc/home-full.png",
+            "w": 1863,
+            "h": 10737,
+            "alt": {
+              "en": "Landing page full view",
+              "vi": "Toàn cảnh kiến trúc Landing Page B2B PCCC"
+            },
+            "lightbox": false
+          }
+        ],
+        "children": []
+      },
+      {
+        "id": "about-us",
+        "num": "02",
+        "level": 1,
+        "heading": {
+          "en": "Company Profile & Certifications",
+          "vi": "Hồ sơ Năng lực & Chứng nhận Doanh nghiệp"
+        },
+        "body": {
+          "en": "Showcasing enterprise capabilities, authorized distributor credentials, and strict adherence to national safety standards (QCVN 06:2022/BXD & TCVN 5738) and international certifications (UL/FM, CE, VDS).",
+          "vi": "Trình bày hồ sơ năng lực của doanh nghiệp, tư cách đại lý phân phối chính thức và sự tuân thủ nghiêm ngặt các tiêu chuẩn an toàn quốc gia (QCVN 06:2022/BXD & TCVN 5738) cùng chứng nhận quốc tế (UL/FM, CE, VDS)."
+        },
+        "images": [
+          {
+            "src": "/image/projects/pccc/about.png",
+            "w": 1864,
+            "h": 999,
+            "alt": {
+              "en": "About enterprise profile",
+              "vi": "Hồ sơ năng lực Doanh nghiệp NGUYỄN HÙNG"
+            },
+            "caption": {
+              "en": "Enterprise Profile & Compliance",
+              "vi": "Hồ sơ năng lực & Pháp lý kiểm định"
+            },
+            "lightbox": true
+          }
+        ],
+        "children": []
+      },
+      {
+        "id": "products-catalog",
+        "num": "03",
+        "level": 1,
+        "heading": {
+          "en": "Equipment Catalog & RFQ Integration",
+          "vi": "Danh mục Thiết bị & Hệ thống Báo giá RFQ"
+        },
+        "body": {
+          "en": "A highly structured product catalog allowing engineers to filter by safety standard, system architecture (Addressable/Conventional), and add items directly to their Request for Quote (RFQ) drawer with real-time bill calculations.",
+          "vi": "Hệ thống danh mục thiết bị được phân loại khoa học (Báo cháy địa chỉ, Báo cháy thường, Chữa cháy khí, Bơm & Van), cho phép lọc theo tiêu chuẩn an toàn và thêm trực tiếp vào giỏ yêu cầu báo giá (RFQ) một chạm."
+        },
+        "images": [
+          {
+            "src": "/image/projects/pccc/products.png",
+            "w": 1864,
+            "h": 999,
+            "alt": {
+              "en": "Product catalog overview with filters",
+              "vi": "Giao diện danh mục thiết bị PCCC & bộ lọc tiêu chuẩn"
+            },
+            "caption": {
+              "en": "Equipment Catalog & Filter Matrix",
+              "vi": "Danh mục thiết bị & Bộ lọc thông minh"
+            },
+            "lightbox": true
+          },
+          {
+            "src": "/image/projects/pccc/products2.png",
+            "w": 1864,
+            "h": 999,
+            "alt": {
+              "en": "Product categorization and listings",
+              "vi": "Danh sách sản phẩm và phân loại hệ thống"
+            },
+            "caption": {
+              "en": "System Categorization",
+              "vi": "Phân loại hệ thống Báo cháy & Chữa cháy"
+            },
+            "lightbox": true
+          }
+        ],
+        "children": [
+          {
+            "id": "product-detail",
+            "level": 2,
+            "heading": {
+              "en": "Technical Specifications & Datasheet View",
+              "vi": "Datasheet Kỹ thuật & Bảng Tương thích"
+            },
+            "body": {
+              "en": "Each product detail page acts as a precision datasheet, displaying electrical parameters, coverage radius, FlashScan protocol specs, and LensZoom inspection modal for technical schematics.",
+              "vi": "Mỗi trang chi tiết hoạt động như một datasheet chuẩn mực, hiển thị điện áp hoạt động, bán kính bảo vệ, giao thức FlashScan và tính năng phóng to LensZoom cho bản vẽ sơ đồ đấu nối."
+            },
+            "images": [
+              {
+                "src": "/image/projects/pccc/product-detail.png",
+                "w": 1864,
+                "h": 999,
+                "alt": {
+                  "en": "Smoke detector technical datasheet view",
+                  "vi": "Trang chi tiết thông số kỹ thuật đầu báo khói"
+                },
+                "caption": {
+                  "en": "Technical Datasheet View",
+                  "vi": "Giao diện Datasheet & Thông số kiểm định"
+                },
+                "lightbox": true
+              }
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "featured-projects",
+        "num": "04",
+        "level": 1,
+        "heading": {
+          "en": "Featured Installations & Industrial Deployments",
+          "vi": "Dự án & Công trình Tiêu biểu"
+        },
+        "body": {
+          "en": "A visual proof-of-work showcase highlighting large-scale implementations across industrial manufacturing plants, commercial high-rises, and logistics hubs.",
+          "vi": "Danh mục các công trình trọng điểm đã triển khai hệ thống PCCC, bao gồm nhà máy sản xuất quy mô lớn, tòa nhà văn phòng cao tầng và trung tâm kho vận logistics."
+        },
+        "images": [
+          {
+            "src": "/image/projects/pccc/projects.png",
+            "w": 1864,
+            "h": 999,
+            "alt": {
+              "en": "Featured fire safety engineering projects",
+              "vi": "Danh sách công trình và dự án PCCC tiêu biểu"
+            },
+            "caption": {
+              "en": "Industrial Installations",
+              "vi": "Hồ sơ dự án thực tế"
+            },
+            "lightbox": true
+          }
+        ],
+        "children": []
+      },
+      {
+        "id": "knowledge-base",
+        "num": "05",
+        "level": 1,
+        "heading": {
+          "en": "Safety Standards & Knowledge Base",
+          "vi": "Trung tâm Kiến thức & Tiêu chuẩn PCCC"
+        },
+        "body": {
+          "en": "A comprehensive technical resource center where engineers find compliance guides, installation tutorials, sensor placement calculations, and regulatory updates.",
+          "vi": "Hệ thống bài viết chuyên môn, hướng dẫn tính toán bán kính đầu báo, sơ đồ đấu nối và các bước chuẩn bị hồ sơ thẩm duyệt thiết kế PCCC theo quy định của Cục Cảnh sát PCCC & CNCH."
+        },
+        "images": [
+          {
+            "src": "/image/projects/pccc/news.png",
+            "w": 1864,
+            "h": 999,
+            "alt": {
+              "en": "Fire safety technical knowledge base overview",
+              "vi": "Cổng thông tin & Kiến thức chuyên ngành PCCC"
+            },
+            "caption": {
+              "en": "Technical Resource Center",
+              "vi": "Trung tâm kiến thức kỹ thuật"
+            },
+            "lightbox": true
+          }
+        ],
+        "children": [
+          {
+            "id": "article-detail",
+            "level": 2,
+            "heading": {
+              "en": "Regulatory Appraisal Guides & In-depth Articles",
+              "vi": "Bài viết Quy chuẩn & Hướng dẫn Thẩm định"
+            },
+            "body": {
+              "en": "Long-form editorial layouts optimized for high readability, featuring dynamic table of contents, legal cross-reference callouts, and step-by-step procedural blueprints.",
+              "vi": "Định dạng bài đọc chuyên sâu được tối ưu hóa khả năng đọc (typography readability) với chỉ mục nội dung trượt thông minh, bảng đối chiếu điều khoản luật và sơ đồ quy trình từng bước."
+            },
+            "images": [
+              {
+                "src": "/image/projects/pccc/article.png",
+                "w": 1863,
+                "h": 5045,
+                "alt": {
+                  "en": "Technical article format for design appraisal dossiers",
+                  "vi": "Định dạng bài viết hướng dẫn thẩm định thiết kế PCCC"
+                },
+                "caption": {
+                  "en": "Structured Editorial Blueprint",
+                  "vi": "Bố cục bài viết kỹ thuật dài"
+                },
+                "lightbox": false
+              }
+            ],
+            "children": []
+          }
+        ]
+      }
+    ],
+    "galleryImgs": [
+      "/image/pccc.png",
+      "/image/projects/pccc/thumbnail.png"
+    ],
+    "heroImg": "/image/projects/pccc/thumbnail.png"
+  },
+  {
+    "slug": "internet-banking",
+    "num": "03",
     "title": {
       "en": "KBIZ Corporate Internet Banking",
       "vi": "KBIZ Internet Banking Doanh nghiệp"
@@ -21,7 +870,7 @@
     ],
     "year": "2026",
     "img": "/image/bank.png",
-    "colorBackgound": { "light": "#80B2F8", "dark": "#0A1726" },
+    "colorBackgound": "#2c3858",
     "heroImg": "/image/projects/internet-banking/screencapture-localhost-3001-dashboard-2026-03-30-14_52_45.png",
     "galleryLayout": "cover-flow",
     "galleryImgs": [
@@ -79,7 +928,7 @@
           "en": "Term Deposit — Full Lifecycle",
           "vi": "Tiền gửi Có kỳ hạn — Vòng đời Đầy đủ"
         },
-          "description": {
+        "description": {
           "en": "Implemented the term-deposit lifecycle with Flexcube integration: (1) Open term deposit: preview online saving rates (GetOnlineSavingRates action=44), calculate maturity and interest, OTP verification, submit for maker-checker approval, then start the async DepositHold workflow via Cadence; (2) Partial withdrawal: call CoreBank redemption preview (ReviewCloseOnlineSavingAccount action=48 + GetTdRedemInfo action=492), validate partial liquidation eligibility and available amount, OTP verification (if required by policy and provided), create `SavingsWithdrawalRequest (PENDING_APPROVAL)` and submit the approval workflow; (3) Closure/tất toán: build closure preview (ReviewCloseOnlineSavingAccount action=48 + GetOnlineAccTDDetail action=204), compute net interest (finalAmount - balance; may include early-closure penalty from CoreBank), OTP verification (if required by policy and provided), create `SavingsClosureRequest (PENDING_APPROVAL)` and submit approval. CoreBank execution is gated by approval/workflow.",
           "vi": "Triển khai vòng đời tiền gửi có kỳ hạn tích hợp Flexcube: (1) Mở sổ: xem trước online saving rates (GetOnlineSavingRates action=44), tính toán kỳ hạn và lãi, OTP verification, submit vào quy trình maker-checker approval, sau đó start async DepositHold workflow qua Cadence; (2) Rút một phần: gọi CoreBank redemption preview (ReviewCloseOnlineSavingAccount action=48 + GetTdRedemInfo action=492), validate điều kiện rút/tính khả dụng, OTP verification theo chính sách, tạo `SavingsWithdrawalRequest (PENDING_APPROVAL)` và submit approval workflow; (3) Tất toán/đóng sổ: build closure preview (ReviewCloseOnlineSavingAccount action=48 + GetOnlineAccTDDetail action=204), tính net interest (finalAmount - balance; có thể bao gồm phạt tất toán trước hạn từ CoreBank), OTP verification theo chính sách, tạo `SavingsClosureRequest (PENDING_APPROVAL)` và submit approval. Việc thực thi CoreBank được chặn bởi approval/workflow."
         }
@@ -140,20 +989,20 @@
       }
     ],
     "githubLink": "",
-    "prevSlug": "youtube-clone",
+    "prevSlug": "pccc-nguyen-hung",
     "prevTitle": {
-      "en": "Streamly",
-      "vi": "Streamly"
+      "en": "PCCC Nguyen Hung",
+      "vi": "PCCC Nguyễn Hùng"
     },
     "nextSlug": "kplus-digital-banking",
     "nextTitle": {
-      "en": "K+ Digital Banking",
-      "vi": "K+ Ngân hàng số"
+      "en": "K+ Digital Banking — Backend Services",
+      "vi": "K+ Ngân hàng số — Dịch vụ Backend"
     }
   },
   {
     "slug": "kplus-digital-banking",
-    "num": "02",
+    "num": "04",
     "title": {
       "en": "K+ Digital Banking — Backend Services",
       "vi": "K+ Ngân hàng số — Dịch vụ Backend"
@@ -171,8 +1020,8 @@
       "MySQL"
     ],
     "year": "2026",
-    "img": "/image/projects/kplus-digital-banking/thumbnail_k_app.jpg",
-    "colorBackgound": { "light": "#C8BDFA", "dark": "#180F33" },
+    "img": "/image/k-pluss.png",
+    "colorBackgound": "#92c5fc",
     "heroImg": "/image/projects/kplus-digital-banking/digital_banking_system_architech.png",
     "galleryLayout": "orbit-3d",
     "galleryImgs": [
@@ -279,18 +1128,18 @@
     "githubLink": "",
     "prevSlug": "internet-banking",
     "prevTitle": {
-      "en": "KBIZ Internet Banking",
-      "vi": "KBIZ Internet Banking"
+      "en": "KBIZ Corporate Internet Banking",
+      "vi": "KBIZ Internet Banking Doanh nghiệp"
     },
     "nextSlug": "company-clean-hub",
     "nextTitle": {
-      "en": "Clean Hub",
-      "vi": "Clean Hub"
+      "en": "Clean Hub — Facility Management Platform",
+      "vi": "Clean Hub — Nền tảng Quản lý Vệ sinh Công nghiệp"
     }
   },
   {
     "slug": "company-clean-hub",
-    "num": "03",
+    "num": "05",
     "title": {
       "en": "Clean Hub — Facility Management Platform",
       "vi": "Clean Hub — Nền tảng Quản lý Vệ sinh Công nghiệp"
@@ -307,7 +1156,7 @@
     ],
     "year": "2025",
     "img": "/image/projects/company-clean-hub/thumbnail.png",
-    "colorBackgound": { "light": "#C4F2D2", "dark": "#0E1813" },
+    "colorBackgound": "#262b36",
     "heroImg": "/image/projects/company-clean-hub/dashboard.png",
     "galleryLayout": "cards",
     "galleryImgs": [
@@ -424,18 +1273,18 @@
     "githubLink": "",
     "prevSlug": "kplus-digital-banking",
     "prevTitle": {
-      "en": "K+ Digital Banking",
-      "vi": "K+ Ngân hàng số"
+      "en": "K+ Digital Banking — Backend Services",
+      "vi": "K+ Ngân hàng số — Dịch vụ Backend"
     },
     "nextSlug": "traveloka-clone",
     "nextTitle": {
-      "en": "Voyago",
-      "vi": "Voyago"
+      "en": "Voyago — Flight & Tour Booking Platform",
+      "vi": "Voyago — Nền tảng Đặt vé & Tour Du lịch"
     }
   },
   {
     "slug": "traveloka-clone",
-    "num": "04",
+    "num": "06",
     "title": {
       "en": "Voyago — Flight & Tour Booking Platform",
       "vi": "Voyago — Nền tảng Đặt vé & Tour Du lịch"
@@ -452,7 +1301,7 @@
     ],
     "year": "2025",
     "img": "/image/travel.png",
-    "colorBackgound": { "light": "#F8C8DD", "dark": "#1B161B" },
+    "colorBackgound": "#244252",
     "heroImg": "/image/projects/traveloka-clone/flight ls.png",
     "galleryImgs": [
       "/image/projects/traveloka-clone/login.jpg",
@@ -543,18 +1392,18 @@
     "githubLink": "https://github.com/thanhlam2802/DATN",
     "prevSlug": "company-clean-hub",
     "prevTitle": {
-      "en": "Clean Hub",
-      "vi": "Clean Hub"
+      "en": "Clean Hub — Facility Management Platform",
+      "vi": "Clean Hub — Nền tảng Quản lý Vệ sinh Công nghiệp"
     },
     "nextSlug": "sixdo-ecommerce",
     "nextTitle": {
-      "en": "Sixdo",
-      "vi": "Sixdo"
+      "en": "Sixdo — Commerce Platform",
+      "vi": "Sixdo — Nền tảng Thương mại"
     }
   },
   {
     "slug": "sixdo-ecommerce",
-    "num": "05",
+    "num": "07",
     "title": {
       "en": "Sixdo — Commerce Platform",
       "vi": "Sixdo — Nền tảng Thương mại"
@@ -571,7 +1420,7 @@
     ],
     "year": "2025",
     "img": "/image/siso.png",
-    "colorBackgound": { "light": "#F7EFC9", "dark": "#11121C" },
+    "colorBackgound": "#44382c",
     "heroImg": "/image/projects/sixdo-ecommerce/screencapture-127-0-0-1-5500-1TrangChu-html-2026-03-19-18_03_54.jpg",
     "galleryImgs": [
       "/image/projects/sixdo-ecommerce/screencapture-127-0-0-1-5500-1TrangChu-html-2026-03-19-18_03_54.jpg",
@@ -660,133 +1509,18 @@
     "githubLink": "https://github.com/tigcom/cloneSixdo",
     "prevSlug": "traveloka-clone",
     "prevTitle": {
-      "en": "Voyago",
-      "vi": "Voyago"
-    },
-    "nextSlug": "motorbike-sales-system",
-    "nextTitle": {
-      "en": "MotoDealer",
-      "vi": "MotoDealer"
-    }
-  },
-  {
-    "slug": "motorbike-sales-system",
-    "num": "06",
-    "title": {
-      "en": "MotoDealer — Dealership Management System",
-      "vi": "MotoDealer — Hệ thống Quản lý Đại lý Xe máy"
-    },
-    "subtitle": {
-      "en": "Multi-branch dealership operations",
-      "vi": "Vận hành đại lý đa chi nhánh"
-    },
-    "category": "development",
-    "tags": [
-      "Desktop App",
-      "Java Swing",
-      "SQL Server"
-    ],
-    "year": "2024",
-    "img": "/image/byke.png",
-    "colorBackgound": { "light": "#E2E2E2", "dark": "#000000" },
-    "heroImg": "/image/projects/motorbike-sales-system/Screenshot 2026-03-20 195751.png",
-    "galleryImgs": [
-      "/image/projects/motorbike-sales-system/Screenshot 2026-03-20 195751.png",
-      "/image/projects/motorbike-sales-system/Screenshot 2026-03-20 195833.png",
-      "/image/projects/motorbike-sales-system/Screenshot 2026-03-20 195847.png",
-      "/image/projects/motorbike-sales-system/Screenshot 2026-03-20 200727.png"
-    ],
-    "techStack": [
-      "Java (Swing/AWT)",
-      "JDBC",
-      "SQL Server",
-      "Apache POI"
-    ],
-    "role": {
-      "en": "Full Stack Developer",
-      "vi": "Nhà phát triển Full Stack"
-    },
-    "overview": {
-      "en": "MotoDealer is a desktop operations system for multi-branch motorbike dealerships, covering inventory, sales, staff, and periodic maintenance. It isolates and aggregates data across physical branches and produces professional Excel reports for sales and stock tracking.",
-      "vi": "MotoDealer là hệ thống vận hành desktop cho các đại lý xe máy nhiều chi nhánh, bao phủ từ nhập hàng, bán hàng, nhân sự đến bảo dưỡng định kỳ. Hệ thống tách biệt và tổng hợp dữ liệu giữa các chi nhánh, đồng thời xuất báo cáo Excel chuyên nghiệp cho theo dõi doanh thu và kho hàng."
-    },
-    "problem": {
-      "en": "Dealerships struggle to synchronize inventory across branches, track periodic maintenance commitments to customers, and produce revenue reports without manual spreadsheet work.",
-      "vi": "Các đại lý gặp khó khi đồng bộ tồn kho giữa nhiều chi nhánh, theo dõi cam kết bảo dưỡng định kỳ cho khách và lập báo cáo doanh thu mà không phải làm tay bằng bảng tính."
-    },
-    "processSteps": [
-      {
-        "title": {
-          "en": "Multi-branch Data Model",
-          "vi": "Mô hình dữ liệu Đa chi nhánh"
-        },
-        "description": {
-          "en": "Designed a schema that isolates and aggregates data across different physical locations, so each branch runs independently while management sees consolidated figures.",
-          "vi": "Thiết kế cấu trúc dữ liệu tách biệt và tổng hợp giữa các chi nhánh, để từng chi nhánh vận hành độc lập trong khi quản lý thấy số liệu tổng hợp."
-        }
-      },
-      {
-        "title": {
-          "en": "Maintenance Scheduler",
-          "vi": "Lịch Bảo dưỡng"
-        },
-        "description": {
-          "en": "Built a notification system that tracks and reminds customer-service staff of upcoming maintenance schedules.",
-          "vi": "Xây dựng hệ thống theo dõi và nhắc lịch bảo dưỡng định kỳ cho nhân viên chăm sóc khách hàng."
-        }
-      },
-      {
-        "title": {
-          "en": "Automated Reporting",
-          "vi": "Báo cáo Tự động"
-        },
-        "description": {
-          "en": "Integrated Apache POI to export structured Excel reports for sales and inventory tracking.",
-          "vi": "Tích hợp Apache POI để xuất báo cáo Excel có cấu trúc cho theo dõi doanh thu và kho hàng."
-        }
-      }
-    ],
-    "results": [
-      {
-        "value": 3,
-        "suffix": "+",
-        "label": {
-          "en": "Branches Supported",
-          "vi": "Chi nhánh hỗ trợ"
-        }
-      },
-      {
-        "value": 20,
-        "suffix": "+",
-        "label": {
-          "en": "Data Tables",
-          "vi": "Bảng dữ liệu"
-        }
-      },
-      {
-        "value": 4,
-        "suffix": "",
-        "label": {
-          "en": "Excel Report Types",
-          "vi": "Loại báo cáo Excel"
-        }
-      }
-    ],
-    "githubLink": "https://github.com/tigcom/MotorbikeSalesSystem",
-    "prevSlug": "sixdo-ecommerce",
-    "prevTitle": {
-      "en": "Sixdo",
-      "vi": "Sixdo"
+      "en": "Voyago — Flight & Tour Booking Platform",
+      "vi": "Voyago — Nền tảng Đặt vé & Tour Du lịch"
     },
     "nextSlug": "phong-vu-clone",
     "nextTitle": {
-      "en": "ElectroMart",
-      "vi": "ElectroMart"
+      "en": "ElectroMart — Electronics Retail Platform",
+      "vi": "ElectroMart — Nền tảng Bán lẻ Điện tử"
     }
   },
   {
     "slug": "phong-vu-clone",
-    "num": "07",
+    "num": "08",
     "title": {
       "en": "ElectroMart — Electronics Retail Platform",
       "vi": "ElectroMart — Nền tảng Bán lẻ Điện tử"
@@ -803,7 +1537,7 @@
     ],
     "year": "2025",
     "img": "/image/phongvu.png",
-    "colorBackgound": { "light": "#9CB7B4", "dark": "#112023" },
+    "colorBackgound": "#2a3e54",
     "heroImg": "/image/projects/phong-vu-clone/screencapture-localhost-2511-home-2026-03-20-15_57_45.jpg",
     "galleryImgs": [
       "/image/projects/phong-vu-clone/screencapture-localhost-2511-home-2026-03-20-15_57_45.jpg",
@@ -878,121 +1612,15 @@
       }
     ],
     "githubLink": "",
-    "prevSlug": "motorbike-sales-system",
+    "prevSlug": "sixdo-ecommerce",
     "prevTitle": {
-      "en": "MotoDealer",
-      "vi": "MotoDealer"
+      "en": "Sixdo — Commerce Platform",
+      "vi": "Sixdo — Nền tảng Thương mại"
     },
-    "nextSlug": "youtube-clone",
+    "nextSlug": "renew-ticfactory",
     "nextTitle": {
-      "en": "Streamly",
-      "vi": "Streamly"
-    }
-  },
-  {
-    "slug": "youtube-clone",
-    "num": "08",
-    "title": {
-      "en": "Streamly — Video Sharing Platform",
-      "vi": "Streamly — Nền tảng Chia sẻ Video"
-    },
-    "subtitle": {
-      "en": "Creator video platform with real-time engagement",
-      "vi": "Nền tảng video cho nhà sáng tạo nội dung"
-    },
-    "category": "development",
-    "tags": [
-      "Java Servlet",
-      "JSP",
-      "SQL Server"
-    ],
-    "year": "2024",
-    "img": "/image/ytu.png",
-    "colorBackgound": { "light": "#15171A", "dark": "#191A1E" },
-    "heroImg": "/image/projects/youtube-clone/youtube2.jpg",
-    "galleryImgs": [
-      "/image/projects/youtube-clone/youtube1.jpg",
-      "/image/projects/youtube-clone/youtube2.jpg",
-      "/image/projects/youtube-clone/youtube3.jpg",
-      "/image/projects/youtube-clone/yotube4.jpg"
-    ],
-    "techStack": [
-      "Java Servlet",
-      "JSP",
-      "Bootstrap",
-      "JavaScript",
-      "SQL Server"
-    ],
-    "role": {
-      "en": "Full Stack Developer",
-      "vi": "Nhà phát triển Full Stack"
-    },
-    "overview": {
-      "en": "Streamly is a video sharing platform with real-time interaction features (like, comment, subscribe), video management, and live traffic analytics for admins. It also supports voice search for finding videos faster.",
-      "vi": "Streamly là nền tảng chia sẻ video với các tính năng tương tác thời gian thực (like, comment, subscribe), quản lý video và thống kê lưu lượng trực tiếp cho quản trị. Hệ thống cũng hỗ trợ tìm kiếm video bằng giọng nói để truy cập nhanh hơn."
-    },
-    "problem": {
-      "en": "Delivering smooth real-time engagement and giving admins live visibility into viewership, while making discovery frictionless with voice search.",
-      "vi": "Đảm bảo tương tác thời gian thực mượt mà, cho quản trị cái nhìn trực tiếp về lượt xem, đồng thời giúp khám phá nội dung dễ dàng hơn bằng tìm kiếm giọng nói."
-    },
-    "processSteps": [
-      {
-        "title": {
-          "en": "Voice Search",
-          "vi": "Tìm kiếm bằng Giọng nói"
-        },
-        "description": {
-          "en": "Integrated the Web Speech API to let users find videos by voice.",
-          "vi": "Tích hợp Web Speech API cho phép người dùng tìm video bằng giọng nói."
-        }
-      },
-      {
-        "title": {
-          "en": "Real-time Analytics",
-          "vi": "Phân tích Thời gian thực"
-        },
-        "description": {
-          "en": "Tracked live viewer counts and traffic statistics for the admin panel.",
-          "vi": "Theo dõi số người xem trực tiếp và thống kê truy cập cho trang quản trị."
-        }
-      }
-    ],
-    "results": [
-      {
-        "value": 3,
-        "suffix": "",
-        "label": {
-          "en": "Real-time interactions",
-          "vi": "Tương tác thời gian thực"
-        }
-      },
-      {
-        "value": 100,
-        "suffix": "%",
-        "label": {
-          "en": "Voice search support",
-          "vi": "Hỗ trợ tìm kiếm giọng nói"
-        }
-      },
-      {
-        "value": 5,
-        "suffix": "+",
-        "label": {
-          "en": "Admin stat metrics",
-          "vi": "Chỉ số thống kê Admin"
-        }
-      }
-    ],
-    "githubLink": "",
-    "prevSlug": "phong-vu-clone",
-    "prevTitle": {
-      "en": "ElectroMart",
-      "vi": "ElectroMart"
-    },
-    "nextSlug": "internet-banking",
-    "nextTitle": {
-      "en": "KBIZ Internet Banking",
-      "vi": "KBIZ Internet Banking"
+      "en": "TIC Factory",
+      "vi": "TIC Factory"
     }
   }
 ]
