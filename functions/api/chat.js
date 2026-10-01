@@ -59,27 +59,15 @@ export async function onRequestPost({ request, env }) {
   // Sử dụng AI Gateway nếu có, nếu không thì dùng URL mặc định
   const baseUrl = env.GEMINI_BASE_URL || 'https://generativelanguage.googleapis.com'
   
-  // Danh sách các model hiện có trên hệ thống, thử tuần tự
-  const models = [
-    'gemini-3.8-flash',
-    'gemini-3.7-flash',
-    'gemini-3.6-flash',
-    'gemini-3.5-flash',
-    'gemini-2.5-flash'
-  ]
+  // Dùng trực tiếp model đã biết là hoạt động tốt để tránh AI Gateway tốn thời gian retry các model không tồn tại
+  const model = 'gemini-3.6-flash'
+  const geminiUrl = `${baseUrl}/v1beta/models/${model}:streamGenerateContent?alt=sse&key=${env.GEMINI_API_KEY}`
 
-  let lastErrText = ''
-  let lastStatus = 502
-  const errors = []
-
-  for (const model of models) {
-    const geminiUrl = `${baseUrl}/v1beta/models/${model}:streamGenerateContent?alt=sse&key=${env.GEMINI_API_KEY}`
-    try {
-      const res = await fetch(geminiUrl, {
+  try {
+    const res = await fetch(geminiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-Forwarded-For': request.headers.get('cf-connecting-ip') || '',
         },
         body: JSON.stringify(payload),
       })
@@ -95,21 +83,14 @@ export async function onRequestPost({ request, env }) {
           },
         })
       } else {
-        lastErrText = await res.text()
-        lastStatus = res.status
-        errors.push({ model, status: res.status, error: lastErrText })
+        const lastErrText = await res.text()
         console.warn(`Model ${model} failed with status ${res.status}:`, lastErrText)
-        // Nếu lỗi 400 và không phải API Key lỗi (hoặc cứ thử tiếp) thì tiếp tục vòng lặp
+        return json({ success: false, error: 'AI service error', details: lastErrText }, res.status)
       }
     } catch (e) {
       console.error(`Request to ${model} threw an error:`, e)
-      lastErrText = e.message || String(e)
-      errors.push({ model, status: 500, error: lastErrText })
+      return json({ success: false, error: 'AI service error', details: e.message || String(e) }, 500)
     }
-  }
-
-  // Nếu tất cả các model đều fail
-  return json({ success: false, error: 'AI service error (All models failed)', details: errors }, lastStatus)
 }
 
 // ─── Rate limit (dùng Cache API — không cần KV binding) ─────────────────────
